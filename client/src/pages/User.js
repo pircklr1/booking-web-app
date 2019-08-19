@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import UserBookings from '../components/UserBookings';
-import UserBookings from '../components/UserBookings';
 class User extends Component {
   render() {
     return (

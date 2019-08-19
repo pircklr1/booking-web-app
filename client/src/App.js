@@ -1,47 +1,32 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Route, Switch, Redirect, Link} from 'react-router-dom';
-import { Menu, Segment, Container } from 'semantic-ui-react'
+import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+  Link
+} from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
 
-class App extends Component{
-    state = { activeItem: 'Home' }
+import Settings from './pages/Settings';
+import Login from './pages/Login';
+import Register from './pages/Signup';
+import User from './pages/User';
+import NavBar from './components/Navbar';
 
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
-    render() {
-        const { activeItem } = this.state
-
+function App() {
   return (
     <Router>
-        <Container>
-      <h1>This app is working</h1>
-            <Menu pointing secondary>
-                <Menu.Item as={Link} to='/home' name='Home' active={activeItem === 'Home'} onClick={this.handleItemClick} />
-                <Menu.Item as={Link} to='/home'
-                    name='Login'
-                    active={activeItem === 'Login'}
-                    onClick={this.handleItemClick}
-                />
-                <Menu.Item as={Link} to='/meetings'
-                    name='Upcoming meetings'
-                    active={activeItem === 'Upcoming meetings'}
-                    onClick={this.handleItemClick}
-                />
-                <Menu.Menu position='right'>
-                    <Menu.Item as={Link} to='/'
-                        name='Logout'
-                        active={activeItem === 'Logout'}
-                        onClick={this.handleItemClick}
-                    />
-                </Menu.Menu>
-            </Menu>
-
-            <Segment>
-                <img src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
-            </Segment>
-        </Container>
+      <Container>
+        <NavBar />
+        <Route exact path='/' component={Login} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/register' component={Register} />
+        <Route exact path='/settings' component={Settings} />
+        <Route exact path='/bookings' component={User} />
+      </Container>
     </Router>
   );
-}
 }
 
 export default App;
