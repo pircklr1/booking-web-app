@@ -17,6 +17,8 @@
     "sequelize": "^5.15.1"
   },
   "devDependencies": {
+    "faker": "^4.1.0",
+    "lodash.random": "^3.2.0",
     "nodemon": "^1.19.1"
   }
 }
