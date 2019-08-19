@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Button, Icon, Input } from 'semantic-ui-react'
+import { Button, Icon, Input, Form } from 'semantic-ui-react'
 
 class Login extends Component {
     constructor(props) {
@@ -23,8 +23,16 @@ class Login extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
-                <h1>Login Below!</h1>
+            <div className="ui middle aligned center aligned grid">
+                <div className="column">
+                    <h2 className="ui image header">
+                        <div className="content">
+                            Log-in to your account
+                        </div>
+                    </h2>
+            <form class="ui form" onSubmit={this.onSubmit}>
+                <div className="ui stacked secondary  segment">
+                    <div className="field">
                 <div className="ui left icon input">
                     <i aria-hidden="true" className="at icon"></i>
                     <input type="text"
@@ -34,8 +42,10 @@ class Login extends Component {
                            onChange={this.handleInputChange}
                            required/>
                 </div>
-
-                <div className="ui icon input">
+                    </div>
+                    <div className="field">
+                <div className="ui left icon input">
+                    <i aria-hidden="true" className="lock icon"></i>
                     <input type="text"
                            name="password"
                            placeholder="Password..."
@@ -43,9 +53,17 @@ class Login extends Component {
                            onChange={this.handleInputChange}
                            required/>
                 </div>
+                    </div>
 
-                <button className="ui primary button">Login</button>
+                    <div className="ui fluid large teal submit button">Login</div>
+                </div>
+                <div className="ui error message"></div>
             </form>
+                    <div className="ui message">
+                        New to us? <a href="/home">Register</a>
+                    </div>
+                </div>
+            </div>
         );
     }
 }

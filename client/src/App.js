@@ -32,7 +32,7 @@ class App extends Component{
                     onClick={this.handleItemClick}
                 />
                 <Menu.Menu position='right'>
-                    <Menu.Item as={Link} to='/'
+                    <Menu.Item as={Link} to='/login'
                         name='Logout'
                         active={activeItem === 'Logout'}
                         onClick={this.handleItemClick}
