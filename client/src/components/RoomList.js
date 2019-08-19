@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Table} from 'semantic-ui-react'
 import Room from "./Room";
+import moment from 'moment';
 
 let data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}];
 
