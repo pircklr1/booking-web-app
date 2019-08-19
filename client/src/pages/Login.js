@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import { Button, Icon, Input, Form } from 'semantic-ui-react'
+import LoadingButton from '../components/LoadingButton'
 
 class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            isLoading: false,
             email: '',
             password: ''
         };
@@ -18,6 +20,7 @@ class Login extends Component {
     }
     onSubmit = (event) => {
         event.preventDefault();
+        this.setState({ isLoading: true });
         alert('Authentication coming soon!');
     }
 
@@ -54,8 +57,11 @@ class Login extends Component {
                            required/>
                 </div>
                     </div>
-
-                    <div className="ui fluid large teal submit button">Login</div>
+                    <LoadingButton type="submit"
+                                   isLoading={this.state.isLoading}
+                                   text="Login"
+                                   loadingText="Logging in…"/>
+                    {/*<div className="ui fluid large teal submit button">Login</div>*/}
                 </div>
                 <div className="ui error message"></div>
             </form>
