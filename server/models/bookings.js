@@ -7,20 +7,28 @@ module.exports = (sequelize, DataTypes) => {
             },
             user_id: {
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
+                references: {
+                    model: 'users',
+                    key:'id'
+                }
             },
             room_id: {
                 type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: false,
+                references: {
+                    model: 'rooms',
+                    key: 'id'
+                }
             },
-            start: DataTypes.DATE,
-            end: DataTypes.DATE,
-            created_at: {
+            start: {
                 type: DataTypes.DATE,
                 allowNull: false
             },
-            updated_at: DataTypes.DATE,
-            deleted_at: DataTypes.DATE,
+            end: {
+                type: DataTypes.DATE,
+                allowNull: false
+            },
             status: {
                 type: DataTypes.ENUM,
                 values: ['valid', 'cancelled', 'completed']
