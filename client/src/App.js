@@ -39,6 +39,10 @@ class App extends Component{
                 <img src='https://react.semantic-ui.com/images/wireframe/media-paragraph.png' />
             </Segment>
         </Container>
+        <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/login" component={Login} />
+        </Switch>
     </Router>
   );
 }
