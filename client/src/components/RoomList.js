@@ -1,26 +1,57 @@
 import React, {Component} from 'react';
-import {Table} from 'semantic-ui-react'
+import {Table, Dropdown} from 'semantic-ui-react'
 import Room from "./Room";
+import moment from 'moment';
 
-let data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}];
-
+const data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}];
+const array = [];
 
 class RoomList extends Component {
     state = {
+        now: "",
         rooms :data
     };
+
+    componentDidMount() {
+        this.setState({now: moment().format('DD-MM-YYYY')})
+        this.datesToArray();
+    }
+
+    datesToArray(){
+        for(let i=0;i<=30;i++){
+            const date = {
+                key: moment().add(i, 'd').format('DD-MM-YYYY'),
+                text: moment().add(i, 'd').format('DD-MM-YYYY'),
+                value: moment().add(i, 'd').format('DD-MM-YYYY')
+            }
+            array.push(date);
+
+        }
+    }
+
     render() {
         const allRooms = this.state.rooms.map((room) =>
             <Room room={room} key={room.index}/>);
         return (
             <div>
-                <Table unstackable>
+
+                <div>
+                    {this.state.now}
+                    <Dropdown
+                        placeholder='Select Date'
+                        fluid
+                        selection
+                        options={array}
+                    />
+                </div>
+
+                <Table unstackable color={'blue'}>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell>Huone</Table.HeaderCell>
-                            <Table.HeaderCell>6:00</Table.HeaderCell>
-                            <Table.HeaderCell>7:00</Table.HeaderCell>
-                            <Table.HeaderCell>8:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>6:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>7:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>8:00</Table.HeaderCell>
                             <Table.HeaderCell>9:00</Table.HeaderCell>
                             <Table.HeaderCell>10:00</Table.HeaderCell>
                             <Table.HeaderCell>11:00</Table.HeaderCell>
