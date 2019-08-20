@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         {
-            freezeTableName: true
+            freezeTableName: true,
+            underscored: true
         });
     Booking.associate = function (models) {
         Booking.belongsTo(models.User)
