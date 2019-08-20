@@ -1,27 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const Booking = sequelize.define(
-        'booking',
-        {
+        'booking', {
             id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUID,
                 primaryKey: true,
-                autoIncrement: true
-            },
-            user_id: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                references: {
-                    model: 'users',
-                    key: 'id'
-                }
-            },
-            room_id: {
-                type: DataTypes.INTEGER,
-                allowNull: false,
-                references: {
-                    model: 'rooms',
-                    key: 'id'
-                }
+                defaultValue: DataTypes.UUIDV4,
+                allowNull: false
             },
             start: {
                 type: DataTypes.DATE,
@@ -33,15 +17,15 @@ module.exports = (sequelize, DataTypes) => {
             },
             status: {
                 type: DataTypes.ENUM,
-                values: ['valid', 'cancelled', 'completed']
+                values: ['valid', 'cancelled']
             }
         },
         {
             freezeTableName: true
         });
     Booking.associate = function (models) {
-        Booking.belongsTo(models.User, {foreignKey: 'user_id', as: 'users'})
-        Booking.belongsTo(models.Room, {foreignKey: 'room_id', as: 'room'})
+        Booking.belongsTo(models.User)
+        Booking.belongsTo(models.Room)
     };
     return Booking;
 };

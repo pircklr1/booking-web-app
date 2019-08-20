@@ -3,9 +3,10 @@ module.exports = (sequelize, DataTypes) => {
         'rooms',
         {
             id: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.UUID,
                 primaryKey: true,
-                autoIncrement: true
+                defaultValue: DataTypes.UUIDV4,
+                allowNull: false
             },
             name: {
                 type: DataTypes.STRING,
@@ -14,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
             capacity: {
                 type: DataTypes.INTEGER,
                 allowNull: false
-            }
+            },
+            equipment: DataTypes.TEXT
         },
         {
             freezeTableName: true
