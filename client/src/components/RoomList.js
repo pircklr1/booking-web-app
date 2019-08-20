@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {Table, Dropdown} from 'semantic-ui-react'
-import Room from "./Room";
+import RoomRow from "./RoomRow";
 import moment from 'moment';
+import "./Table.css"
 
-const data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}];
+const data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}, {name:"huone4"}];
 const array = [];
 
 class RoomList extends Component {
@@ -31,7 +32,7 @@ class RoomList extends Component {
 
     render() {
         const allRooms = this.state.rooms.map((room) =>
-            <Room room={room} key={room.index}/>);
+            <RoomRow room={room} key={room.index}/>);
         return (
             <div>
 
@@ -52,19 +53,19 @@ class RoomList extends Component {
                             <Table.HeaderCell colSpan='2'>6:00</Table.HeaderCell>
                             <Table.HeaderCell colSpan='2'>7:00</Table.HeaderCell>
                             <Table.HeaderCell colSpan='2'>8:00</Table.HeaderCell>
-                            <Table.HeaderCell>9:00</Table.HeaderCell>
-                            <Table.HeaderCell>10:00</Table.HeaderCell>
-                            <Table.HeaderCell>11:00</Table.HeaderCell>
-                            <Table.HeaderCell>12:00</Table.HeaderCell>
-                            <Table.HeaderCell>13:00</Table.HeaderCell>
-                            <Table.HeaderCell>14:00</Table.HeaderCell>
-                            <Table.HeaderCell>15:00</Table.HeaderCell>
-                            <Table.HeaderCell>16:00</Table.HeaderCell>
-                            <Table.HeaderCell>17:00</Table.HeaderCell>
-                            <Table.HeaderCell>18:00</Table.HeaderCell>
-                            <Table.HeaderCell>19:00</Table.HeaderCell>
-                            <Table.HeaderCell>20:00</Table.HeaderCell>
-                            <Table.HeaderCell>21:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>9:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>10:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>11:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>12:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>13:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>14:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>15:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>16:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>17:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>18:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>19:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>20:00</Table.HeaderCell>
+                            <Table.HeaderCell colSpan='2'>21:00</Table.HeaderCell>
                         </Table.Row>
                     </Table.Header>
                     <Table.Body>
