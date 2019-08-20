@@ -8,7 +8,10 @@ import {
 import { Container } from 'semantic-ui-react';
 import Room from './components/Room';
 import RoomList from './components/RoomList';
+import Settings from './pages/Settings';
 import Login from './pages/Login';
+import Register from './pages/Signup';
+import User from './pages/User';
 import Calendar from './pages/Calendar';
 import Navbar from './components/Navbar';
 
@@ -17,13 +20,17 @@ class App extends Component {
     return (
       <Router>
         <Container>
-          <h1>This app is working</h1>
+          <h1>Varaussovellus</h1>
           <Navbar />
+          <Switch>
+            <Route exact path='/' component={Login} />
+            <Route path='/home' exact component={Calendar} />
+            <Route path='/login' component={Login} />
+            <Route exact path='/register' component={Register} />
+            <Route exact path='/settings' component={Settings} />
+            <Route exact path='/bookings' component={User} />
+          </Switch>
         </Container>
-        <Switch>
-          <Route path='/home' exact component={Calendar} />
-          <Route path='/login' component={Login} />
-        </Switch>
       </Router>
     );
   }

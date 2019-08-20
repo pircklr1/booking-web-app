@@ -29,10 +29,16 @@ class Navbar extends Component {
           />
           <Menu.Item
             as={Link}
-            to='/meetings'
+            to='/bookings'
             name='Upcoming meetings'
             active={activeItem === 'Upcoming meetings'}
             onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            as={Link}
+            to='/settings'
+            name='Settings'
+            active={activeItem === 'Settings'}
           />
           <Menu.Menu position='right'>
             <Menu.Item
