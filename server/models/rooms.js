@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
             equipment: DataTypes.TEXT
         },
         {
-            freezeTableName: true
+            freezeTableName: true,
+            underscored: true
         });
     Room.associate = function (models) {
         Room.hasMany(models.Booking)

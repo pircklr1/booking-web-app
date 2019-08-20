@@ -19,7 +19,8 @@ module.exports = (app, db) => {
     app.post('/api/room', (req, res) =>
         db.Room.create({
             name: req.body.name,
-            capacity: req.body.capacity
+            capacity: req.body.capacity,
+            equipment: req.body.equipment
         }).then(result => res.json(result))
     );
 
