@@ -1,33 +1,32 @@
-const booking = (sequelize, DataTypes) => {
-  const Booking = sequelize.define(
-    'booking',
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
-      },
-      user_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      room_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      start: DataTypes.DATE,
-      end: DataTypes.DATE,
-      status: {
-        type: DataTypes.ENUM,
-        values: ['valid', 'cancelled', 'completed']
-      }
-    },
-    {
-      freezeTableName: true
-    }
-  );
-
-  return Booking;
+module.exports = (sequelize, DataTypes) => {
+    const Booking = sequelize.define(
+        'booking', {
+            id: {
+                type: DataTypes.UUID,
+                primaryKey: true,
+                defaultValue: DataTypes.UUIDV4,
+                allowNull: false
+            },
+            start: {
+                type: DataTypes.DATE,
+                allowNull: false
+            },
+            end: {
+                type: DataTypes.DATE,
+                allowNull: false
+            },
+            status: {
+                type: DataTypes.ENUM,
+                values: ['valid', 'cancelled']
+            }
+        },
+        {
+            freezeTableName: true
+        });
+    Booking.associate = function (models) {
+        Booking.belongsTo(models.User)
+        Booking.belongsTo(models.Room)
+    };
+    return Booking;
 };
 
-export default booking;
