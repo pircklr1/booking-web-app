@@ -1,2 +1,7 @@
 .idea/
+<<<<<<< HEAD
+.env
+=======
+/server/config/env.js
 
+>>>>>>> 54b2e1a5b803c12bcb14d8af101933f2c15ca511
