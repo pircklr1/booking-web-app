@@ -51,6 +51,9 @@ const Login = () => {
                     </ul>
                 </div>
             )}
+            <div className="ui message">
+                New to us? <a href="/signup">Register</a>
+            </div>
         </div>
     );
     }
