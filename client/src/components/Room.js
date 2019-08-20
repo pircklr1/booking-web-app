@@ -10,6 +10,14 @@ class Room extends Component {
                 <Table.Row>
                     <Table.Cell>{this.props.room.name}</Table.Cell>
                     <Table.Cell>Vapaa</Table.Cell>
+                    <Table.Cell>Vapaa</Table.Cell>
+                    <Table.Cell>Vapaa</Table.Cell>
+                    <Table.Cell>Vapaa</Table.Cell>
+                    <Table.Cell>Vapaa</Table.Cell>
+                    <Table.Cell>Vapaa</Table.Cell>
+                    <Table.Cell>Vapaa</Table.Cell>
+                    <Table.Cell>Vapaa</Table.Cell>
+
                     <Table.Cell textAlign='right'>None</Table.Cell>
                 </Table.Row>
 
