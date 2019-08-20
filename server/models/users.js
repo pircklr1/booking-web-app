@@ -9,22 +9,16 @@ module.exports = (sequelize, DataTypes) => {
             lastName: DataTypes.STRING,
             email: {
                 type: DataTypes.STRING,
-                required: true
+                allowNull: false
             },
             password: {
                 type:DataTypes.STRING,
-                required: true
+                allowNull: false
             },
             role: {
                 type: DataTypes.ENUM,
                 values: ['user', 'admin']
             },
-            created_at: {
-                type: DataTypes.DATE,
-                allowNull: false
-            },
-            updated_at: DataTypes.DATE,
-            deleted_at: DataTypes.DATE
         },
         {
             freezeTableName: true,
