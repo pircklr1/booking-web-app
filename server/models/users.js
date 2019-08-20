@@ -1,4 +1,7 @@
-module.exports = (sequelize, DataTypes) => {
+const bcrypt = require('bcrypt');
+
+module.exports = (sequelize, DataTypes) =>
+{
     const User = sequelize.define(
         'users',
         {
@@ -25,9 +28,19 @@ module.exports = (sequelize, DataTypes) => {
         },
         {
             freezeTableName: true,
-            underscored: true
+            underscored: true,
+            hooks: {
+                beforeCreate: (user) => {
+                const salt = bcrypt.genSaltSync();
+    user.password = bcrypt.hashSync(user.password, salt);
+}
+},
+    instanceMethods: {
+        validPassword(password){
+            return bcrypt.compare(password, this.password);
         }
-    );
+    }
+});
 
     return User;
 };

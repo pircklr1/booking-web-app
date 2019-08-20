@@ -10,6 +10,7 @@ import Room from './components/Room';
 import RoomList from './components/RoomList';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Register from './pages/Signup';
 import User from './pages/User';
 import Calendar from './pages/Calendar';
@@ -26,6 +27,7 @@ class App extends Component {
             <Route exact path='/' component={Login} />
             <Route path='/home' exact component={Calendar} />
             <Route path='/login' component={Login} />
+            <Route path='/signup' component={Signup}/>
             <Route exact path='/register' component={Register} />
             <Route exact path='/settings' component={Settings} />
             <Route exact path='/bookings' component={User} />

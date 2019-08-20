@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
             freezeTableName: true
         });
     Booking.associate = function (models) {
-        Booking.belongsTo(models.User, {foreignKey: 'user_id', as: 'user'})
+        Booking.belongsTo(models.User, {foreignKey: 'user_id', as: 'users'})
         Booking.belongsTo(models.Room, {foreignKey: 'room_id', as: 'room'})
     };
     return Booking;
