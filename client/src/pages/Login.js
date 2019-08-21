@@ -3,6 +3,7 @@ import { Button, Icon, Input, Form } from 'semantic-ui-react'
 import LoadingButton from '../components/LoadingButton'
 import useForm from "../components/UseLoginForm";
 import validate from '../components/LoginPageValidationRules';
+import {handleLogin} from '../service/ClientService';
 
 const Login = () => {
         const {
@@ -13,7 +14,7 @@ const Login = () => {
         }=useForm(login, validate)
 
         function login() {
-            console.log('No errors, submit callback called!');
+            handleLogin(values);
         }
 
     return (
