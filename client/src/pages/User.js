@@ -3,29 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserBookings from '../components/UserBookings';
-import {
-  Container,
-  Divider,
-  Grid,
-  Header,
-  Menu,
-  Message,
-  Segment,
-  Table,
-  Button
-} from 'semantic-ui-react';
-
+import { getAllBookings } from '../service/ClientService';
 function User() {
   const [data, setData] = useState([]);
 
-  // const [url, setUrl] = useState('http://localhost:9999/api/bookings/');
-
-  const url = 'http://localhost:9999/api/bookings/';
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    axios.get(url).then(json => setData(json.data));
+    getAllBookings(setData);
     setIsLoading(false);
   }, []);
 
