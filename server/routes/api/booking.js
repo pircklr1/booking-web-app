@@ -18,25 +18,25 @@ module.exports = (app, db) => {
     // @access  Public
     app.post('/api/booking', (req, res) => {
             db.Booking.create({
-                user_id: req.body.user_id,
-                room_id: req.body.room_id,
+                userId: req.body.user_id,
+                roomId: req.body.room_id,
                 start: req.body.start,
                 end: req.body.end,
                 status: req.body.status
-            },).then(result => res.json(result))
-                .catch(err=>res.send(err))
-        }
-    );
-
+            }).then(result => res.json(result))
+                .catch(err => {
+                    console.error("Error with POST", err.message);
+                    res.status(400).send(err.message);
+                });
+        });
 
     // @route   PUT api/booking/:id
     // @desc    Modify existing booking
     // @access  Public
     app.put('/api/booking/:id', (req, res) =>
-        db.Booking.update(
-            {
-                user_id: req.body.user_id,
-                room_id: req.body.room_id,
+        db.Booking.update({
+                userId: req.body.user_id,
+                roomId: req.body.room_id,
                 start: req.body.start,
                 end: req.body.end,
                 status: req.body.status

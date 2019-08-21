@@ -42,7 +42,7 @@ class RoomRow extends Component {
     componentDidMount() {
         for(var i = 0; i < this.state.combinedDatas.length; i++){
             for(var j = 0; j < bookingData2.length; j++){
-                if(this.state.combinedDatas[i].time == bookingData2[j].time && this.state.combinedDatas[i].room==bookingData2[j].room){
+                if(this.state.combinedDatas[i].time === bookingData2[j].time && this.state.combinedDatas[i].room===bookingData2[j].room){
                     this.state.combinedDatas[i].available = false;
                 }
             }

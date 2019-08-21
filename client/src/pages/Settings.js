@@ -19,10 +19,10 @@ function Settings() {
     <div className='form-container'>
       <h5>Here we will show the name of the user</h5>
       <Form>
-        <h1>Settings</h1>
+        <h1>Asetukset</h1>
         <Form.Input
-          label='Change email'
-          placeholder='New email'
+          label='Vaihda sähköpostiosoite'
+          placeholder='Uusi email'
           name='email'
           type='text'
           value={values.email}
@@ -30,8 +30,8 @@ function Settings() {
           // onChange={onChange}
         />
         <Form.Input
-          label='Confirm new email'
-          placeholder='Confirm new email'
+          label='Vahvista uusi sähköpostiosoite'
+          placeholder='Uusi email uudestaan'
           name='confirmEmail'
           type='text'
           value={values.email}
@@ -39,8 +39,8 @@ function Settings() {
           // onChange={onChange}
         />
         <Form.Input
-          label='Change Password'
-          placeholder='New password'
+          label='Vaihda salasana'
+          placeholder='Uusi salasana'
           name='password'
           type='password'
           value={values.password}
@@ -48,8 +48,8 @@ function Settings() {
           //  onChange={onChange}
         />
         <Form.Input
-          label='Confirm new password'
-          placeholder='Confirm new password'
+          label='Vahvista uusi salasana'
+          placeholder='Uusi salasana uudestaan'
           name='confirmPassword'
           type='password'
           value={values.confirmPassword}
@@ -57,7 +57,7 @@ function Settings() {
           // onChange={onChange}
         />
         <Button type='submit' primary>
-          Save changes
+          Tallenna muutokset
         </Button>
       </Form>
       {Object.keys(errors).length > 0 && (
