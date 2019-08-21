@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserBookings from '../components/UserBookings';
 import { getAllBookings } from '../service/ClientService';
+import { Table, Container, Header } from 'semantic-ui-react';
 function User() {
   const [data, setData] = useState([]);
 
