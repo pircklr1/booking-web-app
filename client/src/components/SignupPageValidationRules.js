@@ -22,7 +22,7 @@ export default function validate(values) {
     }
     if (!values.confirmPassword) {
         errors.confirmPassword = 'Password confirmation is required';
-    } else if (values.confirmPassword != values.password) {
+    } else if (values.confirmPassword !== values.password) {
         errors.confirmPassword = 'Passwords must match!';
     }
     return errors;
