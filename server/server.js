@@ -56,7 +56,7 @@ const createMockData = async () => {
         times(10, () => ({
             start: faker.date.future(),
             end: faker.date.future(),
-            status: faker.random.arrayElement(['valid', 'cancelled']),
+            status: faker.random.arrayElement(['valid', 'cancelled'])
         }))
     );
     // populate room table with dummy data
