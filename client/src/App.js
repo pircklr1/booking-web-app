@@ -29,6 +29,7 @@ class App extends Component {
             <Route exact path='/register' component={Register} />
             <Route exact path='/settings' component={Settings} />
             <Route exact path='/bookings' component={User} />
+              <Route render={() => <h2 className="neljanollanelja">404 Sivua ei löytynyt</h2>}/>
           </Switch>
         </Container>
       </Router>

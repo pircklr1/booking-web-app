@@ -12,11 +12,11 @@ module.exports = (app, db) => {
   app.get('/api/user/:id', (req, res) =>
     db.User.findByPk(req.params.id).then(result => res.json(result))
   );
-
-  // @route   POST api/user
+    
+  // @route   POST api/signup
   // @desc    Post new user
   // @access  Public
-  app.post('/api/user', (req, res) =>
+  app.post('/api/signup', (req, res) =>
     db.User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
