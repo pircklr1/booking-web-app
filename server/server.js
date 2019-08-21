@@ -2,6 +2,7 @@ require('dotenv').config();
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import express from 'express';
+import cookieParser from 'cookie-parser';
 
 require('uuidv4');
 
@@ -25,6 +26,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
 
 // These methods connect api routes to server.
 apiBooking(app, models);
