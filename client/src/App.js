@@ -20,7 +20,6 @@ class App extends Component {
     return (
       <Router>
         <Container>
-          <h1>Varaussovellus</h1>
           <Navbar />
           <Switch>
             <Route exact path='/' component={Login} />
