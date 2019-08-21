@@ -1,3 +1,7 @@
+const jwt = require('jsonwebtoken');
+const secret = process.env.SECRET;
+
+
 module.exports = (app, db) => {
   // @route   GET api/users
   // @desc    Get all users
@@ -12,11 +16,11 @@ module.exports = (app, db) => {
   app.get('/api/user/:id', (req, res) =>
     db.User.findByPk(req.params.id).then(result => res.json(result))
   );
-
-  // @route   POST api/user
+    
+  // @route   POST api/signup
   // @desc    Post new user
   // @access  Public
-  app.post('/api/user', (req, res) =>
+  app.post('/api/signup', (req, res) =>
     db.User.create({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -59,4 +63,28 @@ module.exports = (app, db) => {
       }
     }).then(result => res.json(result))
   );
+
+    app.post('/api/login', (req, res) => {
+        const { email, password } = req.body;
+       return db.User.findOne({
+            where: {
+                email: email
+            }
+        })
+            .then(function (data) {
+                if (!data) {
+                    console.log(data)
+                    return res.status(404).send({
+                        msg: 'Jotain meni pieleen'
+                    })
+                } else if (data.email === email) {
+                    return res.status(200).send({
+                        msg: 'Homma ok'
+                    })
+                }
+            })
+            .catch(function (err) {
+                console.log(err)
+            })
+    });
 };

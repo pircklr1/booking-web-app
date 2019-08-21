@@ -6,8 +6,6 @@ import {
   Redirect
 } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import Room from './components/Room';
-import RoomList from './components/RoomList';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -31,6 +29,7 @@ class App extends Component {
             <Route exact path='/register' component={Register} />
             <Route exact path='/settings' component={Settings} />
             <Route exact path='/bookings' component={User} />
+              <Route render={() => <h2 className="neljanollanelja">404 Sivua ei löytynyt</h2>}/>
           </Switch>
         </Container>
       </Router>
