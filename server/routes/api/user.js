@@ -23,8 +23,11 @@ module.exports = (app, db) => {
       email: req.body.email,
       password: req.body.password,
       role: req.body.role
-    }).then(result => res.json(result))
-  );
+    }).then(result => res
+        .json(result))
+    .catch(function(err) {
+        console.log(err);
+        }));
 
   // @route   PUT api/user/:id
   // @desc    Modify existing user

@@ -16,15 +16,18 @@ module.exports = (app, db) => {
     // @route   POST api/booking
     // @desc    Post new booking
     // @access  Public
-    app.post('/api/booking', (req, res) =>
-        db.Booking.create({
-            user_id: req.body.user_id,
-            room_id: req.body.room_id,
-            start: req.body.start,
-            end: req.body.end,
-            status: req.body.status
-        }).then(result => res.json(result))
+    app.post('/api/booking', (req, res) => {
+            db.Booking.create({
+                user_id: req.body.user_id,
+                room_id: req.body.room_id,
+                start: req.body.start,
+                end: req.body.end,
+                status: req.body.status
+            },).then(result => res.json(result))
+                .catch(err=>res.send(err))
+        }
     );
+
 
     // @route   PUT api/booking/:id
     // @desc    Modify existing booking
@@ -57,3 +60,4 @@ module.exports = (app, db) => {
         }).then(result => res.json(result))
     );
 };
+
