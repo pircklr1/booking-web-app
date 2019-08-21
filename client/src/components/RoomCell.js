@@ -16,17 +16,28 @@ class RoomCell extends Component {
     //     }
     // }
 
+    check(){
+        if(this.props.cellData.available){
+            return ""
+        }else{
+            return "Varattu"
+        }
+    }
+
+
+
+
     render() {
 
 
         return (
 
-            <Table.Cell kellonaika={8}>{this.props.cell.available}, {this.props.room}, aika: {this.props.cell.aika}</Table.Cell>
+            /*<Table.Cell availability={this.props.cell.available} negative={!this.props.cell.available} kellonaika={8}>{this.props.cell.available}, {this.props.room}, aika: {this.props.cell.aika}</Table.Cell>*/
+        /*<Table.Cell negative={!this.props.cellData.available}>Aika:{this.props.cellData.time},*/
+        /*    huone: {this.props.cellData.room}, vapaa: {this.props.cellData.available}</Table.Cell>*/
+            <Table.Cell negative={!this.props.cellData.available}>{this.check()}</Table.Cell>
 
-            // <Table.Cell kellonaika={9} huone={this.props.room.name}>{data.second}</Table.Cell>
-            // <Table.Cell kellonaika={10} huone={this.props.room.name}>{data.third}</Table.Cell>
-            // <Table.Cell kellonaika={11} huone={this.props.room.name}>{data.fourth}</Table.Cell>
-            // <Table.Cell kellonaika={12} huone={this.props.room.name}>{data.fifth}</Table.Cell>
+
         );
     }
 
