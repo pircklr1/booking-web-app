@@ -12,16 +12,36 @@ export function getAllBookings(setData) {
 }
 
 export function handleLogin(data) {
-    axios.post(baseUrl + '/login', data)
+    return axios.post(baseUrl + '/login', data, {
+        headers: {
+            'Content-Type': 'application/json'
+        }})
         .then(response => {
-            return response.message
+            if(response.status === 200) {
+                return true
+            }else if (response.status === 404) {
+                return false
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
         })
         .catch(error => {
-            return error.message
-        })
+            return false
+        });
 }
 
 export function handleSignup(data) {
-                axios.post(baseUrl + '/signup', data)
-                    .then(res => res.data)
+               return axios.post(baseUrl + '/signup', data)
+                    .then(response => {
+                     if(response.status === 200) {
+                         return true;
+                     } else {
+                         const error = new Error(response.error);
+                         throw error;
+                     }
+                    })
+                    .catch(error => {
+                        return false;
+                    });
             }

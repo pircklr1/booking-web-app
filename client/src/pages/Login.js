@@ -4,6 +4,8 @@ import LoadingButton from '../components/LoadingButton'
 import useForm from "../components/UseLoginForm";
 import validate from '../components/LoginPageValidationRules';
 import {handleLogin} from '../service/ClientService';
+import {Redirect} from 'react-router-dom';
+import { useState } from 'react';
 
 const Login = () => {
         const {
@@ -13,12 +15,22 @@ const Login = () => {
             handleSubmit,
         }=useForm(login, validate)
 
+    const [toHome, setToHome] = useState(false);
+
         function login() {
-            handleLogin(values);
+            handleLogin(values)
+                .then(res => {
+                    if(res) {
+                        setToHome(true)
+                    } else {
+                        alert('Sisäänkirjautuminen epäonnistui')
+                    }
+                })
         }
 
     return (
         <div className='form-container'>
+            {toHome ? <Redirect to="/home" /> : null}
             <Form onSubmit={handleSubmit}>
                 <h1>Login</h1>
                 <Form.Input

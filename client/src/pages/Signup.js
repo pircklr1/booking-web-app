@@ -17,8 +17,14 @@ const Signup = () => {
     const [toHome, setToHome] = useState(false);
 
     function signup() {
-        handleSignup(values);
-        setTimeout(() => setToHome(true), 2000)
+        handleSignup(values)
+            .then(res => {
+                if(res) {
+                    setToHome(true)
+                } else {
+                    alert('Tunnusten luonti ei onnistunut')
+                }
+            })
     }
         return (
             

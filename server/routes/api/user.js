@@ -1,3 +1,7 @@
+const jwt = require('jsonwebtoken');
+const secret = process.env.SECRET;
+
+
 module.exports = (app, db) => {
   // @route   GET api/users
   // @desc    Get all users
@@ -56,4 +60,28 @@ module.exports = (app, db) => {
       }
     }).then(result => res.json(result))
   );
+
+    app.post('/api/login', (req, res) => {
+        const { email, password } = req.body;
+       return db.User.findOne({
+            where: {
+                email: email
+            }
+        })
+            .then(function (data) {
+                if (!data) {
+                    console.log(data)
+                    return res.status(404).send({
+                        msg: 'Jotain meni pieleen'
+                    })
+                } else if (data.email === email) {
+                    return res.status(200).send({
+                        msg: 'Homma ok'
+                    })
+                }
+            })
+            .catch(function (err) {
+                console.log(err)
+            })
+    });
 };
