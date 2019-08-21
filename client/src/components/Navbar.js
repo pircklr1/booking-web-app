@@ -37,8 +37,9 @@ class Navbar extends Component {
           <Menu.Item
             as={Link}
             to='/settings'
-            name='Settings'
+            name='Asetukset'
             active={activeItem === 'Settings'}
+            onClick={this.handleItemClick}
           />
           <Menu.Menu position='right'>
             <Menu.Item

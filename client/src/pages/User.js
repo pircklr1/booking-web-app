@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UserBookings from '../components/UserBookings';
-import {getAllBookings} from '../service/ClientService';
+import { getAllBookings } from '../service/ClientService';
+import { Table, Container, Header } from 'semantic-ui-react';
 function User() {
   const [data, setData] = useState([]);
 
@@ -18,30 +19,56 @@ function User() {
   const renderTable = () => {
     return data.map(booking => {
       return (
-        <tr>
-          <td>{booking.id}</td>
-          <td>{booking.user_id}</td>
-          <td>{booking.room_id}</td>
-          <td>{booking.status}</td>
-        </tr>
+        <Table.Row>
+          <Table.Cell>{booking.start}</Table.Cell>
+          <Table.Cell>{booking.end}</Table.Cell>
+          <Table.Cell>{booking.status}</Table.Cell>
+          <button class='ui button'>Muokkaa</button>
+          <button class='ui button'>Poista</button>
+        </Table.Row>
       );
     });
   };
 
   return (
     <div>
-      <h1 id='title'>All bookings</h1>
-      <table id='bookings'>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>User</th>
-            <th>Room</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>{renderTable()}</tbody>
-      </table>
+      <Container style={{ padding: '5em 0em' }}>
+        {/*     <Message
+          attached='top'
+          content='Tulevat varaukset'
+          icon='attention'
+          warning
+        /> */}
+        <Header as='h4' attached='top' block>
+          Tulevat varaukset
+        </Header>
+        <Table attached celled selectable>
+          <Table.Header>
+            <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
+            <Table.HeaderCell>Kellonaika</Table.HeaderCell>
+            <Table.HeaderCell>Tila</Table.HeaderCell>
+          </Table.Header>
+          <Table.Body> {renderTable()}</Table.Body>
+        </Table>
+
+        {/*     <Message
+          attached='top'
+          content='Tulevat varaukset'
+          icon='attention'
+          warning
+        /> */}
+        <Header as='h4' attached='top' block>
+          Menenet ja perutut varaukset
+        </Header>
+        <Table attached celled selectable>
+          <Table.Header>
+            <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
+            <Table.HeaderCell>Kellonaika</Table.HeaderCell>
+            <Table.HeaderCell>Tila</Table.HeaderCell>
+          </Table.Header>
+          <Table.Body> {renderTable()}</Table.Body>
+        </Table>
+      </Container>
     </div>
   );
 }
