@@ -6,8 +6,6 @@ import {
   Redirect
 } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-import Room from './components/Room';
-import RoomList from './components/RoomList';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
