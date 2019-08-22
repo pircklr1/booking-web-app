@@ -16,37 +16,44 @@ class Navbar extends Component {
           <Menu.Item
             as={Link}
             to='/home'
-            name='Home'
-            active={activeItem === 'Home'}
+            name='Koti'
+            active={activeItem === 'Koti'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             as={Link}
             to='/login'
-            name='Login'
-            active={activeItem === 'Login'}
+            name='Kirjaudu sisään'
+            active={activeItem === 'Kirjaudu sisään'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             as={Link}
             to='/bookings'
-            name='Upcoming meetings'
-            active={activeItem === 'Upcoming meetings'}
+            name='Omat varaukset'
+            active={activeItem === 'Omat varaukset'}
             onClick={this.handleItemClick}
           />
           <Menu.Item
             as={Link}
             to='/settings'
             name='Asetukset'
-            active={activeItem === 'Settings'}
+            active={activeItem === 'Asetukset'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            as={Link}
+            to='/admin'
+            name='Admin'
+            active={activeItem === 'Admin'}
             onClick={this.handleItemClick}
           />
           <Menu.Menu position='right'>
             <Menu.Item
               as={Link}
               to='/login'
-              name='Logout'
-              active={activeItem === 'Logout'}
+              name='Kirjaudu ulos'
+              active={activeItem === 'Kirjaudu ulos'}
               onClick={this.handleItemClick}
             />
           </Menu.Menu>
