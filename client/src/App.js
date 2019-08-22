@@ -17,6 +17,7 @@ import Calendar from './pages/Calendar';
 import Admin from './pages/Admin';
 
 import Navbar from './components/Navbar';
+import withAuth from './components/WithAuth';
 
 class App extends Component {
   render() {
@@ -26,7 +27,7 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path='/' component={Login} />
-            <Route path='/home' exact component={Calendar} />
+            <Route path='/home' component={Calendar} />
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Signup} />
             <Route exact path='/register' component={Register} />
