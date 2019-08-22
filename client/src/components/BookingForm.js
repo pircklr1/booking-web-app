@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-// import Modal from 'react-responsive-modal'; npm uninstall react-responsive-modal
 import { Button, Form, Modal, Header} from 'semantic-ui-react'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import DatePickers from "./DatePicker";
 
 
 class BookingForm extends Component {
@@ -11,8 +11,7 @@ class BookingForm extends Component {
     constructor (props) {
         super(props)
         this.state = {
-        // state = {
-            startDate: moment()
+            startDate: this.props.datepicked
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,32 +24,24 @@ class BookingForm extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        let main = this.state.startDate
-        console.log(main.format('L'));
+        // let main = this.state.startDate
+        // console.log(main.format('L'));
+        console.log(this.state.startDate);
     }
 
     render() {
         return (
             <div>
-
-                {/*<DatePicker*/}
-                {/*    selected={ this.state.startDate }*/}
-                {/*    onChange={ this.handleChange }*/}
-                {/*    name="startDate"*/}
-                {/*    dateFormat="MM/DD/YYYY"*/}
-                {/*/>*/}
-
                 <Modal trigger={<Button primary>Varaa huone</Button>}>
                     <Modal.Header>Uusi varaus</Modal.Header>
                     <Modal.Content>
                     <Form onSubmit={ this.handleSubmit }>
-                    {/*    <Form >*/}
                     <Form.Group unstackable widths={2}>
                         <Form.Input label='Huone' placeholder='Valitse huone' />
                     </Form.Group>
                         <Form.Group>
                         <Form.Input label='Päivämäärä'>
-
+                        <DatePickers value={this.props.datepicked}/>
                       </Form.Input>
                         </Form.Group>
                     <Form.Group widths={2}>
