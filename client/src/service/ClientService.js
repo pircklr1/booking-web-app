@@ -11,6 +11,28 @@ export function getAllBookings(setData) {
         })
 }
 
+// export function createBooking(booking, callback) {
+//     axios.post(baseUrl +'/booking', booking)
+//         .then(function (response) {
+//             console.dir(response);
+//             callback(response.status);
+//         });
+// }
+export function createBooking(data) {
+    return axios.post(baseUrl + '/booking', data)
+        .then(response => {
+            if(response.status === 200) {
+                return true;
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+}
+
 export function handleLogin(data) {
     return axios.post(baseUrl + '/login', data, {
         headers: {
@@ -45,3 +67,4 @@ export function handleSignup(data) {
                         return false;
                     });
             }
+
