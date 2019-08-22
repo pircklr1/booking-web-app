@@ -5,8 +5,6 @@ const bcrypt = require('bcrypt');
 const withAuth = require('../../middleware/middleware');
 const cookieParser = require('cookie-parser');
 
-
-
 module.exports = (app, db) => {
     // @route   GET api/users
     // @desc    Get all users
@@ -71,7 +69,7 @@ module.exports = (app, db) => {
         }).then(result => res.json(result))
     );
 
-   app.post('/api/login', (req, res) => {
+    app.post('/api/login', (req, res) => {
         const {email, password} = req.body;
         db.User.findOne({
             where: {
@@ -82,13 +80,13 @@ module.exports = (app, db) => {
                 if (!data) {
                     return res.status(401).send({
                         msg: 'Salasana tai sähköposti on virheellinen'
-                    }) 
+                    })
                 }
                 const match = await bcrypt.compare(password, data.password);
                 if (!match) {
-                   return res.status(401).send({
+                    return res.status(401).send({
                         msg: 'Salasana tai sähköposti on virheellinen'
-                    }) 
+                    })
                 } else {
                     const payload = {email};
                     const token = jwt.sign(payload, secret, {

@@ -64,7 +64,8 @@ const createMockData = async () => {
         times(7, () => ({
             equipment: faker.lorem.words(),
             name: faker.lorem.word(),
-            capacity: random(1, 20)
+            capacity: random(1, 20),
+            available: faker.random.arrayElement(['true', 'false'])
         }))
     );
     // populate user table with dummy data

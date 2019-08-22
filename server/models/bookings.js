@@ -21,12 +21,11 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         {
-            freezeTableName: true,
             underscored: true
         });
     Booking.associate = function (models) {
-        Booking.belongsTo(models.User)
-        Booking.belongsTo(models.Room)
+        Booking.belongsTo(models.User);
+        Booking.belongsTo(models.Room);
     };
     return Booking;
 };

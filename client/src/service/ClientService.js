@@ -37,17 +37,29 @@ export function handleLogin(data) {
         });
 }
 
+export function getAllUsers(setData) {
+  axios
+    .get(baseUrl + '/users')
+    .then(response => {
+      return setData(response.data);
+    })
+    .catch(error => {
+      return error.message;
+    });
+}
+
 export function handleSignup(data) {
-               return axios.post(baseUrl + '/signup', data)
-                    .then(response => {
-                     if(response.status === 200) {
-                         return true;
-                     } else {
-                         const error = new Error(response.error);
-                         throw error;
-                     }
-                    })
-                    .catch(error => {
-                        return false;
-                    });
-            }
+  return axios
+    .post(baseUrl + '/signup', data)
+    .then(response => {
+      if (response.status === 200) {
+        return true;
+      } else {
+        const error = new Error(response.error);
+        throw error;
+      }
+    })
+    .catch(error => {
+      return false;
+    });
+}
