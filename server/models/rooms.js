@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const Room = sequelize.define(
-        'rooms',
+        'room',
         {
             id: {
                 type: DataTypes.UUID,
@@ -16,10 +16,13 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
+            available: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false
+            },
             equipment: DataTypes.TEXT
         },
         {
-            freezeTableName: true,
             underscored: true
         });
     Room.associate = function (models) {

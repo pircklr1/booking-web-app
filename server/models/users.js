@@ -16,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
             email: {
                 type: DataTypes.STRING,
                 allowNull: false,
-                unique: true
+                validate: {
+                    isEmail: true
+                },
+                unique: {
+                    args: true,
+                    msg: 'Email address is already in use!'
+                }
             },
             password: {
                 type: DataTypes.STRING,
@@ -28,7 +34,6 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         {
-            freezeTableName: true,
             underscored: true,
             hooks: {
                 beforeCreate: (user) => {
@@ -37,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     },
     instanceMethods: {
-        validPassword(password){
+        validPassword: function (password){
             return bcrypt.compare(password, this.password);
         }
     }
