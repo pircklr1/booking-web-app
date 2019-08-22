@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Table, Dropdown} from 'semantic-ui-react'
+import {Table, Dropdown, Input, Form} from 'semantic-ui-react'
 import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
+import DatePickers from "./DatePickers";
 
 //const data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}, {name:"huone4"}];
 const data = [{name: 1},{name: 2}, {name: 3}, {name:4}, {name:5}, {name:6}, {name:7}];
@@ -36,16 +37,14 @@ class RoomList extends Component {
             <RoomRow date={this.state.now} room={room} key={room.index}/>);
         return (
             <div>
+                {/*<Form style={{marginTop: 20}}>*/}
+                {/*<Form.Group>*/}
+                {/*    <Form.Input>*/}
+                {/*    <DatePickers/>*/}
+                {/*    </Form.Input>*/}
+                {/*    </Form.Group>*/}
+                {/*</Form>*/}
 
-                <div>
-                    {this.state.now}
-                    <Dropdown
-                        placeholder='Select Date'
-                        fluid
-                        selection
-                        options={array}
-                    />
-                </div>
 
                 <Table unstackable color={'blue'} celled definition>
                     <Table.Header>

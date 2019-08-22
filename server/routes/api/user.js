@@ -92,8 +92,10 @@ module.exports = (app, db) => {
                     const token = jwt.sign(payload, secret, {
                         expiresIn: '1h'
                     });
-                    res.cookie('token', token, {httpOnly: true})
+                    res.json({success: true,
+                    token: token})
                         .sendStatus(200);
+                    console.log(res)
                 }
             })
             .catch(function (err) {
