@@ -17,10 +17,13 @@ import Admin from './pages/Admin';
 
 //layout
 import Navbar from './components/Navbar';
+
 import Footer from './components/Footer';
 
 import { AuthProvider } from './context/auth';
 import AuthRoute from './utils/AuthRoute';
+
+import withAuth from './components/WithAuth';
 
 class App extends Component {
   render() {

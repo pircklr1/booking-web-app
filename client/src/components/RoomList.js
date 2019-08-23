@@ -3,11 +3,11 @@ import {Table, Dropdown, Input, Form} from 'semantic-ui-react'
 import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
-import DatePickers from "./DatePicker";
+import DatePickers from "./DatePickers";
 
 //const data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}, {name:"huone4"}];
 const data = [{name: 1},{name: 2}, {name: 3}, {name:4}, {name:5}, {name:6}, {name:7}];
-const array = [];
+// const array = [];
 
 class RoomList extends Component {
     state = {
@@ -15,22 +15,22 @@ class RoomList extends Component {
         rooms :data
     };
 
-    componentDidMount() {
-        this.setState({now: moment().format('DD-MM-YYYY')})
-        this.datesToArray();
-    }
+    // componentDidMount() {
+    //     this.setState({now: moment().format('DD-MM-YYYY')})
+    //     this.datesToArray();
+    // }
 
-    datesToArray(){
-        for(let i=0;i<=30;i++){
-            const date = {
-                key: moment().add(i, 'd').format('DD-MM-YYYY'),
-                text: moment().add(i, 'd').format('DD-MM-YYYY'),
-                value: moment().add(i, 'd').format('DD-MM-YYYY')
-            }
-            array.push(date);
-
-        }
-    }
+    // datesToArray(){
+    //     for(let i=0;i<=30;i++){
+    //         const date = {
+    //             key: moment().add(i, 'd').format('DD-MM-YYYY'),
+    //             text: moment().add(i, 'd').format('DD-MM-YYYY'),
+    //             value: moment().add(i, 'd').format('DD-MM-YYYY')
+    //         }
+    //         array.push(date);
+    //
+    //     }
+    // }
 
     render() {
         const allRooms = this.state.rooms.map((room) =>
