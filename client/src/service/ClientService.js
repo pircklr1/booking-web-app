@@ -13,14 +13,6 @@ export function getAllBookings(setData) {
             return error.message
         })
 }
-
-// export function createBooking(booking, callback) {
-//     axios.post(baseUrl +'/booking', booking)
-//         .then(function (response) {
-//             console.dir(response);
-//             callback(response.status);
-//         });
-// }
 export function createBooking(data) {
     return axios.post(baseUrl + '/booking', data)
         .then(response => {
@@ -83,5 +75,15 @@ export function handleSignup(data) {
                     .catch(error => {
                         return false;
                     });
-            }
+}
+export function getAllRooms(setData) {
+    axios
+        .get(baseUrl + '/rooms')
+        .then(response => {
+            return setData(response.data);
+        })
+        .catch(error => {
+            return error.message;
+        });
+}
 
