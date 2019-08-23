@@ -15,12 +15,17 @@ const Signup = () => {
     }=useForm(signup, validate)
 
     const [toHome, setToHome] = useState(false);
+    const [success, setSuccess] = useState(false);
 
     function signup() {
         handleSignup(values)
             .then(res => {
                 if(res) {
-                    setToHome(true)
+                    setSuccess(true)
+                    setTimeout(function () {
+                        console.log('näin')
+                        setToHome(true)
+                    }, 3000)
                 } else {
                     alert('Tunnusten luonti ei onnistunut')
                 }
@@ -29,15 +34,9 @@ const Signup = () => {
         return (
             
             <div className='form-container'>
-                {toHome ? <Redirect to="/home" /> : null}
+                {toHome ? <Redirect to="/login" /> : null}
                 <Form onSubmit={handleSubmit}>
                     <h1>Register</h1>
-                    {/*{(signup) (*/}
-                    {/*<div className='ui positive message'>*/}
-                    {/*    <div className="header">Käyttäjä luotu onnistuneesti!</div>*/}
-                    {/*    <p>Tervetuloa käyttämään sovellusta.</p>*/}
-                    {/*</div>*/}
-                    {/*)}*/}
                     <Form.Input
                         label='Firstname'
                         placeholder='Firstname'
@@ -83,6 +82,10 @@ const Signup = () => {
                         error={errors.confirmPassword ? true : false}
                         onChange={handleChange}
                     />
+                    {success ? <Message positive>
+                        <Message.Header>Käyttäjätunnus luotu onnistuneesti!</Message.Header>
+                        <p>Pääset kirjautumaan sisään kun ylläpitäjä on hyväksynyt käyttäjätunnuksesi.</p>
+                    </Message> : null}
                     <Button type='submit' primary>
                         Register
                     </Button>

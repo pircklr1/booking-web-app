@@ -78,14 +78,18 @@ export function getAllUsers(setUserData) {
 // @desc    Get all rooms
 // @access  Public
 export function getAllRooms(setRoomData) {
-    axios
-        .get(baseUrl + '/rooms')
-        .then(response => {
-            return setRoomData(response.data);
-        })
-        .catch(error => {
-            return error.message;
-        });
+  axios
+    .get(baseUrl + '/rooms', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+      return setRoomData(response.data);
+    })
+    .catch(error => {
+      return error.message;
+    });
 }
 
 export function handleSignup(data) {
@@ -130,8 +134,14 @@ export function sendForgotPasswordEmail(email) {
                 const error = new Error(response.error);
                 throw error;
             }
+      
+export function getRoomData(callback) {
+    axios
+        .get(baseUrl+'/rooms')
+        .then(function (rooms) {
+            callback(rooms.data);
         })
         .catch(error => {
             return false;
         });
-}
+
