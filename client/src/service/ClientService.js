@@ -77,7 +77,11 @@ export function getAllUsers(setUserData) {
 // @access  Public
 export function getAllRooms(setRoomData) {
   axios
-    .get(baseUrl + '/rooms')
+    .get(baseUrl + '/rooms', {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
     .then(response => {
       return setRoomData(response.data);
     })
@@ -116,4 +120,15 @@ export function adminDeleteBooking(id) {
     .catch(error => {
       return false;
     });
+}
+
+export function getRoomData(callback) {
+    axios
+        .get(baseUrl+'/rooms')
+        .then(function (rooms) {
+            callback(rooms.data);
+        })
+        .catch(error => {
+            return false;
+        });
 }
