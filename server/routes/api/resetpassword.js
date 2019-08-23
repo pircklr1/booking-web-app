@@ -4,13 +4,12 @@ const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const password = process.env.GMAILPW;
 
-
 module.exports = (app, db) => {
-    app.get('/forgot', function (req, res) {
+    app.get('/forgot', function(req, res) {
         res.render('forgot');
     });
-
-    app.post('/forgot', function (req, res, next) {
+    app.post('/api/forgot', function (req, res, next) {
+        console.log(req.body);
         async.waterfall([
             function (done) {
                 crypto.randomBytes(20, function (err, buf) {
@@ -19,8 +18,8 @@ module.exports = (app, db) => {
                 });
             },
             function (token, done) {
-                const {email} = req.body;
-                db.User.findOne({
+                const email = req.body.email;
+                const user = db.User.findOne({
                     where: {
                         email: email
                     }
@@ -66,7 +65,7 @@ module.exports = (app, db) => {
         });
     });
 
-    app.get('/reset/:token', function (req, res) {
+    app.get('api/reset/:token', function (req, res) {
         const {token} = req.params.token;
         db.User.findOne({
             where: {
@@ -84,7 +83,7 @@ module.exports = (app, db) => {
         });
     });
 
-    app.post('/reset/:token', function (req, res) {
+    app.post('api/reset/:token', function (req, res) {
         async.waterfall([
             function (done) {
                 const {token} = req.params.token;
@@ -143,4 +142,4 @@ module.exports = (app, db) => {
             res.redirect('/');
         });
     });
-}
+};

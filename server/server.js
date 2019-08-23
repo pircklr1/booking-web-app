@@ -56,9 +56,10 @@ const createMockData = async () => {
     // populate booking table with dummy data
     models.Booking.bulkCreate(
         times(10, () => ({
-            start: faker.date.future(),
-            end: faker.date.future(),
-            status: faker.random.arrayElement(['valid', 'cancelled'])
+            bookingDate: faker.date.future(),
+            startTime: faker.date.future(),
+            endTime: faker.date.future(),
+            isValid: faker.random.arrayElement(['true', 'false'])
         }))
     );
     // populate room table with dummy data

@@ -14,6 +14,8 @@ import Signup from './pages/Signup';
 import User from './pages/User';
 import Calendar from './pages/Calendar';
 import Admin from './pages/Admin';
+import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
 
 //layout
 import Navbar from './components/Navbar';
@@ -37,6 +39,8 @@ class App extends Component {
                 <Route exact path='/' component={Login} />
                 <AuthRoute path='/home' exact component={Calendar} />
                 <Route path='/login' component={Login} />
+                  <Route path='/forgot' component={ForgotPassword}/>
+                    <Route path='/reset' component={ResetPassword}/>
                 <Route path='/signup' component={Signup} />
 
                 <AuthRoute exact path='/settings' component={Settings} />

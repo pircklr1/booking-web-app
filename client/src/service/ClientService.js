@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const baseUrl = 'http://localhost:9999/api';
 
 // @route   GET api/bookings
@@ -18,6 +19,7 @@ export function getAllBookings(setData) {
             return error.message;
         });
 }
+
 export function createBooking(data) {
     return axios
         .post(baseUrl + '/booking', data)
@@ -105,6 +107,22 @@ export function handleSignup(data) {
 export function adminDeleteBooking(id) {
     return axios
         .delete(baseUrl + '/booking/' + id, id)
+        .then(response => {
+            if (response.status === 200) {
+                return true;
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+}
+
+export function sendForgotPasswordEmail(email) {
+    return axios
+        .post(baseUrl + '/forgot', email)
         .then(response => {
             if (response.status === 200) {
                 return true;

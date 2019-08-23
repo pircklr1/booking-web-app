@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Icon, Input, Form, Message } from 'semantic-ui-react'
 import useForm from "../components/UseLoginForm";
-import validate from '../components/SignupPageValidationRules';
+import validate from '../validation/SignupPageValidationRules';
 import {handleSignup} from '../service/ClientService';
 import {Redirect} from 'react-router-dom';
 import { useState } from 'react';

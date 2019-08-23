@@ -7,17 +7,21 @@ module.exports = (sequelize, DataTypes) => {
                 defaultValue: DataTypes.UUIDV4,
                 allowNull: false
             },
-            start: {
-                type: DataTypes.DATE,
+            bookingDate: {
+                type: DataTypes.DATEONLY,
                 allowNull: false
             },
-            end: {
-                type: DataTypes.DATE,
+            startTime: {
+                type: DataTypes.TIME,
                 allowNull: false
             },
-            status: {
-                type: DataTypes.ENUM,
-                values: ['valid', 'cancelled']
+            endTime: {
+                type: DataTypes.TIME,
+                allowNull: false
+            },
+            isValid: {
+                type: DataTypes.BOOLEAN,
+                defaultValue: true
             }
         },
         {

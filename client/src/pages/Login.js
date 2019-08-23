@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Icon, Input, Form } from 'semantic-ui-react'
 import LoadingButton from '../components/LoadingButton'
 import useForm from "../components/UseLoginForm";
-import validate from '../components/LoginPageValidationRules';
+import validate from '../validation/LoginPageValidationRules';
 import {handleLogin} from '../service/ClientService';
 import {Redirect} from 'react-router-dom';
 import { useState } from 'react';
