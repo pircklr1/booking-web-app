@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import RoomList from '../components/RoomList';
 import BookingForm from '../components/BookingForm';
-
 import { Container, Form } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
-import { createBooking } from '../service/ClientService';
+import { createBooking} from '../service/ClientService';
 
-var toinenarvo = 1;
-console.log(toinenarvo);
+
 class Calendar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: new Date()
+      startDate: new Date(),
     };
     this.handleDateChange = this.handleDateChange.bind(this);
   }
@@ -28,7 +26,6 @@ class Calendar extends Component {
       ...newbooking
     };
     createBooking(obj, () => {
-      // this.getListAndUpdate();
     });
   };
 
@@ -54,10 +51,7 @@ class Calendar extends Component {
           <RoomList />
         </Container>
         <Container style={{ marginTop: 20 }}>
-          <BookingForm />
-        </Container>
-        <Container style={{ marginTop: 20 }}>
-          <BookingForm addBooking={this.newBooking} />
+          <BookingForm addBooking={this.newBooking}/>
         </Container>
       </div>
     );

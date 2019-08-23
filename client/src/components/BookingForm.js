@@ -4,11 +4,10 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
-
-
-//const options = [{key: 1, text: "1", value: 1},{key: 2, text: "2", value: 2}, {key: 3, text: "3", value: 3}, {key: 4, text: "4", value: 4},
- //   {key: 5, text: "5", value: 5}, {key: 6, text: "6", value: 6}, {key: 7, text: "7", value: 7}];
-const options = [{key: "5", text: "Huone 5", value: "5"}, {key: "6", text: "Huone 6", value: "6"}, {key: "7", text: "Huone 7", value: "7"}];
+import {getRoomData} from "../service/ClientService";
+import subDays from 'date-fns/subDays'
+import setHours from 'date-fns/setHours'
+import setMinutes from 'date-fns/setMinutes'
 
 class BookingForm extends Component {
 
@@ -18,15 +17,38 @@ class BookingForm extends Component {
             room: "",
             startDate: new Date(),
             startTime: new Date(),
-            endTime: new Date()
+            endTime: new Date(),
+            roomdata: [],
+            formErrors: {startTime: '', endTime: ''},
+            startTimeValid: false,
+            endTimeValid: false,
+            formValid: false
         };
-
         this.handleRoomChange = this.handleRoomChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleStartTimeChange = this.handleStartTimeChange.bind(this);
         this.handleEndTimeChange = this.handleEndTimeChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.getRooms = this.getRooms.bind(this);
     }
+
+    componentDidMount() {
+        this.getRooms();
+    }
+
+    getRooms = () => {
+        getRoomData(list=>{
+            console.log(list)
+            var rooms=[];
+            var oneRoom  = []
+                list.map(room => (
+                oneRoom  = {key: room.id, text: room.name, value: room.id},
+                rooms.push(oneRoom)
+                ))
+            this.setState({roomdata: rooms});
+            console.log(this.state.roomdata);
+        });
+    };
 
     handleRoomChange(e, {value}) {
         this.setState({
@@ -51,14 +73,16 @@ class BookingForm extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        // let main = this.state.startDate
-        // console.log(main.format('L'));
+        //nämä valmiina jos tietokantaa lähetetään pvm ja ajat erikseen, ilman aikavyöhykettä
+        // const date = moment(this.state.startDate).format('YYYY-MM-DD');
+        // const start = moment(this.state.startTime).format('HH:mm');
+        // const end = moment(this.state.endTime).format('HH:mm');
         const room_id = this.state.room;
-        const start = moment(this.state.startDate).format('YYYY-MM-DD') + " " + moment(this.state.startTime).format('hh:mm:ss.SSSZZ');
-        const end = moment(this.state.startDate).format('YYYY-MM-DD') + " " + moment(this.state.endTime).format('hh:mm:ss.SSSZZ');
+        const start = moment(this.state.startDate).format('YYYY-MM-DD') + " " + moment(this.state.startTime).format('HH:mm:ss.SSSZZ');
+        const end = moment(this.state.startDate).format('YYYY-MM-DD') + " " + moment(this.state.endTime).format('HH:mm:ss.SSSZZ');
         console.log(start);
         const data ={
-            // room_id: room_id,
+            room_id: room_id,
             start: start,
             end: end
         };
@@ -80,7 +104,7 @@ class BookingForm extends Component {
                     <Modal.Content>
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Group unstackable widths={2}>
-                                <Form.Field control={Select} label="Valitse huone" options={options} placeholder="Huone"  onChange={this.handleRoomChange} value = {this.state.room}/>
+                                <Form.Field control={Select} label="Valitse huone" options={this.state.roomdata} placeholder="Huone"  onChange={this.handleRoomChange} value = {this.state.room}/>
                             </Form.Group>
                             <Form.Group>
                                 <Form.Input label='Päivämäärä'>
@@ -88,6 +112,7 @@ class BookingForm extends Component {
                                         dateFormat="dd/MM/yyyy"
                                         selected={this.state.startDate}
                                         onChange={this.handleDateChange}
+                                        minDate={subDays(new Date(), 0)}
                                         locale={fi}
                                     />
                                 </Form.Input>
@@ -99,6 +124,8 @@ class BookingForm extends Component {
                                         onChange={this.handleStartTimeChange}
                                         showTimeSelect
                                         showTimeSelectOnly
+                                        minTime={setHours(setMinutes(new Date(), 0), 6)}
+                                        maxTime={setHours(setMinutes(new Date(), 30), 21)}
                                         timeIntervals={30}
                                         timeFormat="p"
                                         locale={fi}
@@ -114,6 +141,8 @@ class BookingForm extends Component {
                                         onChange={this.handleEndTimeChange}
                                         showTimeSelect
                                         showTimeSelectOnly
+                                        minTime={setHours(setMinutes(new Date(), 30), 6)}
+                                        maxTime={setHours(setMinutes(new Date(), 0), 22)}
                                         timeIntervals={30}
                                         timeFormat="p"
                                         locale={fi}
