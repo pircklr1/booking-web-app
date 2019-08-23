@@ -6,14 +6,10 @@ class Navbar extends Component {
   state = { activeItem: 'Kirjaudu',
             visible: false};
 
-  handlePusher = () => {
-    const { visible } = this.state.visible;
-
-    if (visible) this.setState({ visible: false });
-  };
-
+  // Handles changes of sidebar visibility in mobile phone-mode.
   handleToggle = () => this.setState({ visible: !this.state.visible });
 
+  // Handles clicking tasks in desktop-mode.
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
@@ -24,6 +20,7 @@ class Navbar extends Component {
 
     return (
       <div>
+        {/*This will render if application is used in desktop mode(min-width: 768px)*/}
         <Responsive minWidth={768}>
         <Menu pointing secondary>
           <Menu.Item
@@ -65,12 +62,13 @@ class Navbar extends Component {
             <Menu.Item
               as={Link}
               to='/login'
-              name='Kirjaudu ulos'
+              content='Kirjaudu ulos'
               active={activeItem === 'Kirjaudu ulos'}
               onClick={this.handleItemClick}
             />
           </Menu.Menu>
         </Menu>
+          {/*This will render if application is used with mobile phone(max-width: 767px)*/}
         </Responsive>
         <Responsive {...Responsive.onlyMobile}>
           <Menu pointing secondary>

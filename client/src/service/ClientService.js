@@ -13,6 +13,7 @@ export function getAllBookings(setData) {
             return error.message
         })
 }
+
 export function createBooking(data) {
     return axios.post(baseUrl + '/booking', data)
         .then(response => {
