@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Icon, Input, Form } from 'semantic-ui-react'
 import LoadingButton from '../components/LoadingButton'
 import useForm from "../components/UseLoginForm";
-import validate from '../components/LoginPageValidationRules';
+import validate from '../validation/LoginPageValidationRules';
 import {handleLogin} from '../service/ClientService';
 import {Redirect} from 'react-router-dom';
 import { useState } from 'react';
@@ -32,10 +32,10 @@ const Login = () => {
         <div className='form-container'>
             {toHome ? <Redirect to="/home" /> : null}
             <Form onSubmit={handleSubmit}>
-                <h1>Login</h1>
+                <h1>Kirjaudu</h1>
                 <Form.Input
-                    label='email'
-                    placeholder='Email...'
+                    label='Sähköposti'
+                    placeholder='Sähköposti...'
                     name='email'
                     type='text'
                     value={values.email}
@@ -43,16 +43,18 @@ const Login = () => {
                     onChange={handleChange}
                 />
                 <Form.Input
-                    label='Password'
-                    placeholder='Password...'
+                    label='Salasana'
+                    placeholder='Salasana...'
                     name='password'
                     type='password'
                     value={values.password}
                     error={errors.password ? true : false}
                     onChange={handleChange}
-                />
+                    />
+                <a href="/forgot">Unohtuiko salasana?</a> <br/>
+                <br/>
                 <Button type='submit' primary>
-                    Login
+                    Kirjaudu
                 </Button>
             </Form>
             {Object.keys(errors).length > 0 && (
@@ -65,7 +67,7 @@ const Login = () => {
                 </div>
             )}
             <div className="ui message">
-                New to us? <a href="/signup">Register</a>
+                Ei vielä tunnuksia? <a href="/signup">Rekisteröidy</a>
             </div>
         </div>
     );
