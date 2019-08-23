@@ -101,7 +101,9 @@ module.exports = (app, db) => {
                         return res.redirect('back');
                     }
                     if (req.body.password === req.body.confirm) {
-                        user.setPassword(req.body.password, function (err) {
+                        const salt = bcrypt.genSaltSync();
+                        const newpassword = bcrypt.hashSync(req.body.password, salt);
+                        user.setPassword(newpassword, function (err) {
                             user.resetPasswordToken = undefined;
                             user.resetPasswordExpires = undefined;
 
