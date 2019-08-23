@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Table} from 'semantic-ui-react'
 
-// var data = {first: "Vapaa", second: "Varattu", third:"Vapaa", fourth:"Vapaa", fifth:"Vapaa"};
+
 var kellonaika = null;
 var room = null;
 

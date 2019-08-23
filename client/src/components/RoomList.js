@@ -3,7 +3,7 @@ import {Table, Dropdown, Input, Form} from 'semantic-ui-react'
 import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
-import DatePickers from "./DatePicker";
+import DatePickers from "./DatePickers";
 
 //const data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}, {name:"huone4"}];
 const data = [{name: 1},{name: 2}, {name: 3}, {name:4}, {name:5}, {name:6}, {name:7}];
