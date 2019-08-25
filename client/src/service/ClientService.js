@@ -34,30 +34,6 @@ export function createBooking(data) {
     });
 }
 
-export function handleLogin(data) {
-  return axios
-    .post(baseUrl + '/login', data)
-    .then(response => {
-      if (response.status === 200) {
-        const token = response.data.token;
-        localStorage.setItem('jwttoken', token);
-        console.log('**************');
-        console.log(response);
-        console.log('**************');
-
-        return true;
-      } else if (response.status === 404) {
-        return false;
-      } else {
-        const error = new Error(response.error);
-        throw error;
-      }
-    })
-    .catch(error => {
-      return false;
-    });
-}
-
 // @route   GET api/users
 // @desc    Get all users
 // @access  Public
@@ -86,22 +62,6 @@ export function getAllRooms(setRoomData) {
     });
 }
 
-export function handleSignup(data) {
-  return axios
-    .post(baseUrl + '/signup', data)
-    .then(response => {
-      if (response.status === 200) {
-        return true;
-      } else {
-        const error = new Error(response.error);
-        throw error;
-      }
-    })
-    .catch(error => {
-      return false;
-    });
-}
-
 export function adminDeleteBooking(id) {
   return axios
     .delete(baseUrl + '/booking/' + id, id)
@@ -117,3 +77,17 @@ export function adminDeleteBooking(id) {
       return false;
     });
 }
+
+// This function contacts server for SIGNUP
+export const handlessssSignup = userData => {
+  axios
+    .post(baseUrl + '/users/register', userData)
+    .then(res => console.log(res));
+  /* .then(res => props.history.push('/login'))
+    .catch(err =>
+      dispatch({
+        //type: GET_ERRORS,
+        payload: err.response.data
+      })
+    ); */
+};
