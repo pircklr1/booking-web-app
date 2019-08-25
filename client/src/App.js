@@ -1,13 +1,8 @@
 // This is the first component in front that will be executed
 
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
-import { Container, Message } from 'semantic-ui-react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
 
 //Pages
 import Settings from './pages/Settings';
