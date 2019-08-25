@@ -20,6 +20,24 @@ export function getAllBookings(setData) {
     });
 }
 
+// @route   GET api/userbookings/:userId
+// @desc    Get all bookings for user
+// @access  Public
+export function getUserBookings(id, setData) {
+  axios
+    .get(baseUrl + '/userbookings/' + id, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      return setData(response.data);
+    })
+    .catch(error => {
+      return error.message;
+    });
+}
+
 export function createBooking(data) {
   return axios
     .post(baseUrl + '/booking', data)
