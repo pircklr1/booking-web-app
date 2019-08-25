@@ -24,10 +24,34 @@ function NavBar() {
   // Handles changes of sidebar visibility in mobile phone-mode.
   const handleToggle = () => setVisible(!visible);
 
+<<<<<<< HEAD
   const navBar = currentUser ? (
     <div>
       <Responsive minWidth={768}>
         <Menu pointing secondary size='massive' color='blue'>
+=======
+class Navbar extends Component {
+  state = { activeItem: 'Kirjaudu',
+            visible: false};
+
+  // Handles changes of sidebar visibility in mobile phone-mode.
+  handleToggle = () => this.setState({ visible: !this.state.visible });
+
+  // Handles clicking tasks in desktop-mode.
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+
+  render() {
+    const { activeItem } = this.state;
+    const {visible } = this.state;
+    console.log(visible)
+    console.log(activeItem)
+
+    return (
+      <div>
+        {/*This will render if application is used in desktop mode(min-width: 768px)*/}
+        <Responsive minWidth={768}>
+        <Menu pointing secondary>
+>>>>>>> 9c33c0cbafa9bafd767201c629c181fa22889744
           <Menu.Item
             as={Link}
             to='/home'
@@ -60,12 +84,13 @@ function NavBar() {
             <Menu.Item
               as={Link}
               to='/login'
-              name='Kirjaudu ulos'
+              content='Kirjaudu ulos'
               active={activeItem === 'Kirjaudu ulos'}
               onClick={logout}
             />
           </Menu.Menu>
         </Menu>
+<<<<<<< HEAD
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
         <Menu pointing secondary size='massive' color='blue'>
@@ -94,6 +119,12 @@ function NavBar() {
             // width={"thin"}
             // visible={visible}
           >
+=======
+          {/*This will render if application is used with mobile phone(max-width: 767px)*/}
+        </Responsive>
+        <Responsive {...Responsive.onlyMobile}>
+          <Menu pointing secondary>
+>>>>>>> 9c33c0cbafa9bafd767201c629c181fa22889744
             <Menu.Item
               style={{ color: 'white' }}
               as={Link}
