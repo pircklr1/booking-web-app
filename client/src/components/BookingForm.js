@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, {Component, useState, useEffect, useContext} from 'react';
 import {Button, Form, Modal, Header, Dropdown, Select} from 'semantic-ui-react'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -10,6 +10,7 @@ import setHours from 'date-fns/setHours'
 import setMinutes from 'date-fns/setMinutes'
 import validate from '../validation/BookingFormValidation'
 import Notification from '../components/Notification'
+import {AuthContext} from "../context/auth";
 
 const BookingForm = ({ addBooking }) => {
     const [room, setRoom] = useState("")
@@ -18,6 +19,7 @@ const BookingForm = ({ addBooking }) => {
     const [endTime, setEndTime] = useState(new Date())
     const [roomdata, setRoomdata] = useState([])
     const [message, setMessage] = useState(null)
+    const { currentUser } = useContext(AuthContext);
 
     useEffect(() => {
         getRooms();
@@ -39,6 +41,7 @@ const BookingForm = ({ addBooking }) => {
     const handleSubmit = e => {
         e.preventDefault();
         const data = {
+            user_id: currentUser.id,
             room_id: room,
             booking_date: moment(startDate).format('YYYY-MM-DD'),
             start_time: moment(startTime).format('HH:mm:ss.SSS'),
