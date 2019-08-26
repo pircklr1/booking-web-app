@@ -43,11 +43,10 @@ console.log(activeItem) */
   const navBar = currentUser ? (
     <div>
       <Responsive minWidth={768}>
-        <Menu pointing secondary size='massive' color='blue'>
-          <Menu.Item style={{padding:0}}>
-            <Image size="small" src='/logo3.png' style={{height: 'auto', widht:'100%'}}/>
+        <Menu pointing secondary size='massive' color='blue' style={{'background-color':'white'}}>
+          <Menu.Item style={{padding:0}} as={Link} to='/home'>
+            <Image size="small" src='/logo3.png'  style={{height: 'auto', widht:'100%'}}/>
           </Menu.Item>
-          {/*<Menu.Item style={{padding:0}}><img src='/logo3.png'/></Menu.Item>*/}
           <Menu.Item
             as={Link}
             to='/home'
@@ -117,7 +116,8 @@ console.log(activeItem) */
             name='Logo'
             active={activeItem === 'Logo'}
             onClick={handleItemClick}
-          />
+            style={{padding:0}}>
+            <Image size="small" src='/logo3.png'  style={{height: 'auto', widht:'100%'}}/></Menu.Item>
           <Menu.Menu position='right'>
             <Button
               size={'large'}

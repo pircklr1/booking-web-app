@@ -83,7 +83,7 @@ const BookingForm = ({ addBooking }) => {
         return (
             <div>
                 <Modal trigger={<Button primary>Varaa huone</Button>}>
-                    <Modal.Header>Uusi varaus</Modal.Header>
+                    <Modal.Header style={{'border-bottom-color':'#0e6eb8', 'border-width': '4px'}}>Uusi varaus</Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group unstackable widths={2}>
@@ -135,7 +135,7 @@ const BookingForm = ({ addBooking }) => {
                                     />
                                 </Form.Input>
                             </Form.Group>
-                            <Button type='submit'>Varaa</Button>
+                            <Button primary type='submit'>Varaa</Button>
                             {message &&
                                 <Notification message={message}/>
                             }
