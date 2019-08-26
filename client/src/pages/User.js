@@ -1,19 +1,27 @@
 // This page shows the current user's current and past bookings. Here, the user can also modify (cancel) the current bookings.
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import UserBookings from '../components/UserBookings';
 import { getAllBookings } from '../service/ClientService';
+import { getUserBookings } from '../service/ClientService';
 import { Button, Table, Container, Header } from 'semantic-ui-react';
 import moment from 'moment';
+
+import { AuthContext } from '../context/auth';
+
 function User() {
+  const { currentUser } = useContext(AuthContext);
   const [data, setData] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    console.log("USER page, currentuser's id");
+    console.log(currentUser.id);
     setIsLoading(true);
-    getAllBookings(setData);
+    //getAllBookings(setData);
+    getUserBookings(currentUser.id, setData);
     setIsLoading(false);
   }, []);
 

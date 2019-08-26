@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const baseUrl = 'http://localhost:9999/api';
 
 // @route   GET api/bookings
@@ -19,36 +20,30 @@ export function getAllBookings(setData) {
     });
 }
 
+// @route   GET api/userbookings/:userId
+// @desc    Get all bookings for user
+// @access  Public
+export function getUserBookings(id, setData) {
+  axios
+    .get(baseUrl + '/userbookings/' + id, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      return setData(response.data);
+    })
+    .catch(error => {
+      return error.message;
+    });
+}
+
 export function createBooking(data) {
   return axios
     .post(baseUrl + '/booking', data)
     .then(response => {
       if (response.status === 200) {
         return true;
-      } else {
-        const error = new Error(response.error);
-        throw error;
-      }
-    })
-    .catch(error => {
-      return false;
-    });
-}
-
-export function handleLogin(data) {
-  return axios
-    .post(baseUrl + '/login', data)
-    .then(response => {
-      if (response.status === 200) {
-        const token = response.data.token;
-        localStorage.setItem('jwttoken', token);
-        console.log('**************');
-        console.log(response);
-        console.log('**************');
-
-        return true;
-      } else if (response.status === 404) {
-        return false;
       } else {
         const error = new Error(response.error);
         throw error;
@@ -78,28 +73,16 @@ export function getAllUsers(setUserData) {
 // @access  Public
 export function getAllRooms(setRoomData) {
   axios
-    .get(baseUrl + '/rooms')
+    .get(baseUrl + '/rooms', {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
     .then(response => {
       return setRoomData(response.data);
     })
     .catch(error => {
       return error.message;
-    });
-}
-
-export function handleSignup(data) {
-  return axios
-    .post(baseUrl + '/signup', data)
-    .then(response => {
-      if (response.status === 200) {
-        return true;
-      } else {
-        const error = new Error(response.error);
-        throw error;
-      }
-    })
-    .catch(error => {
-      return false;
     });
 }
 
@@ -117,4 +100,27 @@ export function adminDeleteBooking(id) {
     .catch(error => {
       return false;
     });
+}
+
+export function sendForgotPasswordEmail(email) {
+  return axios.post(baseUrl + '/forgot', email).then(response => {
+    if (response.status === 200) {
+      return true;
+    } else {
+      const error = new Error(response.error);
+      throw error;
+    }
+  });
+}
+
+export function getRoomData(callback) {
+  axios
+    .get(baseUrl + '/rooms')
+    .then(function(rooms) {
+      callback(rooms.data);
+    })
+    .catch(error => {
+      return false;
+    });
+
 }

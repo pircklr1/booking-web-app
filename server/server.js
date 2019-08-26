@@ -20,6 +20,7 @@ import times from 'lodash.times';
 import apiBooking from './routes/api/booking';
 import apiRoom from './routes/api/room';
 import apiUser from './routes/api/user';
+import apiForgotPassword from './routes/api/forgotpassword';
 
 // Setting up some packages for the server
 const app = express();
@@ -32,6 +33,7 @@ app.use(cookieParser());
 apiBooking(app, models);
 apiRoom(app, models);
 apiUser(app, models);
+apiForgotPassword(app, models);
 
 // Erasing everything from the database
 const eraseDatabaseOnSync = true;
@@ -54,9 +56,10 @@ const createMockData = async () => {
     // populate booking table with dummy data
     models.Booking.bulkCreate(
         times(10, () => ({
-            start: faker.date.future(),
-            end: faker.date.future(),
-            status: faker.random.arrayElement(['valid', 'cancelled'])
+            bookingDate: faker.date.future(),
+            startTime: faker.date.future(),
+            endTime: faker.date.future(),
+            isValid: faker.random.arrayElement(['true', 'false'])
         }))
     );
     // populate room table with dummy data
