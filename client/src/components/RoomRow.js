@@ -69,7 +69,6 @@ class RoomRow extends Component {
         getAllBookings(list => {
                 this.setState({bookingData: [...this.state.bookingData, ...list]})
             // this.setState({bookingData: list})
-            console.log(this.state.bookingData)
         });
 
     };
@@ -78,9 +77,10 @@ class RoomRow extends Component {
     compareData() {
         var data = this.state.bookingData;
         console.log('******************')
-        console.log(data[10])
+        console.log(data[2].startTime)
         // console.log(moment(data[10].startTime).format('HH'))
         console.log('^^^^^^^^^^^^^^^^')
+
         for (var i = 0; i < this.state.combinedDatas.length; i++) {
             for (var j = 0; j < data.length; j++) {
                 if (
@@ -94,8 +94,10 @@ class RoomRow extends Component {
     }
 
     render() {
-        
-        this.compareData()
+        if(this.state.bookingData.length > 0) {
+            this.compareData()
+        }
+
         // console.log(this.state.bookingData)
         // const allCells = this.state.cells.map((cell) =>
         //     <RoomCell time={this.data} room = {this.props.room.name} tiedot={this.data} cell={cell} key={cell.index}/>);
