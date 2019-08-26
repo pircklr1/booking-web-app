@@ -1,3 +1,5 @@
+//Hook for setting values and errors for Login- and Signup-pages. 
+
 import { useState, useEffect } from 'react';
 
 const useForm = (callback, validate) => {
