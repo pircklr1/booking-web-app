@@ -20,7 +20,7 @@ import times from 'lodash.times';
 import apiBooking from './routes/api/booking';
 import apiRoom from './routes/api/room';
 import apiUser from './routes/api/user';
-import apiResetPassword from './routes/api/resetpassword';
+import apiForgotPassword from './routes/api/forgotpassword';
 
 // Setting up some packages for the server
 const app = express();
@@ -33,7 +33,7 @@ app.use(cookieParser());
 apiBooking(app, models);
 apiRoom(app, models);
 apiUser(app, models);
-apiResetPassword(app, models);
+apiForgotPassword(app, models);
 
 // Erasing everything from the database
 const eraseDatabaseOnSync = true;
