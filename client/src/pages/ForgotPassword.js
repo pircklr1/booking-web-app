@@ -2,6 +2,8 @@ import {Button, Form, Message} from "semantic-ui-react";
 import React, { Component } from 'react';
 import axios from 'axios';
 
+const baseUrl = 'http://localhost:9999/api';
+
 class ForgotPassword extends Component {
     constructor() {
         super();
@@ -31,7 +33,7 @@ class ForgotPassword extends Component {
         } else {
             try {
                 const response = await axios.post(
-                    'http://localhost:9999/api/forgot',
+                    baseUrl + '/forgot',
                     {
                         email,
                     },
