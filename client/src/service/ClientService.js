@@ -143,4 +143,5 @@ export function updateForgottenPassword(email, password, token) {
             throw error;
         }
     });
+
 }

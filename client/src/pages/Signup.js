@@ -2,7 +2,15 @@
 // its connection to backend, and redirecting to homepage in case user is already logged in.
 
 import React, { useContext, useState, useEffect } from 'react';
-import { Button, Icon, Form, Grid, Header, Segment } from 'semantic-ui-react';
+import {
+  Button,
+  Icon,
+  Form,
+  Grid,
+  Header,
+  Segment,
+  Message
+} from 'semantic-ui-react';
 import { AuthContext } from '../context/auth';
 import validate from '../validation/SignupPageValidationRules';
 
@@ -24,7 +32,7 @@ function Signup(props) {
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  const [success, setSuccess] = useState(false);
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
       addUser();
@@ -50,7 +58,10 @@ function Signup(props) {
       .post(baseUrl + '/users/register', values)
       .then(response => {
         if (response.status === 200) {
-          props.history.push('/login');
+          setSuccess(true);
+          setTimeout(function() {
+            props.history.push('/login');
+          }, 3000);
         } else {
           console.log(response);
         }
@@ -145,6 +156,15 @@ function Signup(props) {
             </ul>
           </div>
         )}
+        {success ? (
+          <Message positive>
+            <Message.Header>Käyttäjätunnus luotu onnistuneesti!</Message.Header>
+            <p>
+              Pääset kirjautumaan sisään kun ylläpitäjä on hyväksynyt
+              käyttäjätunnuksesi.
+            </p>
+          </Message>
+        ) : null}
       </Grid.Column>
     </Grid>
   );

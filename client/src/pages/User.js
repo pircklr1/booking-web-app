@@ -49,12 +49,7 @@ function User() {
   return (
     <div>
       <Container style={{ padding: '5em 0em' }}>
-        {/*     <Message
-          attached='top'
-          content='Tulevat varaukset'
-          icon='attention'
-          warning
-        /> */}
+        <Header>Hei, {currentUser.name}!</Header>
         <Header as='h4' attached='top' block>
           Tulevat varaukset
         </Header>
