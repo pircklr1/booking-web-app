@@ -1,5 +1,3 @@
-import moment from 'moment'
-
 const validateBookingForm = (data) => {
     console.log('data in form validation', data)
     // if (moment(data.bookingDate).isBefore(moment(Date), 'day')) {

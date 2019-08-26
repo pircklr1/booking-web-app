@@ -1,5 +1,5 @@
-import React, {Component, useState, useEffect, useContext} from 'react';
-import {Button, Form, Modal, Header, Dropdown, Select} from 'semantic-ui-react'
+import React, {useState, useEffect, useContext} from 'react';
+import {Button, Form, Modal, Select} from 'semantic-ui-react'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
