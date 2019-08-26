@@ -43,7 +43,7 @@ console.log(activeItem) */
   const navBar = currentUser ? (
     <div>
       <Responsive minWidth={768}>
-        <Menu pointing secondary size='massive' color='blue' style={{'background-color':'white'}}>
+        <Menu pointing secondary size='massive' color='blue' style={{backgroundColor:'white'}}>
           <Menu.Item style={{padding:0}} as={Link} to='/home'>
             <Image size="small" src='/logo3.png'  style={{height: 'auto', widht:'100%'}}/>
           </Menu.Item>
@@ -109,7 +109,7 @@ console.log(activeItem) */
         </Menu>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
-        <Menu pointing secondary size='massive' color='blue' style={{'background-color':'white'}}>
+        <Menu pointing secondary size='massive' color='blue' style={{backgroundColor:'white'}}>
           <Menu.Item
             as={Link}
             to='/home'

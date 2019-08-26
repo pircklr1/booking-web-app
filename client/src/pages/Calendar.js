@@ -21,9 +21,9 @@ class Calendar extends Component {
   render() {
     return (
       <div>
-        <Responsive minWidth={768} style={{'background-color': 'white',
-          'padding-top': '5px', 'padding-bottom': '20px', 'padding-left': '20px',
-          'padding-right': '20px'}}>
+        <Responsive minWidth={768} style={{backgroundColor: 'white',
+          paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
+          paddingRight: '20px'}}>
         <Container style={{ overflow: 'auto' }}>
           <RoomList />
         </Container>
@@ -31,8 +31,8 @@ class Calendar extends Component {
           <BookingForm addBooking={this.newBooking}/>
         </Container>
         </Responsive>
-        <Responsive {...Responsive.onlyMobile} style={{'background-color': 'white',
-          'padding-top': '5px', 'padding-bottom': '10px', 'margin-left': '0px', 'margin-right': '0px'}}>
+        <Responsive {...Responsive.onlyMobile} style={{backgroundColor: 'white',
+          paddingTop: '5px', paddingBottom: '10px', marginLeft: '0px', marginRight: '0px'}}>
           <Container style={{ overflow: 'auto' }}>
             <RoomList />
           </Container>
