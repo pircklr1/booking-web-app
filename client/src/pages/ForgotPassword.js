@@ -1,6 +1,6 @@
 import {Button, Form} from "semantic-ui-react";
 import React, { Component } from 'react';
-import {sendForgotPasswordEmail} from "../service/ClientService";
+import axios from 'axios';
 
 class ForgotPassword extends Component {
     constructor() {
@@ -30,7 +30,12 @@ class ForgotPassword extends Component {
             });
         } else {
             try {
-                const response = sendForgotPasswordEmail({email});
+                const response = await axios.post(
+                    'http://localhost:9999/api/forgot',
+                    {
+                        email,
+                    },
+                );
                 console.log(response.data);
                 if (response.data === 'recovery email sent') {
                     this.setState({
@@ -71,24 +76,25 @@ class ForgotPassword extends Component {
                             Lähetä salasanan palautusviesti
                         </Button>
                     </Form>
+                    <div>
                 {showNullError && (
                     <div>
-                        <p>The email address cannot be null.</p>
+                        <p>Syötä sähköpostiosoitteesi!</p>
                     </div>
                 )}
                 {showError && (
                     <div>
                         <p>
-                            That email address isn&apos;t recognized. Please try again or
-                            register for a new account.
+                            Sähköpostiosoitteella ei löytynyt käyttäjätiliä! Tarkista sähköpostiosoite tai rekisteröidy käyttäjäksi.
                         </p>
                     </div>
                 )}
                 {messageFromServer === 'recovery email sent' && (
                     <div>
-                        <h3>Password Reset Email Successfully Sent!</h3>
+                        <h3>Sinulle on lähetetty sähköpostiviesti salasanan vaihtamiseksi.</h3>
                     </div>
                 )}
+                    </div>
             </div>
         );
     }

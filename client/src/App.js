@@ -16,7 +16,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 
 //layout
-import NavBar from './components/NavBar';
+import NavBar from './components/Navbar';
 import Footer from './components/Footer';
 
 import { AuthProvider } from './context/auth';
@@ -35,7 +35,7 @@ class App extends Component {
                 <AuthRoute exact path='/home' exact component={Calendar} />
                 <Route path='/login' component={Login} />
                 <Route path='/forgot' component={ForgotPassword} />
-                <Route path='/reset' component={ResetPassword} />
+                <Route exact path='/reset/:token' component={ResetPassword} />
                 <Route path='/signup' component={Signup} />
 
                 <AuthRoute exact path='/settings' component={Settings} />

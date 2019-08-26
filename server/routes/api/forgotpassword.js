@@ -49,7 +49,7 @@ module.exports = (app,db) => {
                         console.error('there was an error: ', err);
                     } else {
                         console.log('here is the res: ', response);
-                        res.status(200).json('recovery email sent');
+                        res.status(200).send('recovery email sent');
                     }
                 });
             }
