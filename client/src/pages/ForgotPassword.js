@@ -1,4 +1,4 @@
-import {Button, Form} from "semantic-ui-react";
+import {Button, Form, Message} from "semantic-ui-react";
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -76,23 +76,24 @@ class ForgotPassword extends Component {
                             Lähetä salasanan palautusviesti
                         </Button>
                     </Form>
+                    &nbsp;
                     <div>
                 {showNullError && (
-                    <div>
-                        <p>Syötä sähköpostiosoitteesi!</p>
-                    </div>
+                    <Message negative>
+                        <Message.Header>Syötä sähköpostiosoitteesi!</Message.Header>
+                    </Message>
                 )}
                 {showError && (
-                    <div>
-                        <p>
+                    <Message negative>
+                        <Message.Header>
                             Sähköpostiosoitteella ei löytynyt käyttäjätiliä! Tarkista sähköpostiosoite tai rekisteröidy käyttäjäksi.
-                        </p>
-                    </div>
+                        </Message.Header>
+                    </Message>
                 )}
                 {messageFromServer === 'recovery email sent' && (
-                    <div>
-                        <h3>Sinulle on lähetetty sähköpostiviesti salasanan vaihtamiseksi.</h3>
-                    </div>
+                    <Message positive>
+                        <Message.Header>Sinulle on lähetetty sähköpostiviesti salasanan vaihtamiseksi.</Message.Header>
+                    </Message>
                 )}
                     </div>
             </div>

@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 const Op = Sequelize.Op;
 
 module.exports = (app, db) => {
-    app.get('/api/reset/:token', (req, res) => {
+    app.get('/api/reset', (req, res) => {
         db.User.findOne({
             where: {
                 resetPasswordToken: req.query.resetPasswordToken,

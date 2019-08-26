@@ -17,11 +17,15 @@ class ResetPassword extends Component {
     }
 
     async componentDidMount() {
-     console.log(this.props.match.params.token)
+        const {
+            match: {
+                params: {token},
+            },
+        } = this.props;
         try {
             const response = await axios.get('http://localhost:9999/api/reset', {
                 params: {
-                    resetPasswordToken: this.props.match.params.token,
+                    resetPasswordToken: token,
                 },
             });
             console.log(response.data);
