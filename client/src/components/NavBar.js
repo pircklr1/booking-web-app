@@ -11,6 +11,7 @@ import {
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth';
+
 function NavBar() {
   const { currentUser, logout } = useContext(AuthContext);
   const pathname = window.location.pathname;
