@@ -22,8 +22,8 @@ class Calendar extends Component {
     return (
       <div>
         <Responsive minWidth={768} style={{backgroundColor: 'white',
-          paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
-          paddingRight: '20px'}}>
+            paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
+            paddingRight: '20px'}}>
         <Container style={{ overflow: 'auto' }}>
           <RoomList />
         </Container>
@@ -32,7 +32,7 @@ class Calendar extends Component {
         </Container>
         </Responsive>
         <Responsive {...Responsive.onlyMobile} style={{backgroundColor: 'white',
-          paddingTop: '5px', paddingBottom: '10px', marginLeft: '0px', marginRight: '0px'}}>
+          paddingTop: '5px', paddingBottom: '20px', marginLeft: '0px', marginRight: '0px'}}>
           <Container style={{ overflow: 'auto' }}>
             <RoomList />
           </Container>

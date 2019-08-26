@@ -64,7 +64,9 @@ class ForgotPassword extends Component {
             email, messageFromServer, showNullError, showError
         } = this.state;
         return (
-                <div className='form-container'>
+                <div className='form-container' style={{backgroundColor: 'white',
+                    paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
+                    paddingRight: '20px'}}>
                     <h1>Palauta salasana</h1>
                     <Form onSubmit={this.sendEmail}>
                         <Form.Input
