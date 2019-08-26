@@ -62,8 +62,6 @@ class RoomList extends Component {
             <RoomRow date={this.state.now} room={room} key={room.index}/>);
         return (
             <div>
-                <Container>
-                    {' '}
                     <Form style={{ marginTop: 20 }}>
                         <Form.Group>
                             <Form.Input>
@@ -76,7 +74,6 @@ class RoomList extends Component {
                             </Form.Input>
                         </Form.Group>
                     </Form>
-                </Container>
                 <Table unstackable color={'blue'} celled definition>
                     <Table.Header>
                         <Table.Row>
