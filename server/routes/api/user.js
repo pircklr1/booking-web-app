@@ -35,7 +35,7 @@ module.exports = (app, db) => {
         lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password,
-        role: req.body.role
+        isAdmin: req.body.isAdmin
       },
       {
         where: {

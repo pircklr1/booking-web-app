@@ -72,8 +72,7 @@ const createMockData = async () => {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
-      password: faker.internet.password(),
-      role: faker.random.arrayElement(['admin', 'user'])
+      password: faker.internet.password()
     }))
   );
   // populate booking table with dummy data
