@@ -109,7 +109,7 @@ console.log(activeItem) */
         </Menu>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
-        <Menu pointing secondary size='massive' color='blue'>
+        <Menu pointing secondary size='massive' color='blue' style={{'background-color':'white'}}>
           <Menu.Item
             as={Link}
             to='/home'

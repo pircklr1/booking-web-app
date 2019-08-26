@@ -4,6 +4,8 @@ import {Table, Dropdown, Input, Form, Container} from 'semantic-ui-react'
 import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
+import DatePickers from "./DatePickers";
+import {getAllRooms} from "../service/ClientService";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
@@ -21,14 +23,12 @@ const data = [
 // const array = [];
 
 class RoomList extends Component {
-
-
     constructor(props) {
       super(props);
       this.state = {
           now:"",
         startDate: new Date(),
-          rooms: data
+          rooms: []
       };
       this.handleDateChange = this.handleDateChange.bind(this);
     }
@@ -37,6 +37,16 @@ class RoomList extends Component {
             startDate: date
         });
     }
+    componentDidMount() {
+        this.updateRooms()
+    }
+
+    updateRooms() {
+        getAllRooms(list => {
+            this.setState({rooms: list})
+        });
+
+    };
 
 
   // componentDidMount() {
@@ -59,7 +69,7 @@ class RoomList extends Component {
 
     render() {
         const allRooms = this.state.rooms.map((room) =>
-            <RoomRow date={this.state.now} room={room} key={room.index}/>);
+            <RoomRow date={this.state.now} rooms={this.state.rooms} room={room} key={room.index}/>);
         return (
             <div>
                     <Form style={{ marginTop: 20 }}>
@@ -77,7 +87,7 @@ class RoomList extends Component {
                 <Table unstackable color={'blue'} celled definition>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell>Huone</Table.HeaderCell>
+                            <Table.HeaderCell style={{position: 'sticky', left:0, background: 'white', color: 'black'}}>Huone</Table.HeaderCell>
                             <Table.HeaderCell>6:00</Table.HeaderCell>
                             <Table.HeaderCell>6:30</Table.HeaderCell>
                             <Table.HeaderCell>7:00</Table.HeaderCell>
