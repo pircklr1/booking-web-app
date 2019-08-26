@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 import RoomCell from './RoomCell';
 import {getAllBookings} from '../service/ClientService'
+import moment from 'moment';
 //var data = [{available: "Vapaa", room: 1}, {available: "Varattu", }, {available:"Vapaa"}, {available:"Vapaa"}, {available:"Vapaa"}];
 // var data = [{available: true, aika: 1}, {available: true, aika: 2},{available: false, aika: 3} ];
 // var timeData = [{time: 8},{time: 9},{time: 10},{time: 11},{time: 12},{time: 13}];
@@ -36,7 +37,7 @@ class RoomRow extends Component {
             { available: true, time: 10.5, room: this.props.room.id },
             { available: true, time: 11, room: this.props.room.id },
             { available: true, time: 11.5, room: this.props.room.id },
-            { available: true, time: 12, room: this.props.room.id },
+            { available: true, time: '12', room: this.props.room.id },
             { available: true, time: 12.5, room: this.props.room.id },
             { available: true, time: 13, room: this.props.room.id },
             { available: true, time: 13.5, room: this.props.room.id },
@@ -66,20 +67,25 @@ class RoomRow extends Component {
 // In this function we get all booking data and set it to state that we use in ComponenDidMount function.
     updateRows() {
         getAllBookings(list => {
-            this.setState({bookingData: list})
+                this.setState({bookingData: [...this.state.bookingData, ...list]})
+            // this.setState({bookingData: list})
+            console.log(this.state.bookingData)
         });
-        
+
     };
 
    //compare if there is in booking data same room id's and times than in combined datas and if so, set the available false.
     compareData() {
         var data = this.state.bookingData;
-        
+        console.log('******************')
+        console.log(data[10])
+        // console.log(moment(data[10].startTime).format('HH'))
+        console.log('^^^^^^^^^^^^^^^^')
         for (var i = 0; i < this.state.combinedDatas.length; i++) {
             for (var j = 0; j < data.length; j++) {
                 if (
-                    this.state.combinedDatas[i].time == data[j].start &&
-                    this.state.combinedDatas[i].room.id == data[j].id
+                    // this.state.combinedDatas[i].time === moment(data[j].startTime).format('HH') &&
+                    this.state.combinedDatas[i].room.id === data[j].id
                 ) {
                     this.state.combinedDatas[i].available = false;
                 }
@@ -90,7 +96,7 @@ class RoomRow extends Component {
     render() {
         
         this.compareData()
-        console.log(this.state.bookingData)
+        // console.log(this.state.bookingData)
         // const allCells = this.state.cells.map((cell) =>
         //     <RoomCell time={this.data} room = {this.props.room.name} tiedot={this.data} cell={cell} key={cell.index}/>);
         const allCells = this.state.combinedDatas.map(combinedData => (
