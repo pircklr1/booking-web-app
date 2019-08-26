@@ -88,6 +88,7 @@ module.exports = (app, db) => {
           // Sign Token
           jwt.sign(payload, SECRET_KEY, { expiresIn: 3600 }, (err, token) => {
             res.json({
+              name: user.firstName,
               id: user.id,
               token
             });

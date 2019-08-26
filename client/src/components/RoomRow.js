@@ -92,7 +92,6 @@ class RoomRow extends Component {
             }
         }
     }
-
     render() {
         if(this.state.bookingData.length > 0) {
             this.compareData()
@@ -112,6 +111,7 @@ class RoomRow extends Component {
             </Table.Row>
         );
     }
+
 }
 
 export default RoomRow;
