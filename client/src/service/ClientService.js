@@ -134,14 +134,16 @@ export function sendForgotPasswordEmail(email) {
                 const error = new Error(response.error);
                 throw error;
             }
-      
+        });
+}
+
 export function getRoomData(callback) {
     axios
-        .get(baseUrl+'/rooms')
+        .get(baseUrl + '/rooms')
         .then(function (rooms) {
             callback(rooms.data);
         })
         .catch(error => {
             return false;
         });
-
+}

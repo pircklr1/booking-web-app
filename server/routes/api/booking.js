@@ -30,9 +30,10 @@ module.exports = (app, db) => {
             db.Booking.create({
                 userId: req.body.user_id,
                 roomId: req.body.room_id,
-                start: req.body.start,
-                end: req.body.end,
-                status: req.body.status
+                bookingDate: req.body.booking_date,
+                startTime: req.body.start_time,
+                endTime: req.body.end_time,
+                isValid: req.body.is_valid
             }).then(result => res.json(result))
                 .catch(err => {
                     console.error("Error with POST", err.message);

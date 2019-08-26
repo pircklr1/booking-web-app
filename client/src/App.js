@@ -6,6 +6,7 @@ import {
   Redirect
 } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
+import './style.css'
 
 //Pages
 import Settings from './pages/Settings';
@@ -32,7 +33,7 @@ class App extends Component {
     return (
       <AuthProvider>
         <Router>
-          <Container>
+          <Container className="components">
             <Navbar />
             <Container>
               <Switch>
