@@ -39,7 +39,6 @@ module.exports = (app,db) => {
                     subject: 'Roba43 salasanan palauttaminen',
                     text: 'Sait tämän viestin, koska olet pyytänyt salasanasi palauttamista Roba43:n tilavarauspalveluun.\n\n' +
                         'Salasanasi uudelleenasettamiseksi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
-                        // 'http://' + req.headers.host + '/reset/' + token + '\n\n' +
                         'http://localhost:3000/reset/' + token + '\n\n' +
                         'Mikäli et pyytänyt salasanasi palauttamista, jätä tämä viesti huomioimatta, niin salasanasi säilyy ennallaan.\n'
                 };
