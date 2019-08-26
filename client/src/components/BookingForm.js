@@ -1,11 +1,12 @@
-import React, {Component, useState, useEffect, useContext} from 'react';
-import {Button, Form, Modal, Header, Dropdown, Select} from 'semantic-ui-react'
+import React, {useState, useEffect, useContext} from 'react';
+import {Button, Form, Modal, Select} from 'semantic-ui-react'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
 import {getRoomData} from "../service/ClientService";
 import subDays from 'date-fns/subDays'
+import addDays from 'date-fns/addDays'
 import setHours from 'date-fns/setHours'
 import setMinutes from 'date-fns/setMinutes'
 import validate from '../validation/BookingFormValidation'
@@ -82,7 +83,7 @@ const BookingForm = ({ addBooking }) => {
         return (
             <div>
                 <Modal trigger={<Button primary>Varaa huone</Button>}>
-                    <Modal.Header>Uusi varaus</Modal.Header>
+                    <Modal.Header style={{'border-bottom-color':'#0e6eb8', 'border-width': '4px'}}>Uusi varaus</Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group unstackable widths={2}>
@@ -95,6 +96,7 @@ const BookingForm = ({ addBooking }) => {
                                         selected={startDate}
                                         onChange={handleDateChange}
                                         minDate={subDays(new Date(), 0)}
+                                        maxDate={addDays(new Date(), 31)}
                                         locale={fi}
                                     />
                                 </Form.Input>
@@ -133,7 +135,7 @@ const BookingForm = ({ addBooking }) => {
                                     />
                                 </Form.Input>
                             </Form.Group>
-                            <Button type='submit'>Varaa</Button>
+                            <Button primary type='submit'>Varaa</Button>
                             {message &&
                                 <Notification message={message}/>
                             }

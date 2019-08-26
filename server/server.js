@@ -21,6 +21,8 @@ import apiBooking from './routes/api/booking';
 import apiRoom from './routes/api/room';
 import apiUser from './routes/api/user';
 import apiForgotPassword from './routes/api/forgotpassword';
+import apiResetPassword from './routes/api/resetpassword';
+import apiUpdateForgottenPassword from './routes/api/updateforgottenpassword';
 
 // Setting up some packages for the server
 const app = express();
@@ -34,6 +36,8 @@ apiBooking(app, models);
 apiRoom(app, models);
 apiUser(app, models);
 apiForgotPassword(app, models);
+apiResetPassword(app, models);
+apiUpdateForgottenPassword(app, models);
 
 // Erasing everything from the database
 const eraseDatabaseOnSync = true;
@@ -68,8 +72,7 @@ const createMockData = async () => {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email: faker.internet.email(),
-      password: faker.internet.password(),
-      role: faker.random.arrayElement(['admin', 'user'])
+      password: faker.internet.password()
     }))
   );
   // populate booking table with dummy data

@@ -39,7 +39,7 @@ module.exports = (app,db) => {
                     subject: 'Roba43 salasanan palauttaminen',
                     text: 'Sait tämän viestin, koska olet pyytänyt salasanasi palauttamista Roba43:n tilavarauspalveluun.\n\n' +
                         'Salasanasi uudelleenasettamiseksi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
-                        'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                        'http://localhost:3000/reset/' + token + '\n\n' +
                         'Mikäli et pyytänyt salasanasi palauttamista, jätä tämä viesti huomioimatta, niin salasanasi säilyy ennallaan.\n'
                 };
                 console.log('sending mail');
@@ -49,7 +49,7 @@ module.exports = (app,db) => {
                         console.error('there was an error: ', err);
                     } else {
                         console.log('here is the res: ', response);
-                        res.status(200).json('recovery email sent');
+                        res.status(200).send('recovery email sent');
                     }
                 });
             }
