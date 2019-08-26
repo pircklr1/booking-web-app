@@ -113,35 +113,3 @@ export function getRoomData(callback) {
         });
 }
 
-export function resetPassword(token, setData) {
-    axios
-        .get(baseUrl + '/reset/' + token, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => {
-            return setData(response.data);
-        })
-        .catch(error => {
-            return error.message;
-        });
-}
-
-export function updateForgottenPassword(email, password, token) {
-    return axios.put(baseUrl + '/updateforgottenpassword', {
-        params: {
-            email: email,
-            password: password,
-            resetPasswordToken: token
-        }
-    }).then(response => {
-        if (response.status === 200) {
-            return response.data;
-        } else {
-            const error = new Error(response.error);
-            throw error;
-        }
-    });
-
-}
