@@ -7,12 +7,12 @@ const validateBookingForm = (data) => {
     //     return false
     // }
 
-    if (data.startTime.substring(0,2) < 6) {
+    if (data.start_time.substring(0,2) < 6) {
         console.log('start time is before 6 am')
         throw new Error('start time is before 6 am')
     }
 
-    if (data.endTime.substring(0,2) > 22) {
+    if (data.end_time.substring(0,2) > 22) {
         console.log('end time is after 22 am')
         throw new Error('end time is after 22 am')
     }
@@ -22,12 +22,12 @@ const validateBookingForm = (data) => {
         throw new Error('room was not set')
     }
 
-    if (data.startTime.substring(0,2) > data.endTime.substring(0,2)) {
+    if (data.start_time.substring(0,2) > data.end_time.substring(0,2)) {
         console.log('start time cannot be after endtime')
         throw new Error('start time cannot be after endtime')
     }
 
-    if ((data.startTime.substring(0,2) === data.endTime.substring(0,2)) &&  (data.startTime.substring(3,5) > data.endTime.substring(3,5))) {
+    if ((data.start_time.substring(0,2) === data.end_time.substring(0,2)) &&  (data.start_time.substring(3,5) > data.end_time.substring(3,5))) {
         console.log('start time cannot be after endtime')
         throw new Error('start time cannot be after endtime')
     }

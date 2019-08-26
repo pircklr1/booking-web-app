@@ -29,7 +29,7 @@ class App extends Component {
       <AuthProvider>
         <Router>
           <Container className="components">
-            <Navbar />
+            <NavBar />
             <Container>
               <Switch>
                 <AuthRoute exact path='/' component={Calendar} />
