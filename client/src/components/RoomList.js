@@ -69,7 +69,7 @@ class RoomList extends Component {
 
     render() {
         const allRooms = this.state.rooms.map((room) =>
-            <RoomRow date={this.state.now} room={room} key={room.index}/>);
+            <RoomRow date={this.state.now} rooms={this.state.rooms} room={room} key={room.index}/>);
         return (
             <div>
                 <Container>
