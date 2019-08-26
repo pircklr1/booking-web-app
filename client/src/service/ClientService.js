@@ -122,4 +122,5 @@ export function getRoomData(callback) {
     .catch(error => {
       return false;
     });
+
 }
