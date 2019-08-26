@@ -4,6 +4,7 @@ import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
 import DatePickers from "./DatePickers";
+import {getAllRooms} from "../service/ClientService";
 
 //const data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}, {name:"huone4"}];
 const data = [{name: 1},{name: 2}, {name: 3}, {name:4}, {name:5}, {name:6}, {name:7}];
@@ -12,7 +13,18 @@ const data = [{name: 1},{name: 2}, {name: 3}, {name:4}, {name:5}, {name:6}, {nam
 class RoomList extends Component {
     state = {
         now: "",
-        rooms :data
+        rooms : []
+    };
+
+    componentDidMount() {
+        this.updateRooms()
+    }
+
+    updateRooms() {
+        getAllRooms(list => {
+            this.setState({rooms: list})
+        });
+
     };
 
     // componentDidMount() {
@@ -49,7 +61,7 @@ class RoomList extends Component {
                 <Table unstackable color={'blue'} celled definition>
                     <Table.Header>
                         <Table.Row>
-                            <Table.HeaderCell>Huone</Table.HeaderCell>
+                            <Table.HeaderCell style={{position: 'sticky', left:0, background: 'white', color: 'black'}}>Huone</Table.HeaderCell>
                             <Table.HeaderCell>6:00</Table.HeaderCell>
                             <Table.HeaderCell>6:30</Table.HeaderCell>
                             <Table.HeaderCell>7:00</Table.HeaderCell>
