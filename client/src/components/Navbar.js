@@ -54,31 +54,53 @@ console.log(activeItem) */
             as={Link}
             to='/bookings'
             name='Omat varaukset'
+            icon='calendar alternate outline'
+            iconPosition='left'
             active={activeItem === 'Omat varaukset'}
-            onClick={handleItemClick}
-          />
-          <Menu.Item
-            as={Link}
-            to='/settings'
-            name='Asetukset'
-            active={activeItem === 'Asetukset'}
             onClick={handleItemClick}
           />
           <Menu.Item
             as={Link}
             to='/admin'
             name='Admin'
+            icon='key'
+            iconPosition='left'
             active={activeItem === 'Admin'}
             onClick={handleItemClick}
           />
           <Menu.Menu position='right'>
-            <Menu.Item
-              as={Link}
-              to='/login'
-              content='Kirjaudu ulos'
-              active={activeItem === 'Kirjaudu ulos'}
-              onClick={logout}
-            />
+            <Dropdown
+              trigger={
+                <span>
+                  <Icon name='user' />
+                  {currentUser.name}
+                </span>
+              }
+              fluid
+              className='icon link item'
+            >
+              <Dropdown.Menu>
+                <Menu.Item
+                  as={Link}
+                  to='/settings'
+                  name='Asetukset'
+                  icon='setting'
+                  iconPosition='left'
+                  active={activeItem === 'Asetukset'}
+                  onClick={handleItemClick}
+                ></Menu.Item>
+
+                <Menu.Item
+                  as={Link}
+                  to='/login'
+                  name='Kirjaudu ulos'
+                  icon='lock'
+                  iconPosition='left'
+                  active={activeItem === 'Kirjaudu ulos'}
+                  onClick={logout}
+                ></Menu.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Menu.Menu>
         </Menu>
       </Responsive>
