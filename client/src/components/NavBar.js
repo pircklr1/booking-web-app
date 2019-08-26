@@ -7,7 +7,8 @@ import {
   Sidebar,
   Segment,
   Button,
-  Header
+  Header,
+  Image,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth';
@@ -43,6 +44,10 @@ console.log(activeItem) */
     <div>
       <Responsive minWidth={768}>
         <Menu pointing secondary size='massive' color='blue'>
+          <Menu.Item style={{padding:0}}>
+            <Image size="small" src='/logo3.png' style={{height: 'auto', widht:'100%'}}/>
+          </Menu.Item>
+          {/*<Menu.Item style={{padding:0}}><img src='/logo3.png'/></Menu.Item>*/}
           <Menu.Item
             as={Link}
             to='/home'

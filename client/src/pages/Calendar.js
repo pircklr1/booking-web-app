@@ -9,18 +9,7 @@ import { createBooking} from '../service/ClientService';
 
 
 class Calendar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      startDate: new Date(),
-    };
-    this.handleDateChange = this.handleDateChange.bind(this);
-  }
-  handleDateChange(date) {
-    this.setState({
-      startDate: date
-    });
-  }
+
   newBooking = newbooking => {
     const obj = {
       ...newbooking
@@ -32,21 +21,6 @@ class Calendar extends Component {
   render() {
     return (
       <div>
-        <Container>
-          {' '}
-          <Form style={{ marginTop: 20 }}>
-            <Form.Group>
-              <Form.Input>
-                <DatePicker
-                  dateFormat='dd/MM/yyyy'
-                  selected={this.state.startDate}
-                  onChange={this.handleDateChange}
-                  locale={fi}
-                />
-              </Form.Input>
-            </Form.Group>
-          </Form>
-        </Container>
         <Container style={{ overflow: 'auto' }}>
           <RoomList />
         </Container>

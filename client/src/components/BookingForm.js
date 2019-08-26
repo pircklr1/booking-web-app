@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
 import {getRoomData} from "../service/ClientService";
 import subDays from 'date-fns/subDays'
+import addDays from 'date-fns/addDays'
 import setHours from 'date-fns/setHours'
 import setMinutes from 'date-fns/setMinutes'
 import validate from '../validation/BookingFormValidation'
@@ -95,6 +96,7 @@ const BookingForm = ({ addBooking }) => {
                                         selected={startDate}
                                         onChange={handleDateChange}
                                         minDate={subDays(new Date(), 0)}
+                                        maxDate={addDays(new Date(), 31)}
                                         locale={fi}
                                     />
                                 </Form.Input>
