@@ -68,6 +68,13 @@ class RoomRow extends Component {
         const allCells = this.state.combinedDatas.map(combinedData => (
             <RoomCell cellData={combinedData} key={combinedData.index}/>
         ));
+        return (
+            <Table.Row>
+                <Table.Cell>{this.props.room.name}</Table.Cell>
+                {allCells}
+            </Table.Row>
+
+        );
 
     }
 }

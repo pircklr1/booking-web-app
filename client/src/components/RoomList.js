@@ -5,7 +5,6 @@ import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
 import DatePickers from "./DatePickers";
-import {getAllRooms} from "../service/ClientService";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
