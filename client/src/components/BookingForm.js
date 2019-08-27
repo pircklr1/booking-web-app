@@ -46,8 +46,10 @@ const BookingForm = ({ addBooking }) => {
             user_id: currentUser.id,
             room_id: room,
             booking_date: moment(startDate).format('YYYY-MM-DD'),
-            start_time: moment(startTime).format('HH:mm:ss.SSS'),
-            end_time: moment(endTime).format('HH:mm:ss.SSS')
+            // start_time: moment(startTime).format('HH:mm:ss.SSS'),
+            // end_time: moment(endTime).format('HH:mm:ss.SSS')
+            start_time: moment(startTime).format('HH:mm'+':01'),
+            end_time: moment(endTime).format('HH:mm')
         };
         console.log(data)
 
@@ -76,7 +78,7 @@ const BookingForm = ({ addBooking }) => {
             } else if (e.message === 'start time cannot be after endtime') {
                 setMessage('Tarkista alkamis- ja päättymisaika')
             } else {
-                setMessage('Error')
+                setMessage('Tuntematon virhe')
             }
         }
         setTimeout(() => {

@@ -1,78 +1,77 @@
-
 import React, {Component} from 'react';
-import {Table, Dropdown, Input, Form, Container} from 'semantic-ui-react'
+import {Table, Dropdown, Input, Form, Container, Button} from 'semantic-ui-react'
 import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
-import DatePickers from "./DatePickers";
-import {getAllRooms} from "../service/ClientService";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
+import {getAllBookings, getAllRooms} from "../service/ClientService";
 
-//const data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}, {name:"huone4"}];
-const data = [
-  { name: 1 },
-  { name: 2 },
-  { name: 3 },
-  { name: 4 },
-  { name: 5 },
-  { name: 6 },
-  { name: 7 }
-];
-// const array = [];
 
 class RoomList extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          now:"",
+          selectedDate:"",
         startDate: new Date(),
-          rooms: []
+          rooms: [],
+          bookings: []
       };
       this.handleDateChange = this.handleDateChange.bind(this);
+      this.updateBookings = this.updateBookings.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleDateChange(date) {
+        // const selectedDate = moment(date).format('YYYY-MM-DD')
         this.setState({
-            startDate: date
+            // startDate: date,
+            startDate: date,
+            // selectedDate: selectedDate
         });
+        this.updateBookings();
     }
+    handleSubmit(e) {
+        e.preventDefault();
+        const selectedDate = moment(this.state.startDate).format('YYYY-MM-DD')
+        console.log(selectedDate);
+        this.updateBookings();
+        this.render();
+    }
+
     componentDidMount() {
+        this.updateBookings()
         this.updateRooms()
     }
 
     updateRooms() {
+
         getAllRooms(list => {
-            this.setState({rooms: list})
-        });
+            this.setState({rooms:list})
+        })
+    }
 
-    };
-
-
-  // componentDidMount() {
-  //     this.setState({now: moment().format('DD-MM-YYYY')})
-  //     this.datesToArray();
-  // }
-
-  // datesToArray(){
-  //     for(let i=0;i<=30;i++){
-  //         const date = {
-  //             key: moment().add(i, 'd').format('DD-MM-YYYY'),
-  //             text: moment().add(i, 'd').format('DD-MM-YYYY'),
-  //             value: moment().add(i, 'd').format('DD-MM-YYYY')
-  //         }
-  //         array.push(date);
-  //
-  //     }
-  // }
-
+    updateBookings() {
+        const date = moment(this.state.startDate).format('YYYY-MM-DD')
+        console.log(date)
+        getAllBookings(list => {
+            const filteredList = list.filter(l => l.bookingDate === date)
+            // this.setState({bookings:list})
+            this.setState({bookings:filteredList})
+            console.log(list)
+            console.log(this.state.bookings)
+            console.log(filteredList)
+            this.render();
+        })
+    }
 
     render() {
         const allRooms = this.state.rooms.map((room) =>
-            <RoomRow date={this.state.now} rooms={this.state.rooms} room={room} key={room.index}/>);
+            <RoomRow bookings={this.state.bookings} date={this.state.selectedDate} room={room} key={room.index}/>);
+
         return (
             <div>
-                    <Form style={{ marginTop: 20 }}>
+                    <Form style={{ marginTop: 20 }} onSubmit={this.handleSubmit}>
                         <Form.Group>
                             <Form.Input>
                                 <DatePicker
@@ -83,19 +82,20 @@ class RoomList extends Component {
                                 />
                             </Form.Input>
                         </Form.Group>
+                        <Button primary type='submit'>Päivitä</Button>
                     </Form>
                 <Table unstackable color={'blue'} celled definition>
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell style={{position: 'sticky', left:0, background: 'white', color: 'black'}}>Huone</Table.HeaderCell>
-                            <Table.HeaderCell>6:00</Table.HeaderCell>
-                            <Table.HeaderCell>6:30</Table.HeaderCell>
-                            <Table.HeaderCell>7:00</Table.HeaderCell>
-                            <Table.HeaderCell>7:30</Table.HeaderCell>
-                            <Table.HeaderCell>8:00</Table.HeaderCell>
-                            <Table.HeaderCell>8:30</Table.HeaderCell>
-                            <Table.HeaderCell>9:00</Table.HeaderCell>
-                            <Table.HeaderCell>9:30</Table.HeaderCell>
+                            <Table.HeaderCell>06:00</Table.HeaderCell>
+                            <Table.HeaderCell>06:30</Table.HeaderCell>
+                            <Table.HeaderCell>07:00</Table.HeaderCell>
+                            <Table.HeaderCell>07:30</Table.HeaderCell>
+                            <Table.HeaderCell>08:00</Table.HeaderCell>
+                            <Table.HeaderCell>08:30</Table.HeaderCell>
+                            <Table.HeaderCell>09:00</Table.HeaderCell>
+                            <Table.HeaderCell>09:30</Table.HeaderCell>
                             <Table.HeaderCell>10:00</Table.HeaderCell>
                             <Table.HeaderCell>10:30</Table.HeaderCell>
                             <Table.HeaderCell>11:00</Table.HeaderCell>

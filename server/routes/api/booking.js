@@ -1,4 +1,5 @@
 import Sequelize, {or} from 'sequelize';
+
 const moment = require('moment');
 
 const Op = Sequelize.Op;
@@ -32,56 +33,53 @@ module.exports = (app, db) => {
             })
     );
 
-
     // @route   POST api/booking
     // @desc    Post new booking
     // @access  Public
     app.post('/api/booking', (req, res) => {
-        db.Booking.findAll({
-            where: {
-                bookingDate: req.body.booking_date,
-                roomId: req.body.room_id,
-                [Op.or]: [
-                    {
-                        startTime:
-                            {
-                                [Op.between]: [req.body.start_time, req.body.end_time]
-                            }
-                    },
-                    {
-                        endTime:
-                            {
-                                [Op.between]: [req.body.start_time, req.body.end_time]
-                            }
-                    },
-
-                ]
-            }
-        }).then((bookings) => {
-            console.log(bookings);
-            if (bookings.length !== 0) {
-                res.status(403).send('overlapping booking')
-            } else {
-                console.log('no overlapping booking');
-                db.Booking.create({
-                    userId: req.body.user_id,
-                    roomId: req.body.room_id,
+            db.Booking.findAll({
+                where: {
                     bookingDate: req.body.booking_date,
-                    startTime: req.body.start_time,
-                    endTime: req.body.end_time,
-                    isValid: req.body.is_valid
-                }).then(result =>
-                    res.json(result)).catch(err => {
-                    console.error("Error with POST", err.message);
-                    res.status(400).send(err.message);
-                });
-            }
-        })
-    });
+                    roomId: req.body.room_id,
+                    [Op.or]: [
+                        {
+                            startTime:
+                                {
+                                    [Op.between]: [req.body.start_time, req.body.end_time]
+                                }
+                        },
+                        {
+                            endTime:
+                                {
+                                    [Op.between]: [req.body.start_time, req.body.end_time]
+                                }
+                        },
+                        ]
+                },
+            }).then((bookings) => {
+                if (bookings.length !== 0) {
+                    res.status(403).send('overlapping booking')
+                } else {
+                    console.log('no overlapping booking');
+                    db.Booking.create({
+                        userId: req.body.user_id,
+                        roomId: req.body.room_id,
+                        bookingDate: req.body.booking_date,
+                        startTime: req.body.start_time,
+                        endTime: req.body.end_time,
+                        isValid: req.body.is_valid
+                    }).then(result =>
+                        res.json(result)).catch(err => {
+                        console.error("Error with POST", err.message);
+                        res.status(400).send(err.message);
+                    });
+                }
+            })
+        });
 
-    // @route   GET api/booking/:id
-    // @desc    Get booking by id
-    // @access  Public
+// @route   GET api/booking/:id
+// @desc    Get booking by id
+// @access  Public
     app.get('/api/booking/:id', (req, res) =>
         db.Booking.findByPk(req.params.id)
             .then(result => res.json(result))
@@ -92,9 +90,9 @@ module.exports = (app, db) => {
     );
 
 
-    // @route   PUT api/booking/:id
-    // @desc    Modify existing booking
-    // @access  Public
+// @route   PUT api/booking/:id
+// @desc    Modify existing booking
+// @access  Public
     app.put('/api/booking/:id', (req, res) =>
         db.Booking.update(
             {
@@ -117,9 +115,9 @@ module.exports = (app, db) => {
             })
     );
 
-    // @route   DELETE api/booking/:id
-    // @desc    Delete existing booking
-    // @access  Public
+// @route   DELETE api/booking/:id
+// @desc    Delete existing booking
+// @access  Public
     app.delete('/api/booking/:id', (req, res) =>
         db.Booking.destroy({
             where: {
@@ -133,3 +131,5 @@ module.exports = (app, db) => {
             })
     );
 };
+
+
