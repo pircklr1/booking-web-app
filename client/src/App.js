@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Container } from 'semantic-ui-react';
+import {Container} from 'semantic-ui-react';
 import './style.css'
 
 //Pages
@@ -38,7 +38,6 @@ class App extends Component {
                 <Route path='/forgot' component={ForgotPassword} />
                 <Route exact path='/reset/:token' component={ResetPassword} />
                 <Route path='/signup' component={Signup} />
-
                 <AuthRoute exact path='/settings' component={Settings} />
                 <AuthRoute exact path='/bookings' component={User} />
                 <AuthRoute exact path='/admin' component={Admin} />
