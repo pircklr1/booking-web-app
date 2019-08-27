@@ -7,6 +7,7 @@ import "./Table.css"
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
+import {getAllBookings, getAllRooms} from "../service/ClientService";
 
 //const data = [{name: "huone1"},{name: "huone2"}, {name: "huone3"}, {name:"huone4"}];
 const data = [
@@ -28,7 +29,8 @@ class RoomList extends Component {
       this.state = {
           now:"",
         startDate: new Date(),
-          rooms: data
+          rooms: [],
+          bookings: []
       };
       this.handleDateChange = this.handleDateChange.bind(this);
     }
@@ -36,6 +38,18 @@ class RoomList extends Component {
         this.setState({
             startDate: date
         });
+    }
+
+    updateRooms() {
+        getAllRooms(list => {
+            this.setState({rooms:list})
+        })
+    }
+
+    updateBookings() {
+        getAllBookings(list => {
+            this.setState({bookings:list})
+        })
     }
 
 
@@ -59,7 +73,7 @@ class RoomList extends Component {
 
     render() {
         const allRooms = this.state.rooms.map((room) =>
-            <RoomRow date={this.state.now} room={room} key={room.index}/>);
+            <RoomRow bookings={this.state.bookings} date={this.state.now} room={room} key={room.index}/>);
         return (
             <div>
                 <Container>
