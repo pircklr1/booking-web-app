@@ -8,12 +8,12 @@ import { getAllBookings } from '../service/ClientService';
 //
 // var availabilityData = [{available: "vapaa"}, {available: "vapaa"},{available: "varattu"},{available: "vapaa"},{available: "vapaa"},{available: "vapaa"} ];
 // var bookingData1 = [{}];
-var bookingData2 = [
-    { room: 1, time: 9 },
-    { room: 2, time: 11 },
-    { room: 3, time: 10 },
-    { room: 4, time: 15.5 }
-];
+// var bookingData2 = [
+//     { room: 1, time: 9 },
+//     { room: 2, time: 11 },
+//     { room: 3, time: 10 },
+//     { room: 4, time: 15.5 }
+// ];
 
 var combinedData = [{}];
 
