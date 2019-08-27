@@ -42,6 +42,7 @@ export function createBooking(data) {
     return axios
         .post(baseUrl + '/booking', data)
         .then(response => {
+            console.log(response)
             if (response.status === 200) {
                 return true;
             } else {
