@@ -1,10 +1,8 @@
-
 import React, {Component} from 'react';
 import {Table, Dropdown, Input, Form, Container} from 'semantic-ui-react'
 import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
-import DatePickers from "./DatePickers";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
@@ -15,39 +13,50 @@ class RoomList extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          now:"",
+          selectedDate:"",
         startDate: new Date(),
           rooms: [],
           bookings: []
       };
-
       this.handleDateChange = this.handleDateChange.bind(this);
+      this.updateBookings = this.updateBookings.bind(this);
     }
     handleDateChange(date) {
+        const selectedDate = moment(date).format('YYYY-MM-DD')
         this.setState({
-            startDate: date
+            startDate: date,
+            selectedDate: selectedDate
         });
+        this.updateBookings();
     }
+
     componentDidMount() {
         this.updateBookings()
         this.updateRooms()
     }
 
     updateRooms() {
+
         getAllRooms(list => {
             this.setState({rooms:list})
         })
     }
 
     updateBookings() {
+        const date = moment(this.state.startDate).format('YYYY-MM-DD')
+        console.log(date)
         getAllBookings(list => {
-            this.setState({bookings:list})
+            const filteredList = list.filter(l => l.bookingDate === date)
+            // this.setState({bookings:list})
+            this.setState({bookings:filteredList})
+            console.log(list)
+            console.log(filteredList)
         })
     }
 
     render() {
         const allRooms = this.state.rooms.map((room) =>
-            <RoomRow bookings={this.state.bookings} date={this.state.now} room={room} key={room.index}/>);
+            <RoomRow bookings={this.state.bookings} date={this.state.selectedDate} room={room} key={room.index}/>);
 
         return (
             <div>
