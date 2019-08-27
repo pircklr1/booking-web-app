@@ -8,70 +8,74 @@ import {
   Segment,
   Button,
   Header,
-  Image,
+  Image
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/auth';
+
 function NavBar() {
   const { currentUser, logout } = useContext(AuthContext);
   const pathname = window.location.pathname;
   const path = pathname === '/' ? 'home' : pathname.substr(1);
   const [activeItem, setActiveItem] = useState(path);
-  const [visible, setVisible] = useState('Kirjaudu');
+  const [visible, setVisible] = useState(false);
+
   // Handles clicking tasks in desktop-mode.
   const handleItemClick = (e, { name }) => setActiveItem(name);
-  console.log('NAVBAR-component, currentUser from useContext for auth: ');
-  console.log(currentUser);
-  // Handles changes of sidebar visibility in mobile phone-mode.
-  const handleToggle = () => setVisible(!visible);
 
-  /* state = { activeItem: 'Kirjaudu',
-  visible: false};
+  const handleHomeItemClick = (e, { name }) => setActiveItem('');
 
-// Handles changes of sidebar visibility in mobile phone-mode.
-handleToggle = () => this.setState({ visible: !this.state.visible });
-
-// Handles clicking tasks in desktop-mode.
-handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
-render() {
-const { activeItem } = this.state;
-const {visible } = this.state;
-console.log(visible)
-console.log(activeItem) */
+  //Handles changes of sidebar visibility in mobile phone-mode.
+  const handleToggle = () => {
+    setVisible(!visible);
+  };
 
   const navBar = currentUser ? (
     <div>
       <Responsive minWidth={768}>
-        <Menu pointing secondary size='massive' color='blue' style={{backgroundColor:'white'}}>
-          <Menu.Item style={{padding:0}} as={Link} to='/home'>
-            <Image size="small" src='/logo3.png'  style={{height: 'auto', widht:'100%'}}/>
+        <Menu
+          pointing
+          secondary
+          size='big'
+          color='blue'
+          style={{ backgroundColor: 'white' }}
+        >
+          <Menu.Item
+            style={{ padding: 0 }}
+            as={Link}
+            to='/home'
+            onClick={handleHomeItemClick}
+          >
+            <Image
+              size='small'
+              src='/logo3.png'
+              style={{ height: 'auto', widht: '100%' }}
+            />
           </Menu.Item>
           <Menu.Item
             as={Link}
-            to='/home'
-            name='Etusivu'
-            active={activeItem === 'Etusivu'}
-            onClick={handleItemClick}
-          />
-          <Menu.Item
-            as={Link}
             to='/bookings'
-            name='Omat varaukset'
+            name='bookings'
             icon='calendar alternate outline'
             iconPosition='left'
-            active={activeItem === 'Omat varaukset'}
+            active={activeItem === 'bookings'}
             onClick={handleItemClick}
-          />
+          >
+            <Icon name='calendar alternate outline' />
+            Omat varaukset
+          </Menu.Item>
           <Menu.Item
             as={Link}
             to='/admin'
-            name='Admin'
+            name='admin'
             icon='key'
             iconPosition='left'
-            active={activeItem === 'Admin'}
+            active={activeItem === 'admin'}
             onClick={handleItemClick}
-          />
+          >
+            <Icon name='key' />
+            Admin
+          </Menu.Item>
           <Menu.Menu position='right'>
             <Dropdown
               trigger={
@@ -109,22 +113,31 @@ console.log(activeItem) */
         </Menu>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
-        <Menu pointing secondary size='massive' color='blue' style={{backgroundColor:'white'}}>
+        <Menu
+          pointing
+          secondary
+          size='medium'
+          color='blue'
+          style={{ backgroundColor: 'white' }}
+        >
           <Menu.Item
             as={Link}
             to='/home'
             name='Logo'
             active={activeItem === 'Logo'}
-            onClick={handleItemClick}
-            style={{padding:0}}>
-            <Image size="small" src='/logo3.png'  style={{height: 'auto', widht:'100%'}}/></Menu.Item>
-          <Menu.Menu position='right'>
-            <Button
-              size={'large'}
-              icon={'sidebar'}
-              color={'blue'}
-              onClick={handleToggle}
+            onClick={handleHomeItemClick}
+            style={{ padding: 0 }}
+          >
+            <Image
+              size='small'
+              src='/logo3.png'
+              style={{ height: 'auto', widht: '100%' }}
             />
+          </Menu.Item>
+          <Menu.Menu position='right'>
+            <Button icon onClick={handleToggle} color='blue'>
+              <Icon name='sidebar' />
+            </Button>
           </Menu.Menu>
           <Sidebar
             style={{ background: '#1678C2' }}
@@ -132,9 +145,9 @@ console.log(activeItem) */
             direction='right'
             vertical
             inverted
-            onHide={handleToggle}
+            //onHide={handleToggle}
             // width={"thin"}
-            // visible={visible}
+            visible={visible}
           >
             <Menu.Item
               style={{ color: 'white' }}
@@ -176,7 +189,7 @@ console.log(activeItem) */
               style={{ color: 'white' }}
               as={Link}
               to='/login'
-              onClick={handleToggle}
+              onClick={logout}
             >
               <Icon name='log out' />
               Kirjaudu ulos
@@ -186,32 +199,112 @@ console.log(activeItem) */
       </Responsive>
     </div>
   ) : (
-    <Menu pointing secondary size='massive' color='blue'>
-      <Menu.Item
-        name='home'
-        active={activeItem === 'home'}
-        onClick={handleItemClick}
-        as={Link}
-        to='/'
-      />
-
-      <Menu.Menu position='right'>
-        <Menu.Item
-          name='login'
-          active={activeItem === 'login'}
-          onClick={handleItemClick}
-          as={Link}
-          to='/login'
-        />
-        <Menu.Item
-          name='signup'
-          active={activeItem === 'signup'}
-          onClick={handleItemClick}
-          as={Link}
-          to='/signup'
-        />
-      </Menu.Menu>
-    </Menu>
+    <div>
+      <Responsive minWidth={768}>
+        <Menu
+          pointing
+          secondary
+          size='big'
+          color='blue'
+          style={{ backgroundColor: 'white' }}
+        >
+          <Menu.Item
+            style={{ padding: 0 }}
+            as={Link}
+            to='/home'
+            onClick={handleHomeItemClick}
+          >
+            <Image
+              size='small'
+              src='/logo3.png'
+              style={{ height: 'auto', widht: '100%' }}
+            />
+          </Menu.Item>
+          <Menu.Item
+            position='right'
+            as={Link}
+            to='/login'
+            name='login'
+            iconPosition='left'
+            active={activeItem === 'login'}
+            onClick={handleItemClick}
+          >
+            <Icon name='key' />
+            Kirjaudu
+          </Menu.Item>
+          <Menu.Item
+            as={Link}
+            to='/signup'
+            name='signup'
+            icon='signup'
+            iconPosition='left'
+            active={activeItem === 'signup'}
+            onClick={handleItemClick}
+          >
+            <Icon name='signup' />
+            Rekisteröidy
+          </Menu.Item>
+        </Menu>
+      </Responsive>
+      <Responsive {...Responsive.onlyMobile}>
+        <Menu
+          pointing
+          secondary
+          size='medium'
+          color='blue'
+          style={{ backgroundColor: 'white' }}
+        >
+          <Menu.Item
+            as={Link}
+            to='/home'
+            name='Logo'
+            active={activeItem === 'Logo'}
+            onClick={handleHomeItemClick}
+            style={{ padding: 0 }}
+          >
+            <Image
+              size='small'
+              src='/logo3.png'
+              style={{ height: 'auto', widht: '100%' }}
+            />
+          </Menu.Item>
+          <Menu.Menu position='right'>
+            <Button icon onClick={handleToggle} color='blue'>
+              <Icon name='sidebar' />
+            </Button>
+          </Menu.Menu>
+          <Sidebar
+            style={{ background: '#1678C2' }}
+            animation={'scale down'}
+            direction='right'
+            vertical
+            inverted
+            //onHide={handleToggle}
+            // width={"thin"}
+            visible={visible}
+          >
+            <Menu.Item
+              style={{ color: 'white' }}
+              as={Link}
+              to='/login'
+              onClick={handleToggle}
+            >
+              <Icon name='key' />
+              Kirjaudu sisään
+            </Menu.Item>
+            <Menu.Item
+              style={{ color: 'white' }}
+              as={Link}
+              to='/signup'
+              onClick={handleToggle}
+            >
+              <Icon name='signup' />
+              Rekisteröidy
+            </Menu.Item>
+          </Sidebar>
+        </Menu>
+      </Responsive>
+    </div>
   );
 
   return navBar;
