@@ -78,7 +78,7 @@ const BookingForm = ({ addBooking }) => {
             } else if (e.message === 'start time cannot be after endtime') {
                 setMessage('Tarkista alkamis- ja päättymisaika')
             } else {
-                setMessage('Error')
+                setMessage('Tuntematon virhe')
             }
         }
         setTimeout(() => {
