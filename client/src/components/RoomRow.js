@@ -19,46 +19,55 @@ var bookingData2 = [
 var combinedData = [{}];
 
 class RoomRow extends Component {
-    
-    state = { bookingData: [],
-        // cells : data,
-        // timeDatas: timeData,
-        // availabilityData: availabilityData,
-        combinedDatas: [
-            { available: true, time: 6, room: this.props.rooms.id },
-            { available: true, time: 6.5, room: this.props.rooms.id },
-            { available: true, time: 7, room: this.props.rooms.id },
-            { available: true, time: 7.5, room: this.props.rooms.id },
-            { available: true, time: 8, room: this.props.rooms.id },
-            { available: true, time: 8.5, room: this.props.rooms.id },
-            { available: true, time: 9, room: this.props.rooms.id },
-            { available: true, time: 9.5, room: this.props.rooms.id },
-            { available: true, time: 10, room: this.props.rooms.id },
-            { available: true, time: 10.5, room: this.props.rooms.id },
-            { available: true, time: 11, room: this.props.rooms.id },
-            { available: true, time: 11.5, room: this.props.rooms.id },
-            { available: true, time: 12, room: this.props.rooms.id },
-            { available: true, time: 12.5, room: this.props.rooms.id },
-            { available: true, time: 13, room: this.props.rooms.id },
-            { available: true, time: 13.5, room: this.props.rooms.id },
-            { available: true, time: 14, room: this.props.rooms.id },
-            { available: true, time: 14.5, room: this.props.rooms.id },
-            { available: true, time: '15:00', room: this.props.rooms.id },
-            { available: true, time: 15.5, room: this.props.rooms.id },
-            { available: true, time: 16, room: this.props.rooms.id },
-            { available: true, time: 16.5, room: this.props.rooms.id },
-            { available: true, time: 17, room: this.props.rooms.id },
-            { available: true, time: 17.5, room: this.props.rooms.id },
-            { available: true, time: 18, room: this.props.rooms.id },
-            { available: true, time: 18.5, room: this.props.rooms.id },
-            { available: true, time: 19, room: this.props.rooms.id },
-            { available: true, time: 19.5, room: this.props.rooms.id },
-            { available: true, time: 20, room: this.props.rooms.id },
-            { available: true, time: 20.5, room: this.props.rooms.id },
-            { available: true, time: 21, room: this.props.rooms.id },
-            { available: true, time: 21.5, room: this.props.rooms.id }
-        ]
-    };
+    constructor(props) {
+        super(props);
+        this.state = { bookingData: [],
+            roomData: this.props.rooms,
+        };
+
+        let combinedDatas = [
+            { available: true, time: '06:00' },
+            { available: true, time: '06:30' },
+            { available: true, time: '07:00' },
+            { available: true, time: '07:30' },
+            { available: true, time: '08:00' },
+            { available: true, time: '08:30' },
+            { available: true, time: '09:00' },
+            { available: true, time: '09:30' },
+            { available: true, time: '10:00' },
+            { available: true, time: '10:30' },
+            { available: true, time: '11:00' },
+            { available: true, time: '11:30' },
+            { available: true, time: '12:00' },
+            { available: true, time: '12:30' },
+            { available: true, time: '13:00'},
+            { available: true, time: '13:30' },
+            { available: true, time: '14:00' },
+            { available: true, time: '14:30'},
+            { available: true, time: '15:00' },
+            { available: true, time: '15.30' },
+            { available: true, time: '16:00' },
+            { available: true, time: '16:30' },
+            { available: true, time: '17:00' },
+            { available: true, time: '17:30' },
+            { available: true, time: '18:00'},
+            { available: true, time: '18:30' },
+            { available: true, time: '19:00' },
+            { available: true, time: '19:30' },
+            { available: true, time: '20:00'},
+            { available: true, time: '20:30' },
+            { available: true, time: '21:00' },
+            { available: true, time: '21:30' }
+            ];
+
+   var r = this.state.roomData.map(x => {
+       x.combinedDatas = combinedDatas;
+       return x
+   });
+console.log(r);
+    }
+
+
     
    componentDidMount() {
        this.updateRows()
@@ -76,46 +85,65 @@ class RoomRow extends Component {
    //compare if there is in booking data same room id's and times than in combined datas and if so, set the available false.
     compareData() {
         var data = this.state.bookingData;
-        // console.log('******************')
-        console.log(data)
-        console.log(this.props.rooms)
-        // console.log(data[10].startTime.substring(0,5))
-        // console.log(this.props.room)
-        // console.log(data[10].roomId)
-        // console.log('^^^^^^^^^^^^^^^^')
+        // console.log(this.state.bookingData)
+        // console.log(this.props.rooms)
+        // console.log(this.state.bookingData[13].startTime.substring(0,5))
+        // console.log(this.state.combinedDatas[30].time)
+        // console.log(this.state.bookingData[13].roomId)
+        // console.log(this.state.roomData[6].id)
 
-        for (var i = 0; i < this.state.combinedDatas.length; i++) {
-            // console.log(this.state.combinedDatas[i].room)
-            for (var j = 0; j < data.length; j++) {
-                // console.log(data[j].startTime.substring(0,5))
-                // console.log(data[j].roomId)
-                // console.log('**************************')
-                // console.log(this.state.combinedDatas[i].available)
-                // console.log(this.state.combinedDatas[i].room)
-                if (
-                    // '15:00' === data[j].startTime.substring(0,5)
-                    this.state.combinedDatas[i].time === bookingData2.time &&
-                    this.state.combinedDatas[i].room === bookingData2.id
-                    // this.state.combinedDatas[i].time === data[j].startTime.substring(0,5) &&
-                    // this.state.combinedDatas[i].room.id === data[j].roomId
-                ) {
-                    this.state.combinedDatas[i].available = false;
+        // for (var i = 0; i < this.state.combinedDatas.length; i++) {
+        //     for (var x = 0; x < this.state.roomData.length; x++) {
+        //         for (var j = 0; j < data.length; j++) {
+        //
+        //             if (
+        //                 // '15:00' === data[j].startTime.substring(0,5)
+        //                 // this.state.combinedDatas[i].time === bookingData2.time &&
+        //                 // this.state.combinedDatas[i].room === bookingData2.id
+        //             this.state.combinedDatas[i].time === data[j].startTime.substring(0,5) &&
+        //             this.state.roomData[x].id === data[j].roomId
+        //             ) {
+        //                 this.state.combinedDatas[i].available = false;
+        //             }
+        //         }
+        //     }
+        // }
+
+        for (var huone = 0; huone < this.state.roomData.length; huone++) {
+            let huoneid = this.state.roomData[huone].id;
+            for (var rivi = 0; rivi < this.state.roomData[huone].combinedDatas.length; rivi++) {
+                let soluaika = this.state.roomData[huone].combinedDatas[rivi].time;
+                for (var solu = 0; solu < this.state.bookingData.length; solu++) {
+                    let solunhuoneid = this.state.bookingData[solu].roomId;
+                    // console.log("Vertailu", this.state.bookingData[k].startTime.substring(0,5), this.state.combinedDatas[j].time,
+                    //     this.state.bookingData[k].roomId, this.state.roomData[i].id)
+                    if (this.state.bookingData[solu].startTime.substring(0,5) === soluaika &&
+                     solunhuoneid === huoneid) {
+                        this.state.roomData[huone].combinedDatas[rivi].available = false;
+                    }
                 }
-            // console.log(this.state.combinedDatas[i].available)
             }
         }
-        // this.state.combinedDatas[18].available = false;
+        console.log(this.state.roomData[2])
     }
     render() {
         if(this.state.bookingData.length > 0) {
             this.compareData()
         }
+        // var allCells = [];
+        //
+        // for (var i = 0; i < this.state.roomData.length; i++) {
+        //         for (var j = 0; j < this.state.roomData[i].combinedDatas.length; j++) {
+        //             allCells = this.state.roomData[i].combinedDatas[j].map(combinedData => (
+        //                 <RoomCell cellData={combinedData} key={combinedData.index} />
+        //             ))
+        //         }
+        //     }
 
-        // console.log(this.state.bookingData)
-        // const allCells = this.state.cells.map((cell) =>
-        //     <RoomCell time={this.data} room = {this.props.room.name} tiedot={this.data} cell={cell} key={cell.index}/>);
-        const allCells = this.state.combinedDatas.map(combinedData => (
-            <RoomCell cellData={combinedData} key={combinedData.index} />
+        const allCells = this.state.roomData.map((combinedData, index) => (
+            combinedData.combinedDatas.map((cell, index) => (
+                <RoomCell cellData={cell} key={index} />
+            ))
         ));
 
         return (
