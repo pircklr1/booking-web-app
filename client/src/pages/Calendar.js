@@ -5,18 +5,18 @@ import {Container, Form, Responsive} from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
-import { createBooking} from '../service/ClientService';
+// import { createBooking } from '../service/ClientService';
 
 
 class Calendar extends Component {
 
-  newBooking = newbooking => {
-    const obj = {
-      ...newbooking
-    };
-    createBooking(obj, () => {
-    });
-  };
+  // newBooking = newbooking => {
+  //   const obj = {
+  //     ...newbooking
+  //   };
+  //   createBooking(obj, () => {
+  //   });
+  // };
 
   render() {
     return (
@@ -28,7 +28,8 @@ class Calendar extends Component {
           <RoomList />
         </Container>
         <Container style={{ marginTop: 20 }}>
-          <BookingForm addBooking={this.newBooking}/>
+          {/*<BookingForm addBooking={createBooking}/>*/}
+            <BookingForm/>
         </Container>
         </Responsive>
         <Responsive {...Responsive.onlyMobile} style={{backgroundColor: 'white',
@@ -37,7 +38,8 @@ class Calendar extends Component {
             <RoomList />
           </Container>
           <Container style={{ marginTop: 20 }}>
-            <BookingForm addBooking={this.newBooking}/>
+            {/*<BookingForm addBooking={createBooking}/>*/}
+              <BookingForm/>
           </Container>
         </Responsive>
       </div>
