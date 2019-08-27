@@ -1,4 +1,5 @@
-import Sequelize from 'sequelize';
+import Sequelize, {or} from 'sequelize';
+const moment = require('moment');
 
 const Op = Sequelize.Op;
 
@@ -35,38 +36,30 @@ module.exports = (app, db) => {
     // @route   POST api/booking
     // @desc    Post new booking
     // @access  Public
-    // app.post('/api/booking', (req, res) => {
-    //         db.Booking.create({
-    //             userId: req.body.user_id,
-    //             roomId: req.body.room_id,
-    //             bookingDate: req.body.booking_date,
-    //             startTime: req.body.start_time,
-    //             endTime: req.body.end_time,
-    //             isValid: req.body.is_valid
-    //         }).then(result => res.json(result))
-    //             .catch(err => {
-    //                 console.error("Error with POST", err.message);
-    //                 res.status(400).send(err.message);
-    //             });
-    //     });
-
-    // @route   POST api/booking
-    // @desc    Post new booking
-    // @access  Public
     app.post('/api/booking', (req, res) => {
         db.Booking.findAll({
             where: {
                 bookingDate: req.body.booking_date,
                 roomId: req.body.room_id,
-                startTime: {
-                    [Op.between]: [req.body.start_time, req.body.end_time]
-                },
-                endTime: {
-                    [Op.between]: [req.body.start_time, req.body.end_time]
-                },
-            },
-        }).then((booking) => {
-            if (booking != null) {
+                [Op.or]: [
+                    {
+                        startTime:
+                            {
+                                [Op.between]: [req.body.start_time, req.body.end_time]
+                            }
+                    },
+                    {
+                        endTime:
+                            {
+                                [Op.between]: [req.body.start_time, req.body.end_time]
+                            }
+                    },
+
+                ]
+            }
+        }).then((bookings) => {
+            console.log(bookings);
+            if (bookings.length !== 0) {
                 res.status(403).send('overlapping booking')
             } else {
                 console.log('no overlapping booking');
