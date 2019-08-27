@@ -78,7 +78,7 @@ function Login(props) {
     <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='blue' textAlign='center'>
-          <Icon name='registered' /> Kirjaudu
+          Kirjaudu
         </Header>
         <Form size='large' onSubmit={onSubmit}>
           <Segment stacked>
