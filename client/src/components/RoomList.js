@@ -67,14 +67,14 @@ class RoomList extends Component {
                     <Table.Header>
                         <Table.Row>
                             <Table.HeaderCell style={{position: 'sticky', left:0, background: 'white', color: 'black'}}>Huone</Table.HeaderCell>
-                            <Table.HeaderCell>6:00</Table.HeaderCell>
-                            <Table.HeaderCell>6:30</Table.HeaderCell>
-                            <Table.HeaderCell>7:00</Table.HeaderCell>
-                            <Table.HeaderCell>7:30</Table.HeaderCell>
-                            <Table.HeaderCell>8:00</Table.HeaderCell>
-                            <Table.HeaderCell>8:30</Table.HeaderCell>
-                            <Table.HeaderCell>9:00</Table.HeaderCell>
-                            <Table.HeaderCell>9:30</Table.HeaderCell>
+                            <Table.HeaderCell>06:00</Table.HeaderCell>
+                            <Table.HeaderCell>06:30</Table.HeaderCell>
+                            <Table.HeaderCell>07:00</Table.HeaderCell>
+                            <Table.HeaderCell>07:30</Table.HeaderCell>
+                            <Table.HeaderCell>08:00</Table.HeaderCell>
+                            <Table.HeaderCell>08:30</Table.HeaderCell>
+                            <Table.HeaderCell>09:00</Table.HeaderCell>
+                            <Table.HeaderCell>09:30</Table.HeaderCell>
                             <Table.HeaderCell>10:00</Table.HeaderCell>
                             <Table.HeaderCell>10:30</Table.HeaderCell>
                             <Table.HeaderCell>11:00</Table.HeaderCell>
