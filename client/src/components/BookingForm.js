@@ -48,7 +48,7 @@ const BookingForm = ({ addBooking }) => {
             booking_date: moment(startDate).format('YYYY-MM-DD'),
             // start_time: moment(startTime).format('HH:mm:ss.SSS'),
             // end_time: moment(endTime).format('HH:mm:ss.SSS')
-            start_time: moment(startTime).format('HH:mm'),
+            start_time: moment(startTime).format('HH:mm'+':01'),
             end_time: moment(endTime).format('HH:mm')
         };
         console.log(data)
