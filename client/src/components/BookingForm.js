@@ -1,5 +1,5 @@
-import React, {Component, useState, useEffect, useContext} from 'react';
-import {Button, Form, Modal, Header, Dropdown, Select} from 'semantic-ui-react'
+import React, {useState, useEffect, useContext} from 'react';
+import {Button, Form, Modal, Select} from 'semantic-ui-react'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -12,6 +12,7 @@ import setMinutes from 'date-fns/setMinutes'
 import validate from '../validation/BookingFormValidation'
 import Notification from '../components/Notification'
 import {AuthContext} from "../context/auth";
+import { createBooking } from '../service/ClientService';
 
 const BookingForm = ({ addBooking }) => {
     const [room, setRoom] = useState("")
@@ -51,39 +52,56 @@ const BookingForm = ({ addBooking }) => {
         console.log(data)
 
         try {
-            validate(data)
-            addBooking(data)
-            setRoom("")
-            setStartDate(new Date())
-            setStartTime(new Date())
-            setEndTime(new Date())
-            setMessage('Varaus onnistui')
+            if (validate(data)) {
+                createBooking(data)
+                    .then(() => {
+                        setRoom("")
+                        setStartDate(new Date())
+                        setStartTime(new Date())
+                        setEndTime(new Date())
+                        setMessage('Varaus onnistui')
+                    })
+            }
+
         } catch (e) {
             const error = []
             if (e.message === 'start time is before 6 am') {
                 setMessage('Huoneita voi varata klo 6-22')
-            }else if (e.message === 'end time is after 22 am'){
+            } else if (e.message === 'end time is after 22 am') {
                 setMessage('Huoneita voi varata klo 6-22')
-            }else if (e.message === 'room was not set'){
+            } else if (e.message === 'room was not set') {
                 setMessage('Huonetta ei ole valittu')
-            }else if (e.message === 'start time cannot be after endtime'){
+            } else if (e.message === 'start time cannot be after endtime') {
                 setMessage('Tarkista alkamis- ja päättymisaika')
-            }else if (e.message === 'start time cannot be after endtime'){
+            } else if (e.message === 'start time cannot be after endtime') {
                 setMessage('Tarkista alkamis- ja päättymisaika')
-            }else {
+            } else {
                 setMessage('Error')
             }
-        } finally {
-            setTimeout(() => {
-                setMessage(null) }, 7000);
         }
+        setTimeout(() => {
+            setMessage(null) }, 7000);
     }
+
+    //     // if (addBooking(data)) {
+    //         if (createBooking(data)) {
+    //         setRoom("")
+    //         setStartDate(new Date())
+    //         setStartTime(new Date())
+    //         setEndTime(new Date())
+    //         setMessage('Varaus onnistui')
+    //     }else{
+    //         setMessage('Varaus ei onnistunut')
+    //     }
+    //
+    //
+    // }
 
         //const {value} = this.state
         return (
             <div>
                 <Modal trigger={<Button primary>Varaa huone</Button>}>
-                    <Modal.Header>Uusi varaus</Modal.Header>
+                    <Modal.Header style={{'border-bottom-color':'#0e6eb8', 'border-width': '4px'}}>Uusi varaus</Modal.Header>
                     <Modal.Content>
                         <Form onSubmit={handleSubmit}>
                             <Form.Group unstackable widths={2}>
@@ -135,7 +153,7 @@ const BookingForm = ({ addBooking }) => {
                                     />
                                 </Form.Input>
                             </Form.Group>
-                            <Button type='submit'>Varaa</Button>
+                            <Button primary type='submit'>Varaa</Button>
                             {message &&
                                 <Notification message={message}/>
                             }

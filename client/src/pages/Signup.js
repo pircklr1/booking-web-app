@@ -4,7 +4,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import {
   Button,
-  Icon,
+  Image,
   Form,
   Grid,
   Header,
@@ -15,7 +15,9 @@ import { AuthContext } from '../context/auth';
 import validate from '../validation/SignupPageValidationRules';
 
 import axios from 'axios';
+
 const baseUrl = 'http://localhost:9999/api';
+
 function Signup(props) {
   //Check if user is already logged in. If so, push user to homepage.
   const { currentUser } = useContext(AuthContext);
@@ -79,7 +81,7 @@ function Signup(props) {
     <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='blue' textAlign='center'>
-          <Icon name='registered' /> Rekisteröidy
+          Rekisteröidy
         </Header>
         <Form size='large' onSubmit={onSubmit}>
           <Segment stacked>
