@@ -145,7 +145,7 @@ function NavBar() {
             direction='right'
             vertical
             inverted
-            //onHide={handleToggle}
+            onHide={handleToggle}
             // width={"thin"}
             visible={visible}
           >
@@ -279,7 +279,7 @@ function NavBar() {
             direction='right'
             vertical
             inverted
-            //onHide={handleToggle}
+            onHide={handleToggle}
             // width={"thin"}
             visible={visible}
           >
