@@ -12,6 +12,7 @@ import setMinutes from 'date-fns/setMinutes'
 import validate from '../validation/BookingFormValidation'
 import Notification from '../components/Notification'
 import {AuthContext} from "../context/auth";
+import { createBooking } from '../service/ClientService';
 
 const BookingForm = ({ addBooking }) => {
     const [room, setRoom] = useState("")
@@ -45,39 +46,58 @@ const BookingForm = ({ addBooking }) => {
             user_id: currentUser.id,
             room_id: room,
             booking_date: moment(startDate).format('YYYY-MM-DD'),
-            start_time: moment(startTime).format('HH:mm:ss.SSS'),
-            end_time: moment(endTime).format('HH:mm:ss.SSS')
+            // start_time: moment(startTime).format('HH:mm:ss.SSS'),
+            // end_time: moment(endTime).format('HH:mm:ss.SSS')
+            start_time: moment(startTime).format('HH:mm'),
+            end_time: moment(endTime).format('HH:mm')
         };
         console.log(data)
 
         try {
-            validate(data)
-            addBooking(data)
-            setRoom("")
-            setStartDate(new Date())
-            setStartTime(new Date())
-            setEndTime(new Date())
-            setMessage('Varaus onnistui')
+            if (validate(data)) {
+                createBooking(data)
+                    .then(() => {
+                        setRoom("")
+                        setStartDate(new Date())
+                        setStartTime(new Date())
+                        setEndTime(new Date())
+                        setMessage('Varaus onnistui')
+                    })
+            }
+
         } catch (e) {
             const error = []
             if (e.message === 'start time is before 6 am') {
                 setMessage('Huoneita voi varata klo 6-22')
-            }else if (e.message === 'end time is after 22 am'){
+            } else if (e.message === 'end time is after 22 am') {
                 setMessage('Huoneita voi varata klo 6-22')
-            }else if (e.message === 'room was not set'){
+            } else if (e.message === 'room was not set') {
                 setMessage('Huonetta ei ole valittu')
-            }else if (e.message === 'start time cannot be after endtime'){
+            } else if (e.message === 'start time cannot be after endtime') {
                 setMessage('Tarkista alkamis- ja päättymisaika')
-            }else if (e.message === 'start time cannot be after endtime'){
+            } else if (e.message === 'start time cannot be after endtime') {
                 setMessage('Tarkista alkamis- ja päättymisaika')
-            }else {
+            } else {
                 setMessage('Error')
             }
-        } finally {
-            setTimeout(() => {
-                setMessage(null) }, 7000);
         }
+        setTimeout(() => {
+            setMessage(null) }, 7000);
     }
+
+    //     // if (addBooking(data)) {
+    //         if (createBooking(data)) {
+    //         setRoom("")
+    //         setStartDate(new Date())
+    //         setStartTime(new Date())
+    //         setEndTime(new Date())
+    //         setMessage('Varaus onnistui')
+    //     }else{
+    //         setMessage('Varaus ei onnistunut')
+    //     }
+    //
+    //
+    // }
 
         //const {value} = this.state
         return (

@@ -1,6 +1,6 @@
 body{
     /*Background image Unsplah: https://unsplash.com/photos/LFjxCbhs0QM*/
-    background-image: linear-gradient(to bottom, rgba(255,255,255,0.5) 90%,rgba(255,255,255,1) 100%),url(".\images\mountains.jpg");
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.5) 100%,rgba(255,255,255,1) 100%),url(".\images\mountains.jpg");
 }
 /*.components{*/
 /*    background-color: white;*/

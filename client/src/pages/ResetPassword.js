@@ -115,7 +115,9 @@ class ResetPassword extends Component {
             );
         }
         return (
-            <div>
+            <div style={{backgroundColor: 'white',
+                paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
+                paddingRight: '20px'}}>
                 <div className='form-container'>
                     <h1>Vaihda salasana</h1>
                     <Form className="password-form" onSubmit={this.updatePassword}>
