@@ -46,8 +46,10 @@ const BookingForm = ({ addBooking }) => {
             user_id: currentUser.id,
             room_id: room,
             booking_date: moment(startDate).format('YYYY-MM-DD'),
-            start_time: moment(startTime).format('HH:mm:ss.SSS'),
-            end_time: moment(endTime).format('HH:mm:ss.SSS')
+            // start_time: moment(startTime).format('HH:mm:ss.SSS'),
+            // end_time: moment(endTime).format('HH:mm:ss.SSS')
+            start_time: moment(startTime).format('HH:mm'),
+            end_time: moment(endTime).format('HH:mm')
         };
         console.log(data)
 
