@@ -39,6 +39,10 @@ class RoomList extends Component {
             startDate: date
         });
     }
+    componentDidMount() {
+        this.updateBookings()
+        this.updateRooms()
+    }
 
     updateRooms() {
         getAllRooms(list => {

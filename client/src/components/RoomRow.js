@@ -20,7 +20,7 @@ var combinedData = [{}];
 class RoomRow extends Component {
 
     state = {
-    bookingData: [],
+    bookingData: this.props.bookings,
     combinedDatas: [
         { available: true, time: '6:00', room: this.props.room.id },
         { available: true, time: '6:30', room: this.props.room.id },
@@ -59,7 +59,6 @@ class RoomRow extends Component {
 
 
   compareData() {
-      this.setState({bookingData: this.props.bookings})
       console.log(this.state.bookingData);
       for (var i = 0; i < this.state.combinedDatas.length; i++) {
           for (var j = 0; j < this.state.bookingData.length; j++) {
@@ -90,12 +89,12 @@ class RoomRow extends Component {
   // }
 
   render() {
-      this.compareData();
+
       // this.setState({bookingData: this.props.bookings})
       //
-      // if (this.state.bookingData.length > 0) {
-      //
-      // }
+      if (this.state.bookingData.length > 0) {
+          this.compareData();
+      }
 
     console.log(this.props.bookings);
     // const allCells = this.state.cells.map((cell) =>
