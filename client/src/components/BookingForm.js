@@ -13,8 +13,9 @@ import validate from '../validation/BookingFormValidation'
 import Notification from '../components/Notification'
 import {AuthContext} from "../context/auth";
 import { createBooking } from '../service/ClientService';
+import { withRouter } from 'react-router-dom';
 
-const BookingForm = ({ addBooking }) => {
+function BookingForm(props) {
     const [room, setRoom] = useState("")
     const [startDate, setStartDate] = useState(new Date())
     const [startTime, setStartTime] = useState(new Date())
@@ -40,6 +41,7 @@ const BookingForm = ({ addBooking }) => {
     const handleStartTimeChange = time => setStartTime(time)
     const handleEndTimeChange = time => setEndTime(time)
 
+
     const handleSubmit = e => {
         e.preventDefault();
         const data = {
@@ -62,6 +64,9 @@ const BookingForm = ({ addBooking }) => {
                         setStartTime(new Date())
                         setEndTime(new Date())
                         setMessage('Varaus onnistui')
+                        setTimeout(() => {
+                            props.history.push('/login')
+                        }, 1500)
                     })
             }
 
@@ -167,4 +172,4 @@ const BookingForm = ({ addBooking }) => {
 
 }
 
-export default BookingForm;
+export default withRouter(BookingForm);
