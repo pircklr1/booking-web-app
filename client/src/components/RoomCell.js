@@ -8,23 +8,28 @@ class RoomCell extends Component {
         if(this.props.cellData.available){
             return ""
         }else{
-            return "Varattu"
+            if(this.props.cellData.users){
+                return "Oma varaus"
+            }else{
+                return "Varattu"
+            }
+
         }
     }
 
-    checkUser(){
-        if(this.props.cellData.users){
-            return " oma varaus"
-        }else{
-            return ""
-        }
-    }
+    // checkUser(){
+    //     if(this.props.cellData.users){
+    //         return " oma varaus"
+    //     }else{
+    //         return ""
+    //     }
+    // }
 
 
     render() {
 
         return (
-            <Table.Cell negative={!this.props.cellData.available} >{this.check()}{this.checkUser()}</Table.Cell>
+            <Table.Cell negative={!this.props.cellData.available} >{this.check()}</Table.Cell>
         );
     }
 

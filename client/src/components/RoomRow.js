@@ -4,48 +4,59 @@ import RoomCell from './RoomCell';
 import {getAllBookings} from '../service/ClientService'
 import moment from 'moment';
 
-var combinedData = [{}];
+// var combinedData = [{}];
 
 class RoomRow extends Component {
 
-    userId = localStorage.getItem("userId")
+    userId = localStorage.getItem("userId");
+    cellData = [{available: true, time: moment('6:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('6:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('7:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('7:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('8:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('8:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('9:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('9:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('10:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('10:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('11:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('11:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('12:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('12:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('13:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('13:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('14:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('14:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('15:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('15:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('16:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('16:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('17:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('17:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('18:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('18:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('19:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('19:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('20:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('20:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('21:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
+        {available: true, time: moment('21:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false}]
 
     state = {
         bookingData: this.props.bookings,
-        combinedDatas: [
-            {available: true, time: moment('6:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('6:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('7:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('7:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('8:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('8:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('9:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('9:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('10:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('10:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('11:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('11:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('12:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('12:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('13:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('13:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('14:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('14:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('15:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('15:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('16:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('16:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('17:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('17:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('18:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('18:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('19:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('19:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('20:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('20:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('21:00:00', 'HH:mm:ss'), room: this.props.room.id, users: false},
-            {available: true, time: moment('21:30:00', 'HH:mm:ss'), room: this.props.room.id, users: false}
-        ]
+        combinedDatas: [],
+        date : this.props.date
+    }
+
+    componentDidMount() {
+        this.setState({combinedDatas:this.cellData})
+        console.log(this.state.combinedDatas)
+    }
+    componentDidUpdate(oldProps) {
+        const newProps = this.props
+        if(oldProps.field !== newProps.field){
+            this.setState({combinedDatas:[]})
+        }
     }
 
     compareData() {
@@ -67,6 +78,10 @@ class RoomRow extends Component {
             }
         }
     }
+    tyhjenna(){
+        this.setState({combinedDatas:this.cellData})
+    }
+
     render() {
         if (this.props.bookings.length > 0) {
             this.compareData();
@@ -75,6 +90,8 @@ class RoomRow extends Component {
         const allCells = this.state.combinedDatas.map((combinedData, index) => (
             <RoomCell cellData={combinedData} key={index}/>
         ));
+
+
         return (
             <Table.Row>
                 <Table.Cell style={{position: 'sticky', left:0, background: 'white'}}>{this.props.room.name}</Table.Cell>

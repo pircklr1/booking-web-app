@@ -60,7 +60,7 @@ class RoomList extends Component {
     render() {
         console.log(this.state)
         const allRooms = this.state.rooms.map((room) => {
-            return <RoomRow bookings={this.state.bookings.filter(l => l.bookingDate === moment(this.state.startDate).format('YYYY-MM-DD'))} date={this.state.selectedDate} room={room} key={room.id}/>});
+            return <RoomRow bookings={this.state.bookings.filter(l => l.bookingDate === moment(this.state.startDate).format('YYYY-MM-DD'))} date={this.state.startDate} room={room} key={room.id}/>});
 
 
 

@@ -44,34 +44,48 @@ function BookingForm(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
+        let onnistuuko;
         const data = {
             user_id: currentUser.id,
             room_id: room,
             booking_date: moment(startDate).format('YYYY-MM-DD'),
-            // start_time: moment(startTime).format('HH:mm:ss.SSS'),
-            // end_time: moment(endTime).format('HH:mm:ss.SSS')
             start_time: moment(startTime).format('HH:mm'+':01'),
             end_time: moment(endTime).format('HH:mm')
         };
-        console.log(data)
-
         try {
             if (validate(data)) {
-                createBooking(data)
-                    .then(() => {
-                        setRoom("")
-                        setStartDate(new Date())
-                        setStartTime(new Date())
-                        setEndTime(new Date())
-                        setMessage('Varaus onnistui')
-                        setTimeout(() => {
-                            props.history.push('/login')
-                        }, 1500)
-                    })
+                  createBooking(data).then(function (jotain) {
+                      // onnistuuko = jotain;
+                      // console.log(jotain)
+                      // console.log(onnistuuko)
+                      if(jotain){
+                          setRoom("")
+                          setStartDate(new Date())
+                          setStartTime(new Date())
+                          setEndTime(new Date())
+                          setMessage('Varaus onnistui')
+                          setTimeout(() => {
+                              props.history.push('/login')
+                          }, 1500)
+                      }else{
+                          setMessage('Varaus ei onnistunut')
+                      }
+                  })
+
+                        // .then(() => {
+                        //     setRoom("")
+                        //     setStartDate(new Date())
+                        //     setStartTime(new Date())
+                        //     setEndTime(new Date())
+                        //     setMessage('Varaus onnistui')
+                        //     setTimeout(() => {
+                        //         props.history.push('/login')
+                        //     }, 1500)
+                        // })
             }
 
         } catch (e) {
-            const error = []
+            // const error = []
             if (e.message === 'start time is before 6 am') {
                 setMessage('Huoneita voi varata klo 6-22')
             } else if (e.message === 'end time is after 22 am') {
@@ -89,22 +103,6 @@ function BookingForm(props) {
         setTimeout(() => {
             setMessage(null) }, 7000);
     }
-
-    //     // if (addBooking(data)) {
-    //         if (createBooking(data)) {
-    //         setRoom("")
-    //         setStartDate(new Date())
-    //         setStartTime(new Date())
-    //         setEndTime(new Date())
-    //         setMessage('Varaus onnistui')
-    //     }else{
-    //         setMessage('Varaus ei onnistunut')
-    //     }
-    //
-    //
-    // }
-
-        //const {value} = this.state
         return (
             <div>
                 <Modal trigger={<Button primary>Varaa huone</Button>}>
