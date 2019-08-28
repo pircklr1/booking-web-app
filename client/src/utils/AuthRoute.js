@@ -4,8 +4,6 @@ import { AuthContext } from '../context/auth';
 
 function AuthRoute({ component: RouteComponent, ...rest }) {
   const { currentUser } = useContext(AuthContext);
-  console.log('AUTHROUTE, currentUser:');
-  console.log(currentUser);
 
   return (
     <Route

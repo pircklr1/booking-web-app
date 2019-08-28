@@ -1,42 +1,47 @@
 import React, {Component} from 'react';
 import {Table} from 'semantic-ui-react'
 
-
-var kellonaika = null;
-var room = null;
+// let backgroundColor = '#1678C2';
+// let backgroundColor2 = '#DB2828';
 
 class RoomCell extends Component {
 
-    // componentDidMount() {
-    //     if (kellonaika = 8) {
-    //         data = "kello on 8"
-    //         if (room === 100) {
-    //             data = "kello on 8 ja huone on 100"
-    //         }
-    //     }
-    // }
 
     check(){
         if(this.props.cellData.available){
             return ""
         }else{
-            return "Varattu"
+            if(this.props.cellData.users){
+                return "Oma varaus"
+            }else{
+                return "Varattu"
+            }
+
         }
     }
 
 
 
 
+
+
+
     render() {
 
+        let backgroundColor = 'inherit'
+
+
+        if(!this.props.cellData.available && this.props.cellData.users){
+            backgroundColor = '#1678C2';
+        } else if (!this.props.cellData.available) {
+            backgroundColor = '#DB2828';
+        }
 
         return (
 
-            /*<Table.Cell availability={this.props.cell.available} negative={!this.props.cell.available} kellonaika={8}>{this.props.cell.available}, {this.props.room}, aika: {this.props.cell.aika}</Table.Cell>*/
-        /*<Table.Cell negative={!this.props.cellData.available}>Aika:{this.props.cellData.time},*/
-        /*    huone: {this.props.cellData.room}, vapaa: {this.props.cellData.available}</Table.Cell>*/
-            <Table.Cell negative={!this.props.cellData.available}>{this.check()}</Table.Cell>
+            // <Table.Cell negative={!this.props.cellData.available} >{this.check()}</Table.Cell>
 
+            <Table.Cell selectable style={{backgroundColor}} >{this.check()}</Table.Cell>
 
         );
     }
@@ -44,6 +49,3 @@ class RoomCell extends Component {
 }
 
 export default RoomCell;
-
-    // alku={8} loppu={9}
-// room={this.props.room.name}
