@@ -49,8 +49,8 @@ class RoomList extends Component {
             const filteredList = list.filter(l => l.bookingDate === date)
             // this.setState({bookings:list})
             this.setState({bookings:filteredList})
-            console.log(list)
-            console.log(filteredList)
+            // console.log(list)
+            // console.log(filteredList)
         })
     }
 
