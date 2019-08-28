@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Dropdown, Input, Form, Container} from 'semantic-ui-react'
+import {Table, Dropdown, Input, Form, Container, Button} from 'semantic-ui-react'
 import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
@@ -20,14 +20,23 @@ class RoomList extends Component {
       };
       this.handleDateChange = this.handleDateChange.bind(this);
       this.updateBookings = this.updateBookings.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleDateChange(date) {
-        const selectedDate = moment(date).format('YYYY-MM-DD')
+        // const selectedDate = moment(date).format('YYYY-MM-DD')
         this.setState({
+            // startDate: date,
             startDate: date,
-            selectedDate: selectedDate
+            // selectedDate: selectedDate
         });
         this.updateBookings();
+    }
+    handleSubmit(e) {
+        e.preventDefault();
+        const selectedDate = moment(this.state.startDate).format('YYYY-MM-DD')
+        console.log(selectedDate);
+        this.updateBookings();
+        this.render();
     }
 
     componentDidMount() {
@@ -49,8 +58,6 @@ class RoomList extends Component {
             const filteredList = list.filter(l => l.bookingDate === date)
             // this.setState({bookings:list})
             this.setState({bookings:filteredList})
-            // console.log(list)
-            // console.log(filteredList)
         })
     }
 
@@ -60,7 +67,7 @@ class RoomList extends Component {
 
         return (
             <div>
-                    <Form style={{ marginTop: 20 }}>
+                    <Form style={{ marginTop: 20 }} onSubmit={this.handleSubmit}>
                         <Form.Group>
                             <Form.Input>
                                 <DatePicker
@@ -71,6 +78,7 @@ class RoomList extends Component {
                                 />
                             </Form.Input>
                         </Form.Group>
+                        <Button primary type='submit'>Päivitä</Button>
                     </Form>
                 <Table unstackable color={'blue'} celled definition>
                     <Table.Header>
