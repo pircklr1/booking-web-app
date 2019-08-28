@@ -44,11 +44,11 @@ class RoomRow extends Component {
             {available: true, time: moment('21:30:01', 'HH:mm:ss'), room: this.props.room.id, users: false}
         ]
     }
-    componentWillReceiveProps() {
-        this.nollaa()
+    UNSAFE_componentWillReceiveProps() {
+        this.resetCombinedDatas()
     }
 
-    nollaa() {
+    resetCombinedDatas() {
         for (var i = 0; i < this.state.combinedDatas.length; i++) {
             this.state.combinedDatas[i].available = true;
             this.state.combinedDatas[i].users = false;
@@ -78,13 +78,11 @@ class RoomRow extends Component {
         if (this.props.bookings.length > 0) {
             this.compareData();
         }
-        console.log(this.state.combinedDatas)
+
         const allCells = this.state.combinedDatas.map((combinedData, index) => (
             <RoomCell cellData={combinedData} key={index}/>
         ));
 
-        console.log('**********************')
-        console.log(this.state.combinedDatas)
         return (
             <Table.Row>
                 <Table.Cell style={{position: 'sticky', left:0, background: 'white'}}>{this.props.room.name}</Table.Cell>
