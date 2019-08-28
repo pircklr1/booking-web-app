@@ -20,7 +20,6 @@ class RoomCell extends Component {
         }
     }
 
-
     render() {
 
         return (
@@ -31,6 +30,3 @@ class RoomCell extends Component {
 }
 
 export default RoomCell;
-
-    // alku={8} loppu={9}
-// room={this.props.room.name}

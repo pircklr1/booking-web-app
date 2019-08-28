@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Table } from 'semantic-ui-react';
 import RoomCell from './RoomCell';
-import {getAllBookings} from '../service/ClientService'
 import moment from 'moment';
 
-var combinedData = [{}];
 
 class RoomRow extends Component {
 
@@ -68,8 +66,6 @@ class RoomRow extends Component {
         }
     }
     render() {
-        // console.log(this.userId)
-        // console.log(this.state.bookingData)
         if (this.state.bookingData.length > 0) {
             this.compareData();
         }
