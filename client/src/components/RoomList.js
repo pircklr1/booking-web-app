@@ -48,9 +48,11 @@ class RoomList extends Component {
         console.log(this.state.startDate)
         const date = moment(this.state.startDate).format('YYYY-MM-DD')
         getAllBookings(list => {
+
             //const filteredList = list.filter(l => l.bookingDate === date)
              this.setState({bookings:list})
             //this.setState({bookings:filteredList})
+
 
         })
     }
