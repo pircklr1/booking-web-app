@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Table, Dropdown, Input, Form, Container, Button} from 'semantic-ui-react'
+import {Table, Form} from 'semantic-ui-react'
 import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
@@ -18,9 +18,9 @@ class RoomList extends Component {
       };
       this.handleDateChange = this.handleDateChange.bind(this);
       this.updateBookings = this.updateBookings.bind(this);
-      // this.handleSubmit = this.handleSubmit.bind(this);
       this.updateRooms = this.updateRooms.bind(this);
     }
+
     handleDateChange(date) {
         this.setState({
             startDate: date,
@@ -39,20 +39,12 @@ class RoomList extends Component {
     }
 
     updateBookings() {
-        console.log(this.state.startDate)
-        const date = moment(this.state.startDate).format('YYYY-MM-DD')
         getAllBookings(list => {
-
-            //const filteredList = list.filter(l => l.bookingDate === date)
              this.setState({bookings:list})
-            //this.setState({bookings:filteredList})
-
-
         })
     }
 
     render() {
-        console.log(this.state)
         const allRooms = this.state.rooms.map((room) => {
             return <RoomRow bookings={this.state.bookings.filter(l => l.bookingDate === moment(this.state.startDate).format('YYYY-MM-DD'))} date={this.state.selectedDate} room={room} key={room.id}/>});
 
@@ -60,7 +52,6 @@ class RoomList extends Component {
 
         return (
             <div>
-                    {/*<Form style={{ marginTop: 20 }} onSubmit={this.handleSubmit}>*/}
                         <Form style={{ marginTop: 20 }} onSubmit={this.handleSubmit}>
                         <Form.Group>
                             <Form.Input>
@@ -72,7 +63,6 @@ class RoomList extends Component {
                                 />
                             </Form.Input>
                         </Form.Group>
-                        {/*<Button primary type='submit'>Päivitä</Button>*/}
                     </Form>
                 <Table unstackable color={'blue'} celled definition>
                     <Table.Header>
@@ -120,7 +110,6 @@ class RoomList extends Component {
             </div>
         );
     }
-
 }
 
 export default RoomList;
