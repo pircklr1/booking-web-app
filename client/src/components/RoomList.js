@@ -12,7 +12,6 @@ class RoomList extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          // selectedDate:"",
           startDate: new Date(),
           rooms: [],
           bookings: []
@@ -27,11 +26,6 @@ class RoomList extends Component {
             startDate: date,
         });
     }
-    // handleSubmit(e) {
-    //     e.preventDefault();
-    //     const selectedDate = moment(this.state.startDate).format('YYYY-MM-DD')
-    //     console.log(selectedDate);
-    // }
 
     componentDidMount() {
         this.updateBookings()
