@@ -8,36 +8,30 @@ import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
 import {getAllBookings, getAllRooms} from "../service/ClientService";
 
-
 class RoomList extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          selectedDate:"",
-        startDate: new Date(),
+          // selectedDate:"",
+          startDate: new Date(),
           rooms: [],
           bookings: []
       };
       this.handleDateChange = this.handleDateChange.bind(this);
       this.updateBookings = this.updateBookings.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+      // this.handleSubmit = this.handleSubmit.bind(this);
+      this.updateRooms = this.updateRooms.bind(this);
     }
     handleDateChange(date) {
-        // const selectedDate = moment(date).format('YYYY-MM-DD')
         this.setState({
-            // startDate: date,
             startDate: date,
-            // selectedDate: selectedDate
         });
-        this.updateBookings();
     }
-    handleSubmit(e) {
-        e.preventDefault();
-        const selectedDate = moment(this.state.startDate).format('YYYY-MM-DD')
-        console.log(selectedDate);
-        this.updateBookings();
-        this.render();
-    }
+    // handleSubmit(e) {
+    //     e.preventDefault();
+    //     const selectedDate = moment(this.state.startDate).format('YYYY-MM-DD')
+    //     console.log(selectedDate);
+    // }
 
     componentDidMount() {
         this.updateBookings()
@@ -45,29 +39,35 @@ class RoomList extends Component {
     }
 
     updateRooms() {
-
         getAllRooms(list => {
             this.setState({rooms:list})
         })
     }
 
     updateBookings() {
+        console.log(this.state.startDate)
         const date = moment(this.state.startDate).format('YYYY-MM-DD')
-        console.log(date)
         getAllBookings(list => {
-            const filteredList = list.filter(l => l.bookingDate === date)
-            // this.setState({bookings:list})
-            this.setState({bookings:filteredList})
+
+            //const filteredList = list.filter(l => l.bookingDate === date)
+             this.setState({bookings:list})
+            //this.setState({bookings:filteredList})
+
+
         })
     }
 
     render() {
-        const allRooms = this.state.rooms.map((room) =>
-            <RoomRow bookings={this.state.bookings} date={this.state.selectedDate} room={room} key={room.index}/>);
+        console.log(this.state)
+        const allRooms = this.state.rooms.map((room) => {
+            return <RoomRow bookings={this.state.bookings.filter(l => l.bookingDate === moment(this.state.startDate).format('YYYY-MM-DD'))} date={this.state.selectedDate} room={room} key={room.id}/>});
+
+
 
         return (
             <div>
-                    <Form style={{ marginTop: 20 }} onSubmit={this.handleSubmit}>
+                    {/*<Form style={{ marginTop: 20 }} onSubmit={this.handleSubmit}>*/}
+                        <Form style={{ marginTop: 20 }} onSubmit={this.handleSubmit}>
                         <Form.Group>
                             <Form.Input>
                                 <DatePicker
@@ -78,7 +78,7 @@ class RoomList extends Component {
                                 />
                             </Form.Input>
                         </Form.Group>
-                        <Button primary type='submit'>Päivitä</Button>
+                        {/*<Button primary type='submit'>Päivitä</Button>*/}
                     </Form>
                 <Table unstackable color={'blue'} celled definition>
                     <Table.Header>

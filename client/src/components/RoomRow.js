@@ -50,32 +50,30 @@ class RoomRow extends Component {
 
     compareData() {
         for (var i = 0; i < this.state.combinedDatas.length; i++) {
-            for (var j = 0; j < this.state.bookingData.length; j++) {
+            for (var j = 0; j < this.props.bookings.length; j++) {
                 if (
-                    this.state.combinedDatas[i].time.isSameOrAfter(moment(this.state.bookingData[j].startTime, 'HH:mm:ss')) &&
-                    this.state.combinedDatas[i].time.isBefore(moment(this.state.bookingData[j].endTime, 'HH:mm:ss')) &&
-                    this.state.combinedDatas[i].room === this.state.bookingData[j].roomId
+                    this.state.combinedDatas[i].time.isSameOrAfter(moment(this.props.bookings[j].startTime, 'HH:mm:ss')) &&
+                    this.state.combinedDatas[i].time.isBefore(moment(this.props.bookings[j].endTime, 'HH:mm:ss')) &&
+                    this.state.combinedDatas[i].room === this.props.bookings[j].roomId
                 ) {
                     this.state.combinedDatas[i].available = false;
                 }
-                if (this.state.combinedDatas[i].time.isSameOrAfter(moment(this.state.bookingData[j].startTime, 'HH:mm:ss')) &&
-                    this.state.combinedDatas[i].time.isBefore(moment(this.state.bookingData[j].endTime, 'HH:mm:ss')) &&
-                    this.state.combinedDatas[i].room === this.state.bookingData[j].roomId &&
-                this.state.bookingData[j].userId === this.userId) {
+                if (this.state.combinedDatas[i].time.isSameOrAfter(moment(this.props.bookings[j].startTime, 'HH:mm:ss')) &&
+                    this.state.combinedDatas[i].time.isBefore(moment(this.props.bookings[j].endTime, 'HH:mm:ss')) &&
+                    this.state.combinedDatas[i].room === this.props.bookings[j].roomId &&
+                this.props.bookings[j].userId === this.userId) {
                     this.state.combinedDatas[i].users = true;
                 }
             }
         }
     }
     render() {
-        // console.log(this.userId)
-        // console.log(this.state.bookingData)
-        if (this.state.bookingData.length > 0) {
+        if (this.props.bookings.length > 0) {
             this.compareData();
         }
 
-        const allCells = this.state.combinedDatas.map(combinedData => (
-            <RoomCell cellData={combinedData} key={combinedData.index}/>
+        const allCells = this.state.combinedDatas.map((combinedData, index) => (
+            <RoomCell cellData={combinedData} key={index}/>
         ));
         return (
             <Table.Row>
