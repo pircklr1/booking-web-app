@@ -7,7 +7,6 @@ const useForm = (callback, validate) => {
     const [values, setValues] = useState({});
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [toHome, setToHome] = useState(false);
 
     useEffect(() => {
         if (Object.keys(errors).length === 0 && isSubmitting) {
@@ -30,8 +29,7 @@ const useForm = (callback, validate) => {
         handleChange,
         handleSubmit,
         values,
-        errors,
-        toHome
+        errors
     }
 };
 

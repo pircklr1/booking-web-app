@@ -36,31 +36,28 @@ module.exports = (app, db) => {
     // @desc    Post new booking
     // @access  Public
     app.post('/api/booking', (req, res) => {
-        var paallekkaisyydet = [];
+        var overlapping = [];
             db.Booking.findAll({
                 where: {
                     bookingDate: req.body.booking_date,
                     roomId: req.body.room_id
                 },
-            }).then((varaukset) => {
-                    for (var i = 0; i < varaukset.length; i++) {
-                        if ((moment(req.body.start_time, 'HH:mm:ss').isSameOrAfter(moment(varaukset[i].startTime, 'HH:mm:ss')) &&
-                            moment(req.body.start_time, 'HH:mm:ss').isSameOrBefore(moment(varaukset[i].endTime, 'HH:mm:ss')))) {
-                                paallekkaisyydet.push(varaukset[i])
-                            console.log('eka: ' + paallekkaisyydet)
-                        } else if ((moment(req.body.end_time, 'HH:mm:ss').isSameOrAfter(moment(varaukset[i].startTime, 'HH:mm:ss')) &&
-                            moment(req.body.end_time, 'HH:mm:ss').isSameOrBefore(moment(varaukset[i].endTime, 'HH:mm:ss')))) {
-                            paallekkaisyydet.push(varaukset[i])
-                            console.log('toka: ' + paallekkaisyydet)
-                        } else if (moment(varaukset[i].startTime, 'HH:mm:ss') && moment(varaukset[i].endTime, 'HH:mm:ss').isBetween(moment(req.body.start_time, 'HH:mm:ss'), moment(req.body.end_time, 'HH:mm:ss'))) {
-                            paallekkaisyydet.push(varaukset[i])
-                            console.log('kolmas: ' + paallekkaisyydet)
+            }).then((bookings) => {
+                    for (var i = 0; i < bookings.length; i++) {
+                        if ((moment(req.body.start_time, 'HH:mm:ss').isSameOrAfter(moment(bookings[i].startTime, 'HH:mm:ss')) &&
+                            moment(req.body.start_time, 'HH:mm:ss').isSameOrBefore(moment(bookings[i].endTime, 'HH:mm:ss')))) {
+                                overlapping.push(bookings[i])
+                        } else if ((moment(req.body.end_time, 'HH:mm:ss').isSameOrAfter(moment(bookings[i].startTime, 'HH:mm:ss')) &&
+                            moment(req.body.end_time, 'HH:mm:ss').isSameOrBefore(moment(bookings[i].endTime, 'HH:mm:ss')))) {
+                            overlapping.push(bookings[i])
+
+                        } else if (moment(bookings[i].startTime, 'HH:mm:ss') && moment(bookings[i].endTime, 'HH:mm:ss').isBetween(moment(req.body.start_time, 'HH:mm:ss'), moment(req.body.end_time, 'HH:mm:ss'))) {
+                            overlapping.push(bookings[i])
                         }
                     }
                 })
                 .then(() => {
-                    console.log(paallekkaisyydet)
-                if (paallekkaisyydet.length !== 0) {
+                if (overlapping.length !== 0) {
                     res.status(403).send('overlapping booking')
                 } else {
                     console.log('no overlapping booking');
