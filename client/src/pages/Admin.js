@@ -22,20 +22,29 @@ function Admin() {
     getAllBookings(setData);
     getAllUsers(setUserData);
     getAllRooms(setRoomData);
-    console.log(userData);
     setIsLoading(false);
+    console.log('**********************************');
+    console.log('ADMIN');
+    console.log(userData);
+    console.log(roomData);
+    console.log(data);
+    console.log('**********************************');
   }, []);
 
-  const renderTable = () => {
+  const renderBookingTable = () => {
     return data.map(booking => {
+      console.log(booking);
+      console.log('XXXXXXXXXXXXXXXXXXXXXXX');
       return (
         <Table.Row>
-          <Table.Cell>{moment(booking.start).format('DD.MM.YYYY')}</Table.Cell>
-          <Table.Cell>
-            {moment(booking.start).format('HH:MM')}-
-            {moment(booking.end).format('HH:MM')}
+          <Table.Cell collapsing textAlign='center'>
+            {moment(booking.bookingDate).format('DD.MM.YYYY')}
           </Table.Cell>
-          <Table.Cell>{booking.status}</Table.Cell>
+          <Table.Cell collapsing textAlign='center'>
+            {booking.startTime.substring(0, 5)}-
+            {booking.endTime.substring(0, 5)}
+          </Table.Cell>
+          <Table.Cell>{booking.isValid}</Table.Cell>
           <Button ui primary basic icon>
             <i className='edit icon' />
           </Button>
@@ -47,6 +56,7 @@ function Admin() {
 
   const renderUserTable = () => {
     return userData.map(user => {
+      console.log('TEEEEEEEEEEEEEEEST');
       return (
         <Table.Row>
           <Table.Cell>
@@ -115,7 +125,7 @@ function Admin() {
             <Table.HeaderCell>Kellonaika</Table.HeaderCell>
             <Table.HeaderCell>Tila</Table.HeaderCell>
           </Table.Header>
-          <Table.Body> {renderTable()}</Table.Body>
+          <Table.Body> {renderBookingTable()}</Table.Body>
         </Table>
 
         {/*     <Message
@@ -133,7 +143,7 @@ function Admin() {
             <Table.HeaderCell>Kellonaika</Table.HeaderCell>
             <Table.HeaderCell>Tila</Table.HeaderCell>
           </Table.Header>
-          <Table.Body> {renderTable()}</Table.Body>
+          <Table.Body> {renderBookingTable()}</Table.Body>
         </Table>
 
         <Header as='h4' attached='top' block>
@@ -146,7 +156,7 @@ function Admin() {
             <Table.HeaderCell>Varausten lkm</Table.HeaderCell>
             <Table.HeaderCell>Poista käytöstä</Table.HeaderCell>
           </Table.Header>
-          <Table.Body> {renderUserTable()}</Table.Body>
+          <Table.Body> {renderRoomTable()}</Table.Body>
         </Table>
       </Container>
     </div>
