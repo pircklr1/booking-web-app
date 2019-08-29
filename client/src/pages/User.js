@@ -15,8 +15,8 @@ function User() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    console.log("USER page, currentuser's id");
-    console.log(currentUser.id);
+    // console.log("USER page, currentuser's id");
+    // console.log(currentUser.id);
     setIsLoading(true);
     //getAllBookings(setData);
     getUserBookings(currentUser.id, setData);
