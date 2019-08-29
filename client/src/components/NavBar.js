@@ -5,9 +5,7 @@ import {
   Icon,
   Dropdown,
   Sidebar,
-  Segment,
   Button,
-  Header,
   Image
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
@@ -56,8 +54,7 @@ function NavBar() {
             as={Link}
             to='/bookings'
             name='bookings'
-            icon='calendar alternate outline'
-            iconPosition='left'
+            iconposition='left'
             active={activeItem === 'bookings'}
             onClick={handleItemClick}
           >
@@ -68,8 +65,7 @@ function NavBar() {
             as={Link}
             to='/admin'
             name='admin'
-            icon='key'
-            iconPosition='left'
+            iconposition='left'
             active={activeItem === 'admin'}
             onClick={handleItemClick}
           >
@@ -93,7 +89,7 @@ function NavBar() {
                   to='/settings'
                   name='Asetukset'
                   icon='setting'
-                  iconPosition='left'
+                  iconposition='left'
                   active={activeItem === 'Asetukset'}
                   onClick={handleItemClick}
                 ></Menu.Item>
@@ -103,7 +99,7 @@ function NavBar() {
                   to='/login'
                   name='Kirjaudu ulos'
                   icon='lock'
-                  iconPosition='left'
+                  iconposition='left'
                   active={activeItem === 'Kirjaudu ulos'}
                   onClick={logout}
                 ></Menu.Item>
@@ -204,7 +200,7 @@ function NavBar() {
         <Menu
           pointing
           secondary
-          size='big'
+          size='large'
           color='blue'
           style={{ backgroundColor: 'white' }}
         >
@@ -236,8 +232,8 @@ function NavBar() {
             as={Link}
             to='/signup'
             name='signup'
-            icon='signup'
-            iconPosition='left'
+            // icon='signup'
+            iconposition='left'
             active={activeItem === 'signup'}
             onClick={handleItemClick}
           >
@@ -250,7 +246,7 @@ function NavBar() {
         <Menu
           pointing
           secondary
-          size='medium'
+          size='large'
           color='blue'
           style={{ backgroundColor: 'white' }}
         >

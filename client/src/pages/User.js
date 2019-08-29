@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import UserBookings from '../components/UserBookings';
-import { getAllBookings } from '../service/ClientService';
 import { getUserBookings } from '../service/ClientService';
 import { Button, Table, Container, Header } from 'semantic-ui-react';
 import moment from 'moment';
