@@ -20,7 +20,6 @@ import ResetPassword from './pages/ResetPassword';
 import NavBar from './components/NavBar';
 import { AuthProvider } from './context/auth';
 import AuthRoute from './utils/AuthRoute';
-import moment from 'moment';
 
 class App extends Component {
   render() {
