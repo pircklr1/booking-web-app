@@ -8,7 +8,14 @@ import {
   getAllBookings,
   getAllRooms
 } from '../service/ClientService';
-import { Button, Table, Container, Header } from 'semantic-ui-react';
+import {
+  Button,
+  Table,
+  Container,
+  Header,
+  Icon,
+  Grid
+} from 'semantic-ui-react';
 import moment from 'moment';
 import DeleteButton from '../components/admin/DeleteButton';
 function Admin() {
@@ -22,24 +29,27 @@ function Admin() {
     getAllBookings(setData);
     getAllUsers(setUserData);
     getAllRooms(setRoomData);
-    console.log(userData);
     setIsLoading(false);
   }, []);
 
-  const renderTable = () => {
+  const renderBookingTable = () => {
     return data.map(booking => {
       return (
         <Table.Row>
-          <Table.Cell>{moment(booking.start).format('DD.MM.YYYY')}</Table.Cell>
-          <Table.Cell>
-            {moment(booking.start).format('HH:MM')}-
-            {moment(booking.end).format('HH:MM')}
+          <Table.Cell collapsing textAlign='center'>
+            {moment(booking.bookingDate).format('DD.MM.YYYY')}
           </Table.Cell>
-          <Table.Cell>{booking.status}</Table.Cell>
-          <Button ui primary basic icon>
+          <Table.Cell collapsing textAlign='center'>
+            {booking.startTime.substring(0, 5)}-
+            {booking.endTime.substring(0, 5)}
+          </Table.Cell>
+
+          {/*  <Button ui primary basic icon>
             <i className='edit icon' />
-          </Button>
-          <DeleteButton id={booking.id} />
+          </Button> */}
+          <Table.Cell collapsing textAlign='center'>
+            <DeleteButton id={booking.id} type='booking' />
+          </Table.Cell>
         </Table.Row>
       );
     });
@@ -53,14 +63,16 @@ function Admin() {
             {user.firstName} {user.lastName}
           </Table.Cell>
           <Table.Cell>{user.email}</Table.Cell>
-          <Table.Cell>{user.role}</Table.Cell>
-          <Table.Cell>0</Table.Cell>
-          <Button ui primary basic icon>
+
+          {/* <Table.Cell textAlign='center'>
+            <Icon color='green' name='checkmark' size='large' />
+          </Table.Cell> */}
+          {/* <Button ui primary basic icon>
             <i className=' edit icon' />
-          </Button>
-          <Button ui negative basic icon>
-            <i className='trash icon' />
-          </Button>
+          </Button> */}
+          <Table.Cell collapsing textAlign='center'>
+            <DeleteButton id={user.id} type={'user'} />
+          </Table.Cell>
         </Table.Row>
       );
     });
@@ -69,17 +81,16 @@ function Admin() {
   const renderRoomTable = () => {
     return roomData.map(room => {
       return (
-        <Table.Row>
+        <Table.Row textAlign='center'>
           <Table.Cell>{room.name}</Table.Cell>
-          <Table.Cell>{room.id}</Table.Cell>
-          <Table.Cell>{room.role}</Table.Cell>
+          {/* <Table.Cell>{room.role}</Table.Cell>
           <Table.Cell>0</Table.Cell>
           <Button ui primary basic icon>
             <i className=' edit icon' />
-          </Button>
-          <Button ui negative basic icon>
-            <i className='trash icon' />
-          </Button>
+          </Button> */}
+          <Table.Cell collapsing textAlign='center'>
+            <DeleteButton id={room.id} type={'room'} />
+          </Table.Cell>
         </Table.Row>
       );
     });
@@ -88,66 +99,74 @@ function Admin() {
   return (
     <div>
       <Container style={{ padding: '5em 0em' }}>
-        <Header as='h4' attached='top' block>
-          Käyttäjät
-        </Header>
-        <Table attached celled selectable>
-          <Table.Header>
-            <Table.HeaderCell>Nimi</Table.HeaderCell>
-            <Table.HeaderCell>Email</Table.HeaderCell>
-            <Table.HeaderCell>Admin</Table.HeaderCell>
-            <Table.HeaderCell>Varaukset</Table.HeaderCell>
-          </Table.Header>
-          <Table.Body> {renderUserTable()}</Table.Body>
-        </Table>
-        {/*     <Message
+        <Grid
+          textAlign='center'
+          style={{ height: '70vh' }}
+          verticalAlign='middle'
+        >
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as='h2' attached='top' block>
+              Käyttäjät
+            </Header>
+            <Table attached celled selectable textAlign='center'>
+              <Table.Header>
+                <Table.HeaderCell>Nimi</Table.HeaderCell>
+                <Table.HeaderCell>Email</Table.HeaderCell>
+                {/*   <Table.HeaderCell>Admin</Table.HeaderCell> */}
+                <Table.HeaderCell>Poista</Table.HeaderCell>
+              </Table.Header>
+              <Table.Body> {renderUserTable()}</Table.Body>
+            </Table>
+
+            {/*     <Message
           attached='top'
           content='Tulevat varaukset'
           icon='attention'
           warning
         /> */}
-        <Header as='h4' attached='top' block>
-          Tulevat varaukset
-        </Header>
-        <Table attached celled selectable>
-          <Table.Header>
-            <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
-            <Table.HeaderCell>Kellonaika</Table.HeaderCell>
-            <Table.HeaderCell>Tila</Table.HeaderCell>
-          </Table.Header>
-          <Table.Body> {renderTable()}</Table.Body>
-        </Table>
+            <Header as='h2' attached='top' block collapsing>
+              Varaukset
+            </Header>
+            <Table attached celled selectable textAlign='center'>
+              <Table.Header>
+                <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
+                <Table.HeaderCell>Kellonaika</Table.HeaderCell>
+                <Table.HeaderCell>Peruuta</Table.HeaderCell>
+              </Table.Header>
+              <Table.Body> {renderBookingTable()}</Table.Body>
+            </Table>
 
-        {/*     <Message
+            {/*     <Message
           attached='top'
           content='Tulevat varaukset'
           icon='attention'
           warning
         /> */}
-        <Header as='h4' attached='top' block>
-          Menneet ja perutut varaukset
-        </Header>
-        <Table attached celled selectable>
-          <Table.Header>
-            <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
-            <Table.HeaderCell>Kellonaika</Table.HeaderCell>
-            <Table.HeaderCell>Tila</Table.HeaderCell>
-          </Table.Header>
-          <Table.Body> {renderTable()}</Table.Body>
-        </Table>
+            {/*         <Header as='h4' attached='top' block collapsing>
+              Menneet ja perutut varaukset
+            </Header>
+            <Table attached celled selectable textAlign='center'>
+              <Table.Header>
+                <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
+                <Table.HeaderCell>Kellonaika</Table.HeaderCell>
+                <Table.HeaderCell>Peruuta</Table.HeaderCell>
+              </Table.Header>
+              <Table.Body> {renderBookingTable()}</Table.Body>
+            </Table> */}
 
-        <Header as='h4' attached='top' block>
-          Huoneet
-        </Header>
-        <Table attached celled selectable>
-          <Table.Header>
-            <Table.HeaderCell>Nimi</Table.HeaderCell>
-            <Table.HeaderCell>Id</Table.HeaderCell>
-            <Table.HeaderCell>Varausten lkm</Table.HeaderCell>
-            <Table.HeaderCell>Poista käytöstä</Table.HeaderCell>
-          </Table.Header>
-          <Table.Body> {renderUserTable()}</Table.Body>
-        </Table>
+            <Header as='h2' attached='top' block>
+              Huoneet
+            </Header>
+            <Table attached celled selectable>
+              <Table.Header>
+                <Table.HeaderCell textAlign='center'>Nimi</Table.HeaderCell>
+                {/*   <Table.HeaderCell>Varausten lkm</Table.HeaderCell> */}
+                <Table.HeaderCell>Poista</Table.HeaderCell>
+              </Table.Header>
+              <Table.Body> {renderRoomTable()}</Table.Body>
+            </Table>
+          </Grid.Column>
+        </Grid>
       </Container>
     </div>
   );
