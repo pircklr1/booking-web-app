@@ -3,8 +3,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { getUserBookings } from '../service/ClientService';
-import { Button, Table, Container, Header } from 'semantic-ui-react';
+import { Button, Table, Container, Header, Grid } from 'semantic-ui-react';
 import moment from 'moment';
+import DeleteButton from '../components/admin/DeleteButton';
 
 import { AuthContext } from '../context/auth';
 
@@ -15,70 +16,55 @@ function User() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // console.log("USER page, currentuser's id");
-    // console.log(currentUser.id);
     setIsLoading(true);
-    //getAllBookings(setData);
     getUserBookings(currentUser.id, setData);
     setIsLoading(false);
   }, []);
 
-  const renderTable = () => {
+  const renderUserBookingTable = () => {
     return data.map(booking => {
       return (
-        <Table.Row>
-          <Table.Cell>{moment(booking.start).format('DD.MM.YYYY')}</Table.Cell>
-          <Table.Cell>
-            {moment(booking.start).format('HH:MM')}-
-            {moment(booking.end).format('HH:MM')}
-          </Table.Cell>
-          <Table.Cell>{booking.status}</Table.Cell>
-          <Button ui primary basic icon>
-            <i class=' edit icon' />
-          </Button>
-          <Button ui negative basic icon>
-            <i class='trash icon' />
-          </Button>
-        </Table.Row>
+          <Table.Row>
+            <Table.Cell collapsing textAlign='center'>
+              {moment(booking.bookingDate).format('DD.MM.YYYY')}
+            </Table.Cell>
+            <Table.Cell collapsing textAlign='center'>
+              {booking.startTime.substring(0, 5)}-
+              {booking.endTime.substring(0, 5)}
+            </Table.Cell>
+
+            {/*  <Button ui primary basic icon>
+            <i className='edit icon' />
+          </Button> */}
+            <Table.Cell collapsing textAlign='center'>
+              <DeleteButton id={booking.id} type='booking' />
+            </Table.Cell>
+          </Table.Row>
       );
     });
   };
 
   return (
-    <div>
-      <Container style={{ padding: '5em 0em' }}>
-        <Header>Hei, {currentUser.name}!</Header>
-        <Header as='h4' attached='top' block>
-          Tulevat varaukset
-        </Header>
-        <Table attached celled selectable>
-          <Table.Header>
-            <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
-            <Table.HeaderCell>Kellonaika</Table.HeaderCell>
-            <Table.HeaderCell>Tila</Table.HeaderCell>
-          </Table.Header>
-          <Table.Body> {renderTable()}</Table.Body>
-        </Table>
-
-        {/*     <Message
-          attached='top'
-          content='Tulevat varaukset'
-          icon='attention'
-          warning
-        /> */}
-        <Header as='h4' attached='top' block>
-          Menenet ja perutut varaukset
-        </Header>
-        <Table attached celled selectable>
-          <Table.Header>
-            <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
-            <Table.HeaderCell>Kellonaika</Table.HeaderCell>
-            <Table.HeaderCell>Tila</Table.HeaderCell>
-          </Table.Header>
-          <Table.Body> {renderTable()}</Table.Body>
-        </Table>
-      </Container>
-    </div>
+      <div>
+        <Container style={{ padding: '5em 0em' }}>
+          <Grid textAlign='center' verticalAlign='middle'>
+            <Grid.Column style={{ maxWidth: 450 }}>
+              <Header textAlign='left'>Hei, {currentUser.name}!</Header>
+              <Header as='h2' attached='top' block collapsing>
+                Omat varaukset
+              </Header>
+              <Table attached celled selectable textAlign='center'>
+                <Table.Header>
+                  <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
+                  <Table.HeaderCell>Kellonaika</Table.HeaderCell>
+                  <Table.HeaderCell>Peruuta</Table.HeaderCell>
+                </Table.Header>
+                <Table.Body> {renderUserBookingTable()}</Table.Body>
+              </Table>
+            </Grid.Column>
+          </Grid>
+        </Container>
+      </div>
   );
 }
 
