@@ -29,7 +29,7 @@ class Settings extends Component {
     }
     try {
       const response = await axios.get(baseUrl + '/user/' + userId);
-      console.log(response.data);
+      // console.log(response.data);
       this.setState({
         firstName: response.data.firstName,
         lastName: response.data.lastName,
@@ -98,7 +98,7 @@ class Settings extends Component {
       return (
           <div>
             <Message negative>
-              <Message.Header> Tietojen tallentaminen ei onnistunut. Tarkista syötteet ja yritä uudestaan.</Message.Header>
+              <Message.Header> Jokin meni vikaan. Yritä myöhemmin uudelleen. </Message.Header>
             </Message>
           </div>
       );
