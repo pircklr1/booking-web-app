@@ -14,7 +14,7 @@ class RoomCell extends Component {
             if(this.props.cellData.users) {
                 return <Icon circular name='user'/>
             }else{
-                // return <Icon size='large' color='red' name='ban'/>
+                // return <Icon size='large' color='red' name='ban'/> =red ban-icon for grey background
                 return <Icon   size='large' name='ban'/>
             }
 
@@ -28,14 +28,11 @@ class RoomCell extends Component {
         if(!this.props.cellData.available && this.props.cellData.users){
             backgroundColor = '#7bace4';
         } else if (!this.props.cellData.available) {
-            // backgroundColor = '#cfcfcf';
+            // backgroundColor = '#cfcfcf'; =grey
             backgroundColor = '#fc9fa3';
         }
 
         return (
-
-            // <Table.Cell negative={!this.props.cellData.available} >{this.check()}</Table.Cell>
-
             <Table.Cell  textAlign={'center'} style={{backgroundColor}} >{this.check()}</Table.Cell>
         );
     }

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import {Container} from 'semantic-ui-react';
-import './style.css'
+import './App.css'
 
 //Pages
 import Settings from './pages/Settings';
@@ -18,8 +18,6 @@ import ResetPassword from './pages/ResetPassword';
 
 //layout
 import NavBar from './components/NavBar';
-import Footer from './components/Footer';
-
 import { AuthProvider } from './context/auth';
 import AuthRoute from './utils/AuthRoute';
 
