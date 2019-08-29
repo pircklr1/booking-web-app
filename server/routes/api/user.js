@@ -22,45 +22,42 @@ module.exports = (app, db) => {
     // @route   GET api/user/:id
     // @desc    Get user by id
     // @access  Public
-    // app.get('/api/user/:id', (req, res) =>
-    //     db.User.findByPk(req.params.id).then(result => res.json(result))
-    // );
-    app.get('/api/user', (req, res) =>
-        db.User.findOne({
-            where: {
-                id: req.body.id
-            }
-        }).then(result => res.json(result))
-            .catch(err => {
-                console.error('User not found', err.message);
-                res.status(404).send(err.message);
-            })
+    app.get('/api/user/:id', (req, res) =>
+        db.User.findByPk(req.params.id)
+            .then(result => res.json(result))
+                .catch(err => {
+                    console.error('User not found', err.message);
+                    res.status(404).send(err.message);
+                })
     );
+    // app.get('/api/user', (req, res) =>
+    //     db.User.findOne({
+    //         where: {
+    //             id: req.params.userId
+    //         }
+    //     }).then(result => res.json(result))
+    //         .catch(err => {
+    //             console.error('User not found', err.message);
+    //             res.status(404).send(err.message);
+    //         })
+    // );
 
     // @route   PUT api/user
     // @desc    Modify existing user
     // @access  Public
-    app.put('/api/user', (req, res) =>
-        db.User.findOne({
-            where: {
-                email: req.body.email
-            },
-        }).then(user => {
+    app.put('/api/user/:id', (req, res) =>
+        db.User.findByPk(req.params.id)
+        .then(user => {
             if (user === null) {
                 console.error('no such user in db');
                 res.status(404).send('user not found in database');
             } else if (user != null) {
                 console.log('user exists in db');
-                bcrypt
-                    .hash(req.body.password, BCRYPT_SALT_ROUNDS)
-                    .then(hashedPassword => {
-                        user.update({
-                            firstName: req.body.first_name,
-                            lastName: req.body.last_name,
-                            email: req.body.email,
-                            password: hashedPassword,
-                        });
-                    })
+                user.update({
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    email: req.body.email,
+                        })
                     .then(() => {
                         console.log('user updated');
                         res.status(200).send({message: 'user updated'});
