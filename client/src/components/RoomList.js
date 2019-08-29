@@ -14,8 +14,9 @@ class RoomList extends Component {
       this.state = {
           startDate: new Date(),
           rooms: [],
-          bookings: []
+          bookings: [],
       };
+
       this.handleDateChange = this.handleDateChange.bind(this);
       this.updateBookings = this.updateBookings.bind(this);
       this.updateRooms = this.updateRooms.bind(this);
@@ -52,7 +53,8 @@ class RoomList extends Component {
 
         return (
             <div>
-                        <Form style={{ marginTop: 20 }} onSubmit={this.handleSubmit}>
+                        {/*<Form style={{ position: 'fixed', left: '200px', bottom: '650px'}} onSubmit={this.handleSubmit}>*/}
+                            <Form style={{ marginTop: 20}} onSubmit={this.handleSubmit}>
                         <Form.Group>
                             <Form.Input>
                                 <DatePicker
