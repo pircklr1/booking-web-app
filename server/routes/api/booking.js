@@ -1,6 +1,5 @@
 import Sequelize, {or} from 'sequelize';
-
-const moment = require('moment');
+import moment from 'moment';
 
 const Op = Sequelize.Op;
 
@@ -37,27 +36,31 @@ module.exports = (app, db) => {
     // @desc    Post new booking
     // @access  Public
     app.post('/api/booking', (req, res) => {
+        var paallekkaisyydet = [];
             db.Booking.findAll({
                 where: {
                     bookingDate: req.body.booking_date,
-                    roomId: req.body.room_id,
-                    [Op.or]: [
-                        {
-                            startTime:
-                                {
-                                    [Op.between]: [req.body.start_time, req.body.end_time]
-                                }
-                        },
-                        {
-                            endTime:
-                                {
-                                    [Op.between]: [req.body.start_time, req.body.end_time]
-                                }
-                        },
-                        ]
+                    roomId: req.body.room_id
                 },
-            }).then((bookings) => {
-                if (bookings.length !== 0) {
+            }).then((varaukset) => {
+                    for (var i = 0; i < varaukset.length; i++) {
+                        if ((moment(req.body.start_time, 'HH:mm:ss').isSameOrAfter(moment(varaukset[i].startTime, 'HH:mm:ss')) &&
+                            moment(req.body.start_time, 'HH:mm:ss').isSameOrBefore(moment(varaukset[i].endTime, 'HH:mm:ss')))) {
+                                paallekkaisyydet.push(varaukset[i])
+                            console.log('eka: ' + paallekkaisyydet)
+                        } else if ((moment(req.body.end_time, 'HH:mm:ss').isSameOrAfter(moment(varaukset[i].startTime, 'HH:mm:ss')) &&
+                            moment(req.body.end_time, 'HH:mm:ss').isSameOrBefore(moment(varaukset[i].endTime, 'HH:mm:ss')))) {
+                            paallekkaisyydet.push(varaukset[i])
+                            console.log('toka: ' + paallekkaisyydet)
+                        } else if (moment(varaukset[i].startTime, 'HH:mm:ss') && moment(varaukset[i].endTime, 'HH:mm:ss').isBetween(moment(req.body.start_time, 'HH:mm:ss'), moment(req.body.end_time, 'HH:mm:ss'))) {
+                            paallekkaisyydet.push(varaukset[i])
+                            console.log('kolmas: ' + paallekkaisyydet)
+                        }
+                    }
+                })
+                .then(() => {
+                    console.log(paallekkaisyydet)
+                if (paallekkaisyydet.length !== 0) {
                     res.status(403).send('overlapping booking')
                 } else {
                     console.log('no overlapping booking');
