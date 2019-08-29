@@ -1,4 +1,6 @@
 import Sequelize, {or} from 'sequelize';
+import moment from 'moment';
+
 const Op = Sequelize.Op;
 
 module.exports = (app, db) => {
@@ -34,27 +36,28 @@ module.exports = (app, db) => {
     // @desc    Post new booking
     // @access  Public
     app.post('/api/booking', (req, res) => {
+        var overlapping = [];
             db.Booking.findAll({
                 where: {
                     bookingDate: req.body.booking_date,
-                    roomId: req.body.room_id,
-                    [Op.or]: [
-                        {
-                            startTime:
-                                {
-                                    [Op.between]: [req.body.start_time, req.body.end_time]
-                                }
-                        },
-                        {
-                            endTime:
-                                {
-                                    [Op.between]: [req.body.start_time, req.body.end_time]
-                                }
-                        },
-                        ]
+                    roomId: req.body.room_id
                 },
             }).then((bookings) => {
-                if (bookings.length !== 0) {
+                    for (var i = 0; i < bookings.length; i++) {
+                        if ((moment(req.body.start_time, 'HH:mm:ss').isSameOrAfter(moment(bookings[i].startTime, 'HH:mm:ss')) &&
+                            moment(req.body.start_time, 'HH:mm:ss').isSameOrBefore(moment(bookings[i].endTime, 'HH:mm:ss')))) {
+                                overlapping.push(bookings[i])
+                        } else if ((moment(req.body.end_time, 'HH:mm:ss').isSameOrAfter(moment(bookings[i].startTime, 'HH:mm:ss')) &&
+                            moment(req.body.end_time, 'HH:mm:ss').isSameOrBefore(moment(bookings[i].endTime, 'HH:mm:ss')))) {
+                            overlapping.push(bookings[i])
+
+                        } else if (moment(bookings[i].startTime, 'HH:mm:ss') && moment(bookings[i].endTime, 'HH:mm:ss').isBetween(moment(req.body.start_time, 'HH:mm:ss'), moment(req.body.end_time, 'HH:mm:ss'))) {
+                            overlapping.push(bookings[i])
+                        }
+                    }
+                })
+                .then(() => {
+                if (overlapping.length !== 0) {
                     res.status(403).send('overlapping booking')
                 } else {
                     console.log('no overlapping booking');

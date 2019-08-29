@@ -5,25 +5,25 @@ These validations are used by UseLoginForm-hook.*/
 export default function validate(values) {
     let errors = {};
     if(!values.firstName) {
-        errors.firstName = 'Firstname is required';
+        errors.firstName = 'Etunimi on pakollinen';
     }
     if(!values.lastName) {
-        errors.lastName = 'Lastname is required';
+        errors.lastName = 'Sukunimi on pakollinen';
     }
     if (!values.email) {
-        errors.email = 'Email address is required';
+        errors.email = 'Sähköpostiosoite on pakollinen';
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-        errors.email = 'Email address is invalid';
+        errors.email = 'Sähköpostiosoite on virheellinen';
     }
     if (!values.password) {
-        errors.password = 'Password is required';
+        errors.password = 'Salasana on pakollinen';
     } else if (values.password.length < 8) {
-        errors.password = 'Password must be 8 or more characters';
+        errors.password = 'Salasanan tulee olla vähintään 8 merkkiä';
     }
     if (!values.confirmPassword) {
-        errors.confirmPassword = 'Password confirmation is required';
+        errors.confirmPassword = 'Salasanan vahvistaminen on pakollinen';
     } else if (values.confirmPassword !== values.password) {
-        errors.confirmPassword = 'Passwords must match!';
+        errors.confirmPassword = 'Salasanojen tulee olla samat';
     }
     return errors;
 };
