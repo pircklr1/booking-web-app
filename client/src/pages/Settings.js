@@ -14,8 +14,6 @@ class Settings extends Component {
       firstName: '',
       lastName: '',
       email: '',
-      password: '',
-      confirmPassword: '',
       confirmEmail: '',
       messageFromServer: '',
       updated: false,
@@ -30,26 +28,19 @@ class Settings extends Component {
       });
     }
     try {
-      const response = await axios.get(baseUrl + '/user', {
-        params: {
-          userId,
-        },
-      });
+      const response = await axios.get(baseUrl + '/user/' + userId);
       console.log(response.data);
       this.setState({
-        loadingUser: false,
-        first_name: response.data.first_name ? response.data.first_name : '',
-        last_name: response.data.last_name ? response.data.last_name : '',
+        firstName: response.data.firstName,
+        lastName: response.data.lastName,
         email: response.data.email,
-        username: response.data.username,
-        password: response.data.password,
-        error: false,
+        confirmEmail: response.data.email,
+        error: false
       });
     } catch (error) {
       console.log(error.response.data);
       this.setState({
-        loadingUser: false,
-        error: true,
+        error: true
       });
     }
   }
@@ -61,25 +52,20 @@ class Settings extends Component {
 
   updateUser= async (e) => {
     e.preventDefault();
-    const {firstName, lastName, email, password, confirmPassword, messageFromServer} = this.state;
-    if (password !== confirmPassword) {
+    const userId = localStorage.getItem('userId');
+    const {firstName, lastName, email, confirmEmail, messageFromServer} = this.state;
+    if (email !== confirmEmail) {
       this.setState({
-        messageFromServer: 'passwords are not a match',
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: ''
+        messageFromServer: 'emails are not a match',
       });
     } else {
       try {
         const response = await axios.put(
-            baseUrl + '/user',
+            baseUrl + '/user/' + userId,
             {
               firstName,
               lastName,
-              email,
-              password
+              email
             },
         );
         console.log(response.data);
@@ -87,11 +73,6 @@ class Settings extends Component {
           this.setState({
             updated: true,
             error: false,
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
           });
         } else {
           this.setState({
@@ -99,9 +80,7 @@ class Settings extends Component {
             error: true,
             firstName: '',
             lastName: '',
-            email: '',
-            password: '',
-            confirmPassword: ''
+            email: ''
           });
         }
       } catch (error) {
@@ -112,7 +91,7 @@ class Settings extends Component {
 
   render() {
     const {
-      firstName, lastName, email, password, error, updated, confirmPassword, messageFromServer
+      firstName, lastName, email, error, updated, confirmEmail, messageFromServer
     } = this.state;
 
     if (error) {
@@ -132,17 +111,17 @@ class Settings extends Component {
             <h1>Asetukset</h1>
             <Form className="update-form" onSubmit={this.updateUser}>
               <Form.Input
-                  id="firstname"
+                  id="firstName"
                   label="Vaihda etunimi:"
-                  onChange={this.handleChange('firstname')}
+                  onChange={this.handleChange('firstName')}
                   value={firstName}
                   type="text"
                   placeholder="Etunimi"
               />
               <Form.Input
-                  id="lastname"
+                  id="lastName"
                   label="Vaihda sukunimi:"
-                  onChange={this.handleChange('lastname')}
+                  onChange={this.handleChange('lastName')}
                   value={lastName}
                   type="text"
                   placeholder="Sukunimi"
@@ -152,24 +131,16 @@ class Settings extends Component {
                   label="Vaihda sähköpostiosoite:"
                   onChange={this.handleChange('email')}
                   value={email}
-                  type="password"
-                  placeholder="Sähköpostiosoite"
+                  type="email"
+                  placeholder="Uusi sähköpostiosoite"
               />
               <Form.Input
-                  id="password"
-                  label="Vaihda salasana:"
-                  onChange={this.handleChange('password')}
-                  value={password}
-                  type="password"
-                  placeholder="Uusi salasana..."
-              />
-              <Form.Input
-                  id="confirmPassword"
-                  label="Vahvista uusi salasana:"
-                  value={confirmPassword}
-                  type="password"
-                  placeholder="Uusi salasana uudelleen..."
-                  onChange={this.handleChange('confirmPassword')}
+                  id="confirmEmail"
+                  label="Uusi sähköposti uudestaan:"
+                  onChange={this.handleChange('confirmEmail')}
+                  value={confirmEmail}
+                  type="email"
+                  placeholder="Uusi sähköpostiosoite uudestaan"
               />
               <Button type='submit' primary>
                 Tallenna muutokset
@@ -184,9 +155,9 @@ class Settings extends Component {
                 </Message.Header>
               </Message>
           )}
-          {messageFromServer === 'passwords are not a match' && (
+          {messageFromServer === 'emails are not a match' && (
               <Message negative>
-                <Message.Header>Salasanan vahvistaminen epäonnistui. Syötä uusi salasana
+                <Message.Header>Sähköpostiosoitteen vahvistaminen epäonnistui. Syötä uusi sähköpostiosoite
                   uudestaan.</Message.Header>
               </Message>
           )}
