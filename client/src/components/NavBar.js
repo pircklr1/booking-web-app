@@ -221,7 +221,7 @@ function NavBar() {
             as={Link}
             to='/login'
             name='login'
-            iconPosition='left'
+            iconposition='left'
             active={activeItem === 'login'}
             onClick={handleItemClick}
           >
@@ -232,7 +232,6 @@ function NavBar() {
             as={Link}
             to='/signup'
             name='signup'
-            // icon='signup'
             iconposition='left'
             active={activeItem === 'signup'}
             onClick={handleItemClick}
