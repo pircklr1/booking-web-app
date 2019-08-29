@@ -1,9 +1,20 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
-import { adminDeleteBooking } from '../../service/ClientService';
-export default function DeleteButton({ id }) {
+import {
+  adminDeleteBooking,
+  adminDeleteRoom,
+  adminDeleteUser
+} from '../../service/ClientService';
+export default function DeleteButton({ id, type }) {
   function deleteBooking() {
-    adminDeleteBooking(id);
+    console.log(type);
+    if (type == 'booking') {
+      adminDeleteBooking(id);
+    } else if (type == 'room') {
+      adminDeleteRoom(id);
+    } else if (type == 'user') {
+      adminDeleteUser(id);
+    }
   }
 
   return (
