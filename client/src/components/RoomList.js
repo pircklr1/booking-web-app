@@ -1,33 +1,32 @@
-
 import React, {Component} from 'react';
-import {Table, Dropdown, Input, Form, Container} from 'semantic-ui-react'
+import {Table, Form} from 'semantic-ui-react'
 import RoomRow from "./RoomRow";
 import moment from 'moment';
 import "./Table.css"
-import DatePickers from "./DatePickers";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
 import {getAllBookings, getAllRooms} from "../service/ClientService";
 
-
 class RoomList extends Component {
     constructor(props) {
       super(props);
       this.state = {
-          now:"",
-        startDate: new Date(),
+          startDate: new Date(),
           rooms: [],
           bookings: []
       };
-
       this.handleDateChange = this.handleDateChange.bind(this);
+      this.updateBookings = this.updateBookings.bind(this);
+      this.updateRooms = this.updateRooms.bind(this);
     }
+
     handleDateChange(date) {
         this.setState({
-            startDate: date
+            startDate: date,
         });
     }
+
     componentDidMount() {
         this.updateBookings()
         this.updateRooms()
@@ -41,17 +40,19 @@ class RoomList extends Component {
 
     updateBookings() {
         getAllBookings(list => {
-            this.setState({bookings:list})
+             this.setState({bookings:list})
         })
     }
 
     render() {
-        const allRooms = this.state.rooms.map((room) =>
-            <RoomRow bookings={this.state.bookings} date={this.state.now} room={room} key={room.index}/>);
+        const allRooms = this.state.rooms.map((room) => {
+            return <RoomRow bookings={this.state.bookings.filter(l => l.bookingDate === moment(this.state.startDate).format('YYYY-MM-DD'))} date={this.state.startDate} room={room} key={room.id}/>});
+
+
 
         return (
             <div>
-                    <Form style={{ marginTop: 20 }}>
+                        <Form style={{ marginTop: 20 }} onSubmit={this.handleSubmit}>
                         <Form.Group>
                             <Form.Input>
                                 <DatePicker
@@ -109,7 +110,6 @@ class RoomList extends Component {
             </div>
         );
     }
-
 }
 
 export default RoomList;

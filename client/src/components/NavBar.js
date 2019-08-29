@@ -36,7 +36,7 @@ function NavBar() {
         <Menu
           pointing
           secondary
-          size='big'
+          size='large'
           color='blue'
           style={{ backgroundColor: 'white' }}
         >
@@ -116,7 +116,7 @@ function NavBar() {
         <Menu
           pointing
           secondary
-          size='medium'
+          size='small'
           color='blue'
           style={{ backgroundColor: 'white' }}
         >
@@ -143,8 +143,8 @@ function NavBar() {
             style={{ background: '#1678C2' }}
             animation={'scale down'}
             direction='right'
-            vertical
-            inverted
+            vertical='true'
+            inverted='true'
             onHide={handleToggle}
             // width={"thin"}
             visible={visible}

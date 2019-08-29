@@ -13,8 +13,9 @@ import validate from '../validation/BookingFormValidation'
 import Notification from '../components/Notification'
 import {AuthContext} from "../context/auth";
 import { createBooking } from '../service/ClientService';
+import { withRouter } from 'react-router-dom';
 
-const BookingForm = ({ addBooking }) => {
+function BookingForm(props) {
     const [room, setRoom] = useState("")
     const [startDate, setStartDate] = useState(new Date())
     const [startTime, setStartTime] = useState(new Date())
@@ -40,33 +41,51 @@ const BookingForm = ({ addBooking }) => {
     const handleStartTimeChange = time => setStartTime(time)
     const handleEndTimeChange = time => setEndTime(time)
 
+
     const handleSubmit = e => {
         e.preventDefault();
+        let onnistuuko;
         const data = {
             user_id: currentUser.id,
             room_id: room,
             booking_date: moment(startDate).format('YYYY-MM-DD'),
-            // start_time: moment(startTime).format('HH:mm:ss.SSS'),
-            // end_time: moment(endTime).format('HH:mm:ss.SSS')
-            start_time: moment(startTime).format('HH:mm'),
+            start_time: moment(startTime).format('HH:mm'+':01'),
             end_time: moment(endTime).format('HH:mm')
         };
-        console.log(data)
-
         try {
             if (validate(data)) {
-                createBooking(data)
-                    .then(() => {
-                        setRoom("")
-                        setStartDate(new Date())
-                        setStartTime(new Date())
-                        setEndTime(new Date())
-                        setMessage('Varaus onnistui')
-                    })
+                  createBooking(data).then(function (jotain) {
+                      // onnistuuko = jotain;
+                      // console.log(jotain)
+                      // console.log(onnistuuko)
+                      if(jotain){
+                          setRoom("")
+                          setStartDate(new Date())
+                          setStartTime(new Date())
+                          setEndTime(new Date())
+                          setMessage('Varaus onnistui')
+                          setTimeout(() => {
+                              props.history.push('/login')
+                          }, 1500)
+                      }else{
+                          setMessage('Varaus ei onnistunut')
+                      }
+                  })
+
+                        // .then(() => {
+                        //     setRoom("")
+                        //     setStartDate(new Date())
+                        //     setStartTime(new Date())
+                        //     setEndTime(new Date())
+                        //     setMessage('Varaus onnistui')
+                        //     setTimeout(() => {
+                        //         props.history.push('/login')
+                        //     }, 1500)
+                        // })
             }
 
         } catch (e) {
-            const error = []
+            // const error = []
             if (e.message === 'start time is before 6 am') {
                 setMessage('Huoneita voi varata klo 6-22')
             } else if (e.message === 'end time is after 22 am') {
@@ -78,28 +97,12 @@ const BookingForm = ({ addBooking }) => {
             } else if (e.message === 'start time cannot be after endtime') {
                 setMessage('Tarkista alkamis- ja päättymisaika')
             } else {
-                setMessage('Error')
+                setMessage('Tuntematon virhe')
             }
         }
         setTimeout(() => {
             setMessage(null) }, 7000);
     }
-
-    //     // if (addBooking(data)) {
-    //         if (createBooking(data)) {
-    //         setRoom("")
-    //         setStartDate(new Date())
-    //         setStartTime(new Date())
-    //         setEndTime(new Date())
-    //         setMessage('Varaus onnistui')
-    //     }else{
-    //         setMessage('Varaus ei onnistunut')
-    //     }
-    //
-    //
-    // }
-
-        //const {value} = this.state
         return (
             <div>
                 <Modal trigger={<Button primary>Varaa huone</Button>}>
@@ -167,4 +170,4 @@ const BookingForm = ({ addBooking }) => {
 
 }
 
-export default BookingForm;
+export default withRouter(BookingForm);
