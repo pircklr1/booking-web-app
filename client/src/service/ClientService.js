@@ -25,7 +25,7 @@ export function getAllBookings(setData) {
 // @access  Public
 export function getUserBookings(id, setData) {
   axios
-    .get(baseUrl + '/userbookings/' + id, {
+    .get(baseUrl + '/userbookings/' + id, id, {
       headers: {
         'Content-Type': 'application/json'
       }
