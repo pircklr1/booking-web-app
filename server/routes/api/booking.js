@@ -1,7 +1,4 @@
 import Sequelize, {or} from 'sequelize';
-
-const moment = require('moment');
-
 const Op = Sequelize.Op;
 
 module.exports = (app, db) => {
