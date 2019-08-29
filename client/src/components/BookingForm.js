@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {Button, Form, Modal, Select} from 'semantic-ui-react'
+import {Button, Form, Message, Modal, Select} from 'semantic-ui-react'
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -96,6 +96,8 @@ function BookingForm(props) {
                 setMessage('Tarkista alkamis- ja päättymisaika')
             } else if (e.message === 'start time cannot be after endtime') {
                 setMessage('Tarkista alkamis- ja päättymisaika')
+            } else if (e.message === 'start and end time must be even or half hour') {
+                setMessage('Alkamis- ja päättymisajan tulee olla tasalta tai puolelta')
             } else {
                 setMessage('Tuntematon virhe')
             }
