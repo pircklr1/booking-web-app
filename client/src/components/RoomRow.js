@@ -68,7 +68,7 @@ class RoomRow extends Component {
                 if (this.state.combinedDatas[i].time.isSameOrAfter(moment(this.props.bookings[j].startTime, 'HH:mm:ss')) &&
                     this.state.combinedDatas[i].time.isBefore(moment(this.props.bookings[j].endTime, 'HH:mm:ss')) &&
                     this.state.combinedDatas[i].room === this.props.bookings[j].roomId &&
-                this.props.bookings[j].userId === this.userId) {
+                    this.props.bookings[j].userId === this.userId) {
                     this.state.combinedDatas[i].users = true;
                 }
             }
