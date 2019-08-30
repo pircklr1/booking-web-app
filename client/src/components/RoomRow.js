@@ -48,6 +48,7 @@ class RoomRow extends Component {
         this.resetCombinedDatas()
     }
 
+    // resets combinedDatas in state to the original form
     resetCombinedDatas() {
         for (var i = 0; i < this.state.combinedDatas.length; i++) {
             this.state.combinedDatas[i].available = true;
@@ -55,6 +56,11 @@ class RoomRow extends Component {
         }
     }
 
+    /* compares the booking data and combinedDatas and checks what time the bookings are.
+       If there is booking same time than in combinedDatas it changes combinedDatas 'available' status to false.
+
+       Second part checks combinedDatas same way and check if that booking is current users booking and
+       sets 'users' value to true if so.*/
     compareData() {
         for (var i = 0; i < this.state.combinedDatas.length; i++) {
             for (var j = 0; j < this.props.bookings.length; j++) {

@@ -35,6 +35,7 @@ module.exports = (app, db) => {
     // @route   POST api/booking
     // @desc    Post new booking
     // @access  Public
+    /* this checks if there is already booking at that time where user is trying to create new booking. */
     app.post('/api/booking', (req, res) => {
         var overlapping = [];
             db.Booking.findAll({
