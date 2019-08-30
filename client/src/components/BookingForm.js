@@ -93,15 +93,15 @@ function BookingForm(props) {
             }
         }
         //timeout for message
-        setTimeout(() => {
-            setMessage(null)
-        }, 7000);
+        // setTimeout(() => {
+        //     setMessage(null)
+        // }, 7000);
     };
 
     return (
         <div>
             <Modal trigger={<Button primary>Varaa huone</Button>}>
-                <Modal.Header style={{'border-bottom-color': '#0e6eb8', 'border-width': '4px'}}>Uusi
+                <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Uusi
                     varaus</Modal.Header>
                 <Modal.Content>
                     <Form onSubmit={handleSubmit}>
