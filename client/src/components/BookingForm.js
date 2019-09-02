@@ -93,9 +93,9 @@ function BookingForm(props) {
             }
         }
         //timeout for message
-        setTimeout(() => {
-            setMessage(null)
-        }, 7000);
+        // setTimeout(() => {
+        //     setMessage(null)
+        // }, 7000);
     };
 
     return (
