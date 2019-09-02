@@ -24,47 +24,47 @@ function User() {
   const renderUserBookingTable = () => {
     return data.map(booking => {
       return (
-        <Table.Row>
-          <Table.Cell collapsing textAlign='center'>
-            {moment(booking.bookingDate).format('DD.MM.YYYY')}
-          </Table.Cell>
-          <Table.Cell collapsing textAlign='center'>
-            {booking.startTime.substring(0, 5)}-
-            {booking.endTime.substring(0, 5)}
-          </Table.Cell>
+          <Table.Row>
+            <Table.Cell collapsing textAlign='center'>
+              {moment(booking.bookingDate).format('DD.MM.YYYY')}
+            </Table.Cell>
+            <Table.Cell collapsing textAlign='center'>
+              {booking.startTime.substring(0, 5)}-
+              {booking.endTime.substring(0, 5)}
+            </Table.Cell>
 
-          {/*  <Button ui primary basic icon>
+            {/*  <Button ui primary basic icon>
             <i className='edit icon' />
           </Button> */}
-          <Table.Cell collapsing textAlign='center'>
-            <DeleteButton id={booking.id} type='booking' />
-          </Table.Cell>
-        </Table.Row>
+            <Table.Cell collapsing textAlign='center'>
+              <DeleteButton id={booking.id} type='booking' />
+            </Table.Cell>
+          </Table.Row>
       );
     });
   };
 
   return (
-    <div>
-      <Container style={{ padding: '5em 0em' }}>
-        <Grid textAlign='center' verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 450 }}>
-            <Header textAlign='left'>Hei, {currentUser.name}!</Header>
-            <Header as='h2' attached='top' block collapsing>
-              Omat varaukset
-            </Header>
-            <Table attached celled selectable textAlign='center'>
-              <Table.Header>
-                <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
-                <Table.HeaderCell>Kellonaika</Table.HeaderCell>
-                <Table.HeaderCell>Peruuta</Table.HeaderCell>
-              </Table.Header>
-              <Table.Body> {renderUserBookingTable()}</Table.Body>
-            </Table>
-          </Grid.Column>
-        </Grid>
-      </Container>
-    </div>
+      <div>
+        <Container style={{ padding: '5em 0em' }}>
+          <Grid textAlign='center' verticalAlign='middle'>
+            <Grid.Column style={{ maxWidth: 450 }}>
+              <Header textAlign='left'>Hei, {currentUser.name}!</Header>
+              <Header as='h2' attached='top' block collapsing>
+                Omat varaukset
+              </Header>
+              <Table attached celled selectable textAlign='center'>
+                <Table.Header>
+                  <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
+                  <Table.HeaderCell>Kellonaika</Table.HeaderCell>
+                  <Table.HeaderCell>Peruuta</Table.HeaderCell>
+                </Table.Header>
+                <Table.Body> {renderUserBookingTable()}</Table.Body>
+              </Table>
+            </Grid.Column>
+          </Grid>
+        </Container>
+      </div>
   );
 }
 

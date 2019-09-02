@@ -1,3 +1,4 @@
+//defines database table for rooms and their attributes
 module.exports = (sequelize, DataTypes) => {
     const Room = sequelize.define(
         'room',
@@ -25,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             underscored: true
         });
+    //defines database relation: one room has many bookings
     Room.associate = function (models) {
         Room.hasMany(models.Booking)
     };

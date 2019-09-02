@@ -46,8 +46,7 @@ function AuthProvider(props) {
 
   function login(userData) {
     localStorage.setItem('jwtToken', userData.token);
-    console.log('HIPHEI');
-    console.log(userData);
+    // console.log(userData);
     dispatch({
       type: 'LOGIN',
       payload: userData

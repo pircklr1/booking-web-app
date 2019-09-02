@@ -1,3 +1,4 @@
+//defines database table for users and their attributes
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
@@ -32,11 +33,13 @@ module.exports = (sequelize, DataTypes) => {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
             },
+            //the following columns are used if user wants to reset their password by email
             resetPasswordToken: DataTypes.STRING,
             resetPasswordExpires: DataTypes.DATE
         },
         {
             underscored: true,
+            //before user is created his/her password is crypted
             hooks: {
                 beforeCreate: (user) => {
                 const salt = bcrypt.genSaltSync();
@@ -49,6 +52,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     });
+    //defines database relation: user can have many bookings
     User.associate = function (models) {
         User.hasMany(models.Booking)
     };
