@@ -5,7 +5,7 @@ const Op = Sequelize.Op;
 
 const BCRYPT_SALT_ROUNDS = 10;
 module.exports = (app, db) => {
-    app.put('/api/updateforgottenpassword', (req, res) => {
+    app.put('/api/updateForgottenPassword', (req, res) => {
         db.User.findOne({
             where: {
                 email: req.body.email,

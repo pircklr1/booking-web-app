@@ -70,7 +70,7 @@ class ResetPassword extends Component {
         } else {
             try {
                 const response = await axios.put(
-                    baseUrl + '/updateforgottenpassword',
+                    baseUrl + '/updateForgottenPassword',
                     {
                         email,
                         password,
