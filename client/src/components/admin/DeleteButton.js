@@ -5,6 +5,7 @@ import {
   adminDeleteRoom,
   adminDeleteUser
 } from '../../service/ClientService';
+
 export default function DeleteButton({ id, type }) {
   function deleteBooking() {
     console.log(type);
