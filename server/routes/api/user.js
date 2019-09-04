@@ -30,17 +30,6 @@ module.exports = (app, db) => {
                     res.status(404).send(err.message);
                 })
     );
-    // app.get('/api/user', (req, res) =>
-    //     db.User.findOne({
-    //         where: {
-    //             id: req.params.userId
-    //         }
-    //     }).then(result => res.json(result))
-    //         .catch(err => {
-    //             console.error('User not found', err.message);
-    //             res.status(404).send(err.message);
-    //         })
-    // );
 
     // @route   PUT api/user
     // @desc    Modify existing user
@@ -60,7 +49,7 @@ module.exports = (app, db) => {
                         })
                     .then(() => {
                         console.log('user updated');
-                        res.status(200).send({message: 'user updated'});
+                        res.status(200).send('user updated');
                     });
             }
         }));
@@ -141,7 +130,7 @@ module.exports = (app, db) => {
                 return res.status(400).json(errors);
             } else {
                 bcrypt.genSalt(10, (err, salt) => {
-                    var password2 = req.body.password;
+                    let password2 = req.body.password;
                     bcrypt.hash(password2, salt, (err, hash) => {
                         if (err) throw err;
                         password2 = hash;
@@ -151,8 +140,7 @@ module.exports = (app, db) => {
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         email: req.body.email,
-                        password: password2,
-                        role: req.body.role
+                        password: password2
                     })
                         .then(user => res.json(user))
                         .catch(err => console.log(err));

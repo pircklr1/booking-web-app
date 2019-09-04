@@ -62,7 +62,7 @@ function Login(props) {
           const id = response.data.id;
           localStorage.setItem('jwtToken', token);
           localStorage.setItem('userId', id);
-          console.log(localStorage.getItem('userId'));
+          // console.log(localStorage.getItem('userId'));
           context.login(response.data);
           props.history.push('/home');
         }

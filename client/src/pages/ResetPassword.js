@@ -70,14 +70,14 @@ class ResetPassword extends Component {
         } else {
             try {
                 const response = await axios.put(
-                    baseUrl + '/updateforgottenpassword',
+                    baseUrl + '/updateForgottenPassword',
                     {
                         email,
                         password,
                         resetPasswordToken: token,
                     },
                 );
-                console.log(response.data);
+                // console.log(response.data);
                 if (response.data.message === 'password updated') {
                     this.setState({
                         updated: true,
