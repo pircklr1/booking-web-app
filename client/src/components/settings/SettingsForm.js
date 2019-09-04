@@ -111,7 +111,7 @@ class SettingsForm extends Component {
                 paddingRight: '20px'
             }}>
                 <div className='form-container'>
-                    <h1>Asetukset</h1>
+                    <h4>Käyttäjätiedot</h4>
                     <Form className="update-form" onSubmit={this.updateUser}>
                         <Form.Input
                             id="firstName"

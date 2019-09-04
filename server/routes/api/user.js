@@ -49,7 +49,7 @@ module.exports = (app, db) => {
                         })
                     .then(() => {
                         console.log('user updated');
-                        res.status(200).send('user updated');
+                        res.status(200).send({message: 'user updated'});
                     });
             }
         }));
