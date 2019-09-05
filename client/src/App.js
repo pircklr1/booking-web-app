@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import User from './pages/User';
 import Calendar from './pages/Calendar';
+import Admin from './pages/Admin'
 import Rooms from './components/admin/Rooms';
 import NotFound from './pages/NotFound';
 import ForgotPassword from './pages/ForgotPassword';
@@ -38,7 +39,7 @@ class App extends Component {
                 <Route path='/signup' component={Signup} />
                 <AuthRoute exact path='/settings' component={Settings} />
                 <AuthRoute exact path='/bookings' component={User} />
-                <AuthRoute exact path='/admin' component={Rooms} />
+                <AuthRoute exact path='/admin' component={Admin} />
                 <Route component={NotFound} />
               </Switch>
             </Container>
