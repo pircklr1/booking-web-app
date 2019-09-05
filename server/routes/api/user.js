@@ -23,7 +23,7 @@ module.exports = (app, db) => {
     // @route   GET api/user/:id
     // @desc    Get user by id
     // @access  Public
-    app.get('/api/user/:id', (req, res) =>
+    app.get('/api/user/:id', withAuth, (req, res) =>
         db.User.findByPk(req.params.id)
             .then(result => res.json(result))
                 .catch(err => {
@@ -35,7 +35,7 @@ module.exports = (app, db) => {
     // @route   PUT api/user
     // @desc    Modify existing user
     // @access  Public
-    app.put('/api/user/:id', (req, res) => {
+    app.put('/api/user/:id', withAuth, (req, res) => {
         const {errors, isValid} = validateUserSettingsInput(req.body);
         if (!isValid) {
             return res.status(400).json(errors);
@@ -63,7 +63,7 @@ module.exports = (app, db) => {
     // @route   DELETE api/user/:id
     // @desc    Delete existing user
     // @access  Public
-    app.delete('/api/user/:id', (req, res) =>
+    app.delete('/api/user/:id', withAuth, (req, res) =>
         db.User.destroy({
             where: {
                 id: req.params.id

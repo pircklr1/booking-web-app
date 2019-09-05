@@ -25,7 +25,12 @@ class PasswordSettings extends Component {
             });
         }
         try {
-            const response = await axios.get(baseUrl + '/user/' + userId);
+            const response = await axios.get(baseUrl + '/user/' + userId, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: localStorage.getItem('jwtToken')
+                }
+            });
             // console.log(response.data);
             this.setState({
                 email: response.data.email,
