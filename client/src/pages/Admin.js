@@ -1,7 +1,6 @@
 // Admin panel
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import UserBookings from '../components/UserBookings';
 import {getAllUsers, getAllBookings, getAllRooms} from '../service/ClientService';
 import {Button, Table, Container, Header, Icon, Grid, Tab, Responsive} from 'semantic-ui-react';
@@ -9,6 +8,7 @@ import moment from 'moment';
 import DeleteButton from '../components/admin/DeleteButton';
 import AdminAllBookings from "../components/admin/AdminAllBookings";
 import AdminBookingsByUser from "../components/admin/AdminBookingsByUser";
+import Rooms from "../components/admin/Rooms";
 
 function Admin() {
   // const [data, setData] = useState([]);
@@ -26,7 +26,7 @@ function Admin() {
 
   const panes = [
     { menuItem: 'Käyttäjät', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
-    { menuItem: 'Huoneet', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+    { menuItem: 'Huoneet', render: () => <Tab.Pane><Rooms/></Tab.Pane> },
     { menuItem: 'Varaukset', render: () => <Tab.Pane><AdminBookingsByUser/><AdminAllBookings/></Tab.Pane> },
   ]
 

@@ -11,7 +11,8 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import User from './pages/User';
 import Calendar from './pages/Calendar';
-import Admin from './pages/Admin';
+import Admin from './pages/Admin'
+import Rooms from './components/admin/Rooms';
 import NotFound from './pages/NotFound';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
