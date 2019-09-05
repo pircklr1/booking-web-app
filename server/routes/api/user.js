@@ -7,6 +7,7 @@ const BCRYPT_SALT_ROUNDS = 10;
 // Load Input Validation
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
+const validateUserSettingsInput = require('../../validation/usersettings');
 
 module.exports = (app, db) => {
     // @route   GET api/users
@@ -30,22 +31,15 @@ module.exports = (app, db) => {
                     res.status(404).send(err.message);
                 })
     );
-    // app.get('/api/user', (req, res) =>
-    //     db.User.findOne({
-    //         where: {
-    //             id: req.params.userId
-    //         }
-    //     }).then(result => res.json(result))
-    //         .catch(err => {
-    //             console.error('User not found', err.message);
-    //             res.status(404).send(err.message);
-    //         })
-    // );
 
     // @route   PUT api/user
     // @desc    Modify existing user
     // @access  Public
-    app.put('/api/user/:id', (req, res) =>
+    app.put('/api/user/:id', (req, res) => {
+        const {errors, isValid} = validateUserSettingsInput(req.body);
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
         db.User.findByPk(req.params.id)
         .then(user => {
             if (user === null) {
@@ -63,7 +57,8 @@ module.exports = (app, db) => {
                         res.status(200).send({message: 'user updated'});
                     });
             }
-        }));
+        })
+    });
 
     // @route   DELETE api/user/:id
     // @desc    Delete existing user
@@ -141,7 +136,7 @@ module.exports = (app, db) => {
                 return res.status(400).json(errors);
             } else {
                 bcrypt.genSalt(10, (err, salt) => {
-                    var password2 = req.body.password;
+                    let password2 = req.body.password;
                     bcrypt.hash(password2, salt, (err, hash) => {
                         if (err) throw err;
                         password2 = hash;
@@ -151,8 +146,7 @@ module.exports = (app, db) => {
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         email: req.body.email,
-                        password: password2,
-                        role: req.body.role
+                        password: password2
                     })
                         .then(user => res.json(user))
                         .catch(err => console.log(err));

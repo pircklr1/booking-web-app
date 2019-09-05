@@ -1,3 +1,4 @@
+//defines database table for bookings and their attributes
 module.exports = (sequelize, DataTypes) => {
     const Booking = sequelize.define(
         'booking', {
@@ -27,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         {
             underscored: true,
         });
+    //creates database relations: booking has one user and one room
     Booking.associate = function (models) {
         Booking.belongsTo(models.User);
         Booking.belongsTo(models.Room);

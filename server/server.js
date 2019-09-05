@@ -23,6 +23,7 @@ import apiUser from './routes/api/user';
 import apiForgotPassword from './routes/api/forgotpassword';
 import apiResetPassword from './routes/api/resetpassword';
 import apiUpdateForgottenPassword from './routes/api/updateforgottenpassword';
+import apiUpdatePasswordLoggedIn from './routes/api/updatepasswordloggedin';
 
 // Setting up some packages for the server
 const app = express();
@@ -38,6 +39,7 @@ apiUser(app, models);
 apiForgotPassword(app, models);
 apiResetPassword(app, models);
 apiUpdateForgottenPassword(app, models);
+apiUpdatePasswordLoggedIn(app, models);
 
 // Erasing everything from the database
 const eraseDatabaseOnSync = true;

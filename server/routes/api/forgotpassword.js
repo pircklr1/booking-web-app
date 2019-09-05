@@ -5,6 +5,10 @@ const password = process.env.GMAILPW;
 const sender = process.env.GMAIL_ADDRESS;
 
 module.exports = (app,db) => {
+    // @route POST api/forgot
+    /* @desc searches for a user in database based on email (unique value). If email exists in database, creates a token and sets it
+    to expire within 1 h. Creates password reset email with a link including the user specified token. Sends the email.*/
+    // @access Public
     app.post('/api/forgot', (req, res) => {
         if (req.body.email === '') {
             res.status(400).send('email required');
@@ -40,6 +44,7 @@ module.exports = (app,db) => {
                     text: 'Sait tämän viestin, koska olet pyytänyt salasanasi palauttamista Roba43:n tilavarauspalveluun.\n\n' +
                         'Salasanasi uudelleenasettamiseksi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
                         'http://localhost:3000/reset/' + token + '\n\n' +
+                        'Salasanan vaihtolinkki on voimassa yhden tunnin sen lähettämishetkestä.\n' +
                         'Mikäli et pyytänyt salasanasi palauttamista, jätä tämä viesti huomioimatta, niin salasanasi säilyy ennallaan.\n'
                 };
                 console.log('sending mail');
