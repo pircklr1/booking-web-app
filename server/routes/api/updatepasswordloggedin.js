@@ -1,9 +1,10 @@
 import bcrypt from 'bcrypt';
 const BCRYPT_SALT_ROUNDS = 10;
+const withAuth = require('../../middleware/middleware');
 const validateUpdatePasswordInput = require('../../validation/updatepassword');
 
 module.exports = (app, db) => {
-    app.put('/api/updatePassword', (req, res) => {
+    app.put('/api/updatePassword', withAuth, (req, res) => {
         const {errors, isValid} = validateUpdatePasswordInput(req.body);
         if (!isValid) {
             return res.status(400).json(errors);
