@@ -20,6 +20,7 @@ module.exports = (app, db) => {
         db.Room.create({
             name: req.body.name,
             capacity: req.body.capacity,
+            available: req.body.available,
             equipment: req.body.equipment
         }).then(result => res.json(result))
     );
