@@ -28,7 +28,12 @@ class SettingsForm extends Component {
             });
         }
         try {
-            const response = await axios.get(baseUrl + '/user/' + userId);
+            const response = await axios.get(baseUrl + '/user/' + userId, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: localStorage.getItem('jwtToken')
+                }
+            });
             // console.log(response.data);
             this.setState({
                 firstName: response.data.firstName,
@@ -67,7 +72,12 @@ class SettingsForm extends Component {
                         firstName,
                         lastName,
                         email
-                    },
+                    }, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            token: localStorage.getItem('jwtToken')
+                        }
+                    }
                 );
                 console.log(response.data);
                 if (response.data.message === 'user updated') {

@@ -33,12 +33,14 @@ class RoomList extends Component {
         this.updateRooms()
     }
 
+    // gets all rooms from database and and sets them to state as a list.
     updateRooms() {
         getAllRooms(list => {
             this.setState({rooms:list})
         })
     }
 
+    // gets all bookings from database and and sets them to state as a list.
     updateBookings() {
         getAllBookings(list => {
              this.setState({bookings:list})

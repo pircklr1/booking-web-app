@@ -1,5 +1,6 @@
 import Sequelize, {or} from 'sequelize';
 import moment from 'moment';
+const withAuth = require('../../middleware/middleware');
 
 const Op = Sequelize.Op;
 
@@ -7,7 +8,7 @@ module.exports = (app, db) => {
     // @route   GET api/bookings
     // @desc    Get all bookings
     // @access  Public
-    app.get('/api/bookings', (req, res) =>
+    app.get('/api/bookings', withAuth, (req, res) =>
         db.Booking.findAll()
             .then(result => res.json(result))
             .catch(err => {
@@ -19,7 +20,8 @@ module.exports = (app, db) => {
     // @route   POST api/booking
     // @desc    Post new booking
     // @access  Public
-    app.post('/api/booking', (req, res) => {
+    /* this checks if there is already booking at that time where user is trying to create new booking. */
+    app.post('/api/booking', withAuth, (req, res) => {
         var overlapping = [];
             db.Booking.findAll({
                 where: {
@@ -64,7 +66,7 @@ module.exports = (app, db) => {
 // @route   GET api/booking/:id
 // @desc    Get booking by id
 // @access  Public
-    app.get('/api/booking/:id', (req, res) =>
+    app.get('/api/booking/:id', withAuth, (req, res) =>
         db.Booking.findByPk(req.params.id)
             .then(result => res.json(result))
             .catch(err => {
@@ -76,7 +78,7 @@ module.exports = (app, db) => {
   // @route   GET api/userbookings/:userId
   // @desc    Get all bookings for user
   // @access  Public
-  app.get('/api/userbookings/:id', (req, res) =>
+  app.get('/api/userbookings/:id', withAuth, (req, res) =>
     db.Booking.findAll({
       where: {
         userId: req.params.id
@@ -85,7 +87,8 @@ module.exports = (app, db) => {
           ["bookingDate",'ASC'],
           ["startTime", 'ASC']
       ]
-    })
+    }
+    )
       .then(result => res.json(result))
       .catch(err => {
         console.error('Error with GET All', err.message);
@@ -96,7 +99,7 @@ module.exports = (app, db) => {
   // @route   PUT api/booking/:id
   // @desc    Modify existing booking
   // @access  Public
-  app.put('/api/booking/:id', (req, res) =>
+  app.put('/api/booking/:id', withAuth, (req, res) =>
     db.Booking.update(
       {
         userId: req.body.user_id,
@@ -121,7 +124,7 @@ module.exports = (app, db) => {
   // @route   DELETE api/booking/:id
   // @desc    Delete existing booking
   // @access  Public
-  app.delete('/api/booking/:id', (req, res) =>
+  app.delete('/api/booking/:id', withAuth, (req, res) =>
     db.Booking.destroy({
       where: {
         id: req.params.id
