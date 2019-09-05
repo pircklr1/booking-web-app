@@ -1,8 +1,6 @@
 // This page shows the current user's current and past bookings. Here, the user can also modify (cancel) the current bookings.
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import UserBookings from '../components/UserBookings';
 import {
   getAllUsers,
   getAllBookings,
