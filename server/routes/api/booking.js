@@ -87,7 +87,8 @@ module.exports = (app, db) => {
           ["bookingDate",'ASC'],
           ["startTime", 'ASC']
       ]
-    })
+    }
+    )
       .then(result => res.json(result))
       .catch(err => {
         console.error('Error with GET All', err.message);
