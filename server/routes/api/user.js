@@ -7,6 +7,7 @@ const BCRYPT_SALT_ROUNDS = 10;
 // Load Input Validation
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
+const validateUserSettingsInput = require('../../validation/usersettings');
 
 module.exports = (app, db) => {
     // @route   GET api/users
@@ -34,7 +35,11 @@ module.exports = (app, db) => {
     // @route   PUT api/user
     // @desc    Modify existing user
     // @access  Public
-    app.put('/api/user/:id', (req, res) =>
+    app.put('/api/user/:id', (req, res) => {
+        const {errors, isValid} = validateUserSettingsInput(req.body);
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
         db.User.findByPk(req.params.id)
         .then(user => {
             if (user === null) {
@@ -49,10 +54,11 @@ module.exports = (app, db) => {
                         })
                     .then(() => {
                         console.log('user updated');
-                        res.status(200).send('user updated');
+                        res.status(200).send({message: 'user updated'});
                     });
             }
-        }));
+        })
+    });
 
     // @route   DELETE api/user/:id
     // @desc    Delete existing user

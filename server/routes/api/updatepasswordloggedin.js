@@ -1,12 +1,23 @@
 import bcrypt from 'bcrypt';
-
 const BCRYPT_SALT_ROUNDS = 10;
+const validateUpdatePasswordInput = require('../../validation/updatepassword');
 
 module.exports = (app, db) => {
-    app.put('/updatePassword/:id', (req, res) => {
-        db.User.findByPk(req.params.id)
+    app.put('/api/updatePassword', (req, res) => {
+        const {errors, isValid} = validateUpdatePasswordInput(req.body);
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
+        db.User.findOne({
+            where: {
+                email: req.body.email
+            }
+        })
             .then((user) => {
-                if (user != null) {
+                if (user === null) {
+                    console.error('no such user in db');
+                    res.status(404).send('user not found in database');
+                } else if (user != null) {
                     console.log('user found in db');
                     bcrypt
                         .hash(req.body.password, BCRYPT_SALT_ROUNDS)
@@ -17,11 +28,8 @@ module.exports = (app, db) => {
                         })
                         .then(() => {
                             console.log('password updated');
-                            res.status(200).send('password updated');
+                            res.status(200).send({message: 'password updated'});
                         });
-                } else {
-                    console.error('no user exists in db to update');
-                    res.status(404).json('no user exists in db to update');
                 }
             });
     });
