@@ -82,7 +82,11 @@ module.exports = (app, db) => {
     db.Booking.findAll({
       where: {
         userId: req.params.id
-      }
+      },
+      order: [
+          ["bookingDate",'ASC'],
+          ["startTime", 'ASC']
+      ]
     })
       .then(result => res.json(result))
       .catch(err => {
