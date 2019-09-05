@@ -120,7 +120,7 @@ export function getRoomData(callback) {
 // ADMIN SERVICES
 export function adminDeleteBooking(id) {
   return axios
-    .delete(baseUrl + '/booking/' + id, id, {
+    .delete(baseUrl + '/booking/' + id, {
         headers: {
             'Content-Type': 'application/json',
             token: localStorage.getItem('jwtToken')
@@ -141,7 +141,7 @@ export function adminDeleteBooking(id) {
 
 export function adminDeleteRoom(id) {
   return axios
-    .delete(baseUrl + '/room/' + id, id, {
+    .delete(baseUrl + '/room/' + id, {
         headers: {
             'Content-Type': 'application/json',
             token: localStorage.getItem('jwtToken')
@@ -162,7 +162,7 @@ export function adminDeleteRoom(id) {
 
 export function adminDeleteUser(id) {
   return axios
-    .delete(baseUrl + '/user/' + id, id, {
+    .delete(baseUrl + '/user/' + id, {
         headers: {
             'Content-Type': 'application/json',
             token: localStorage.getItem('jwtToken')
