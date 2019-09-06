@@ -34,7 +34,9 @@ module.exports = (app, db) => {
         db.Room.update(
             {
                 name: req.body.name,
-                capacity: req.body.capacity
+                capacity: req.body.capacity,
+                available: req.body.available,
+                equipment: req.body.equipment
             },
             {
                 where: {
