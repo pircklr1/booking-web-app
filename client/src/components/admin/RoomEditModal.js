@@ -38,7 +38,7 @@ function RoomEditModal(props) {
     }
 
     return(
-        <Modal trigger={<Button ui color='orange' basic icon><Icon className='edit'/></Button>}>
+        <Modal trigger={<Button ui color='blue' basic icon><Icon className='edit'/></Button>}>
             <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Muokkaa huonetta</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>

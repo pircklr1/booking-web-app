@@ -21,6 +21,29 @@ function AdminAllBookings() {
         setIsLoading(false);
     }, []);
 
+    //get room name by room Id (from booking data)
+    const roomName = (roomId) => {
+        return roomData.map(room=> {
+            if(room.id === roomId){
+                return room.name;
+            }
+        })
+    };
+    //get user name by user Id (from booking data)
+    const userName = (userId) => {
+        return userData.map(user=> {
+            if(user.id === userId){
+                return user.firstName + " " + user.lastName;
+            }
+        })
+    };
+    //count booked hours
+    const count = (endTime, startTime) => {
+      const end = moment(endTime, 'HH:mm');
+      const start = moment(startTime, 'HH:mm');
+      return end.diff(start, "hours", true);
+    };
+
     const renderBookingTable = () => {
         return data.map(booking => {
             return (
@@ -32,8 +55,9 @@ function AdminAllBookings() {
                         {booking.startTime.substring(0, 5)}-
                         {booking.endTime.substring(0, 5)}
                     </Table.Cell>
-                    <Table.Cell>Käyttäjä</Table.Cell>
-                    <Table.Cell>Huone</Table.Cell>
+                    <Table.Cell>{count(booking.endTime, booking.startTime)}</Table.Cell>
+                    <Table.Cell>{roomName(booking.roomId)}</Table.Cell>
+                    <Table.Cell>{userName(booking.userId)}</Table.Cell>
                     <Table.Cell>
                     <Button ui primary basic icon>
               <i className='edit icon' />
@@ -53,6 +77,7 @@ function AdminAllBookings() {
                     <Table.Row>
                     <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
                     <Table.HeaderCell>Kellonaika</Table.HeaderCell>
+                        <Table.HeaderCell>Tunnit</Table.HeaderCell>
                         <Table.HeaderCell>Huone</Table.HeaderCell>
                         <Table.HeaderCell>Käyttäjä</Table.HeaderCell>
                         <Table.HeaderCell>Muokkaa</Table.HeaderCell>

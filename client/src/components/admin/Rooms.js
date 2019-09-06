@@ -18,7 +18,7 @@ function Rooms() {
     const renderRoomTable = () => {
         return roomData.map(room => {
             return (
-                <Table.Row textAlign='center'>
+                <Table.Row textAlign='center' key={room.id}>
                     <Table.Cell>{room.name}</Table.Cell>
                     <Table.Cell collapsing textAlign='center'>
                         <DeleteButton id={room.id} type={'room'} />

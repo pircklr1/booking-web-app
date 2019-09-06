@@ -27,7 +27,12 @@ function Admin() {
   const panes = [
     { menuItem: 'Käyttäjät', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
     { menuItem: 'Huoneet', render: () => <Tab.Pane><Rooms/></Tab.Pane> },
-    { menuItem: 'Varaukset', render: () => <Tab.Pane><AdminBookingsByUser/><AdminAllBookings/></Tab.Pane> },
+    { menuItem: 'Varaukset', render: () => <Tab.Pane>
+        <Header as='h3' attached='top' block >Käyttäjän varaukset</Header>
+        <AdminBookingsByUser/>
+        <Header as='h3' attached='top' block >Kaikki varaukset</Header>
+        <AdminAllBookings/>
+    </Tab.Pane> },
   ]
 
   // const renderBookingTable = () => {
