@@ -1,25 +1,17 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {adminUpdateRoom} from "../../service/ClientService";
-import {Button, Form, Icon, Modal, Radio} from "semantic-ui-react";
+import {adminCreateRoom} from "../../service/ClientService";
+import {Button, Form, Icon, Modal} from "semantic-ui-react";
 import Notification from "../Notification";
 import validateRoomEditModal from '../../validation/RoomEditModalValidation';
 
-function RoomEditModal(props) {
-    const [room, setRoom] = useState("");
+function RoomAddModal(props) {
     const [name, setName] = useState("");
     const [capacity, setCapacity] = useState("");
-    const [available, setAvailable] = useState(props.room.available);
     const [equipment, setEquipment] = useState("");
     const [message, setMessage] = useState(null);
 
-    useEffect(() => {
-        setRoom(props.room)
-        console.log(available)
-    }, [available])
-
     const handleNameChange = (e, {value}) => setName(value);
     const handleCapacityChange = (e, {value}) => setCapacity(value);
-    const handleAvailableChange = () => setAvailable(!available);
     const handleEquipmentChange = (e, {value}) => setEquipment(value);
 
     const handleSubmit = e => {
@@ -27,26 +19,34 @@ function RoomEditModal(props) {
         const data = {
             name: name,
             capacity: capacity,
-            available: available,
+            available: true,
             equipment: equipment
         }
-                adminUpdateRoom(room.id, data)
+        try {
+            if(validateRoomEditModal(data)) {
+                adminCreateRoom(data)
                     .then(props.update())
-                setMessage('Huoneen muokkaus onnistui!')
+                setMessage('Huoneen lisäys onnistui!')
                 console.log(props.update())
-
+            }
+        } catch (e) {
+            if (e.message === 'Uutta nimeä ei ole syötetty') {
+                setMessage('Uutta nimeä ei ole syötetty')
+            } else if (e.message === 'Huoneen uutta kapasiteettia ei ole syötetty') {
+                setMessage('Huoneen uutta kapasiteettia ei ole syötetty')
+            }
+        }
     }
 
     return(
-        <Modal trigger={<Button ui primary basic icon><Icon className='edit'/></Button>}>
+        <Modal trigger={<Button ui positive basic icon><Icon className='add circle'/></Button>}>
             <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Muokkaa huonetta</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>
                     <Form.Input fluid label='Huoneen nimi' placeholder='Esimerkki(10)' onChange={handleNameChange} value={name}/>
                     <Form.Input type='number' fluid label='Huoneen kapasiteetti' placeholder='Huoneen kapasiteetti' onChange={handleCapacityChange} value={capacity}/>
-                    <Form.Radio checked={!available} onChange={handleAvailableChange} label='Poissa käytöstä' toggle/>
                     <Form.Input fluid label='Huoneen varustelu' placeholder='Projektori, valkotaulu..' onChange={handleEquipmentChange} value={equipment}/>
-                    <Form.Button primary>Vahvista muutos</Form.Button>
+                    <Form.Button primary>Vahvista huoneen lisäys</Form.Button>
                     {message &&
                     <Notification message={message}/>
                     }
@@ -56,4 +56,4 @@ function RoomEditModal(props) {
     )
 }
 
-export default RoomEditModal;
+export default RoomAddModal;
