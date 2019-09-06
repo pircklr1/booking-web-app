@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
             },
             available: {
                 type: DataTypes.BOOLEAN,
-                allowNull: false
+                defaultValue: true
             },
             equipment: DataTypes.TEXT
         },
