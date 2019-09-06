@@ -178,7 +178,6 @@ class SettingsForm extends Component {
                             value={confirmEmail}
                             type="email"
                             placeholder="Uusi sähköpostiosoite uudestaan"
-                            error={this.state.confirmEmailError}
                         />
                         <Button type='submit' primary>
                             Tallenna muutokset
