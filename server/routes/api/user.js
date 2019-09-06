@@ -14,7 +14,16 @@ module.exports = (app, db) => {
     // @desc    Get all users
     // @access  Public
     app.get('/api/users', withAuth, (req, res) =>
-        db.User.findAll().then(result => res.json(result))
+        db.User.findAll({
+            order: [
+                ["lastName", 'ASC']
+            ]
+        })
+            .then(result => res.json(result))
+            .catch(err => {
+                console.error('Error with GET All', err.message);
+                res.status(400).send(err.message);
+            })
     );
 
     // simple helper function for token validation
@@ -26,10 +35,10 @@ module.exports = (app, db) => {
     app.get('/api/user/:id', withAuth, (req, res) =>
         db.User.findByPk(req.params.id)
             .then(result => res.json(result))
-                .catch(err => {
-                    console.error('User not found', err.message);
-                    res.status(404).send(err.message);
-                })
+            .catch(err => {
+                console.error('User not found', err.message);
+                res.status(404).send(err.message);
+            })
     );
 
     // @route   PUT api/user
@@ -41,23 +50,23 @@ module.exports = (app, db) => {
             return res.status(400).json(errors);
         }
         db.User.findByPk(req.params.id)
-        .then(user => {
-            if (user === null) {
-                console.error('no such user in db');
-                res.status(404).send('user not found in database');
-            } else if (user != null) {
-                console.log('user exists in db');
-                user.update({
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
-                    email: req.body.email,
-                        })
-                    .then(() => {
-                        console.log('user updated');
-                        res.status(200).send({message: 'user updated'});
-                    });
-            }
-        })
+            .then(user => {
+                if (user === null) {
+                    console.error('no such user in db');
+                    res.status(404).send('user not found in database');
+                } else if (user != null) {
+                    console.log('user exists in db');
+                    user.update({
+                        firstName: req.body.firstName,
+                        lastName: req.body.lastName,
+                        email: req.body.email,
+                    })
+                        .then(() => {
+                            console.log('user updated');
+                            res.status(200).send({message: 'user updated'});
+                        });
+                }
+            })
     });
 
     // @route   DELETE api/user/:id
