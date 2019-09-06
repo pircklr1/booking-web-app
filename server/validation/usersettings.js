@@ -13,7 +13,7 @@ module.exports = function validateUserSettingsInput(data) {
     }
 
     if (!Validator.isLength(data.firstName, { min: 2, max: 30 })) {
-        errors.firstName = 'Name must be at least 2 characters';
+        errors.firstName = 'Firstname must be at least 2 characters';
     }
 
     if (Validator.isEmpty(data.lastName)) {
@@ -21,7 +21,7 @@ module.exports = function validateUserSettingsInput(data) {
     }
 
     if (!Validator.isLength(data.lastName, { min: 2, max: 30 })) {
-        errors.lastName = 'Name must be at least 2 characters';
+        errors.lastName = 'Lastname must be at least 2 characters';
     }
 
     if (Validator.isEmpty(data.email)) {

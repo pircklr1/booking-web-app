@@ -9,6 +9,8 @@ import DeleteButton from '../components/admin/DeleteButton';
 import AdminAllBookings from "../components/admin/AdminAllBookings";
 import AdminBookingsByUser from "../components/admin/AdminBookingsByUser";
 import Rooms from "../components/admin/Rooms";
+import AdminInviteUser from "../components/admin/AdminInviteUser";
+import AdminAllUsers from "../components/admin/AdminAllUsers";
 
 function Admin() {
   // const [data, setData] = useState([]);
@@ -25,7 +27,7 @@ function Admin() {
   // }, []);
 
   const panes = [
-    { menuItem: 'Käyttäjät', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
+    { menuItem: 'Käyttäjät', render: () => <Tab.Pane><AdminInviteUser/><AdminAllUsers/></Tab.Pane> },
     { menuItem: 'Huoneet', render: () => <Tab.Pane><Rooms/></Tab.Pane> },
     { menuItem: 'Varaukset', render: () => <Tab.Pane>
         <Header as='h3' attached='top' block >Käyttäjän varaukset</Header>

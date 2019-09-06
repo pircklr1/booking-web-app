@@ -1,4 +1,3 @@
-
 import {Button, Form, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
@@ -6,8 +5,8 @@ import axios from 'axios';
 const baseUrl = 'http://localhost:9999/api';
 
 class SettingsForm extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             firstName: '',
@@ -17,6 +16,10 @@ class SettingsForm extends Component {
             messageFromServer: '',
             updated: false,
             error: false,
+            firstNameError: false,
+            lastNameError: false,
+            emailError: false,
+            errors: []
         };
     }
 
@@ -59,7 +62,25 @@ class SettingsForm extends Component {
     updateUser = async (e) => {
         e.preventDefault();
         const userId = localStorage.getItem('userId');
-        const {firstName, lastName, email, confirmEmail, messageFromServer} = this.state;
+        const {firstName, lastName, email, confirmEmail} = this.state;
+        if (firstName.length < 2){
+            this.setState({
+                firstNameError: true,
+                messageFromServer: 'check input'
+            });
+        }
+        if (lastName.length < 2){
+            this.setState({
+                lastNameError: true,
+                messageFromServer: 'check input'
+            });
+        }
+        if (!/\S+@\S+\.\S+/.test(email)){
+            this.setState({
+                emailError: true,
+                messageFromServer: 'check input'
+            });
+        }
         if (email !== confirmEmail) {
             this.setState({
                 messageFromServer: 'emails are not a match',
@@ -130,6 +151,7 @@ class SettingsForm extends Component {
                             value={firstName}
                             type="text"
                             placeholder="Etunimi"
+                            error={this.state.firstNameError}
                         />
                         <Form.Input
                             id="lastName"
@@ -138,6 +160,7 @@ class SettingsForm extends Component {
                             value={lastName}
                             type="text"
                             placeholder="Sukunimi"
+                            error={this.state.lastNameError}
                         />
                         <Form.Input
                             id="email"
@@ -146,6 +169,7 @@ class SettingsForm extends Component {
                             value={email}
                             type="email"
                             placeholder="Uusi sähköpostiosoite"
+                            error={this.state.emailError}
                         />
                         <Form.Input
                             id="confirmEmail"
@@ -170,8 +194,13 @@ class SettingsForm extends Component {
                 )}
                 {messageFromServer === 'emails are not a match' && (
                     <Message negative>
-                        <Message.Header>Sähköpostiosoitteen vahvistaminen epäonnistui. Syötä uusi sähköpostiosoite
-                            uudestaan.</Message.Header>
+                        <Message.Header>Sähköpostiosoitteen vahvistaminen epäonnistui! Tarkista, että syötteet ovat samat. </Message.Header>
+                    </Message>
+                )}
+                {messageFromServer === 'check input' && (
+                    <Message negative>
+                        <Message.Header>Tarkista syötteet! </Message.Header>
+                        <p>Kaikki kentät ovat pakollisia. Etu- ja sukunimen tulee olla vähintään 2 merkkiä pitkät, ja sähköpostiosoitteen tulee olla muodossa esimerkki@esimerkki.esim </p>
                     </Message>
                 )}
             </div>

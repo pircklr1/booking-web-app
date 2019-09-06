@@ -74,7 +74,6 @@ export function getAllUsers(setUserData) {
       }
     })
     .then(response => {
-      console.log('JEPS');
       return setUserData(response.data);
     })
     .catch(error => {
@@ -184,6 +183,28 @@ export function adminDeleteUser(id) {
 export function adminUpdateRoom(id, data) {
     return axios
         .put(baseUrl + /room/ + id, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return true;
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+
+}
+
+export function adminCreateRoom(data) {
+    return axios
+        .post(baseUrl + /room/, data, {
             headers: {
                 'Content-Type': 'application/json',
                 token: localStorage.getItem('jwtToken')
