@@ -9,7 +9,12 @@ module.exports = (app, db) => {
     // @desc    Get all bookings
     // @access  Public
     app.get('/api/bookings', withAuth, (req, res) =>
-        db.Booking.findAll()
+        db.Booking.findAll({
+            order: [
+                ["bookingDate",'ASC'],
+                ["startTime", 'ASC']
+            ]
+        })
             .then(result => res.json(result))
             .catch(err => {
                 console.error('Error with GET All', err.message);
