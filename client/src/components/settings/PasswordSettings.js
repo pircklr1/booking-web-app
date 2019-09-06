@@ -5,8 +5,8 @@ import axios from 'axios';
 const baseUrl = 'http://localhost:9999/api';
 
 class PasswordSettings extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             email: '',
@@ -15,6 +15,7 @@ class PasswordSettings extends Component {
             messageFromServer: '',
             updated: false,
             error: false,
+            passwordError: false
         };
     }
     async componentDidMount() {
@@ -55,6 +56,12 @@ class PasswordSettings extends Component {
     updatePassword = async (e) => {
         e.preventDefault();
         const {email, password, confirmPassword, messageFromServer} = this.state;
+        if (password.length < 8){
+            this.setState({
+                passwordError: true,
+                messageFromServer: 'password is too short'
+            })
+        }
         if (password !== confirmPassword) {
             this.setState({
                 messageFromServer: 'passwords are not a match',
@@ -66,7 +73,13 @@ class PasswordSettings extends Component {
                 const response = await axios.put(
                     baseUrl + '/updatePassword',
                     {email,
-                        password});
+                        password},
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            token: localStorage.getItem('jwtToken')
+                        }
+                    });
                 console.log(response.data);
                 if (response.data.message === 'password updated') {
                     this.setState({
@@ -117,6 +130,7 @@ class PasswordSettings extends Component {
                             value={password}
                             type="password"
                             placeholder="Uusi salasana"
+                            error={this.state.passwordError}
                         />
                         <Form.Input
                             id="confirmPassword"
@@ -143,6 +157,11 @@ class PasswordSettings extends Component {
                     <Message negative>
                         <Message.Header>Salasanan vahvistaminen epäonnistui. Syötä uusi salasana
                             uudestaan.</Message.Header>
+                    </Message>
+                )}
+                {messageFromServer === 'password is too short' && (
+                    <Message negative>
+                        <Message.Header>Salasanan tulee olla vähintään 8 merkkiä pitkä!</Message.Header>
                     </Message>
                 )}
             </div>
