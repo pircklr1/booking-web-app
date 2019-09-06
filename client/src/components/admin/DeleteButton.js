@@ -6,13 +6,14 @@ import {
   adminDeleteUser
 } from '../../service/ClientService';
 
-export default function DeleteButton({ id, type }) {
+export default function DeleteButton({ id, type, update }) {
   function deleteBooking() {
     console.log(type);
     if (type === 'booking') {
       adminDeleteBooking(id);
     } else if (type === 'room') {
-      adminDeleteRoom(id);
+      adminDeleteRoom(id)
+          .then(update)
     } else if (type === 'user') {
       adminDeleteUser(id);
     }
