@@ -1,5 +1,5 @@
 import {Button, Form, Message} from "semantic-ui-react";
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:9999/api';
@@ -13,8 +13,10 @@ class ForgotPassword extends Component {
             showError: false,
             messageFromServer: '',
             showNullError: false,
+            emailError: false
         };
     }
+
     handleChange = name => (event) => {
         this.setState({
             [name]: event.target.value,
@@ -29,6 +31,12 @@ class ForgotPassword extends Component {
                 showError: false,
                 messageFromServer: '',
                 showNullError: true,
+            });
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            this.setState({
+                emailError: true,
+                messageFromServer: 'check input'
             });
         } else {
             try {
@@ -61,47 +69,58 @@ class ForgotPassword extends Component {
 
     render() {
         const {
-            email, messageFromServer, showNullError, showError
+            email, messageFromServer, showNullError, showError, emailError
         } = this.state;
         return (
-                <div className='form-container' style={{backgroundColor: 'white',
-                    paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
-                    paddingRight: '20px'}}>
-                    <h1>Palauta salasana</h1>
-                    <Form onSubmit={this.sendEmail}>
-                        <Form.Input
-                            id="email"
-                            label="Anna sähköpostiosoitteesi:"
-                            value= {email}
-                            onChange={this.handleChange('email')}
-                            placeholder="Sähköpostiosoite"
-                        />
-                        <Button type='submit' primary>
-                            Lähetä salasanan palautusviesti
-                        </Button>
-                    </Form>
-                    &nbsp;
-                    <div>
-                {showNullError && (
-                    <Message negative>
-                        <Message.Header>Syötä sähköpostiosoitteesi!</Message.Header>
-                    </Message>
-                )}
-                {showError && (
-                    <Message negative>
-                        <Message.Header>
-                            Sähköpostiosoitteella ei löytynyt käyttäjätiliä! Tarkista sähköpostiosoite tai rekisteröidy käyttäjäksi.
-                        </Message.Header>
-                    </Message>
-                )}
-                {messageFromServer === 'recovery email sent' && (
-                    <Message positive>
-                        <Message.Header>Sinulle on lähetetty sähköpostiviesti salasanan vaihtamiseksi.</Message.Header>
-                    </Message>
-                )}
-                    </div>
+            <div className='form-container' style={{
+                backgroundColor: 'white',
+                paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
+                paddingRight: '20px'
+            }}>
+                <h1>Palauta salasana</h1>
+                <Form onSubmit={this.sendEmail}>
+                    <Form.Input
+                        id="email"
+                        label="Anna sähköpostiosoitteesi:"
+                        value={email}
+                        onChange={this.handleChange('email')}
+                        placeholder="Sähköpostiosoite"
+                        error={emailError}
+                    />
+                    <Button type='submit' primary>
+                        Lähetä salasanan palautusviesti
+                    </Button>
+                </Form>
+                &nbsp;
+                <div>
+                    {showNullError && (
+                        <Message negative>
+                            <Message.Header>Syötä sähköpostiosoitteesi!</Message.Header>
+                        </Message>
+                    )}
+                    {messageFromServer === 'check input' && (
+                        <Message negative>
+                            <Message.Header>Syötä sähköpostiosoiteesi!</Message.Header>
+                        </Message>
+                    )}
+                    {showError && (
+                        <Message negative>
+                            <Message.Header>
+                                Sähköpostiosoitteella ei löytynyt käyttäjätiliä! Tarkista sähköpostiosoite tai
+                                rekisteröidy käyttäjäksi.
+                            </Message.Header>
+                        </Message>
+                    )}
+                    {messageFromServer === 'recovery email sent' && (
+                        <Message positive>
+                            <Message.Header>Sinulle on lähetetty sähköpostiviesti salasanan
+                                vaihtamiseksi.</Message.Header>
+                        </Message>
+                    )}
+                </div>
             </div>
         );
     }
 }
+
 export default ForgotPassword;
