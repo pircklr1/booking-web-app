@@ -1,5 +1,5 @@
 import {Button, Form, Message} from "semantic-ui-react";
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:9999/api';
@@ -13,8 +13,10 @@ class ForgotPassword extends Component {
             showError: false,
             messageFromServer: '',
             showNullError: false,
+            emailError: false
         };
     }
+
     handleChange = name => (event) => {
         this.setState({
             [name]: event.target.value,
@@ -30,6 +32,12 @@ class ForgotPassword extends Component {
                 messageFromServer: '',
                 showNullError: true,
             });
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            this.setState({
+                emailError: true,
+                messageFromServer: 'check input'
+            });
         } else {
             try {
                 const response = await axios.post(
@@ -39,7 +47,7 @@ class ForgotPassword extends Component {
                     },
                 );
                 // console.log(response.data);
-                if (response.data === 'invitation email sent') {
+                if (response.data.email === email) {
                     this.setState({
                         showError: false,
                         messageFromServer: 'invitation email sent',
@@ -61,20 +69,23 @@ class ForgotPassword extends Component {
 
     render() {
         const {
-            email, messageFromServer, showNullError, showError
+            email, messageFromServer, showNullError, showError, emailError
         } = this.state;
         return (
-            <div className='form-container' style={{backgroundColor: 'white',
+            <div className='form-container' style={{
+                backgroundColor: 'white',
                 paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
-                paddingRight: '20px'}}>
+                paddingRight: '20px'
+            }}>
                 <h2>Kutsu uusi käyttäjä</h2>
                 <Form onSubmit={this.sendInvitationEmail}>
                     <Form.Input
                         id="email"
                         label="Anna kutsuttavan käyttäjän sähköpostiosoite:"
-                        value= {email}
+                        value={email}
                         onChange={this.handleChange('email')}
                         placeholder="Sähköpostiosoite"
+                        error={emailError}
                     />
                     <Button type='submit' primary>
                         Kutsu käyttäjäksi
@@ -87,10 +98,16 @@ class ForgotPassword extends Component {
                             <Message.Header>Syötä sähköpostiosoite!</Message.Header>
                         </Message>
                     )}
+                    {messageFromServer === 'check input' && (
+                        <Message negative>
+                            <Message.Header>Syötä sähköpostiosoite!</Message.Header>
+                        </Message>
+                    )}
                     {showError && (
                         <Message negative>
                             <Message.Header>
-                                Sähköpostiosoitteella on jo olemassa oleva käyttäjätili! Tarkista sähköpostiosoite tai pyydä käyttäjää kirjautumaan sisään.
+                                Sähköpostiosoitteella on jo olemassa oleva käyttäjätili tai käyttäjä on jo kutsuttu
+                                rekisteröitymään!
                             </Message.Header>
                         </Message>
                     )}
@@ -104,4 +121,5 @@ class ForgotPassword extends Component {
         );
     }
 }
+
 export default ForgotPassword;

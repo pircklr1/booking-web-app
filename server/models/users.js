@@ -38,17 +38,19 @@ module.exports = (sequelize, DataTypes) => {
             },
             //the following columns are used if user wants to reset their password by email
             resetPasswordToken: DataTypes.STRING,
-            resetPasswordExpires: DataTypes.DATE
+            resetPasswordExpires: DataTypes.DATE,
+            //this column is used when user is invited to register
+            registerUserToken: DataTypes.STRING,
         },
         {
             underscored: true,
-            //before user is created his/her password is crypted
-            hooks: {
-                beforeCreate: (user) => {
-                const salt = bcrypt.genSaltSync();
-                user.password = bcrypt.hashSync(user.password, salt);
-        }
-    },
+            // before user is created his/her password is crypted
+        //     hooks: {
+        //         beforeCreate: (user) => {
+        //         const salt = bcrypt.genSaltSync();
+        //         user.password = bcrypt.hashSync(user.password, salt);
+        // }
+    // },
     instanceMethods: {
         validPassword: function (password){
             return bcrypt.compare(password, this.password);
