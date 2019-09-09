@@ -52,7 +52,7 @@ return(
                     <Header as='h2' attached='top' block>
                         Huoneet
                     </Header>
-                    <Table attached celled selectable>
+                    <Table unstackable celled color={'blue'}>
                         <Table.Header>
                             <Table.HeaderCell textAlign='center'>Nimi</Table.HeaderCell>
                             <Table.HeaderCell>Poista</Table.HeaderCell>
