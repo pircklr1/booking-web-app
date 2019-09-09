@@ -55,7 +55,7 @@ class ResetPassword extends Component {
 
     updatePassword = async (e) => {
         e.preventDefault();
-        const {email, password, confirmPassword, messageFromServer} = this.state;
+        const {email, password, confirmPassword} = this.state;
         const {
             match: {
                 params: {token},

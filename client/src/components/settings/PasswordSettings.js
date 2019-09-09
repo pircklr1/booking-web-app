@@ -55,7 +55,7 @@ class PasswordSettings extends Component {
 
     updatePassword = async (e) => {
         e.preventDefault();
-        const {email, password, confirmPassword, messageFromServer} = this.state;
+        const {email, password, confirmPassword} = this.state;
         if (password.length < 8){
             this.setState({
                 passwordError: true,

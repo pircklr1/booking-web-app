@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {getAllUsers} from '../../service/ClientService';
-import {Button, Table, Container, Header, Icon, Grid, Tab, Responsive} from 'semantic-ui-react';
+import {Table} from 'semantic-ui-react';
 import DeleteButton from "./DeleteButton";
 import {AuthContext} from "../../context/auth";
 

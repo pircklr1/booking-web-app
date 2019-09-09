@@ -18,8 +18,7 @@ class SettingsForm extends Component {
             error: false,
             firstNameError: false,
             lastNameError: false,
-            emailError: false,
-            errors: []
+            emailError: false
         };
     }
 

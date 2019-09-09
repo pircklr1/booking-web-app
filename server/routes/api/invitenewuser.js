@@ -45,7 +45,7 @@ module.exports = (app, db) => {
                     subject: 'Rekisteröityminen Roba43-tilavarauspalveluun',
                     text: 'Sait tämän viestin, koska sinut on kutsuttu rekisteröitymään Roba43:n tilavarauspalveluun.\n\n' +
                         'Rekisteröityäksesi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
-                        'http://localhost:3000/register/' + token + '\n\n' +
+                        'http://localhost:3000/signup/' + token + '\n\n' +
                         'Mikäli et halua rekisteröityä ja tehdä varauksia, jätä tämä viesti huomioimatta.\n'
                 };
                 console.log('sending mail');
@@ -55,7 +55,7 @@ module.exports = (app, db) => {
                         console.error('there was an error: ', err);
                     } else {
                         console.log('here is the res: ', response);
-                        res.status(200).send({message:'invitation email sent'});
+                        // res.status(200).send({message:'invitation email sent'});
                     }
                 });
             }
