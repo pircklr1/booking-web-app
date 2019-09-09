@@ -90,7 +90,7 @@ class RoomRow extends Component {
         ));
 
         return (
-            <Table.Row>
+            <Table.Row negative={!this.props.room.available}>
                 <Table.Cell style={{position: 'sticky', left:0, background: 'white'}}>{this.props.room.name}</Table.Cell>
                 {allCells}
             </Table.Row>
