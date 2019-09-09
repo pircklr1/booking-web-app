@@ -6,10 +6,10 @@ import validateRoomEditModal from '../../validation/RoomEditModalValidation';
 
 function RoomEditModal(props) {
     const [room, setRoom] = useState("");
-    const [name, setName] = useState("");
-    const [capacity, setCapacity] = useState("");
+    const [name, setName] = useState(props.room.name);
+    const [capacity, setCapacity] = useState(props.room.capacity);
     const [available, setAvailable] = useState(props.room.available);
-    const [equipment, setEquipment] = useState("");
+    const [equipment, setEquipment] = useState(props.room.equipment);
     const [message, setMessage] = useState(null);
 
     useEffect(() => {
