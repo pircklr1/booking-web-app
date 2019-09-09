@@ -24,6 +24,7 @@ import apiForgotPassword from './routes/api/forgotpassword';
 import apiResetPassword from './routes/api/resetpassword';
 import apiUpdateForgottenPassword from './routes/api/updateforgottenpassword';
 import apiUpdatePasswordLoggedIn from './routes/api/updatepasswordloggedin';
+import apiInviteNewUser from './routes/api/invitenewuser';
 
 // Setting up some packages for the server
 const app = express();
@@ -40,6 +41,7 @@ apiForgotPassword(app, models);
 apiResetPassword(app, models);
 apiUpdateForgottenPassword(app, models);
 apiUpdatePasswordLoggedIn(app, models);
+apiInviteNewUser(app, models);
 
 // Erasing everything from the database
 const eraseDatabaseOnSync = true;
@@ -47,7 +49,7 @@ const eraseDatabaseOnSync = true;
 // Starting the server
 sequelize.sync().then(async () => {
   // if (eraseDatabaseOnSync) {
-  //   // createMockData();
+  //   createMockData();
   // }
 
   app.listen(process.env.PORT, () => {
