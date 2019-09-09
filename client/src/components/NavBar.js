@@ -17,7 +17,10 @@ function NavBar() {
   const path = pathname === '/' ? 'home' : pathname.substr(1);
   const [activeItem, setActiveItem] = useState(path);
   const [visible, setVisible] = useState(false);
-
+  const userName = 'Random';
+  if (currentUser) {
+    userName = currentUser.name;
+  }
   // Handles clicking tasks in desktop-mode.
   const handleItemClick = (e, { name }) => setActiveItem(name);
 
@@ -77,7 +80,7 @@ function NavBar() {
               trigger={
                 <span>
                   <Icon name='user' />
-                  {currentUser.name}
+                  {userName}
                 </span>
               }
               fluid
