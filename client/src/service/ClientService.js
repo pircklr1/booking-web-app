@@ -137,6 +137,27 @@ export function adminDeleteBooking(id) {
       return false;
     });
 }
+export function adminUpdateBooking(id, data) {
+    return axios
+        .put(baseUrl + /booking/ + id, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return true;
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+
+}
 
 export function adminDeleteRoom(id) {
   return axios

@@ -6,11 +6,12 @@ import {getAllUsers, getAllBookings, getAllRooms} from '../service/ClientService
 import {Button, Table, Container, Header, Icon, Grid, Tab, Responsive} from 'semantic-ui-react';
 import moment from 'moment';
 import DeleteButton from '../components/admin/DeleteButton';
-import AdminAllBookings from "../components/admin/AdminAllBookings";
-import AdminBookingsByUser from "../components/admin/AdminBookingsByUser";
+import AdminBookingsTable from "../components/admin/AdminBookingsTable";
+import AdminBookingsSearchForm from "../components/admin/AdminBookingsSearchForm";
 import Rooms from "../components/admin/Rooms";
 import AdminInviteUser from "../components/admin/AdminInviteUser";
 import AdminAllUsers from "../components/admin/AdminAllUsers";
+import Bookings from "../components/admin/Bookings";
 
 function Admin() {
   // const [data, setData] = useState([]);
@@ -29,12 +30,7 @@ function Admin() {
   const panes = [
     { menuItem: 'Käyttäjät', render: () => <Tab.Pane><AdminInviteUser/><AdminAllUsers/></Tab.Pane> },
     { menuItem: 'Huoneet', render: () => <Tab.Pane><Rooms/></Tab.Pane> },
-    { menuItem: 'Varaukset', render: () => <Tab.Pane>
-        <Header as='h3' attached='top' block >Käyttäjän varaukset</Header>
-        <AdminBookingsByUser/>
-        <Header as='h3' attached='top' block >Kaikki varaukset</Header>
-        <AdminAllBookings/>
-    </Tab.Pane> },
+    { menuItem: 'Varaukset', render: () => <Tab.Pane><Bookings/></Tab.Pane> },
   ]
 
   // const renderBookingTable = () => {
