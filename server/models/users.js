@@ -1,3 +1,4 @@
+//defines database table for users and their attributes
 const bcrypt = require('bcrypt');
 
 module.exports = (sequelize, DataTypes) => {
@@ -11,8 +12,12 @@ module.exports = (sequelize, DataTypes) => {
                 defaultValue: DataTypes.UUIDV4,
                 allowNull: false
             },
-            firstName: DataTypes.STRING,
-            lastName: DataTypes.STRING,
+            firstName: {
+                type: DataTypes.STRING
+            },
+            lastName: {
+                type: DataTypes.STRING
+            },
             email: {
                 type: DataTypes.STRING,
                 allowNull: false,
@@ -25,30 +30,34 @@ module.exports = (sequelize, DataTypes) => {
                 }
             },
             password: {
-                type: DataTypes.STRING,
-                allowNull: false
+                type: DataTypes.STRING
             },
             isAdmin: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
             },
+            //the following columns are used if user wants to reset their password by email
             resetPasswordToken: DataTypes.STRING,
-            resetPasswordExpires: DataTypes.DATE
+            resetPasswordExpires: DataTypes.DATE,
+            //this column is used when user is invited to register
+            registerUserToken: DataTypes.STRING,
         },
         {
             underscored: true,
-            hooks: {
-                beforeCreate: (user) => {
-                const salt = bcrypt.genSaltSync();
-                user.password = bcrypt.hashSync(user.password, salt);
-        }
-    },
+            // before user is created his/her password is crypted
+    //         hooks: {
+    //             beforeCreate: (user) => {
+    //             const salt = bcrypt.genSaltSync();
+    //             user.password = bcrypt.hashSync(user.password, salt);
+    //     }
+    // },
     instanceMethods: {
         validPassword: function (password){
             return bcrypt.compare(password, this.password);
         }
     }
     });
+    //defines database relation: user can have many bookings
     User.associate = function (models) {
         User.hasMany(models.Booking)
     };

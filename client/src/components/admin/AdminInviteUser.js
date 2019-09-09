@@ -5,8 +5,8 @@ import axios from 'axios';
 const baseUrl = 'http://localhost:9999/api';
 
 class ForgotPassword extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             email: '',
@@ -23,7 +23,7 @@ class ForgotPassword extends Component {
         });
     };
 
-    sendEmail = async (e) => {
+    sendInvitationEmail = async (e) => {
         e.preventDefault();
         const {email} = this.state;
         if (email === '') {
@@ -41,22 +41,22 @@ class ForgotPassword extends Component {
         } else {
             try {
                 const response = await axios.post(
-                    baseUrl + '/forgot',
+                    baseUrl + '/inviteNewUser',
                     {
                         email,
                     },
                 );
                 // console.log(response.data);
-                if (response.data === 'recovery email sent') {
+                if (response.data.email === email) {
                     this.setState({
                         showError: false,
-                        messageFromServer: 'recovery email sent',
+                        messageFromServer: 'invitation email sent',
                         showNullError: false,
                     });
                 }
             } catch (error) {
                 console.error(error.response.data);
-                if (error.response.data === 'email not in db') {
+                if (error.response.data === 'email already in db') {
                     this.setState({
                         showError: true,
                         messageFromServer: '',
@@ -77,44 +77,43 @@ class ForgotPassword extends Component {
                 paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
                 paddingRight: '20px'
             }}>
-                <h1>Palauta salasana</h1>
-                <Form onSubmit={this.sendEmail}>
+                <h2>Kutsu uusi käyttäjä</h2>
+                <Form onSubmit={this.sendInvitationEmail}>
                     <Form.Input
                         id="email"
-                        label="Anna sähköpostiosoitteesi:"
+                        label="Anna kutsuttavan käyttäjän sähköpostiosoite:"
                         value={email}
                         onChange={this.handleChange('email')}
                         placeholder="Sähköpostiosoite"
                         error={emailError}
                     />
                     <Button type='submit' primary>
-                        Lähetä salasanan palautusviesti
+                        Kutsu käyttäjäksi
                     </Button>
                 </Form>
                 &nbsp;
                 <div>
                     {showNullError && (
                         <Message negative>
-                            <Message.Header>Syötä sähköpostiosoitteesi!</Message.Header>
+                            <Message.Header>Syötä sähköpostiosoite!</Message.Header>
                         </Message>
                     )}
                     {messageFromServer === 'check input' && (
                         <Message negative>
-                            <Message.Header>Syötä sähköpostiosoiteesi!</Message.Header>
+                            <Message.Header>Syötä sähköpostiosoite!</Message.Header>
                         </Message>
                     )}
                     {showError && (
                         <Message negative>
                             <Message.Header>
-                                Sähköpostiosoitteella ei löytynyt käyttäjätiliä! Tarkista sähköpostiosoite tai
-                                rekisteröidy käyttäjäksi.
+                                Sähköpostiosoitteella on jo olemassa oleva käyttäjätili tai käyttäjä on jo kutsuttu
+                                rekisteröitymään!
                             </Message.Header>
                         </Message>
                     )}
-                    {messageFromServer === 'recovery email sent' && (
+                    {messageFromServer === 'invitation email sent' && (
                         <Message positive>
-                            <Message.Header>Sinulle on lähetetty sähköpostiviesti salasanan
-                                vaihtamiseksi.</Message.Header>
+                            <Message.Header>Käyttäjälle on lähetetty rekisteröitymiskutsu.</Message.Header>
                         </Message>
                     )}
                 </div>

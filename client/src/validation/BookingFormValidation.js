@@ -1,4 +1,4 @@
-//validates data which is sent with BookinForm
+//validates data which is sent with BookingForm
 
 const validateBookingForm = (data) => {
     // console.log('data in form validation', data)

@@ -9,7 +9,8 @@ export function getAllBookings(setData) {
   axios
     .get(baseUrl + '/bookings', {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+          token: localStorage.getItem('jwtToken')
       }
     })
     .then(response => {
@@ -25,9 +26,10 @@ export function getAllBookings(setData) {
 // @access  Public
 export function getUserBookings(id, setData) {
   axios
-    .get(baseUrl + '/userbookings/' + id, id, {
+    .get(baseUrl + '/userbookings/' + id, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+          token: localStorage.getItem('jwtToken')
       }
     })
     .then(response => {
@@ -40,7 +42,12 @@ export function getUserBookings(id, setData) {
 
 export function createBooking(data) {
   return axios
-    .post(baseUrl + '/booking', data)
+    .post(baseUrl + '/booking', data, {
+        headers: {
+            'Content-Type': 'application/json',
+            token: localStorage.getItem('jwtToken')
+        }
+    })
     .then(response => {
       console.log(response);
       if (response.status === 200) {
@@ -67,7 +74,6 @@ export function getAllUsers(setUserData) {
       }
     })
     .then(response => {
-      console.log('JEPS');
       return setUserData(response.data);
     })
     .catch(error => {
@@ -82,7 +88,8 @@ export function getAllRooms(setRoomData) {
   axios
     .get(baseUrl + '/rooms', {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+          token: localStorage.getItem('jwtToken')
       }
     })
     .then(response => {
@@ -95,7 +102,12 @@ export function getAllRooms(setRoomData) {
 
 export function getRoomData(callback) {
   axios
-    .get(baseUrl + '/rooms')
+    .get(baseUrl + '/rooms', {
+        headers: {
+            'Content-Type': 'application/json',
+            token: localStorage.getItem('jwtToken')
+        }
+        })
     .then(function(rooms) {
       callback(rooms.data);
     })
@@ -107,7 +119,12 @@ export function getRoomData(callback) {
 // ADMIN SERVICES
 export function adminDeleteBooking(id) {
   return axios
-    .delete(baseUrl + '/booking/' + id, id)
+    .delete(baseUrl + '/booking/' + id, {
+        headers: {
+            'Content-Type': 'application/json',
+            token: localStorage.getItem('jwtToken')
+        }
+    })
     .then(response => {
       if (response.status === 200) {
         return true;
@@ -120,10 +137,36 @@ export function adminDeleteBooking(id) {
       return false;
     });
 }
+export function adminUpdateBooking(id, data) {
+    return axios
+        .put(baseUrl + /booking/ + id, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return true;
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+
+}
 
 export function adminDeleteRoom(id) {
   return axios
-    .delete(baseUrl + '/room/' + id, id)
+    .delete(baseUrl + '/room/' + id, {
+        headers: {
+            'Content-Type': 'application/json',
+            token: localStorage.getItem('jwtToken')
+        }
+    })
     .then(response => {
       if (response.status === 200) {
         return true;
@@ -139,7 +182,12 @@ export function adminDeleteRoom(id) {
 
 export function adminDeleteUser(id) {
   return axios
-    .delete(baseUrl + '/user/' + id, id)
+    .delete(baseUrl + '/user/' + id, {
+        headers: {
+            'Content-Type': 'application/json',
+            token: localStorage.getItem('jwtToken')
+        }
+    })
     .then(response => {
       if (response.status === 200) {
         return true;
@@ -151,4 +199,48 @@ export function adminDeleteUser(id) {
     .catch(error => {
       return false;
     });
+}
+
+export function adminUpdateRoom(id, data) {
+    return axios
+        .put(baseUrl + /room/ + id, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return true;
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+
+}
+
+export function adminCreateRoom(data) {
+    return axios
+        .post(baseUrl + /room/, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return true;
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+
 }

@@ -29,15 +29,15 @@ function BookingForm(props) {
     const {currentUser} = useContext(AuthContext);
 
     useEffect(() => {
-        getRooms();
+        getRooms()
     }, [])
 
     //get room names to dropdown
     const getRooms = () => {
         getRoomData(list => {
-            setRoomdata(list.map(room => {
-                return {key: room.id, text: room.name, value: room.id}
-            }))
+            setRoomdata(list.filter(room => room.available).map(room => {
+                return {key: room.id, text: room.name, value: room.id, available: room.available}
+            }));
         });
     };
 
@@ -49,6 +49,7 @@ function BookingForm(props) {
 
     //handle validation and submitting form
     const handleSubmit = e => {
+        console.log(roomdata)
         e.preventDefault();
         const data = {
             user_id: currentUser.id,
@@ -93,9 +94,9 @@ function BookingForm(props) {
             }
         }
         //timeout for message
-        setTimeout(() => {
-            setMessage(null)
-        }, 7000);
+        // setTimeout(() => {
+        //     setMessage(null)
+        // }, 7000);
     };
 
     return (

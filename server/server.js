@@ -23,6 +23,8 @@ import apiUser from './routes/api/user';
 import apiForgotPassword from './routes/api/forgotpassword';
 import apiResetPassword from './routes/api/resetpassword';
 import apiUpdateForgottenPassword from './routes/api/updateforgottenpassword';
+import apiUpdatePasswordLoggedIn from './routes/api/updatepasswordloggedin';
+import apiInviteNewUser from './routes/api/invitenewuser';
 
 // Setting up some packages for the server
 const app = express();
@@ -38,15 +40,17 @@ apiUser(app, models);
 apiForgotPassword(app, models);
 apiResetPassword(app, models);
 apiUpdateForgottenPassword(app, models);
+apiUpdatePasswordLoggedIn(app, models);
+apiInviteNewUser(app, models);
 
 // Erasing everything from the database
 const eraseDatabaseOnSync = true;
 
 // Starting the server
-sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-  if (eraseDatabaseOnSync) {
-    createMockData();
-  }
+sequelize.sync().then(async () => {
+  // if (eraseDatabaseOnSync) {
+  //   createMockData();
+  // }
 
   app.listen(process.env.PORT, () => {
     console.log('***********************************************');
@@ -55,33 +59,35 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
   });
 });
 
+// { force: eraseDatabaseOnSync }
+
 // With this function, we create mock data for our database.
-const createMockData = async () => {
-  // populate room table with dummy data
-  models.Room.bulkCreate(
-    times(7, () => ({
-      equipment: faker.lorem.words(),
-      name: faker.lorem.word(),
-      capacity: random(1, 20),
-      available: faker.random.arrayElement(['true', 'false'])
-    }))
-  );
-  // populate user table with dummy data
-  models.User.bulkCreate(
-    times(10, () => ({
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      email: faker.internet.email(),
-      password: faker.internet.password()
-    }))
-  );
-  // populate booking table with dummy data
-  models.Booking.bulkCreate(
-    times(10, () => ({
-      bookingDate: faker.date.future(),
-      startTime: faker.date.future(),
-      endTime: faker.date.future(),
-      isValid: faker.random.arrayElement(['true', 'false'])
-    }))
-  );
-};
+// const createMockData = async () => {
+//   // populate room table with dummy data
+//   models.Room.bulkCreate(
+//     times(7, () => ({
+//       equipment: faker.lorem.words(),
+//       name: faker.lorem.word(),
+//       capacity: random(1, 20),
+//       available: faker.random.arrayElement(['true', 'false'])
+//     }))
+//   );
+//   // populate user table with dummy data
+//   models.User.bulkCreate(
+//     times(10, () => ({
+//       firstName: faker.name.firstName(),
+//       lastName: faker.name.lastName(),
+//       email: faker.internet.email(),
+//       password: faker.internet.password()
+//     }))
+//   );
+//   // populate booking table with dummy data
+//   models.Booking.bulkCreate(
+//     times(10, () => ({
+//       bookingDate: faker.date.future(),
+//       startTime: faker.date.future(),
+//       endTime: faker.date.future(),
+//       isValid: faker.random.arrayElement(['true', 'false'])
+//     }))
+//   );
+// };

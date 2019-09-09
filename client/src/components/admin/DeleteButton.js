@@ -1,25 +1,34 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
+import {Button} from 'semantic-ui-react';
 import {
-  adminDeleteBooking,
-  adminDeleteRoom,
-  adminDeleteUser
+    adminDeleteBooking,
+    adminDeleteRoom,
+    adminDeleteUser
 } from '../../service/ClientService';
-export default function DeleteButton({ id, type }) {
-  function deleteBooking() {
-    console.log(type);
-    if (type === 'booking') {
-      adminDeleteBooking(id);
-    } else if (type === 'room') {
-      adminDeleteRoom(id);
-    } else if (type === 'user') {
-      adminDeleteUser(id);
-    }
-  }
 
-  return (
-    <Button ui negative basic icon onClick={deleteBooking}>
-      <i className='trash icon' />
-    </Button>
-  );
+export default function DeleteButton({id, type, update}) {
+    function deleteBooking() {
+        if (type === 'booking') {
+            if (window.confirm('Haluatko varmasti poistaa varauksen?')) {
+                adminDeleteBooking(id)
+                    .then(update)
+            }
+        } else if (type === 'room') {
+            if (window.confirm('Haluatko varmasti poistaa huoneen?')) {
+                adminDeleteRoom(id)
+                    .then(update)
+            }
+        } else if (type === 'user') {
+            if (window.confirm('Haluatko varmasti poistaa käyttäjän?')) {
+                adminDeleteUser(id)
+                    .then(update)
+            }
+        }
+    }
+
+    return (
+        <Button ui negative basic icon onClick={deleteBooking}>
+            <i className='trash icon'/>
+        </Button>
+    );
 }

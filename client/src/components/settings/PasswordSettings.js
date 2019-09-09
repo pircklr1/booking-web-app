@@ -4,9 +4,9 @@ import axios from 'axios';
 
 const baseUrl = 'http://localhost:9999/api';
 
-class ResetPassword extends Component {
-    constructor() {
-        super();
+class PasswordSettings extends Component {
+    constructor(props) {
+        super(props);
 
         this.state = {
             email: '',
@@ -15,34 +15,34 @@ class ResetPassword extends Component {
             messageFromServer: '',
             updated: false,
             error: false,
+            passwordError: false
         };
     }
-
     async componentDidMount() {
-        const {
-            match: {
-                params: {token},
-            },
-        } = this.props;
-        try {
-            const response = await axios.get(baseUrl + '/reset', {
-                params: {
-                    resetPasswordToken: token,
-                },
+        const userId = localStorage.getItem('userId');
+        if (userId === null) {
+            this.setState({
+                error: true,
             });
-            console.log(response.data);
-            if (response.data.message === 'password reset link ok') {
-                this.setState({
-                    email: response.data.email,
-                    updated: false,
-                    error: false,
-                });
-            }
+        }
+        try {
+            const response = await axios.get(baseUrl + '/user/' + userId, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: localStorage.getItem('jwtToken')
+                }
+            });
+            // console.log(response.data);
+            this.setState({
+                email: response.data.email,
+                updated: false,
+                error: false,
+            });
         } catch (error) {
             console.log(error.response.data);
             this.setState({
                 updated: false,
-                error: true,
+                error: true
             });
         }
     }
@@ -56,11 +56,12 @@ class ResetPassword extends Component {
     updatePassword = async (e) => {
         e.preventDefault();
         const {email, password, confirmPassword, messageFromServer} = this.state;
-        const {
-            match: {
-                params: {token},
-            },
-        } = this.props;
+        if (password.length < 8){
+            this.setState({
+                passwordError: true,
+                messageFromServer: 'password is too short'
+            })
+        }
         if (password !== confirmPassword) {
             this.setState({
                 messageFromServer: 'passwords are not a match',
@@ -70,14 +71,16 @@ class ResetPassword extends Component {
         } else {
             try {
                 const response = await axios.put(
-                    baseUrl + '/updateForgottenPassword',
+                    baseUrl + '/updatePassword',
+                    {email,
+                        password},
                     {
-                        email,
-                        password,
-                        resetPasswordToken: token,
-                    },
-                );
-                // console.log(response.data);
+                        headers: {
+                            'Content-Type': 'application/json',
+                            token: localStorage.getItem('jwtToken')
+                        }
+                    });
+                console.log(response.data);
                 if (response.data.message === 'password updated') {
                     this.setState({
                         updated: true,
@@ -108,8 +111,7 @@ class ResetPassword extends Component {
             return (
                 <div>
                     <Message negative>
-                        <Message.Header>Salasanan vaihtaminen ei onnistunut. Linkki saattoi olla virheellinen tai
-                            vanhentunut. Tilaa uusi linkki. </Message.Header>
+                        <Message.Header>Jotain meni vikaan! Yritä myöhemmin uudelleen.</Message.Header>
                     </Message>
                 </div>
             );
@@ -119,7 +121,7 @@ class ResetPassword extends Component {
                 paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
                 paddingRight: '20px'}}>
                 <div className='form-container'>
-                    <h1>Vaihda salasana</h1>
+                    <h4>Vaihda salasana</h4>
                     <Form className="password-form" onSubmit={this.updatePassword}>
                         <Form.Input
                             id="password"
@@ -127,14 +129,15 @@ class ResetPassword extends Component {
                             onChange={this.handleChange('password')}
                             value={password}
                             type="password"
-                            placeholder="Uusi salasana..."
+                            placeholder="Uusi salasana"
+                            error={this.state.passwordError}
                         />
                         <Form.Input
                             id="confirmPassword"
                             label="Vahvista uusi salasana:"
                             value={confirmPassword}
                             type="password"
-                            placeholder="Uusi salasana uudelleen..."
+                            placeholder="Uusi salasana uudelleen"
                             onChange={this.handleChange('confirmPassword')}
                         />
                         <Button type='submit' primary>
@@ -146,8 +149,7 @@ class ResetPassword extends Component {
                 {updated && (
                     <Message positive>
                         <Message.Header>
-                            Salasanasi on päivitetty! Kirjaudu sisään sähköpostiosoitteellasi ja uudella
-                            salasanallasi.
+                            Salasanasi on päivitetty!
                         </Message.Header>
                     </Message>
                 )}
@@ -157,9 +159,14 @@ class ResetPassword extends Component {
                             uudestaan.</Message.Header>
                     </Message>
                 )}
+                {messageFromServer === 'password is too short' && (
+                    <Message negative>
+                        <Message.Header>Salasanan tulee olla vähintään 8 merkkiä pitkä!</Message.Header>
+                    </Message>
+                )}
             </div>
         );
     }
 }
 
-export default ResetPassword;
+export default PasswordSettings;
