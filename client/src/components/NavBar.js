@@ -19,8 +19,10 @@ function NavBar() {
   const [visible, setVisible] = useState(false);
 
   let username = 'Käyttäjä';
-  if (typeof currentUser.username !== 'undefined') {
-    username = currentUser.username;
+  if (currentUser !== null) {
+    if (typeof currentUser !== 'undefined') {
+      username = currentUser.username;
+    }
   }
 
   // Handles clicking tasks in desktop-mode.

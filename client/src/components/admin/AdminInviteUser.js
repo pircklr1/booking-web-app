@@ -72,13 +72,9 @@ class ForgotPassword extends Component {
             email, messageFromServer, showNullError, showError, emailError
         } = this.state;
         return (
-            <div className='form-container' style={{
-                backgroundColor: 'white',
-                paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
-                paddingRight: '20px'
-            }}>
-                <h2>Kutsu uusi käyttäjä</h2>
-                <Form onSubmit={this.sendInvitationEmail}>
+            <div>
+                <Form onSubmit={this.sendInvitationEmail}
+                      style={{border: '1px solid #2185D0', padding: 12, marginTop: 16}}>
                     <Form.Input
                         id="email"
                         label="Anna kutsuttavan käyttäjän sähköpostiosoite:"

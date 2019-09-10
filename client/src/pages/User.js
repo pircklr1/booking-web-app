@@ -33,8 +33,10 @@ function User() {
 
   //Here we define the user's name for a greeting.
   let username = 'Käyttäjä';
-  if (typeof currentUser.username !== 'undefined') {
-    username = currentUser.username;
+  if (currentUser !== null) {
+    if (typeof currentUser !== 'undefined') {
+      username = currentUser.username;
+    }
   }
 
   useEffect(() => {

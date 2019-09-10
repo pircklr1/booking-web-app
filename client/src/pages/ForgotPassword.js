@@ -86,6 +86,8 @@ class ForgotPassword extends Component {
                         onChange={this.handleChange('email')}
                         placeholder="Sähköpostiosoite"
                         error={emailError}
+                        icon='envelope'
+                        iconPosition='left'
                     />
                     <Button type='submit' primary>
                         Lähetä salasanan palautusviesti
