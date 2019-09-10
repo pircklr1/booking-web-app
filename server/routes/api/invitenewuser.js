@@ -24,7 +24,7 @@ module.exports = (app, db) => {
                 res.status(403).send('email already in db');
             } else {
                 const token = crypto.randomBytes(20).toString('hex');
-                const newuser = db.User.create({
+                db.User.create({
                     email: req.body.email,
                     registerUserToken: token
                 })

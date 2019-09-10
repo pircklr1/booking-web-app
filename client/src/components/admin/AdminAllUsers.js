@@ -32,7 +32,7 @@ function AdminAllUsers(){
     };
 
     return(
-        <Table unstackable celled textAlign='center'>
+        <Table unstackable celled textAlign='center' color={'blue'}>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Nimi</Table.HeaderCell>

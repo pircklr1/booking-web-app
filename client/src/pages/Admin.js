@@ -9,8 +9,7 @@ import DeleteButton from '../components/admin/DeleteButton';
 import AdminBookingsTable from "../components/admin/AdminBookingsTable";
 import AdminBookingsSearchForm from "../components/admin/AdminBookingsSearchForm";
 import Rooms from "../components/admin/Rooms";
-import AdminInviteUser from "../components/admin/AdminInviteUser";
-import AdminAllUsers from "../components/admin/AdminAllUsers";
+import Users from "../components/admin/Users";
 import Bookings from "../components/admin/Bookings";
 
 function Admin() {
@@ -28,7 +27,7 @@ function Admin() {
   // }, []);
 
   const panes = [
-    { menuItem: 'Käyttäjät', render: () => <Tab.Pane><AdminInviteUser/><AdminAllUsers/></Tab.Pane> },
+    { menuItem: 'Käyttäjät', render: () => <Tab.Pane><Users/></Tab.Pane> },
     { menuItem: 'Huoneet', render: () => <Tab.Pane><Rooms/></Tab.Pane> },
     { menuItem: 'Varaukset', render: () => <Tab.Pane><Bookings/></Tab.Pane> },
   ]
