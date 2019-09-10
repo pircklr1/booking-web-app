@@ -57,7 +57,7 @@ export function getUserBookings(id, setData) {
         });
 }
 
-export const getUserBookingsBy = async (id) => {
+export const getUserBookingsPromise = async (id) => {
     try {
         const result = await axios
             .get(baseUrl + '/userbookings/' + id, {

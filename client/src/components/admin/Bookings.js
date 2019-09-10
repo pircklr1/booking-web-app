@@ -3,7 +3,7 @@ import {Form, Header, Tab} from "semantic-ui-react";
 import AdminBookingsSearchForm from "./AdminBookingsSearchForm";
 import AdminBookingsTable from "./AdminBookingsTable";
 import moment from "moment";
-import {getAllBookings, getAllBookingsPromise, getAllUsers, getUserBookingsBy} from "../../service/ClientService";
+import {getAllBookingsPromise, getAllUsers, getUserBookingsPromise} from "../../service/ClientService";
 import Notification from "../Notification";
 
 function Bookings() {
@@ -13,10 +13,17 @@ function Bookings() {
     const [userData, setUserData] = useState([])
     const [user, setUser] = useState(1);
     const [message, setMessage] = useState(null)
+    const [rerender, setRerender] = useState(1);
 
     useEffect(() => {
         getAllUsers(setUserData);
-    }, [])
+        handleSubmit();
+        setRerender(false);
+    }, [rerender])
+
+    function update() {
+        setRerender(rerender + 1);
+    }
 
     //get user names to dropdown
     const getUsers = () => {
@@ -40,7 +47,7 @@ function Bookings() {
         try {
             const bookingData = user === 1 ?
                 await getAllBookingsPromise() :
-                await getUserBookingsBy(user);
+                await getUserBookingsPromise(user);
 
             const bookingsByDates = bookingData.filter(booking => moment(booking.bookingDate)
                 .isBetween(data.start_date, data.end_date, null, '[]'));
@@ -49,9 +56,6 @@ function Bookings() {
         } catch (e) {
             setMessage('Odottamaton virhe')
         }
-
-
-        // return bookingsByDates;
     };
 
     return (
@@ -73,7 +77,7 @@ function Bookings() {
             <Notification message={message}/>
             }
             <Header as='h3' attached='top' block>Haetut varaukset</Header>
-            <AdminBookingsTable tableData={bookingData}/>
+            <AdminBookingsTable tableData={bookingData} update={update}/>
         </div>
     )
 }
