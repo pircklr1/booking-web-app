@@ -12,7 +12,6 @@ class ForgotPassword extends Component {
             email: '',
             showError: false,
             messageFromServer: '',
-            showNullError: false,
             emailError: false
         };
     }
@@ -26,13 +25,6 @@ class ForgotPassword extends Component {
     sendInvitationEmail = async (e) => {
         e.preventDefault();
         const {email} = this.state;
-        if (email === '') {
-            this.setState({
-                showError: false,
-                messageFromServer: '',
-                showNullError: true,
-            });
-        }
         if (!/\S+@\S+\.\S+/.test(email)) {
             this.setState({
                 emailError: true,
@@ -51,7 +43,7 @@ class ForgotPassword extends Component {
                     this.setState({
                         showError: false,
                         messageFromServer: 'invitation email sent',
-                        showNullError: false,
+                        email: ''
                     });
                 }
             } catch (error) {
@@ -60,7 +52,7 @@ class ForgotPassword extends Component {
                     this.setState({
                         showError: true,
                         messageFromServer: '',
-                        showNullError: false,
+                        email: ''
                     });
                 }
             }
@@ -69,7 +61,7 @@ class ForgotPassword extends Component {
 
     render() {
         const {
-            email, messageFromServer, showNullError, showError, emailError
+            email, messageFromServer, showError, emailError
         } = this.state;
         return (
             <div>
@@ -89,11 +81,6 @@ class ForgotPassword extends Component {
                 </Form>
                 &nbsp;
                 <div>
-                    {showNullError && (
-                        <Message negative>
-                            <Message.Header>Syötä sähköpostiosoite!</Message.Header>
-                        </Message>
-                    )}
                     {messageFromServer === 'check input' && (
                         <Message negative>
                             <Message.Header>Syötä sähköpostiosoite!</Message.Header>
@@ -105,6 +92,8 @@ class ForgotPassword extends Component {
                                 Sähköpostiosoitteella on jo olemassa oleva käyttäjätili tai käyttäjä on jo kutsuttu
                                 rekisteröitymään!
                             </Message.Header>
+                            <p>Mikäli käyttäjä ei ole rekisteröitynyt, ja on esim. kadottanut rekisteröitymissähköpostin,
+                                poista käyttäjä alla olevasta listasta ja kutsu sen jälkeen uudestaan.</p>
                         </Message>
                     )}
                     {messageFromServer === 'invitation email sent' && (

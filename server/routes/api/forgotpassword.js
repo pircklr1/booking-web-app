@@ -3,6 +3,7 @@ const crypto = require('crypto');
 require('dotenv').config();
 const password = process.env.GMAILPW;
 const sender = process.env.GMAIL_ADDRESS;
+const  baseUrl = 'http://localhost:3000';
 
 module.exports = (app,db) => {
     // @route POST api/forgot
@@ -43,7 +44,7 @@ module.exports = (app,db) => {
                     subject: 'Roba43 salasanan palauttaminen',
                     text: 'Sait tämän viestin, koska olet pyytänyt salasanasi palauttamista Roba43:n tilavarauspalveluun.\n\n' +
                         'Salasanasi uudelleenasettamiseksi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
-                        'http://localhost:3000/reset/' + token + '\n\n' +
+                        baseUrl + '/reset/' + token + '\n\n' +
                         'Salasanan vaihtolinkki on voimassa yhden tunnin sen lähettämishetkestä.\n' +
                         'Mikäli et pyytänyt salasanasi palauttamista, jätä tämä viesti huomioimatta, niin salasanasi säilyy ennallaan.\n'
                 };
