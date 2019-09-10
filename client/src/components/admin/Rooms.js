@@ -15,7 +15,6 @@ function Rooms() {
         getAllRooms(setRoomData);
         setRerender(false);
         setIsLoading(false);
-        console.log('Tapahtuuko mitään?')
     }, [rerender]);
 
     function update(){

@@ -101,28 +101,25 @@ module.exports = (app, db) => {
         return res.status(400).json(errors);
       }
 
-      // Check Password
-      bcrypt.compare(req.body.password, user.password).then(isMatch => {
-        if (isMatch) {
-          // User Matched
-          const payload = {
-            id: user.id,
-            email: user.email,
-            username: user.firstName
-          }; // Create JWT Payload
+            // Check Password
+            bcrypt.compare(req.body.password, user.password).then(isMatch => {
+                if (isMatch) {
+                    // User Matched
+                    const payload = {id: user.id, email: user.email, isadmin: user.isAdmin}; // Create JWT Payload
 
-          // Sign Token
-          jwt.sign(payload, SECRET_KEY, { expiresIn: 3600 }, (err, token) => {
-            res.json({
-              username: user.firstName,
-              id: user.id,
-              token
-            });
-          });
-        } else {
-          errors.email = 'Sähköposti tai salasana on virheellinen.';
-          return res.status(400).json(errors);
-        }
+                    // Sign Token
+                    jwt.sign(payload, SECRET_KEY, {expiresIn: 3600}, (err, token) => {
+                        res.json({
+                            name: user.firstName,
+                            id: user.id,
+                            isadmin: user.isAdmin,
+                            token
+                        });
+                    });
+                } else {
+                    errors.email = 'Sähköposti tai salasana on virheellinen.';
+                    return res.status(400).json(errors);
+                }
       });
     });
   });
