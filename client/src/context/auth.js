@@ -1,6 +1,10 @@
 import React, { useReducer, createContext } from 'react';
 import jwtDecode from 'jwt-decode';
 
+// If you want to add new information to currentUser, you need to provide the data from the back to front, and
+// then in login function in Login.js set that item to localStorage. If you add a new item to the front, remember
+// also to handle its removal (both from initialization and logout).
+
 const initialState = {
   currentUser: null
 };
@@ -12,6 +16,9 @@ if (localStorage.getItem('jwtToken')) {
     localStorage.removeItem('jwtToken');
     if (localStorage.getItem('userId')) {
       localStorage.removeItem('userId');
+    }
+    if (localStorage.getItem('userName')) {
+      localStorage.removeItem('userName');
     }
   } else {
     initialState.currentUser = decodedToken;
@@ -56,6 +63,7 @@ function AuthProvider(props) {
   function logout() {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
     dispatch({
       type: 'LOGOUT'
     });
