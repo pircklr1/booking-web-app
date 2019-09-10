@@ -125,6 +125,9 @@ module.exports = (app, db) => {
         });
     });
 
+    // @route   GET api/users/checkRegistrationToken
+    // @desc    Check if user's email registration link is valid
+    // @access  Public
     app.get('/api/users/checkRegistrationToken', (req, res) => {
         db.User.findOne({
             where: {
@@ -163,17 +166,14 @@ module.exports = (app, db) => {
                 res.status(403).send('registration link is invalid');
             } else if (user) {
                 console.log('user found in db');
-                bcrypt.genSalt(10, (err, salt) => {
-                    let password2 = req.body.password;
-                    bcrypt.hash(password2, salt, (err, hash) => {
-                        if (err) throw err;
-                        password2 = hash;
-                    });
-                    db.User.update({
-                        firstName: req.body.firstName,
-                        lastName: req.body.lastName,
-                        password: password2,
-                        registerUserToken: null
+                bcrypt
+                    .hash(req.body.password, BCRYPT_SALT_ROUNDS)
+                    .then((hashedPassword) => {
+                        user.update({
+                            password: hashedPassword,
+                            firstName: req.body.firstName,
+                            lastName: req.body.lastName,
+                            registerUserToken: null
                     })
                         .then(() => {
                             console.log('user updated');
