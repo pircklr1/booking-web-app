@@ -69,6 +69,56 @@ module.exports = (app, db) => {
             })
     });
 
+    // @route   POST api/booking
+    // @desc    Post new booking
+    // @access  Public
+    /* this checks if there is already booking at that time where user is trying to create new booking. */
+    app.post('/api/booking/allrooms', withAuth, (req, res) => {
+        var overlapping = [];
+        db.Booking.findAll({
+            where: {
+                bookingDate: req.body.booking_date
+            },
+        }).then((bookings) => {
+            for (var i = 0; i < bookings.length; i++) {
+                if ((moment(req.body.start_time, 'HH:mm:ss').isSameOrAfter(moment(bookings[i].startTime, 'HH:mm:ss')) &&
+                    moment(req.body.start_time, 'HH:mm:ss').isSameOrBefore(moment(bookings[i].endTime, 'HH:mm:ss')))) {
+                    overlapping.push(bookings[i])
+                } else if ((moment(req.body.end_time, 'HH:mm:ss').isSameOrAfter(moment(bookings[i].startTime, 'HH:mm:ss')) &&
+                    moment(req.body.end_time, 'HH:mm:ss').isSameOrBefore(moment(bookings[i].endTime, 'HH:mm:ss')))) {
+                    overlapping.push(bookings[i])
+
+                } else if (moment(bookings[i].startTime, 'HH:mm:ss') && moment(bookings[i].endTime, 'HH:mm:ss').isBetween(moment(req.body.start_time, 'HH:mm:ss'), moment(req.body.end_time, 'HH:mm:ss'))) {
+                    overlapping.push(bookings[i])
+                }
+            }
+        })
+            .then(() => {
+                if (overlapping.length !== 0) {
+                    res.status(403).send('overlapping booking')
+                } else {
+                    console.log('no overlapping booking');
+                    db.Room.findAll().then( (rooms) => {
+                        for(let i = 0; i < rooms.length; i++) {
+                            db.Booking.create({
+                                userId: req.body.user_id,
+                                roomId: rooms[i].id,
+                                bookingDate: req.body.booking_date,
+                                startTime: req.body.start_time,
+                                endTime: req.body.end_time,
+                                isValid: req.body.is_valid
+                            }).then(result =>
+                                res.json(result)).catch(err => {
+                                console.error("Error with POST", err.message);
+                                res.status(400).send(err.message);
+                            })
+                        }
+                    })
+
+                }
+            })
+    });
+
 // @route   GET api/booking/:id
 // @desc    Get booking by id
 // @access  Public

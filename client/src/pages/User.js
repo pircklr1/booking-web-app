@@ -1,13 +1,28 @@
 // This page shows the current user's current and past bookings. Here, the user can also modify (cancel) the current bookings.
 // cancel rools: 1 week for the big room "Stage", 24h for other rooms
 
-import React, {useState, useEffect, useContext} from 'react';
-import {getUserBookings, getRoomData, adminDeleteBooking} from '../service/ClientService';
-import {Button, Table, Container, Header, Grid, Icon, Confirm, Tab} from 'semantic-ui-react';
+import React, { useState, useEffect, useContext } from 'react';
+import {
+  getUserBookings,
+  getRoomData,
+  adminDeleteBooking
+} from '../service/ClientService';
+import {
+  Button,
+  Table,
+  Container,
+  Header,
+  Grid,
+  Icon,
+  Confirm,
+  Tab
+} from 'semantic-ui-react';
 import moment from 'moment';
-import {AuthContext} from '../context/auth';
+import { AuthContext } from '../context/auth';
 
 function User() {
+    
+
     //this needs to be changed to "Stage" id!!
     let bigRoom = '69df3828-edeb-4727-bde7-645847626292';
 
@@ -25,6 +40,14 @@ function User() {
         //setIsLoading(false);
     // }, []);
     }, [currentUser.id]);
+
+//Here we define the user's name for a greeting.
+let username = 'Käyttäjä';
+if (currentUser !== null) {
+    if (typeof currentUser !== 'undefined') {
+        username = currentUser.username;
+    }
+}
 
 
     //get room name by room Id (from booking data)
@@ -187,7 +210,7 @@ function User() {
                     </Table.Row>
                 );
             }else{
-                return "Virhe datan lataamisessa"
+                return "";
             }
         });
     };
@@ -219,40 +242,40 @@ function User() {
                     <Table.Cell collapsing textAlign='center'>
                         <Icon name='times'/>
                     </Table.Cell>
-                </Table.Row>
-            );
-        })
-    };
+        </Table.Row>
+      );
+    });
+  };
 
-    return (
-        <div>
-            <Container style={{padding: '5em 0em', overflow: 'auto'}}>
-                <Grid textAlign='center' verticalAlign='middle'>
-                    <Grid.Column style={{maxWidth: 450}}>
-                        <Header textAlign='left'>Hei, {currentUser.name}!</Header>
-                        <Header as='h2' attached='top' block>
-                            Tulevat varaukset
-                        </Header>
-                        <Table unstackable color={'blue'} celled>
-                            <Table.Header>
-                                <Table.Row>
-                                    <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
-                                    <Table.HeaderCell>Kellonaika</Table.HeaderCell>
-                                    <Table.HeaderCell>Huone</Table.HeaderCell>
-                                    <Table.HeaderCell>Peruuta</Table.HeaderCell>
-                                </Table.Row>
-                            </Table.Header>
-                            <Table.Body>{renderUserBookingTable()}</Table.Body>
-                        </Table>
-                        <Header as='h2' attached='top' block>
-                            Menneet varaukset
-                        </Header>
-                        <Tab panes={panes} style={{marginTop: 14}}/>
-                    </Grid.Column>
-                </Grid>
-            </Container>
-        </div>
-    );
+  return (
+    <div>
+      <Container style={{ padding: '5em 0em', overflow: 'auto' }}>
+        <Grid textAlign='center' verticalAlign='middle'>
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header textAlign='left'>Hei, {username}!</Header>
+            <Header as='h2' attached='top' block>
+              Tulevat varaukset
+            </Header>
+            <Table unstackable color={'blue'} celled>
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>Varauspäivä</Table.HeaderCell>
+                  <Table.HeaderCell>Kellonaika</Table.HeaderCell>
+                  <Table.HeaderCell>Huone</Table.HeaderCell>
+                  <Table.HeaderCell>Peruuta</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>{renderUserBookingTable()}</Table.Body>
+            </Table>
+            <Header as='h2' attached='top' block>
+              Menneet varaukset
+            </Header>
+            <Tab panes={panes} style={{ marginTop: 14 }} />
+          </Grid.Column>
+        </Grid>
+      </Container>
+    </div>
+  );
 }
 
 export default User;

@@ -15,7 +15,7 @@ function RoomEditModal(props) {
 
     useEffect(() => {
         setRoom(props.room)
-    }, [available])
+    }, [])
 
     const handleNameChange = (e, {value}) => setName(value);
     const handleCapacityChange = (e, {value}) => setCapacity(value);

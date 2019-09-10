@@ -52,10 +52,14 @@ function Login(props) {
       .post(baseUrl + '/users/login', values)
       .then(response => {
         if (response.status === 200) {
+          //If you want to add some information to frontend from the back, you can set items to localStorage.
+          // These have to be provided from the back first:
           const token = response.data.token;
           const id = response.data.id;
+          const username = response.data.username;
           localStorage.setItem('jwtToken', token);
           localStorage.setItem('userId', id);
+          localStorage.setItem('username', username);
           // console.log(localStorage.getItem('userId'));
           context.login(response.data);
           props.history.push('/home');
