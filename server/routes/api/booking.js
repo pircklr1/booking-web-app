@@ -105,28 +105,62 @@ module.exports = (app, db) => {
     // @route   PUT api/booking/:id
     // @desc    Modify existing booking
     // @access  Public
-    app.put('/api/booking/:id', withAuth, (req, res) =>
-        db.Booking.update(
-            {
-                userId: req.body.user_id,
-                roomId: req.body.room_id,
+    // this checks if there is already booking at that time where user is trying to update booking.
+    app.put('/api/booking/:id', withAuth, (req, res) => {
+        var overlapping = [];
+        db.Booking.findAll({
+            where: {
                 bookingDate: req.body.booking_date,
-                startTime: req.body.start_time,
-                endTime: req.body.end_time,
-                isValid: req.body.is_valid
+                roomId: req.body.room_id
             },
-            {
-                where: {
-                    id: req.params.id
+        }).then((bookings) => {
+            for (var i = 0; i < bookings.length; i++) {
+                if ((moment(req.body.start_time, 'HH:mm:ss').isSameOrAfter(moment(bookings[i].startTime, 'HH:mm:ss')) &&
+                    moment(req.body.start_time, 'HH:mm:ss').isSameOrBefore(moment(bookings[i].endTime, 'HH:mm:ss')))) {
+                    if (req.params.id !== bookings[i].id) {
+                        overlapping.push(bookings[i])
+                    }
+                } else if ((moment(req.body.end_time, 'HH:mm:ss').isSameOrAfter(moment(bookings[i].startTime, 'HH:mm:ss')) &&
+                    moment(req.body.end_time, 'HH:mm:ss').isSameOrBefore(moment(bookings[i].endTime, 'HH:mm:ss')))) {
+                    if (req.params.id !== bookings[i].id) {
+                        overlapping.push(bookings[i])
+                    }
+                } else if (moment(bookings[i].startTime, 'HH:mm:ss') && moment(bookings[i].endTime, 'HH:mm:ss').isBetween(moment(req.body.start_time, 'HH:mm:ss'), moment(req.body.end_time, 'HH:mm:ss'))) {
+                    if (req.params.id !== bookings[i].id) {
+                        overlapping.push(bookings[i])
+                    }
                 }
             }
-        )
-            .then(result => res.json(result))
-            .catch(err => {
-                console.error('Error with PUT', err.message);
-                res.status(400).send(err.message);
+        })
+            .then(() => {
+                if (overlapping.length !== 0) {
+                    res.status(403).send('overlapping booking')
+                } else {
+                    console.log('no overlapping booking');
+                    db.Booking.update(
+                        {
+                            userId: req.body.user_id,
+                            roomId: req.body.room_id,
+                            bookingDate: req.body.booking_date,
+                            startTime: req.body.start_time,
+                            endTime: req.body.end_time,
+                            isValid: req.body.is_valid
+                        },
+                        {
+                            where: {
+                                id: req.params.id
+                            }
+                        }
+                    )
+                        .then(result => res.json(result))
+                        .catch(err => {
+                            console.error('Error with PUT', err.message);
+                            res.status(400).send(err.message);
+                        });
+                }
             })
-    );
+    });
+
 
     // @route   DELETE api/booking/:id
     // @desc    Delete existing booking
