@@ -4,8 +4,9 @@ import moment from 'moment';
 import DeleteButton from './DeleteButton';
 import {getAllBookings, getAllRooms, getAllUsers} from "../../service/ClientService";
 import {AuthContext} from "../../context/auth";
+import BookingEditModal from "./BookingEditModal";
 
-function AdminBookingsTable() {
+function AdminBookingsTable( { tableData }) {
 
     const {currentUser} = useContext(AuthContext);
     const [bookingData, setBookingData] = useState([]);
@@ -51,7 +52,7 @@ function AdminBookingsTable() {
     };
 
     const renderBookingTable = () => {
-        return bookingData.map(booking => {
+        return tableData.map(booking => {
             return (
                 <Table.Row key={booking.id}>
                     <Table.Cell collapsing textAlign='center'>
@@ -68,9 +69,11 @@ function AdminBookingsTable() {
                         <DeleteButton id={booking.id} type={'booking'} update={update}/>
                     </Table.Cell>
                     <Table.Cell collapsing textAlign='center'>
-                        <Button ui primary basic icon>
-                            <i className='edit icon'/>
-                        </Button></Table.Cell>
+                        {/*<Button ui primary basic icon>*/}
+                        {/*    <i className='edit icon'/>*/}
+                        {/*</Button>*/}
+                        <BookingEditModal booking={booking} update={update}/>
+                    </Table.Cell>
                 </Table.Row>
             );
         });
@@ -90,7 +93,8 @@ function AdminBookingsTable() {
                     <Table.HeaderCell>Muokkaa</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
-            <Table.Body>{renderBookingTable()}</Table.Body>
+            {tableData && <Table.Body>{renderBookingTable()}</Table.Body>}
+            {tableData.length === 0 && <Table.Body><Table.Row><Table.Cell>Ei varauksia valituilla ehdoilla</Table.Cell></Table.Row></Table.Body>}
         </Table>
     );
 }
