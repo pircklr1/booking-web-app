@@ -235,7 +235,7 @@ function NavBar() {
             <Icon name='key' />
             Kirjaudu
           </Menu.Item>
-          <Menu.Item
+          {/*    <Menu.Item
             as={Link}
             to='/signup'
             name='signup'
@@ -245,7 +245,7 @@ function NavBar() {
           >
             <Icon name='signup' />
             Rekisteröidy
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
@@ -294,7 +294,7 @@ function NavBar() {
               <Icon name='key' />
               Kirjaudu sisään
             </Menu.Item>
-            <Menu.Item
+            {/*        <Menu.Item
               style={{ color: 'white' }}
               as={Link}
               to='/signup'
@@ -302,7 +302,7 @@ function NavBar() {
             >
               <Icon name='signup' />
               Rekisteröidy
-            </Menu.Item>
+            </Menu.Item> */}
           </Sidebar>
         </Menu>
       </Responsive>
