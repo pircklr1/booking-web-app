@@ -12,7 +12,6 @@ class ForgotPassword extends Component {
             email: '',
             showError: false,
             messageFromServer: '',
-            showNullError: false,
             emailError: false
         };
     }
@@ -26,13 +25,6 @@ class ForgotPassword extends Component {
     sendEmail = async (e) => {
         e.preventDefault();
         const {email} = this.state;
-        if (email === '') {
-            this.setState({
-                showError: false,
-                messageFromServer: '',
-                showNullError: true,
-            });
-        }
         if (!/\S+@\S+\.\S+/.test(email)) {
             this.setState({
                 emailError: true,
@@ -50,8 +42,7 @@ class ForgotPassword extends Component {
                 if (response.data === 'recovery email sent') {
                     this.setState({
                         showError: false,
-                        messageFromServer: 'recovery email sent',
-                        showNullError: false,
+                        messageFromServer: 'recovery email sent'
                     });
                 }
             } catch (error) {
@@ -59,8 +50,7 @@ class ForgotPassword extends Component {
                 if (error.response.data === 'email not in db') {
                     this.setState({
                         showError: true,
-                        messageFromServer: '',
-                        showNullError: false,
+                        messageFromServer: ''
                     });
                 }
             }
@@ -69,7 +59,7 @@ class ForgotPassword extends Component {
 
     render() {
         const {
-            email, messageFromServer, showNullError, showError, emailError
+            email, messageFromServer, showError, emailError
         } = this.state;
         return (
             <div className='form-container' style={{
@@ -93,11 +83,6 @@ class ForgotPassword extends Component {
                 </Form>
                 &nbsp;
                 <div>
-                    {showNullError && (
-                        <Message negative>
-                            <Message.Header>Syötä sähköpostiosoitteesi!</Message.Header>
-                        </Message>
-                    )}
                     {messageFromServer === 'check input' && (
                         <Message negative>
                             <Message.Header>Syötä sähköpostiosoiteesi!</Message.Header>

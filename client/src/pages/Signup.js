@@ -2,15 +2,7 @@
 // its connection to backend, and redirecting to homepage in case user is already logged in.
 
 import React, { useContext, useState, useEffect } from 'react';
-import {
-  Button,
-  Image,
-  Form,
-  Grid,
-  Header,
-  Segment,
-  Message
-} from 'semantic-ui-react';
+import {Button, Form, Grid, Header, Segment, Message} from 'semantic-ui-react';
 import { AuthContext } from '../context/auth';
 import validate from '../validation/SignupPageValidationRules';
 
@@ -160,10 +152,9 @@ function Signup(props) {
         )}
         {success ? (
           <Message positive>
-            <Message.Header>Käyttäjätunnus luotu onnistuneesti!</Message.Header>
+            <Message.Header>Käyttäjätunnuksen luonti onnistui!</Message.Header>
             <p>
-              Pääset kirjautumaan sisään kun ylläpitäjä on hyväksynyt
-              käyttäjätunnuksesi.
+              Voit nyt kirjautua sisään sähköpostiosoitteellasi ja salasanallasi.
             </p>
           </Message>
         ) : null}

@@ -18,8 +18,7 @@ class SettingsForm extends Component {
             error: false,
             firstNameError: false,
             lastNameError: false,
-            emailError: false,
-            errors: []
+            emailError: false
         };
     }
 
@@ -123,7 +122,8 @@ class SettingsForm extends Component {
 
     render() {
         const {
-            firstName, lastName, email, error, updated, confirmEmail, messageFromServer
+            firstName, lastName, email, error, updated, confirmEmail, messageFromServer, firstNameError,
+            lastNameError, emailError
         } = this.state;
 
         if (error) {
@@ -151,7 +151,9 @@ class SettingsForm extends Component {
                             value={firstName}
                             type="text"
                             placeholder="Etunimi"
-                            error={this.state.firstNameError}
+                            error={firstNameError}
+                            icon='user'
+                            iconPosition='left'
                         />
                         <Form.Input
                             id="lastName"
@@ -160,7 +162,9 @@ class SettingsForm extends Component {
                             value={lastName}
                             type="text"
                             placeholder="Sukunimi"
-                            error={this.state.lastNameError}
+                            error={lastNameError}
+                            icon='user'
+                            iconPosition='left'
                         />
                         <Form.Input
                             id="email"
@@ -169,7 +173,9 @@ class SettingsForm extends Component {
                             value={email}
                             type="email"
                             placeholder="Uusi sähköpostiosoite"
-                            error={this.state.emailError}
+                            error={emailError}
+                            icon='envelope'
+                            iconPosition='left'
                         />
                         <Form.Input
                             id="confirmEmail"
@@ -178,6 +184,8 @@ class SettingsForm extends Component {
                             value={confirmEmail}
                             type="email"
                             placeholder="Uusi sähköpostiosoite uudestaan"
+                            icon='envelope'
+                            iconPosition='left'
                         />
                         <Button type='submit' primary>
                             Tallenna muutokset
@@ -200,7 +208,8 @@ class SettingsForm extends Component {
                 {messageFromServer === 'check input' && (
                     <Message negative>
                         <Message.Header>Tarkista syötteet! </Message.Header>
-                        <p>Kaikki kentät ovat pakollisia. Etu- ja sukunimen tulee olla vähintään 2 merkkiä pitkät, ja sähköpostiosoitteen tulee olla muodossa esimerkki@esimerkki.esim </p>
+                        <p>Kaikki kentät ovat pakollisia. Etu- ja sukunimen tulee olla vähintään 2 merkkiä pitkät,
+                            ja sähköpostiosoitteen tulee olla muodossa esimerkki@esimerkki.esim </p>
                     </Message>
                 )}
             </div>

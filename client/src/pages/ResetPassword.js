@@ -1,6 +1,7 @@
 import {Button, Form, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 
 const baseUrl = 'http://localhost:9999/api';
 
@@ -15,6 +16,8 @@ class ResetPassword extends Component {
             messageFromServer: '',
             updated: false,
             error: false,
+            passwordError: false,
+            redirect: false
         };
     }
 
@@ -55,7 +58,7 @@ class ResetPassword extends Component {
 
     updatePassword = async (e) => {
         e.preventDefault();
-        const {email, password, confirmPassword, messageFromServer} = this.state;
+        const {email, password, confirmPassword} = this.state;
         const {
             match: {
                 params: {token},
@@ -67,6 +70,14 @@ class ResetPassword extends Component {
                 password: '',
                 confirmPassword: ''
             });
+        }
+        if (password.length < 8){
+                this.setState({
+                    passwordError: true,
+                    messageFromServer: 'password is too short',
+                    password: '',
+                    confirmPassword: ''
+                });
         } else {
             try {
                 const response = await axios.put(
@@ -85,6 +96,11 @@ class ResetPassword extends Component {
                         password: '',
                         confirmPassword: ''
                     });
+                    setTimeout(() => {
+                        this.setState({
+                            redirect: true
+                        })
+                    }, 2000);
                 } else {
                     this.setState({
                         updated: false,
@@ -101,7 +117,7 @@ class ResetPassword extends Component {
 
     render() {
         const {
-            password, error, updated, confirmPassword, messageFromServer
+            password, error, updated, confirmPassword, messageFromServer, passwordError, redirect
         } = this.state;
 
         if (error) {
@@ -113,6 +129,11 @@ class ResetPassword extends Component {
                     </Message>
                 </div>
             );
+        }
+        if (redirect) {
+            return (
+                <Redirect to={'/login'} />
+            )
         }
         return (
             <div style={{backgroundColor: 'white',
@@ -127,15 +148,20 @@ class ResetPassword extends Component {
                             onChange={this.handleChange('password')}
                             value={password}
                             type="password"
-                            placeholder="Uusi salasana..."
+                            placeholder="Uusi salasana"
+                            icon='lock'
+                            iconPosition='left'
+                            error={passwordError}
                         />
                         <Form.Input
                             id="confirmPassword"
                             label="Vahvista uusi salasana:"
                             value={confirmPassword}
                             type="password"
-                            placeholder="Uusi salasana uudelleen..."
+                            placeholder="Uusi salasana uudelleen"
                             onChange={this.handleChange('confirmPassword')}
+                            icon='lock'
+                            iconPosition='left'
                         />
                         <Button type='submit' primary>
                             Päivitä salasana
@@ -155,6 +181,11 @@ class ResetPassword extends Component {
                     <Message negative>
                         <Message.Header>Salasanan vahvistaminen epäonnistui. Syötä uusi salasana
                             uudestaan.</Message.Header>
+                    </Message>
+                )}
+                {messageFromServer === 'password is too short' && (
+                    <Message negative>
+                        <Message.Header>Salasanan tulee olla vähintään 8 merkkiä pitkä!</Message.Header>
                     </Message>
                 )}
             </div>

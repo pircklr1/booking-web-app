@@ -3,6 +3,7 @@ const crypto = require('crypto');
 require('dotenv').config();
 const password = process.env.GMAILPW;
 const sender = process.env.GMAIL_ADDRESS;
+const  baseUrl = 'http://localhost:3000';
 
 module.exports = (app, db) => {
     // @route POST api/inviteNewUser
@@ -24,7 +25,7 @@ module.exports = (app, db) => {
                 res.status(403).send('email already in db');
             } else {
                 const token = crypto.randomBytes(20).toString('hex');
-                const newuser = db.User.create({
+                db.User.create({
                     email: req.body.email,
                     registerUserToken: token
                 })
@@ -45,7 +46,7 @@ module.exports = (app, db) => {
                     subject: 'Rekisteröityminen Roba43-tilavarauspalveluun',
                     text: 'Sait tämän viestin, koska sinut on kutsuttu rekisteröitymään Roba43:n tilavarauspalveluun.\n\n' +
                         'Rekisteröityäksesi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
-                        'http://localhost:3000/register/' + token + '\n\n' +
+                        baseUrl + '/signup/' + token + '\n\n' +
                         'Mikäli et halua rekisteröityä ja tehdä varauksia, jätä tämä viesti huomioimatta.\n'
                 };
                 console.log('sending mail');
@@ -55,7 +56,7 @@ module.exports = (app, db) => {
                         console.error('there was an error: ', err);
                     } else {
                         console.log('here is the res: ', response);
-                        res.status(200).send({message:'invitation email sent'});
+                        // res.status(200).send({message:'invitation email sent'});
                     }
                 });
             }
