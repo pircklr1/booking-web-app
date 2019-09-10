@@ -6,27 +6,28 @@ import {getAllBookings, getAllRooms, getAllUsers} from "../../service/ClientServ
 import {AuthContext} from "../../context/auth";
 import BookingEditModal from "./BookingEditModal";
 
-function AdminBookingsTable( { tableData }) {
+function AdminBookingsTable( { tableData, update }) {
 
     const {currentUser} = useContext(AuthContext);
-    const [bookingData, setBookingData] = useState([]);
+    // const [bookingData, setBookingData] = useState([]);
     const [userData, setUserData] = useState([]);
     const [roomData, setRoomData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [rerender, setRerender] = useState(1);
+    // const [rerender, setRerender] = useState(1);
 
     useEffect(() => {
         setIsLoading(true);
-        getAllBookings(setBookingData);
+        // getAllBookings(setBookingData);
         getAllUsers(setUserData);
         getAllRooms(setRoomData);
-        setRerender(false);
+        // setRerender(false);
         setIsLoading(false);
-    }, [rerender]);
+    // }, [rerender]);
+}, []);
 
-    function update() {
-        setRerender(rerender + 1);
-    }
+    // function update() {
+    //     setRerender(rerender + 1);
+    // }
 
     //get room name by room Id (from booking bookingData)
     const roomName = (roomId) => {
@@ -44,10 +45,13 @@ function AdminBookingsTable( { tableData }) {
             }
         })
     };
+
+    const hours = [];
     //count booked hours
     const count = (endTime, startTime) => {
         const end = moment(endTime, 'HH:mm');
         const start = moment(startTime, 'HH:mm');
+        hours.push(end.diff(start, "hours", true))
         return end.diff(start, "hours", true);
     };
 
@@ -69,9 +73,6 @@ function AdminBookingsTable( { tableData }) {
                         <DeleteButton id={booking.id} type={'booking'} update={update}/>
                     </Table.Cell>
                     <Table.Cell collapsing textAlign='center'>
-                        {/*<Button ui primary basic icon>*/}
-                        {/*    <i className='edit icon'/>*/}
-                        {/*</Button>*/}
                         <BookingEditModal booking={booking} update={update}/>
                     </Table.Cell>
                 </Table.Row>
@@ -79,6 +80,13 @@ function AdminBookingsTable( { tableData }) {
         });
     };
 
+    //count sum of hours
+    const countHours = () => {
+        return document.getElementById("demo").innerHTML = hours.reduce(countHelper)
+    };
+    function countHelper(total, num) {
+        return total + num;
+    }
 
     return (
         <Table unstackable celled color={'blue'}>
@@ -95,6 +103,17 @@ function AdminBookingsTable( { tableData }) {
             </Table.Header>
             {tableData && <Table.Body>{renderBookingTable()}</Table.Body>}
             {tableData.length === 0 && <Table.Body><Table.Row><Table.Cell>Ei varauksia valituilla ehdoilla</Table.Cell></Table.Row></Table.Body>}
+            <Table.Footer>
+                <Table.Row>
+                    <Table.HeaderCell>Yhteensä</Table.HeaderCell>
+                    <Table.HeaderCell><Button onClick={countHours}>Laske</Button></Table.HeaderCell>
+                    <Table.HeaderCell id="demo"></Table.HeaderCell>
+                    <Table.HeaderCell />
+                    <Table.HeaderCell />
+                    <Table.HeaderCell />
+                    <Table.HeaderCell />
+                </Table.Row>
+            </Table.Footer>
         </Table>
     );
 }

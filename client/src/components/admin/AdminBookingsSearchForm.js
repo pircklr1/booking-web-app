@@ -1,29 +1,11 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {Button, Dropdown, Form, Select, Modal} from 'semantic-ui-react';
-import moment from 'moment';
-import {
-    getAllBookings,
-    getAllRooms,
-    getAllUsers,
-    getRoomData,
-    getUserBookings,
-    getUserBookingsBy
-} from "../../service/ClientService";
 import {AuthContext} from "../../context/auth";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
 
-function AdminBookingsSearchForm({
-                                     handleSubmit,
-                                     handleUserChange,
-                                     handleStartDateChange,
-                                     handleEndDateChange,
-                                     startDate,
-                                     endDate,
-                                     user,
-                                     getUsers
-                                 }) {
+function AdminBookingsSearchForm({handleSubmit, handleUserChange, handleStartDateChange, handleEndDateChange, startDate, endDate, user, getUsers}) {
 
     // const [startDate, setStartDate] = useState(new Date())
     // const [endDate, setEndDate] = useState(new Date())

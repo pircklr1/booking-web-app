@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {adminUpdateBooking, getRoomData} from "../../service/ClientService";
-import {Button, Form, Icon, Modal, Radio, Select} from "semantic-ui-react";
+import {Button, Form, Icon, Modal, Select} from "semantic-ui-react";
 import Notification from "../Notification";
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -19,7 +19,7 @@ function BookingEditModal(props) {
     const [endTime, setEndTime] = useState(new Date())
     const [roomdata, setRoomdata] = useState([])
     const [message, setMessage] = useState(null)
-    const {currentUser} = useContext(AuthContext);
+    // const {currentUser} = useContext(AuthContext);
 
     useEffect(() => {
         setBooking(props.booking)
@@ -50,10 +50,17 @@ function BookingEditModal(props) {
             start_time: moment(startTime).format('HH:mm:01'),
             end_time: moment(endTime).format('HH:mm')
         };
-        console.log(data)
-        adminUpdateBooking(booking.id, data)
-            .then(props.update())
-        setMessage('Varauksen muokkaus onnistui!')
+        adminUpdateBooking(booking.id, data).then(function(success){
+            if(success){
+                props.update()
+                setMessage('Varauksen muokkaus onnistui!')
+            }else{
+                setMessage('Varauksen muokkaus ei onnistunut')
+            }
+        })
+        setTimeout(() => {
+            setMessage(null)
+        }, 3000);
     }
 
     return(

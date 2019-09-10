@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {getAllRooms} from "../../service/ClientService";
-import {Container, Grid, Header, Table, Button, Icon} from "semantic-ui-react";
+import {Container, Grid, Header, Table,} from "semantic-ui-react";
 import DeleteButton from "./DeleteButton";
 import RoomEditModal from './RoomEditModal';
 import RoomAddModal from "./RoomAddModal";
