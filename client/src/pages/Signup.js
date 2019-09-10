@@ -152,10 +152,9 @@ function Signup(props) {
         )}
         {success ? (
           <Message positive>
-            <Message.Header>Käyttäjätunnus luotu onnistuneesti!</Message.Header>
+            <Message.Header>Käyttäjätunnuksen luonti onnistui!</Message.Header>
             <p>
-              Pääset kirjautumaan sisään kun ylläpitäjä on hyväksynyt
-              käyttäjätunnuksesi.
+              Voit nyt kirjautua sisään sähköpostiosoitteellasi ja salasanallasi.
             </p>
           </Message>
         ) : null}

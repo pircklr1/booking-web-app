@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
             resetPasswordToken: DataTypes.STRING,
             resetPasswordExpires: DataTypes.DATE,
             //this column is used when user is invited to register
-            registerUserToken: DataTypes.STRING,
+            registerUserToken: DataTypes.STRING
         },
         {
             underscored: true,

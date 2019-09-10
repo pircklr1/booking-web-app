@@ -5,7 +5,17 @@ module.exports = (app, db) => {
     // @desc    Get all rooms
     // @access  Public
     app.get('/api/rooms', withAuth, (req, res) =>
-        db.Room.findAll().then(result => res.json(result))
+        db.Room.findAll(
+            {
+            order: [
+                ["id", 'ASC']
+            ]}
+        )
+            .then(result => res.json(result))
+            .catch(err => {
+                console.error('Error with GET All', err.message);
+                res.status(400).send(err.message);
+            })
     );
 
     // @route   GET api/room/:id
