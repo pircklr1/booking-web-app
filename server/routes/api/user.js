@@ -107,13 +107,14 @@ module.exports = (app, db) => {
             bcrypt.compare(req.body.password, user.password).then(isMatch => {
                 if (isMatch) {
                     // User Matched
-                    const payload = {id: user.id, email: user.email}; // Create JWT Payload
+                    const payload = {id: user.id, email: user.email, isadmin: user.isAdmin}; // Create JWT Payload
 
                     // Sign Token
                     jwt.sign(payload, SECRET_KEY, {expiresIn: 3600}, (err, token) => {
                         res.json({
                             name: user.firstName,
                             id: user.id,
+                            isadmin: user.isAdmin,
                             token
                         });
                     });
@@ -156,6 +157,7 @@ module.exports = (app, db) => {
                         lastName: req.body.lastName,
                         email: req.body.email,
                         password: password2
+                        // isAdmin: true
                     })
                         .then(user => res.json(user))
                         .catch(err => console.log(err));
