@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="11754c22-9260-441a-947e-6932caf3ea0f" name="Default Changelist" comment="" />
+    <list default="true" id="11754c22-9260-441a-947e-6932caf3ea0f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.gitignore" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,10 +103,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/BookingForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
+            <state relative-caret-position="579">
               <caret line="227" column="14" selection-start-line="227" selection-start-column="14" selection-end-line="227" selection-end-column="14" />
               <folding>
                 <element signature="e#114#175#0" expanded="true" />
@@ -113,13 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://82fdd291-6bab-47e5-ab17-3f226413d6fd/database/booking/schema/public/table/bookings">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state projectRestartId="c95949cd-aa14-46d3-b40b-7986aed999e2">
-              <filtering>
-                <filter text="" />
-              </filtering>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="5" lean-forward="true" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -129,17 +129,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="164">
               <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://82fdd291-6bab-47e5-ab17-3f226413d6fd/database/booking/schema/public/table/users">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state projectRestartId="c95949cd-aa14-46d3-b40b-7986aed999e2">
-              <filtering>
-                <filter text="" />
-              </filtering>
             </state>
           </provider>
         </entry>
@@ -203,7 +192,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/.gitignore" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/client/public/index.html" />
         <option value="$PROJECT_DIR$/client/src/components/Login.js" />
@@ -247,6 +235,7 @@
         <option value="$PROJECT_DIR$/server/models/users.js" />
         <option value="$PROJECT_DIR$/client/src/service/ClientService.js" />
         <option value="$PROJECT_DIR$/client/src/components/BookingForm.js" />
+        <option value="$PROJECT_DIR$/server/.gitignore" />
       </list>
     </option>
   </component>
@@ -271,52 +260,7 @@
             <path>
               <item name="loppuprojekti-tilavaraus-applikaatio" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="loppuprojekti-tilavaraus-applikaatio" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="admin" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="client" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="service" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="2674bda8:ScopeViewTreeModel$GroupNode" />
               <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="models" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="loppuprojekti-tilavaraus-applikaatio" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="server" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="routes" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -375,12 +319,12 @@
       <workItem from="1566214798693" duration="132000" />
       <workItem from="1566214942291" duration="116393000" />
       <workItem from="1566797295042" duration="107582000" />
-      <workItem from="1567487091235" duration="67797000" />
+      <workItem from="1567487091235" duration="68521000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="299383000" />
+    <option name="totallyTimeSpent" value="300107000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -393,8 +337,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.108208954" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.108208954" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -411,7 +356,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3564464" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.11809318" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -429,13 +374,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="33" lean-forward="true" selection-start-line="1" selection-start-column="33" selection-end-line="1" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/NavBar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -780,13 +718,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/validation/BookingFormValidation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/admin/Rooms.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -797,15 +728,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://82fdd291-6bab-47e5-ab17-3f226413d6fd/database/booking/schema/public/table/bookings">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="c95949cd-aa14-46d3-b40b-7986aed999e2">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/admin/RoomEditModal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -813,15 +735,6 @@
           <folding>
             <element signature="e#0#61#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://82fdd291-6bab-47e5-ab17-3f226413d6fd/database/booking/schema/public/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="c95949cd-aa14-46d3-b40b-7986aed999e2">
-          <filtering>
-            <filter text="" />
-          </filtering>
         </state>
       </provider>
     </entry>
@@ -856,13 +769,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://82fdd291-6bab-47e5-ab17-3f226413d6fd/database/booking/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="c95949cd-aa14-46d3-b40b-7986aed999e2">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/validation/BookingFormValidation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://82fdd291-6bab-47e5-ab17-3f226413d6fd/database/booking/schema/public/table/bookings">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="c95949cd-aa14-46d3-b40b-7986aed999e2">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/BookingForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
+        <state relative-caret-position="579">
           <caret line="227" column="14" selection-start-line="227" selection-start-column="14" selection-end-line="227" selection-end-column="14" />
           <folding>
             <element signature="e#114#175#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="5" lean-forward="true" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
         </state>
       </provider>
     </entry>
