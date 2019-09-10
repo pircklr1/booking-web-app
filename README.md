@@ -4,7 +4,11 @@
 2. Add the following lines to the file:
       NODE_ENV=development
       PORT=9999
-
       DATABASE=booking
       DATABASE_USER=postgres
       DATABASE_PASSWORD=postgres
+      SECRET=*put here your secret*
+      GMAILPW=*put here your email password*
+      GMAIL_ADDRESS=*put here your email address*
+3. Run npm install in client folder and server folder
+4. Run npm start in client folder and server folder

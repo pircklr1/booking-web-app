@@ -49,7 +49,7 @@ function BookingForm(props) {
 
     //handle validation and submitting form
     const handleSubmit = e => {
-        console.log(roomdata)
+        // console.log(roomdata)
         e.preventDefault();
         const data = {
             user_id: currentUser.id,
