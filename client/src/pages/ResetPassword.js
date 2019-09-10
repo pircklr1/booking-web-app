@@ -1,6 +1,7 @@
 import {Button, Form, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 
 const baseUrl = 'http://localhost:9999/api';
 
@@ -15,7 +16,8 @@ class ResetPassword extends Component {
             messageFromServer: '',
             updated: false,
             error: false,
-            passwordError: false
+            passwordError: false,
+            redirect: false
         };
     }
 
@@ -94,6 +96,11 @@ class ResetPassword extends Component {
                         password: '',
                         confirmPassword: ''
                     });
+                    setTimeout(() => {
+                        this.setState({
+                            redirect: true
+                        })
+                    }, 2000);
                 } else {
                     this.setState({
                         updated: false,
@@ -110,7 +117,7 @@ class ResetPassword extends Component {
 
     render() {
         const {
-            password, error, updated, confirmPassword, messageFromServer, passwordError
+            password, error, updated, confirmPassword, messageFromServer, passwordError, redirect
         } = this.state;
 
         if (error) {
@@ -122,6 +129,11 @@ class ResetPassword extends Component {
                     </Message>
                 </div>
             );
+        }
+        if (redirect) {
+            return (
+                <Redirect to={'/login'} />
+            )
         }
         return (
             <div style={{backgroundColor: 'white',
