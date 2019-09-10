@@ -7,22 +7,19 @@ import RoomAddModal from "./RoomAddModal";
 
 function Rooms() {
     const [roomData, setRoomData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
     const [rerender, setRerender] = useState(1);
 
     useEffect(() => {
-        setIsLoading(true);
+        // setIsLoading(true);
         getAllRooms(setRoomData);
         setRerender(false);
-        setIsLoading(false);
-        console.log('Tapahtuuko mitään?')
+        // setIsLoading(false);
     }, [rerender]);
 
     function update(){
         setRerender(rerender + 1);
     }
-
-
 
     const renderRoomTable = () => {
         return roomData.map(room => {
@@ -54,9 +51,11 @@ return(
                     </Header>
                     <Table unstackable celled color={'blue'}>
                         <Table.Header>
+                            <Table.Row>
                             <Table.HeaderCell textAlign='center'>Nimi</Table.HeaderCell>
                             <Table.HeaderCell>Poista</Table.HeaderCell>
                             <Table.HeaderCell>Muokkaa</Table.HeaderCell>
+                            </Table.Row>
                         </Table.Header>
                         <Table.Body>
                             {renderRoomTable()}

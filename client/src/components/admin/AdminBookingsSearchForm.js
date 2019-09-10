@@ -1,75 +1,12 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {Button, Dropdown, Form, Select, Modal} from 'semantic-ui-react';
-import {AuthContext} from "../../context/auth";
+// import React, {useState, useEffect, useContext} from 'react';
+import React from 'react';
+import {Button, Dropdown, Form} from 'semantic-ui-react';
+// import {AuthContext} from "../../context/auth";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
 
 function AdminBookingsSearchForm({handleSubmit, handleUserChange, handleStartDateChange, handleEndDateChange, startDate, endDate, user, getUsers}) {
-
-    // const [startDate, setStartDate] = useState(new Date())
-    // const [endDate, setEndDate] = useState(new Date())
-    // const [userData, setUserData] = useState([])
-    // const [user, setUser] = useState("");
-    // const [bookingData, setBookingData] = useState([]);
-
-    // useEffect(() => {
-    //     getAllUsers(setUserData);
-    // }, [])
-    //
-    // //get user names to dropdown
-    // const getUsers = () => {
-    //     return userData.map(user => {
-    //         return {key: user.id, text: user.firstName + " " + user.lastName, value: user.id}
-    //     })
-    // }
-
-    // const handleUserChange = (e, {value}) => setUser(value)
-    // const handleStartDateChange = date => setStartDate(date)
-    // const handleEndDateChange = date => setEndDate(date)
-
-    // const handleSubmit = e => {
-    //     e.preventDefault();
-    //     const data = {
-    //         user_id: user
-    //     }
-    //
-    //     getUserBookings(user, setBookingData)
-    //         .then(function (success) {
-    //             console.log(bookingData);
-    //         })
-    //
-    //
-    // }
-    // const handleSubmit = async () => {
-    //     const data = {
-    //         user_id: user,
-    //         start_date: moment(startDate).format('YYYY-MM-DD'),
-    //         end_date: moment(endDate).format('YYYY-MM-DD')
-    //     }
-    //     if (user === 1) {
-    //         await getAllBookings(setBookingData)
-    //     } else {
-    //         const allUserBookings = await getUserBookingsBy(user);
-    //         setBookingData(allUserBookings)
-    //     }
-    //     console.log(bookingData)
-    //     const bookingsByDates = bookingData.filter(booking => moment(booking.bookingDate)
-    //         .isBetween(data.start_date, data.end_date, null, '[]'));
-    //     console.log(bookingsByDates)
-    //     return bookingsByDates;
-    // };
-
-    // const handleSubmit = async () => {
-    //     try {
-    //         const data = await getUserBookings(user, setBookingData);
-    //     } catch (e) {
-    //
-    //     } finally {
-    //         console.log(bookingData)
-    //     }
-    // }
-
 
     return (
         <Form onSubmit={handleSubmit} style={{border: '1px solid #2185D0', padding: 10, marginTop: 14}}>

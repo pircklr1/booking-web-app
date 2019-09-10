@@ -23,7 +23,9 @@ function User() {
         getUserBookings(currentUser.id, setData);
         getRoomData(setRooms);
         //setIsLoading(false);
-    }, []);
+    // }, []);
+    }, [currentUser.id]);
+
 
     //get room name by room Id (from booking data)
     const roomName = (roomId) => {
@@ -184,6 +186,8 @@ function User() {
                         </Table.Cell>
                     </Table.Row>
                 );
+            }else{
+                return "Virhe datan lataamisessa"
             }
         });
     };
