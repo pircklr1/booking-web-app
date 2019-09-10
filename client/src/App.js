@@ -16,11 +16,14 @@ import Rooms from './components/admin/Rooms';
 import NotFound from './pages/NotFound';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Register from './pages/Register';
 
 //layout
 import NavBar from './components/NavBar';
 import { AuthProvider } from './context/auth';
 import AuthRoute from './utils/AuthRoute';
+
+
 
 class App extends Component {
   render() {
@@ -36,7 +39,8 @@ class App extends Component {
                 <Route path='/login' component={Login} />
                 <Route path='/forgot' component={ForgotPassword} />
                 <Route exact path='/reset/:token' component={ResetPassword} />
-                <Route path='/signup' component={Signup} />
+                {/*<Route exact path='/signup/:token' component={Signup} />*/}
+                <Route exact path='/signup/:token' component={Register}/>
                 <AuthRoute exact path='/settings' component={Settings} />
                 <AuthRoute exact path='/bookings' component={User} />
                 <AuthRoute exact path='/admin' component={Admin} />

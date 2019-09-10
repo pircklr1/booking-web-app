@@ -55,7 +55,7 @@ class PasswordSettings extends Component {
 
     updatePassword = async (e) => {
         e.preventDefault();
-        const {email, password, confirmPassword, messageFromServer} = this.state;
+        const {email, password, confirmPassword} = this.state;
         if (password.length < 8){
             this.setState({
                 passwordError: true,
@@ -104,7 +104,7 @@ class PasswordSettings extends Component {
 
     render() {
         const {
-            password, error, updated, confirmPassword, messageFromServer
+            password, error, updated, confirmPassword, messageFromServer, passwordError
         } = this.state;
 
         if (error) {
@@ -130,7 +130,9 @@ class PasswordSettings extends Component {
                             value={password}
                             type="password"
                             placeholder="Uusi salasana"
-                            error={this.state.passwordError}
+                            error={passwordError}
+                            icon='lock'
+                            iconPosition='left'
                         />
                         <Form.Input
                             id="confirmPassword"
@@ -139,6 +141,8 @@ class PasswordSettings extends Component {
                             type="password"
                             placeholder="Uusi salasana uudelleen"
                             onChange={this.handleChange('confirmPassword')}
+                            icon='lock'
+                            iconPosition='left'
                         />
                         <Button type='submit' primary>
                             Päivitä salasana

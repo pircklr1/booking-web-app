@@ -6,9 +6,9 @@ module.exports = function validateRegisterInput(data) {
 
   data.email = !isEmpty(data.email) ? data.email : '';
   data.password = !isEmpty(data.password) ? data.password : '';
-  data.confirmPassword = !isEmpty(data.confirmPassword)
-    ? data.confirmPassword
-    : '';
+  // data.confirmPassword = !isEmpty(data.confirmPassword)
+  //   ? data.confirmPassword
+  //   : '';
 
   if (Validator.isEmpty(data.email)) {
     errors.email = 'Email field is required';
@@ -22,17 +22,17 @@ module.exports = function validateRegisterInput(data) {
     errors.password = 'Password field is required';
   }
 
-  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
-    errors.password = 'Password must be at least 6 characters';
+  if (!Validator.isLength(data.password, { min: 8, max: 30 })) {
+    errors.password = 'Password must be at least 8 characters';
   }
 
-  if (Validator.isEmpty(data.confirmPassword)) {
-    errors.confirmPassword = 'Confirm Password field is required';
-  } else {
-    if (!Validator.equals(data.password, data.confirmPassword)) {
-      errors.confirmPassword = 'Passwords must match';
-    }
-  }
+  // if (Validator.isEmpty(data.confirmPassword)) {
+  //   errors.confirmPassword = 'Confirm Password field is required';
+  // } else {
+  //   if (!Validator.equals(data.password, data.confirmPassword)) {
+  //     errors.confirmPassword = 'Passwords must match';
+  //   }
+  // }
 
   return {
     errors,

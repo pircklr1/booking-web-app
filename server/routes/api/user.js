@@ -125,42 +125,65 @@ module.exports = (app, db) => {
         });
     });
 
-    // @route   POST api/users/register
+    // @route   GET api/users/checkRegistrationToken
+    // @desc    Check if user's email registration link is valid
+    // @access  Public
+    app.get('/api/users/checkRegistrationToken', (req, res) => {
+        db.User.findOne({
+            where: {
+                registerUserToken: req.query.registerUserToken
+            },
+        }).then((user) => {
+            if (user === null) {
+                console.error('registration link is invalid');
+                res.status(403).send('registration link is invalid');
+            } else {
+                res.status(200).send({
+                    email: user.email,
+                    message: 'registration link ok',
+                });
+            }
+        });
+    });
+
+    // @route   PUT api/users/register
     // @desc    Register user
     // @access  Public
-    app.post('/api/users/register', (req, res) => {
+    app.put('/api/users/register', (req, res) => {
         const {errors, isValid} = validateRegisterInput(req.body);
         // Check Validation
         if (!isValid) {
             return res.status(400).json(errors);
         }
-
         db.User.findOne({
             where: {
-                email: req.body.email
+                email: req.body.email,
+                registerUserToken: req.body.registerUserToken
             }
         }).then(user => {
-            if (user) {
-                errors.email = 'Sähköpostiosoite on jo käytössä';
-                return res.status(400).json(errors);
-            } else {
-                bcrypt.genSalt(10, (err, salt) => {
-                    let password2 = req.body.password;
-                    bcrypt.hash(password2, salt, (err, hash) => {
-                        if (err) throw err;
-                        password2 = hash;
-                    });
-
-                    db.User.create({
-                        firstName: req.body.firstName,
-                        lastName: req.body.lastName,
-                        email: req.body.email,
-                        password: password2
+            if (user === null) {
+                console.error('registration link is invalid');
+                res.status(403).send('registration link is invalid');
+            } else if (user) {
+                console.log('user found in db');
+                bcrypt
+                    .hash(req.body.password, BCRYPT_SALT_ROUNDS)
+                    .then((hashedPassword) => {
+                        user.update({
+                            password: hashedPassword,
+                            firstName: req.body.firstName,
+                            lastName: req.body.lastName,
+                            registerUserToken: null
                     })
-                        .then(user => res.json(user))
-                        .catch(err => console.log(err));
+                        .then(() => {
+                            console.log('user updated');
+                            res.status(200).send({message: 'user updated'});
+                        });
                 });
-            }
+                } else {
+                    console.error('no user exists in db to update');
+                    res.status(401).json('no user exists in db to update');
+                }
+                });
         });
-    });
 };
