@@ -18,7 +18,9 @@ function NavBar() {
   const [activeItem, setActiveItem] = useState(path);
   const [visible, setVisible] = useState(false);
 
+  //Here we define the user's name.
   let username = 'Käyttäjä';
+
   if (currentUser !== null) {
     if (typeof currentUser !== 'undefined') {
       username = currentUser.username;
@@ -235,7 +237,7 @@ function NavBar() {
             <Icon name='key' />
             Kirjaudu
           </Menu.Item>
-          <Menu.Item
+          {/*    <Menu.Item
             as={Link}
             to='/signup'
             name='signup'
@@ -245,7 +247,7 @@ function NavBar() {
           >
             <Icon name='signup' />
             Rekisteröidy
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
@@ -294,7 +296,7 @@ function NavBar() {
               <Icon name='key' />
               Kirjaudu sisään
             </Menu.Item>
-            <Menu.Item
+            {/*        <Menu.Item
               style={{ color: 'white' }}
               as={Link}
               to='/signup'
@@ -302,7 +304,7 @@ function NavBar() {
             >
               <Icon name='signup' />
               Rekisteröidy
-            </Menu.Item>
+            </Menu.Item> */}
           </Sidebar>
         </Menu>
       </Responsive>

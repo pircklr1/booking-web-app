@@ -3,7 +3,12 @@
 
 import React, { useContext, useEffect, useState } from 'react';
 import {
-  Button, Form, Grid, Header, Segment, Message
+  Button,
+  Form,
+  Grid,
+  Header,
+  Segment,
+  Message
 } from 'semantic-ui-react';
 import validate from '../validation/LoginPageValidationRules';
 
@@ -121,7 +126,8 @@ function Login(props) {
         <Message>
           <a href='/forgot'>Unohtuiko salasana?</a>
           <br />
-          Ei vielä tunnuksia? <a href='/signup'>Rekisteröidy</a>
+          Ei vielä tunnuksia? Ota yhteyttä ylläpitäjään.
+          {/* <a href='/signup'>Rekisteröidy</a> */}
         </Message>
       </Grid.Column>
     </Grid>
