@@ -17,8 +17,8 @@ if (localStorage.getItem('jwtToken')) {
     if (localStorage.getItem('userId')) {
       localStorage.removeItem('userId');
     }
-    if (localStorage.getItem('userName')) {
-      localStorage.removeItem('userName');
+    if (localStorage.getItem('username')) {
+      localStorage.removeItem('username');
     }
   } else {
     initialState.currentUser = decodedToken;
@@ -63,7 +63,7 @@ function AuthProvider(props) {
   function logout() {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('userId');
-    localStorage.removeItem('userName');
+    localStorage.removeItem('username');
     dispatch({
       type: 'LOGOUT'
     });
