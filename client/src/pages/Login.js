@@ -3,7 +3,12 @@
 
 import React, { useContext, useEffect, useState } from 'react';
 import {
-  Button, Form, Grid, Header, Segment, Message
+  Button,
+  Form,
+  Grid,
+  Header,
+  Segment,
+  Message
 } from 'semantic-ui-react';
 import validate from '../validation/LoginPageValidationRules';
 

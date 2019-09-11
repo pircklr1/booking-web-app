@@ -18,7 +18,9 @@ function NavBar() {
   const [activeItem, setActiveItem] = useState(path);
   const [visible, setVisible] = useState(false);
 
+  //Here we define the user's name.
   let username = 'Käyttäjä';
+
   if (currentUser !== null) {
     if (typeof currentUser !== 'undefined') {
       username = currentUser.username;
