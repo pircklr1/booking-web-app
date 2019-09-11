@@ -78,10 +78,10 @@ function AdminBookingsTable({tableData, update}) {
                     <Table.Cell>{roomName(booking.roomId)}</Table.Cell>
                     <Table.Cell>{userName(booking.userId)}</Table.Cell>
                     <Table.Cell collapsing textAlign='center'>
-                        <DeleteButton id={booking.id} type={'booking'} update={update}/>
+                        <BookingEditModal booking={booking} update={update}/>
                     </Table.Cell>
                     <Table.Cell collapsing textAlign='center'>
-                        <BookingEditModal booking={booking} update={update}/>
+                        <DeleteButton id={booking.id} type={'booking'} update={update}/>
                     </Table.Cell>
                 </Table.Row>
             );
@@ -97,8 +97,8 @@ function AdminBookingsTable({tableData, update}) {
                     <Table.HeaderCell>Tunnit</Table.HeaderCell>
                     <Table.HeaderCell>Huone</Table.HeaderCell>
                     <Table.HeaderCell>Käyttäjä</Table.HeaderCell>
-                    <Table.HeaderCell>Poista</Table.HeaderCell>
                     <Table.HeaderCell>Muokkaa</Table.HeaderCell>
+                    <Table.HeaderCell>Poista</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             {tableData && <Table.Body>{renderBookingTable()}</Table.Body>}
