@@ -8,11 +8,10 @@ import './App.css';
 //Pages
 import Settings from './pages/Settings';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
+// import Signup from './pages/Signup';
 import User from './pages/User';
 import Calendar from './pages/Calendar';
 import Admin from './pages/Admin'
-import Rooms from './components/admin/Rooms';
 import NotFound from './pages/NotFound';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
@@ -35,7 +34,7 @@ class App extends Component {
             <Container>
               <Switch>
                 <AuthRoute exact path='/' component={Calendar} />
-                <AuthRoute exact path='/home' exact component={Calendar} />
+                <AuthRoute exact path='/home' component={Calendar} />
                 <Route path='/login' component={Login} />
                 <Route path='/forgot' component={ForgotPassword} />
                 <Route exact path='/reset/:token' component={ResetPassword} />
