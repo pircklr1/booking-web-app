@@ -136,10 +136,10 @@ class Register extends Component {
         if (error) {
             return (
                 <div>
+                    &nbsp;
                     <Message negative>
-                        <Message.Header>Rekisteröitymislinkki on virheellinen tai vanhentunut!
-                            Kirjaudu sisään tunnuksillasi tai pyydä adminia lähettämään uusi rekisteröitymislinkki.
-                        </Message.Header>
+                        <Message.Header>Rekisteröitymislinkki on virheellinen tai vanhentunut!</Message.Header>
+                        <p>Kirjaudu sisään tunnuksillasi tai pyydä ylläpitäjää lähettämään uusi rekisteröitymislinkki.</p>
                     </Message>
                 </div>
             );

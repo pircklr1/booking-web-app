@@ -123,9 +123,10 @@ class ResetPassword extends Component {
         if (error) {
             return (
                 <div>
+                    &nbsp;
                     <Message negative>
-                        <Message.Header>Salasanan vaihtaminen ei onnistunut. Linkki saattoi olla virheellinen tai
-                            vanhentunut. Tilaa uusi linkki. </Message.Header>
+                        <Message.Header>Salasanan vaihtaminen ei onnistu!</Message.Header>
+                        <p>Linkki oli virheellinen tai vanhentunut. Tilaa uusi linkki.</p>
                     </Message>
                 </div>
             );

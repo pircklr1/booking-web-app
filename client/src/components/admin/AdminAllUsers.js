@@ -3,6 +3,7 @@ import {getAllUsers} from '../../service/ClientService';
 import {Table} from 'semantic-ui-react';
 import DeleteButton from "./DeleteButton";
 import {AuthContext} from "../../context/auth";
+import UserEditModal from "./UserEditModal";
 
 
 function AdminAllUsers(){
@@ -26,6 +27,9 @@ function AdminAllUsers(){
                     <Table.Cell collapsing textAlign='center'>
                         <DeleteButton id={user.id} type={'user'} />
                     </Table.Cell>
+                    <Table.Cell collapsing textAlign='center'>
+                        <UserEditModal user={user}/>
+                    </Table.Cell>
                 </Table.Row>
             );
         });
@@ -38,6 +42,7 @@ function AdminAllUsers(){
                     <Table.HeaderCell>Nimi</Table.HeaderCell>
                     <Table.HeaderCell>Sähköposti</Table.HeaderCell>
                     <Table.HeaderCell>Poista</Table.HeaderCell>
+                    <Table.HeaderCell>Muokkaa</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>{renderUserTable()}</Table.Body>

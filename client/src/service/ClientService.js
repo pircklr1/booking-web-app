@@ -276,5 +276,27 @@ export function adminCreateRoom(data) {
         .catch(error => {
             return false;
         });
+}
+
+export function adminUpdateUser(id, data) {
+    return axios
+        .put(baseUrl + /user/ + id, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return true;
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+
 
 }
