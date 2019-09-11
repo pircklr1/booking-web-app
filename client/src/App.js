@@ -1,9 +1,10 @@
 // This is the first component in front that will be executed
 
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import './App.css';
+
 
 //Pages
 import Settings from './pages/Settings';
@@ -21,11 +22,11 @@ import Register from './pages/Register';
 import NavBar from './components/NavBar';
 import { AuthProvider } from './context/auth';
 import AuthRoute from './utils/AuthRoute';
+import AdminRoute from './utils/AdminRoute';
 
 
+function App(props) {
 
-class App extends Component {
-  render() {
     return (
       <AuthProvider>
         <Router>
@@ -42,7 +43,8 @@ class App extends Component {
                 <Route exact path='/signup/:token' component={Register}/>
                 <AuthRoute exact path='/settings' component={Settings} />
                 <AuthRoute exact path='/bookings' component={User} />
-                <AuthRoute exact path='/admin' component={Admin} />
+                <AdminRoute exact path='/admin' component={Admin} />
+                {/*<AuthRoute exact path='/admin' component={Admin} />*/}
                 <Route component={NotFound} />
               </Switch>
             </Container>
@@ -50,7 +52,6 @@ class App extends Component {
         </Router>
       </AuthProvider>
     );
-  }
 }
 
 export default App;

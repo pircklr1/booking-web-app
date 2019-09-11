@@ -17,6 +17,7 @@ function AdminBookingsSearchForm({handleSubmit, handleUserChange, handleStartDat
                         fluid
                         search
                         selection
+                        //here we add all users -option to dropdown, key is normally userId(uuid), so here we use key = 1
                         options={getUsers().concat({key: 1, text: 'Kaikki', value: 1}).reverse()}
                         onChange={handleUserChange}
                         value={user}

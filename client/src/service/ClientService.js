@@ -29,14 +29,12 @@ export const getAllBookingsPromise = async () => {
                     'Content-Type': 'application/json',
                     token: localStorage.getItem('jwtToken')
                 }
-            })
+            });
         return result.data
     } catch (e) {
         console.log(e)
     }
-
-
-}
+};
 
 // @route   GET api/userbookings/:userId
 // @desc    Get all bookings for user
@@ -65,13 +63,12 @@ export const getUserBookingsPromise = async (id) => {
                     'Content-Type': 'application/json',
                     token: localStorage.getItem('jwtToken')
                 }
-            })
-        console.log("result", result)
+            });
         return result.data
     } catch (e) {
         console.log(e)
     }
-}
+};
 
 export function createBooking(data) {
     return axios
@@ -82,7 +79,7 @@ export function createBooking(data) {
             }
         })
         .then(response => {
-            console.log(response);
+            // console.log(response);
             if (response.status === 200) {
                 return true;
             } else {
@@ -297,5 +294,27 @@ export function adminCreateRoom(data) {
         .catch(error => {
             return false;
         });
+}
+
+export function adminUpdateUser(id, data) {
+    return axios
+        .put(baseUrl + /user/ + id, data, {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return true;
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+
 
 }

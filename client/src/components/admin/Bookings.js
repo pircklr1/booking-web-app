@@ -9,18 +9,18 @@ import Notification from "../Notification";
 
 function Bookings() {
     const [bookingData, setBookingData] = useState([]);
-    const [startDate, setStartDate] = useState(new Date())
-    const [endDate, setEndDate] = useState(new Date())
-    const [userData, setUserData] = useState([])
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const [userData, setUserData] = useState([]);
     const [user, setUser] = useState(1);
-    const [message, setMessage] = useState(null)
+    const [message, setMessage] = useState(null);
     const [rerender, setRerender] = useState(1);
 
     useEffect(() => {
         getAllUsers(setUserData);
         handleSubmit();
         setRerender(false);
-    }, [rerender])
+    }, [rerender]);
 
     function update() {
         setRerender(rerender + 1);
@@ -29,17 +29,17 @@ function Bookings() {
     //get user names to dropdown
     const getUsers = () => {
         return userData.map(user => {
-            return {key: user.id, text: user.firstName + " " + user.lastName, value: user.id}
+            return {key: user.id, text: user.lastName + " " + user.firstName, value: user.id}
         })
-    }
+    };
 
-    const handleUserChange = (e, {value}) => setUser(value)
-    const handleStartDateChange = date => setStartDate(date)
-    const handleEndDateChange = date => setEndDate(date)
+    const handleUserChange = (e, {value}) => setUser(value);
+    const handleStartDateChange = date => setStartDate(date);
+    const handleEndDateChange = date => setEndDate(date);
 
     //handle form (AdminBookingSearchForm) submit
     const handleSubmit = async () => {
-        setMessage(null)
+        setMessage(null);
         const data = {
             user_id: user,
             start_date: moment(startDate).format('YYYY-MM-DD'),
@@ -55,6 +55,7 @@ function Bookings() {
                 .isBetween(data.start_date, data.end_date, null, '[]'));
 
             setBookingData(bookingsByDates)
+
         } catch (e) {
             setMessage('Odottamaton virhe')
         }
@@ -76,7 +77,7 @@ function Bookings() {
                 getUsers={getUsers}
             />
             {message &&
-            <Notification message={message}/>
+                <Notification message={message}/>
             }
             <Header as='h3' attached='top' block>Haetut varaukset</Header>
             <AdminBookingsTable tableData={bookingData} update={update}/>

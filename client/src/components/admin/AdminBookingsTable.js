@@ -12,16 +12,11 @@ function AdminBookingsTable({tableData, update}) {
     // const {currentUser} = useContext(AuthContext);
     const [userData, setUserData] = useState([]);
     const [roomData, setRoomData] = useState([]);
-    // const [isLoading, setIsLoading] = useState(false);
-    const [hourSum, setHourSum] = useState("");
-    // const [rerender, setRerender] = useState(1);
+    const [hourSum, setHourSum] = useState(0);
 
     useEffect(() => {
-        // setIsLoading(true);
-        setHourSum("");
         getAllUsers(setUserData);
         getAllRooms(setRoomData);
-        // setIsLoading(false);
     }, []);
 
     //get room name by room Id (from booking bookingData)
@@ -29,7 +24,7 @@ function AdminBookingsTable({tableData, update}) {
         return roomData.map(room => {
             if (room.id === roomId) {
                 return room.name;
-            }else{
+            } else {
                 return "";
             }
         })
@@ -40,46 +35,19 @@ function AdminBookingsTable({tableData, update}) {
         return userData.map(user => {
             if (user.id === userId) {
                 return user.firstName + " " + user.lastName;
-            }else{
+            } else {
                 return "";
             }
         })
     };
-
 
     //count booked hours and push to array
     let hours = [];
     const count = (endTime, startTime) => {
         const end = moment(endTime, 'HH:mm');
         const start = moment(startTime, 'HH:mm');
-        hours.push(end.diff(start, "hours", true))
+        hours.push(end.diff(start, "hours", true));
         return end.diff(start, "hours", true);
-    };
-
-    const renderBookingTable = () => {
-        empty();
-        return tableData.map(booking => {
-            return (
-                <Table.Row key={booking.id}>
-                    <Table.Cell collapsing textAlign='center'>
-                        {moment(booking.bookingDate).format('DD.MM.YYYY')}
-                    </Table.Cell>
-                    <Table.Cell collapsing textAlign='center'>
-                        {booking.startTime.substring(0, 5)}-
-                        {booking.endTime.substring(0, 5)}
-                    </Table.Cell>
-                    <Table.Cell>{count(booking.endTime, booking.startTime)}</Table.Cell>
-                    <Table.Cell>{roomName(booking.roomId)}</Table.Cell>
-                    <Table.Cell>{userName(booking.userId)}</Table.Cell>
-                    <Table.Cell collapsing textAlign='center'>
-                        <DeleteButton id={booking.id} type={'booking'} update={update}/>
-                    </Table.Cell>
-                    <Table.Cell collapsing textAlign='center'>
-                        <BookingEditModal booking={booking} update={update}/>
-                    </Table.Cell>
-                </Table.Row>
-            );
-        });
     };
 
     //count sum of hours
@@ -95,9 +63,30 @@ function AdminBookingsTable({tableData, update}) {
         return total + num;
     }
 
-    function empty() {
-        hours = [];
-    }
+    const renderBookingTable = () => {
+        return tableData.map(booking => {
+            return (
+                <Table.Row key={booking.id}>
+                    <Table.Cell collapsing textAlign='center'>
+                        {moment(booking.bookingDate).format('DD.MM.YYYY')}
+                    </Table.Cell>
+                    <Table.Cell collapsing textAlign='center'>
+                        {booking.startTime.substring(0, 5)}-
+                        {booking.endTime.substring(0, 5)}
+                    </Table.Cell>
+                    <Table.Cell>{count(booking.endTime, booking.startTime)}</Table.Cell>
+                    <Table.Cell>{roomName(booking.roomId)}</Table.Cell>
+                    <Table.Cell>{userName(booking.userId)}</Table.Cell>
+                    <Table.Cell collapsing textAlign='center'>
+                        <BookingEditModal booking={booking} update={update}/>
+                    </Table.Cell>
+                    <Table.Cell collapsing textAlign='center'>
+                        <DeleteButton id={booking.id} type={'booking'} update={update}/>
+                    </Table.Cell>
+                </Table.Row>
+            );
+        });
+    };
 
     return (
         <Table unstackable celled color={'blue'}>
@@ -108,8 +97,8 @@ function AdminBookingsTable({tableData, update}) {
                     <Table.HeaderCell>Tunnit</Table.HeaderCell>
                     <Table.HeaderCell>Huone</Table.HeaderCell>
                     <Table.HeaderCell>Käyttäjä</Table.HeaderCell>
-                    <Table.HeaderCell>Poista</Table.HeaderCell>
                     <Table.HeaderCell>Muokkaa</Table.HeaderCell>
+                    <Table.HeaderCell>Poista</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             {tableData && <Table.Body>{renderBookingTable()}</Table.Body>}
