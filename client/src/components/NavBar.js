@@ -68,17 +68,19 @@ function NavBar() {
             <Icon name='calendar alternate outline' />
             Omat varaukset
           </Menu.Item>
+          {currentUser.isadmin &&
           <Menu.Item
-            as={Link}
-            to='/admin'
-            name='admin'
-            iconposition='left'
-            active={activeItem === 'admin'}
-            onClick={handleItemClick}
+              as={Link}
+              to='/admin'
+              name='admin'
+              iconposition='left'
+              active={activeItem === 'admin'}
+              onClick={handleItemClick}
           >
-            <Icon name='key' />
+            <Icon name='key'/>
             Admin
           </Menu.Item>
+          }
           <Menu.Menu position='right'>
             <Dropdown
               trigger={
@@ -179,15 +181,17 @@ function NavBar() {
               <Icon name='settings' />
               Asetukset
             </Menu.Item>
+            {currentUser.isadmin &&
             <Menu.Item
-              style={{ color: 'white' }}
-              as={Link}
-              to='/admin'
-              onClick={handleToggle}
+                style={{color: 'white'}}
+                as={Link}
+                to='/admin'
+                onClick={handleToggle}
             >
-              <Icon name='adn' />
+              <Icon name='adn'/>
               Admin
             </Menu.Item>
+            }
             <Menu.Item
               style={{ color: 'white' }}
               as={Link}
@@ -235,17 +239,17 @@ function NavBar() {
             <Icon name='key' />
             Kirjaudu
           </Menu.Item>
-          <Menu.Item
-            as={Link}
-            to='/signup'
-            name='signup'
-            iconposition='left'
-            active={activeItem === 'signup'}
-            onClick={handleItemClick}
-          >
-            <Icon name='signup' />
-            Rekisteröidy
-          </Menu.Item>
+          {/*<Menu.Item*/}
+          {/*  as={Link}*/}
+          {/*  to='/signup'*/}
+          {/*  name='signup'*/}
+          {/*  iconposition='left'*/}
+          {/*  active={activeItem === 'signup'}*/}
+          {/*  onClick={handleItemClick}*/}
+          {/*>*/}
+          {/*  <Icon name='signup' />*/}
+          {/*  Rekisteröidy*/}
+          {/*</Menu.Item>*/}
         </Menu>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
@@ -294,15 +298,15 @@ function NavBar() {
               <Icon name='key' />
               Kirjaudu sisään
             </Menu.Item>
-            <Menu.Item
-              style={{ color: 'white' }}
-              as={Link}
-              to='/signup'
-              onClick={handleToggle}
-            >
-              <Icon name='signup' />
-              Rekisteröidy
-            </Menu.Item>
+            {/*<Menu.Item*/}
+            {/*  style={{ color: 'white' }}*/}
+            {/*  as={Link}*/}
+            {/*  to='/signup'*/}
+            {/*  onClick={handleToggle}*/}
+            {/*>*/}
+            {/*  <Icon name='signup' />*/}
+            {/*  Rekisteröidy*/}
+            {/*</Menu.Item>*/}
           </Sidebar>
         </Menu>
       </Responsive>

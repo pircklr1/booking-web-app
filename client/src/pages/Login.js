@@ -121,7 +121,8 @@ function Login(props) {
         <Message>
           <a href='/forgot'>Unohtuiko salasana?</a>
           <br />
-          Ei vielä tunnuksia? <a href='/signup'>Rekisteröidy</a>
+          {/*Ei vielä tunnuksia? <a href='/signup'>Rekisteröidy</a>*/}
+          Ei vielä tunnuksia? Ota yhteyttä ylläpitäjään.
         </Message>
       </Grid.Column>
     </Grid>
