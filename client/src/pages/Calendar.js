@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import RoomList from '../components/RoomList';
 import BookingForm from '../components/BookingForm';
-import CalendarCellPopup from '../components/CalendarCellPopup';
 import { Container, Responsive } from 'semantic-ui-react';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -24,7 +23,6 @@ class Calendar extends Component {
           </Container>
           <Container style={{ marginTop: 20 }}>
             <BookingForm />
-            <CalendarCellPopup />
           </Container>
         </Responsive>
         <Responsive
