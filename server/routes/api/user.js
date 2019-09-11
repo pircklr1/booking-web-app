@@ -57,7 +57,8 @@ module.exports = (app, db) => {
                     .update({
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
-                        email: req.body.email
+                        email: req.body.email,
+                        isAdmin: req.body.isAdmin
                     })
                     .then(() => {
                         console.log('user updated');

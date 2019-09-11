@@ -19,7 +19,7 @@ class SettingsForm extends Component {
             firstNameError: false,
             lastNameError: false,
             emailError: false,
-            isAdmin: false
+            // isAdmin: false
         };
     }
 
@@ -62,7 +62,7 @@ class SettingsForm extends Component {
     updateUser = async (e) => {
         e.preventDefault();
         const userId = localStorage.getItem('userId');
-        const {firstName, lastName, email, confirmEmail, isAdmin} = this.state;
+        const {firstName, lastName, email, confirmEmail} = this.state;
         if (firstName.length < 2){
             this.setState({
                 firstNameError: true,
@@ -92,8 +92,7 @@ class SettingsForm extends Component {
                     {
                         firstName,
                         lastName,
-                        email,
-                        isAdmin
+                        email
                     }, {
                         headers: {
                             'Content-Type': 'application/json',
