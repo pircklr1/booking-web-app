@@ -12,16 +12,11 @@ function AdminBookingsTable({tableData, update}) {
     // const {currentUser} = useContext(AuthContext);
     const [userData, setUserData] = useState([]);
     const [roomData, setRoomData] = useState([]);
-    // const [isLoading, setIsLoading] = useState(false);
-    const [hourSum, setHourSum] = useState("");
-    // const [rerender, setRerender] = useState(1);
+    const [hourSum, setHourSum] = useState(0);
 
     useEffect(() => {
-        // setIsLoading(true);
-        setHourSum("");
         getAllUsers(setUserData);
         getAllRooms(setRoomData);
-        // setIsLoading(false);
     }, []);
 
     //get room name by room Id (from booking bookingData)
@@ -29,7 +24,7 @@ function AdminBookingsTable({tableData, update}) {
         return roomData.map(room => {
             if (room.id === roomId) {
                 return room.name;
-            }else{
+            } else {
                 return "";
             }
         })
@@ -40,24 +35,35 @@ function AdminBookingsTable({tableData, update}) {
         return userData.map(user => {
             if (user.id === userId) {
                 return user.firstName + " " + user.lastName;
-            }else{
+            } else {
                 return "";
             }
         })
     };
-
 
     //count booked hours and push to array
     let hours = [];
     const count = (endTime, startTime) => {
         const end = moment(endTime, 'HH:mm');
         const start = moment(startTime, 'HH:mm');
-        hours.push(end.diff(start, "hours", true))
+        hours.push(end.diff(start, "hours", true));
         return end.diff(start, "hours", true);
     };
 
+    //count sum of hours
+    const countHours = () => {
+        if (hours.length > 0) {
+            setHourSum(hours.reduce(countHelper))
+        } else {
+            setHourSum("ei laskettavaa")
+        }
+    };
+
+    function countHelper(total, num) {
+        return total + num;
+    }
+
     const renderBookingTable = () => {
-        empty();
         return tableData.map(booking => {
             return (
                 <Table.Row key={booking.id}>
@@ -81,23 +87,6 @@ function AdminBookingsTable({tableData, update}) {
             );
         });
     };
-
-    //count sum of hours
-    const countHours = () => {
-        if (hours.length > 0) {
-            setHourSum(hours.reduce(countHelper))
-        } else {
-            setHourSum("ei laskettavaa")
-        }
-    };
-
-    function countHelper(total, num) {
-        return total + num;
-    }
-
-    function empty() {
-        hours = [];
-    }
 
     return (
         <Table unstackable celled color={'blue'}>

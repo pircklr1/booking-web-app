@@ -2,21 +2,9 @@
 // cancel rools: 1 week for the big room "Stage", 24h for other rooms
 
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  getUserBookings,
-  getRoomData,
-  adminDeleteBooking
+import {getUserBookings, getRoomData, adminDeleteBooking
 } from '../service/ClientService';
-import {
-  Button,
-  Table,
-  Container,
-  Header,
-  Grid,
-  Icon,
-  Confirm,
-  Tab
-} from 'semantic-ui-react';
+import {Button, Table, Container, Header, Grid, Icon, Confirm, Tab} from 'semantic-ui-react';
 import moment from 'moment';
 import { AuthContext } from '../context/auth';
 
@@ -28,39 +16,27 @@ function User() {
   const [data, setData] = useState([]);
   const [rooms, setRooms] = useState([]);
   const [open, setOpen] = useState(false);
-  //const [isLoading, setIsLoading] = useState(false);
   const [roomId, setRoomId] = useState(null);
 
   useEffect(() => {
-    //setIsLoading(true);
     getUserBookings(currentUser.id, setData);
     getRoomData(setRooms);
-    //setIsLoading(false);
-    // }, []);
   }, [currentUser.id]);
 
-  //Here we define the user's name for a greeting.
-  let username = 'Käyttäjä';
-  if (currentUser !== null) {
-    if (typeof currentUser !== 'undefined') {
-      username = currentUser.username;
+    //Here we define the user's name for a greeting.
+    let username = 'Käyttäjä';
+    if (currentUser !== null) {
+        if (typeof currentUser !== 'undefined') {
+            username = currentUser.username;
+        }
     }
-  }
 
-  //get room name by room Id (from booking data)
-  const roomName = roomId => {
-    const room = rooms.find(room => room.id === roomId);
-    if (room === undefined) return ' ';
-    return room.name;
-  };
-
-  // const roomName = (roomId) => {
-  //     return rooms.map(room => {
-  //         if(room.id === roomId){
-  //             return room.name;
-  //         }
-  //     })
-  // };
+    //get room name by room Id (from booking data)
+    const roomName = (roomId) => {
+        const room = rooms.find(room => room.id === roomId)
+        if (room === undefined) return " "
+        return room.name
+    };
 
   //cancel booking
   const deleteBooking = bookingId => {
@@ -160,82 +136,66 @@ function User() {
         cancel = true;
       }
 
-      if (
-        moment(booking.bookingDate).isSameOrAfter(
-          moment(now).format('YYYY-MM-DD')
-        )
-      ) {
-        return (
-          <Table.Row key={booking.id}>
-            <Table.Cell collapsing textAlign='center'>
-              {moment(booking.bookingDate).format('DD.MM.YYYY')}
-            </Table.Cell>
-            <Table.Cell collapsing textAlign='center'>
-              {booking.startTime.substring(0, 5)}-
-              {booking.endTime.substring(0, 5)}
-            </Table.Cell>
-            <Table.Cell collapsing textAlign='center'>
-              {roomName(booking.roomId)}
-            </Table.Cell>
-            <Table.Cell collapsing textAlign='center'>
-              <Button
-                disabled={cancel}
-                negative
-                basic
-                icon
-                onClick={event => {
-                  show();
-                  setRoomIdString(booking.id);
-                }}
-              >
-                <i className='trash icon' />
-              </Button>
-              <Confirm
-                open={open}
-                onCancel={handleCancel}
-                cancelButton='Takaisin'
-                confirmButton='Peru varaus'
-                onConfirm={() => deleteBooking(roomId)}
-                content='Haluatko varmasti perua varauksen?'
-              />
-            </Table.Cell>
-          </Table.Row>
-        );
-      } else {
-        return '';
-      }
-    });
-  };
+            if (moment(booking.bookingDate).isSameOrAfter(moment(now).format('YYYY-MM-DD'))) {
+                return (
+                    <Table.Row key={booking.id}>
+                        <Table.Cell collapsing textAlign='center'>
+                            {moment(booking.bookingDate).format('DD.MM.YYYY')}
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            {booking.startTime.substring(0, 5)}-
+                            {booking.endTime.substring(0, 5)}
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            {roomName(booking.roomId)}
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            <Button disabled={cancel} negative basic icon onClick={(event) => {
+                                show();
+                                setRoomIdString(booking.id)
+                            }}>
+                                <i className='trash icon'/>
+                            </Button>
+                            <Confirm
+                                open={open}
+                                onCancel={handleCancel}
+                                cancelButton='Takaisin'
+                                confirmButton="Peru varaus"
+                                onConfirm={() => deleteBooking(roomId)}
+                                content='Haluatko varmasti perua varauksen?'
+                            />
+                        </Table.Cell>
+                    </Table.Row>
+                );
+            }
+        });
+    };
 
-  //past bookings all
-  const renderUserPastBookingTable = () => {
-    return data.map(booking => {
-      let now = moment();
-      if (
-        moment(booking.bookingDate).isBefore(moment(now).format('YYYY-MM-DD'))
-      ) {
-        return (
-          <Table.Row key={booking.id}>
-            <Table.Cell collapsing textAlign='center'>
-              {moment(booking.bookingDate).format('DD.MM.YYYY')}
-            </Table.Cell>
-            <Table.Cell collapsing textAlign='center'>
-              {booking.startTime.substring(0, 5)}-
-              {booking.endTime.substring(0, 5)}
-            </Table.Cell>
-            <Table.Cell collapsing textAlign='center'>
-              {roomName(booking.roomId)}
-            </Table.Cell>
-            <Table.Cell collapsing textAlign='center'>
-              <Icon name='times' />
-            </Table.Cell>
-          </Table.Row>
-        );
-      } else {
-        return '';
-      }
-    });
-  };
+    //past bookings all
+    const renderUserPastBookingTable = () => {
+        return data.map(booking => {
+            let now = moment();
+            if (moment(booking.bookingDate).isBefore(moment(now).format('YYYY-MM-DD'))) {
+                return (
+                    <Table.Row key={booking.id}>
+                        <Table.Cell collapsing textAlign='center'>
+                            {moment(booking.bookingDate).format('DD.MM.YYYY')}
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            {booking.startTime.substring(0, 5)}-
+                            {booking.endTime.substring(0, 5)}
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            {roomName(booking.roomId)}
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            <Icon name='times'/>
+                        </Table.Cell>
+                    </Table.Row>
+                );
+            }
+        });
+    };
 
   //past 10 bookings
   const renderUserPastTenBookingTable = () => {
