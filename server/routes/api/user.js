@@ -43,7 +43,7 @@ module.exports = (app, db) => {
     // @desc    Modify existing user
     // @access  Public
     app.put('/api/user/:id', withAuth, (req, res) => {
-        const {errors, isValid} = validateUserSettingsInput(req.body);
+        const { errors, isValid } = validateUserSettingsInput(req.body);
         if (!isValid) {
             return res.status(400).json(errors);
         }
@@ -61,7 +61,7 @@ module.exports = (app, db) => {
                     })
                     .then(() => {
                         console.log('user updated');
-                        res.status(200).send({message: 'user updated'});
+                        res.status(200).send({ message: 'user updated' });
                     });
             }
         });
@@ -82,7 +82,7 @@ module.exports = (app, db) => {
     // @desc    Login User / Returning JWT Token
     // @access  Public
     app.post('/api/users/login', (req, res) => {
-        const {errors, isValid} = validateLoginInput(req.body);
+        const { errors, isValid } = validateLoginInput(req.body);
 
         // Check Validation
         if (!isValid) {
@@ -105,12 +105,17 @@ module.exports = (app, db) => {
             bcrypt.compare(req.body.password, user.password).then(isMatch => {
                 if (isMatch) {
                     // User Matched
-                    const payload = {id: user.id, email: user.email, isadmin: user.isAdmin}; // Create JWT Payload
+                    const payload = {
+                        id: user.id,
+                        email: user.email,
+                        isadmin: user.isAdmin,
+                        username: user.firstName
+                    }; // Create JWT Payload
 
                     // Sign Token
-                    jwt.sign(payload, SECRET_KEY, {expiresIn: 3600}, (err, token) => {
+                    jwt.sign(payload, SECRET_KEY, { expiresIn: 3600 }, (err, token) => {
                         res.json({
-                            name: user.firstName,
+                            username: user.firstName,
                             id: user.id,
                             isadmin: user.isAdmin,
                             token
@@ -149,7 +154,7 @@ module.exports = (app, db) => {
     // @desc    Register user
     // @access  Public
     app.put('/api/users/register', (req, res) => {
-        const {errors, isValid} = validateRegisterInput(req.body);
+        const { errors, isValid } = validateRegisterInput(req.body);
         // Check Validation
         if (!isValid) {
             return res.status(400).json(errors);
@@ -177,7 +182,7 @@ module.exports = (app, db) => {
                             })
                             .then(() => {
                                 console.log('user updated');
-                                res.status(200).send({message: 'user updated'});
+                                res.status(200).send({ message: 'user updated' });
                             });
                     });
             } else {
