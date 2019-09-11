@@ -31,6 +31,14 @@ function User() {
   //const [isLoading, setIsLoading] = useState(false);
   const [roomId, setRoomId] = useState(null);
 
+  useEffect(() => {
+    //setIsLoading(true);
+    getUserBookings(currentUser.id, setData);
+    getRoomData(setRooms);
+    //setIsLoading(false);
+    // }, []);
+  }, [currentUser.id]);
+
   //Here we define the user's name for a greeting.
   let username = 'Käyttäjä';
   if (currentUser !== null) {
@@ -40,13 +48,6 @@ function User() {
       }
     }
   }
-
-  useEffect(() => {
-    //setIsLoading(true);
-    getUserBookings(currentUser.id, setData);
-    getRoomData(setRooms);
-    //setIsLoading(false);
-  }, []);
 
   //get room name by room Id (from booking data)
   const roomName = roomId => {
@@ -232,6 +233,8 @@ function User() {
             </Table.Cell>
           </Table.Row>
         );
+      } else {
+        return '';
       }
     });
   };

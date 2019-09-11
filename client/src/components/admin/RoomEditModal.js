@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useContext} from 'react';
+// import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import {adminUpdateRoom} from "../../service/ClientService";
-import {Button, Form, Icon, Modal, Radio} from "semantic-ui-react";
+import {Button, Form, Icon, Modal} from "semantic-ui-react";
 import Notification from "../Notification";
-import validateRoomEditModal from '../../validation/RoomEditModalValidation';
+// import validateRoomEditModal from '../../validation/RoomEditModalValidation';
 
 function RoomEditModal(props) {
     const [room, setRoom] = useState("");
@@ -14,8 +15,7 @@ function RoomEditModal(props) {
 
     useEffect(() => {
         setRoom(props.room)
-        console.log(available)
-    }, [available])
+    }, [])
 
     const handleNameChange = (e, {value}) => setName(value);
     const handleCapacityChange = (e, {value}) => setCapacity(value);
@@ -38,7 +38,7 @@ function RoomEditModal(props) {
     }
 
     return(
-        <Modal trigger={<Button ui primary basic icon><Icon className='edit'/></Button>}>
+        <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>}>
             <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Muokkaa huonetta</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>

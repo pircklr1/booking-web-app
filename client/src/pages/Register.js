@@ -1,6 +1,7 @@
 import {Button, Form, Grid, Header, Message, Segment} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 
 const baseUrl = 'http://localhost:9999/api';
 
@@ -19,7 +20,8 @@ class Register extends Component {
             error: false,
             firstNameError: false,
             lastNameError: false,
-            passwordError: false
+            passwordError: false,
+            redirect: false
         };
     }
 
@@ -107,15 +109,16 @@ class Register extends Component {
                     this.setState({
                         updated: true,
                         error: false,
-                        // password: '',
-                        // confirmPassword: ''
                     });
+                    setTimeout(() => {
+                        this.setState({
+                            redirect: true
+                        })
+                    }, 2000);
                 } else {
                     this.setState({
                         updated: false,
-                        error: true,
-                        // password: '',
-                        // confirmPassword: ''
+                        error: true
                     });
                 }
             } catch (error) {
@@ -127,7 +130,7 @@ class Register extends Component {
     render() {
         const {
             firstName, lastName, password, error, updated, confirmPassword, email,
-            messageFromServer, firstNameError, lastNameError, passwordError
+            messageFromServer, firstNameError, lastNameError, passwordError, redirect
         } = this.state;
 
         if (error) {
@@ -141,6 +144,11 @@ class Register extends Component {
                 </div>
             );
         }
+        if (redirect) {
+            return (
+                <Redirect to={'/login'} />
+            )
+        }
         return (
             <Grid textAlign='center' style={{height: '70vh'}} verticalAlign='middle'>
                 <Grid.Column style={{maxWidth: 450}}>
@@ -153,7 +161,6 @@ class Register extends Component {
                                 fluid
                                 icon='user'
                                 iconPosition='left'
-                                //label='Etunimi'
                                 placeholder='Etunimi'
                                 name='firstName'
                                 type='text'
@@ -162,7 +169,6 @@ class Register extends Component {
                                 onChange={this.handleChange('firstName')}
                             />
                             <Form.Input
-                                //label='Sukunimi'
                                 icon='user'
                                 iconPosition='left'
                                 placeholder='Sukunimi'
@@ -176,7 +182,6 @@ class Register extends Component {
                                 fluid
                                 icon='envelope'
                                 iconPosition='left'
-                                //label='Sähköpostiosoite'
                                 placeholder='Sähköpostiosoite'
                                 name='email'
                                 type='text'
@@ -186,7 +191,6 @@ class Register extends Component {
                                 fluid
                                 icon='lock'
                                 iconPosition='left'
-                                //label='Salasana'
                                 placeholder='Salasana'
                                 name='password'
                                 type='password'
@@ -198,7 +202,6 @@ class Register extends Component {
                                 fluid
                                 icon='lock'
                                 iconPosition='left'
-                                //label='Salasanan vahvistus'
                                 placeholder='Salasanan vahvistus'
                                 name='confirmPassword'
                                 type='password'
