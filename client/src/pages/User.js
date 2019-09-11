@@ -2,26 +2,13 @@
 // cancel rools: 1 week for the big room "Stage", 24h for other rooms
 
 import React, { useState, useEffect, useContext } from 'react';
-import {
-  getUserBookings,
-  getRoomData,
-  adminDeleteBooking
+import {getUserBookings, getRoomData, adminDeleteBooking
 } from '../service/ClientService';
-import {
-  Button,
-  Table,
-  Container,
-  Header,
-  Grid,
-  Icon,
-  Confirm,
-  Tab
-} from 'semantic-ui-react';
+import {Button, Table, Container, Header, Grid, Icon, Confirm, Tab} from 'semantic-ui-react';
 import moment from 'moment';
 import { AuthContext } from '../context/auth';
 
 function User() {
-    
 
     //this needs to be changed to "Stage" id!!
     let bigRoom = '69df3828-edeb-4727-bde7-645847626292';
@@ -41,14 +28,13 @@ function User() {
     // }, []);
     }, [currentUser.id]);
 
-//Here we define the user's name for a greeting.
-let username = 'Käyttäjä';
-if (currentUser !== null) {
-    if (typeof currentUser !== 'undefined') {
-        username = currentUser.username;
+    //Here we define the user's name for a greeting.
+    let username = 'Käyttäjä';
+    if (currentUser !== null) {
+        if (typeof currentUser !== 'undefined') {
+            username = currentUser.username;
+        }
     }
-}
-
 
     //get room name by room Id (from booking data)
     const roomName = (roomId) => {
@@ -181,8 +167,6 @@ if (currentUser !== null) {
                         </Table.Cell>
                     </Table.Row>
                 );
-            }else{
-                return ''
             }
         });
     };
@@ -209,8 +193,6 @@ if (currentUser !== null) {
                         </Table.Cell>
                     </Table.Row>
                 );
-            }else{
-                return "";
             }
         });
     };
@@ -253,6 +235,7 @@ if (currentUser !== null) {
         <Grid textAlign='center' verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header textAlign='left'>Hei, {username}!</Header>
+            {/*  <Header textAlign='left'>Hei, {currentUser.name}!</Header>*/}
             <Header as='h2' attached='top' block>
               Tulevat varaukset
             </Header>
