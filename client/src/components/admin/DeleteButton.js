@@ -27,7 +27,7 @@ export default function DeleteButton({id, type, update}) {
     }
 
     return (
-        <Button ui negative basic icon onClick={deleteBooking}>
+        <Button negative basic icon onClick={deleteBooking}>
             <i className='trash icon'/>
         </Button>
     );

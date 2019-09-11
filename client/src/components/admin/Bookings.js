@@ -1,5 +1,6 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {Form, Header, Tab} from "semantic-ui-react";
+// import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
+import {Header} from "semantic-ui-react";
 import AdminBookingsSearchForm from "./AdminBookingsSearchForm";
 import AdminBookingsTable from "./AdminBookingsTable";
 import moment from "moment";
@@ -36,6 +37,7 @@ function Bookings() {
     const handleStartDateChange = date => setStartDate(date)
     const handleEndDateChange = date => setEndDate(date)
 
+    //handle form (AdminBookingSearchForm) submit
     const handleSubmit = async () => {
         setMessage(null)
         const data = {
