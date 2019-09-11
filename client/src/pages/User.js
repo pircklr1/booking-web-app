@@ -35,7 +35,9 @@ function User() {
   let username = 'Käyttäjä';
   if (currentUser !== null) {
     if (typeof currentUser !== 'undefined') {
-      username = currentUser.username;
+      if (typeof currentUser.username !== 'undefined') {
+        username = currentUser.username;
+      }
     }
   }
 

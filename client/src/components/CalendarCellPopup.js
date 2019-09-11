@@ -32,7 +32,7 @@ function CalendarCellPopup(props) {
 
   return (
     <div>
-      <Modal>
+      <Modal trigger={<Button primary>Testi</Button>}>
         <Modal.Header
           style={{ borderBottomColor: '#0e6eb8', borderWidth: '4px' }}
         >
