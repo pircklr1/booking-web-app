@@ -1,6 +1,7 @@
 // Admin panel
-import React, { useState, useEffect } from 'react';
-import {Container, Header, Icon, Grid, Tab, Responsive} from 'semantic-ui-react';
+// import React, { useState, useEffect } from 'react';
+import React from 'react';
+import {Container, Header, Icon, Tab, Responsive} from 'semantic-ui-react';
 import Rooms from "../components/admin/Rooms";
 import Users from "../components/admin/Users";
 import Bookings from "../components/admin/Bookings";

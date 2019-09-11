@@ -3,6 +3,11 @@
 const validateBookingForm = (data) => {
     // console.log('data in form validation', data)
 
+    //user must be set when creating booking as a admin user
+    if(data.user_id === '') {
+        throw new Error('user has to be selected')
+    }
+
     //room can be booked between 06:00 and 22:00
     if (data.start_time.substring(0,2) < 6) {
         throw new Error('start time is before 6 am')

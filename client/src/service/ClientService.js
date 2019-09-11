@@ -95,6 +95,27 @@ export function createBooking(data) {
         });
 }
 
+export function createBookingForAllRooms(data) {
+    return axios
+        .post(baseUrl + '/booking/allrooms', data, {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        })
+        .then(response => {
+            if (response.status === 200) {
+                return true;
+            } else {
+                const error = new Error(response.error);
+                throw error;
+            }
+        })
+        .catch(error => {
+            return false;
+        });
+}
+
 // @route   GET api/users
 // @desc    Get all users
 // @access  Public

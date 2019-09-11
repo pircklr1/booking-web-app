@@ -21,7 +21,7 @@ function AdminAllUsers(){
     const renderUserTable = () => {
         return userData.map(user => {
             return (
-                <Table.Row textAlign='center'>
+                <Table.Row textAlign='center' key={user.id}>
                     <Table.Cell>{user.lastName} {user.firstName}</Table.Cell>
                     <Table.Cell>{user.email}</Table.Cell>
                     <Table.Cell collapsing textAlign='center'>

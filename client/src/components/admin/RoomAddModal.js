@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react';
+// import React, {useState, useEffect, useContext} from 'react';
+import React, {useState} from 'react';
 import {adminCreateRoom} from "../../service/ClientService";
 import {Button, Form, Icon, Modal} from "semantic-ui-react";
 import Notification from "../Notification";
@@ -39,7 +40,7 @@ function RoomAddModal(props) {
     }
 
     return(
-        <Modal trigger={<Button ui positive basic icon><Icon className='add circle'/></Button>}>
+        <Modal trigger={<Button positive basic icon><Icon className='add circle'/></Button>}>
             <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Muokkaa huonetta</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>
