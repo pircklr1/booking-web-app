@@ -1,37 +1,64 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import {getAllUsers} from '../../service/ClientService';
-import {Table} from 'semantic-ui-react';
+import {Table, Icon} from 'semantic-ui-react';
 import DeleteButton from "./DeleteButton";
-import {AuthContext} from "../../context/auth";
 import UserEditModal from "./UserEditModal";
 
 
 function AdminAllUsers(){
-    const {currentUser} = useContext(AuthContext);
-    const [data, setData] = useState([]);
     const [userData, setUserData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [rerender, setRerender] = useState(1);
+    const [showCheckMark] = useState(true);
+    const [showX] = useState(true);
 
     useEffect(() => {
-      setIsLoading(true);
       getAllUsers(setUserData);
-      setIsLoading(false);
-    }, []);
+      setRerender(false);
+    }, [rerender]);
+
+    function update(){
+        setRerender(rerender + 1);
+    }
 
     const renderUserTable = () => {
         return userData.map(user => {
-            return (
-                <Table.Row textAlign='center' key={user.id}>
-                    <Table.Cell>{user.lastName} {user.firstName}</Table.Cell>
-                    <Table.Cell>{user.email}</Table.Cell>
-                    <Table.Cell collapsing textAlign='center'>
-                        <DeleteButton id={user.id} type={'user'} />
-                    </Table.Cell>
-                    <Table.Cell collapsing textAlign='center'>
-                        <UserEditModal user={user}/>
-                    </Table.Cell>
-                </Table.Row>
-            );
+            if (user.isAdmin === true) {
+                return (
+                    <Table.Row textAlign='center' key={user.id}>
+                        <Table.Cell>{user.lastName} {user.firstName}</Table.Cell>
+                        <Table.Cell>{user.email}</Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            {showCheckMark &&
+                            <Icon name='checkmark' color='green'/>
+                            }
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            <UserEditModal user={user} update={update}/>
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            <DeleteButton id={user.id} type={'user'} update={update}/>
+                        </Table.Cell>
+                    </Table.Row>
+                );
+            }else{
+                return (
+                    <Table.Row textAlign='center' key={user.id}>
+                        <Table.Cell>{user.lastName} {user.firstName}</Table.Cell>
+                        <Table.Cell>{user.email}</Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            {showX &&
+                            <Icon name='times' color='red'/>
+                            }
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            <UserEditModal user={user} update={update}/>
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            <DeleteButton id={user.id} type={'user'} update={update}/>
+                        </Table.Cell>
+                    </Table.Row>
+                )
+            }
         });
     };
 
@@ -41,8 +68,9 @@ function AdminAllUsers(){
                 <Table.Row>
                     <Table.HeaderCell>Nimi</Table.HeaderCell>
                     <Table.HeaderCell>Sähköposti</Table.HeaderCell>
-                    <Table.HeaderCell>Poista</Table.HeaderCell>
+                    <Table.HeaderCell>Admin</Table.HeaderCell>
                     <Table.HeaderCell>Muokkaa</Table.HeaderCell>
+                    <Table.HeaderCell>Poista</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
             <Table.Body>{renderUserTable()}</Table.Body>

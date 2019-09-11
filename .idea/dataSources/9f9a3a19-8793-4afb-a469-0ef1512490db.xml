@@ -8,7 +8,7 @@
       <ObjectId>17376</ObjectId>
       <StateNumber>1278</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>4287</IntrospectionStateNumber>
+      <IntrospectionStateNumber>6172</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
@@ -126,7 +126,7 @@
       <Comment>standard public schema</Comment>
       <StateNumber>352</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>4288</IntrospectionStateNumber>
+      <IntrospectionStateNumber>6173</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -214,52 +214,52 @@ admin</Labels>
       <SubCategory>enum</SubCategory>
     </object-type>
     <table id="34" parent="23" name="bookings">
-      <ObjectId>27011</ObjectId>
+      <ObjectId>32557</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
     </table>
     <table id="35" parent="23" name="rooms">
-      <ObjectId>27003</ObjectId>
+      <ObjectId>32548</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
     </table>
     <table id="36" parent="23" name="users">
-      <ObjectId>26992</ObjectId>
+      <ObjectId>32537</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
     </table>
     <column id="37" parent="34" name="id">
       <Position>1</Position>
       <DataType>uuid|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
       <TypeId>2950</TypeId>
     </column>
     <column id="38" parent="34" name="booking_date">
       <Position>2</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
       <TypeId>1082</TypeId>
     </column>
     <column id="39" parent="34" name="start_time">
       <Position>3</Position>
       <DataType>time|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
       <TypeId>1083</TypeId>
     </column>
     <column id="40" parent="34" name="end_time">
       <Position>4</Position>
       <DataType>time|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
       <TypeId>1083</TypeId>
     </column>
     <column id="41" parent="34" name="is_valid">
       <Position>5</Position>
       <DataType>boolean|0s</DataType>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
       <DefaultExpression>true</DefaultExpression>
       <TypeId>16</TypeId>
     </column>
@@ -267,47 +267,47 @@ admin</Labels>
       <Position>6</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
       <TypeId>1184</TypeId>
     </column>
     <column id="43" parent="34" name="updated_at">
       <Position>7</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
       <TypeId>1184</TypeId>
     </column>
     <column id="44" parent="34" name="user_id">
       <Position>8</Position>
       <DataType>uuid|0s</DataType>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
       <TypeId>2950</TypeId>
     </column>
     <column id="45" parent="34" name="room_id">
       <Position>9</Position>
       <DataType>uuid|0s</DataType>
-      <StateNumber>4282</StateNumber>
+      <StateNumber>6111</StateNumber>
       <TypeId>2950</TypeId>
     </column>
     <index id="46" parent="34" name="bookings_pkey">
-      <ObjectId>27015</ObjectId>
-      <StateNumber>4282</StateNumber>
+      <ObjectId>32561</ObjectId>
+      <StateNumber>6111</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <key id="47" parent="34" name="bookings_pkey">
-      <ObjectId>27016</ObjectId>
-      <StateNumber>4282</StateNumber>
+      <ObjectId>32562</ObjectId>
+      <StateNumber>6111</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>bookings_pkey</UnderlyingIndexName>
     </key>
     <foreign-key id="48" parent="34" name="bookings_user_id_fkey">
-      <ObjectId>27017</ObjectId>
-      <StateNumber>4282</StateNumber>
+      <ObjectId>32563</ObjectId>
+      <StateNumber>6111</StateNumber>
       <ColNames>user_id</ColNames>
-      <RefTableId>26992</RefTableId>
+      <RefTableId>32537</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
@@ -316,10 +316,10 @@ admin</Labels>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="49" parent="34" name="bookings_room_id_fkey">
-      <ObjectId>27022</ObjectId>
-      <StateNumber>4282</StateNumber>
+      <ObjectId>32568</ObjectId>
+      <StateNumber>6111</StateNumber>
       <ColNames>room_id</ColNames>
-      <RefTableId>27003</RefTableId>
+      <RefTableId>32548</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>rooms</RefTableName>
       <RefKeyName>rooms_pkey</RefKeyName>
@@ -331,60 +331,60 @@ admin</Labels>
       <Position>1</Position>
       <DataType>uuid|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4281</StateNumber>
+      <StateNumber>6110</StateNumber>
       <TypeId>2950</TypeId>
     </column>
     <column id="51" parent="35" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4281</StateNumber>
+      <StateNumber>6110</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="52" parent="35" name="capacity">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4281</StateNumber>
+      <StateNumber>6110</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="53" parent="35" name="available">
       <Position>4</Position>
       <DataType>boolean|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>4281</StateNumber>
+      <StateNumber>6110</StateNumber>
+      <DefaultExpression>true</DefaultExpression>
       <TypeId>16</TypeId>
     </column>
     <column id="54" parent="35" name="equipment">
       <Position>5</Position>
       <DataType>text|0s</DataType>
-      <StateNumber>4281</StateNumber>
+      <StateNumber>6110</StateNumber>
       <TypeId>25</TypeId>
     </column>
     <column id="55" parent="35" name="created_at">
       <Position>6</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4281</StateNumber>
+      <StateNumber>6110</StateNumber>
       <TypeId>1184</TypeId>
     </column>
     <column id="56" parent="35" name="updated_at">
       <Position>7</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4281</StateNumber>
+      <StateNumber>6110</StateNumber>
       <TypeId>1184</TypeId>
     </column>
     <index id="57" parent="35" name="rooms_pkey">
-      <ObjectId>27009</ObjectId>
-      <StateNumber>4281</StateNumber>
+      <ObjectId>32555</ObjectId>
+      <StateNumber>6110</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
     <key id="58" parent="35" name="rooms_pkey">
-      <ObjectId>27010</ObjectId>
-      <StateNumber>4281</StateNumber>
+      <ObjectId>32556</ObjectId>
+      <StateNumber>6110</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>rooms_pkey</UnderlyingIndexName>
@@ -393,91 +393,96 @@ admin</Labels>
       <Position>1</Position>
       <DataType>uuid|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4280</StateNumber>
+      <StateNumber>6109</StateNumber>
       <TypeId>2950</TypeId>
     </column>
     <column id="60" parent="36" name="first_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>4280</StateNumber>
+      <StateNumber>6109</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="61" parent="36" name="last_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>4280</StateNumber>
+      <StateNumber>6109</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="62" parent="36" name="email">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4280</StateNumber>
+      <StateNumber>6109</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="63" parent="36" name="password">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>4280</StateNumber>
+      <StateNumber>6109</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="64" parent="36" name="is_admin">
       <Position>6</Position>
       <DataType>boolean|0s</DataType>
-      <StateNumber>4280</StateNumber>
+      <StateNumber>6109</StateNumber>
       <DefaultExpression>false</DefaultExpression>
       <TypeId>16</TypeId>
     </column>
     <column id="65" parent="36" name="reset_password_token">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
-      <StateNumber>4280</StateNumber>
+      <StateNumber>6109</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="66" parent="36" name="reset_password_expires">
       <Position>8</Position>
       <DataType>timestamp with time zone|0s</DataType>
-      <StateNumber>4280</StateNumber>
+      <StateNumber>6109</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <column id="67" parent="36" name="created_at">
+    <column id="67" parent="36" name="register_user_token">
       <Position>9</Position>
-      <DataType>timestamp with time zone|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>4280</StateNumber>
-      <TypeId>1184</TypeId>
+      <DataType>varchar(255)|0s</DataType>
+      <StateNumber>6109</StateNumber>
+      <TypeId>1043</TypeId>
     </column>
-    <column id="68" parent="36" name="updated_at">
+    <column id="68" parent="36" name="created_at">
       <Position>10</Position>
       <DataType>timestamp with time zone|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>4280</StateNumber>
+      <StateNumber>6109</StateNumber>
       <TypeId>1184</TypeId>
     </column>
-    <index id="69" parent="36" name="users_pkey">
-      <ObjectId>26999</ObjectId>
-      <StateNumber>4280</StateNumber>
+    <column id="69" parent="36" name="updated_at">
+      <Position>11</Position>
+      <DataType>timestamp with time zone|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>6109</StateNumber>
+      <TypeId>1184</TypeId>
+    </column>
+    <index id="70" parent="36" name="users_pkey">
+      <ObjectId>32544</ObjectId>
+      <StateNumber>6109</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="70" parent="36" name="users_email_key">
-      <ObjectId>27001</ObjectId>
-      <StateNumber>4280</StateNumber>
+    <index id="71" parent="36" name="users_email_key">
+      <ObjectId>32546</ObjectId>
+      <StateNumber>6109</StateNumber>
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="71" parent="36" name="users_pkey">
-      <ObjectId>27000</ObjectId>
-      <StateNumber>4280</StateNumber>
+    <key id="72" parent="36" name="users_pkey">
+      <ObjectId>32545</ObjectId>
+      <StateNumber>6109</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
     </key>
-    <key id="72" parent="36" name="users_email_key">
-      <ObjectId>27002</ObjectId>
-      <StateNumber>4280</StateNumber>
+    <key id="73" parent="36" name="users_email_key">
+      <ObjectId>32547</ObjectId>
+      <StateNumber>6109</StateNumber>
       <ColNames>email</ColNames>
       <UnderlyingIndexName>users_email_key</UnderlyingIndexName>
     </key>

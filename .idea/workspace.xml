@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a8f49d5b-9121-44b2-a48e-a0cf4fa8f124" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Notification.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Notification.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/admin/Bookings.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/Bookings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/settings/PasswordSettings.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/settings/PasswordSettings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/settings/SettingsForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/settings/SettingsForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/ResetPassword.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/ResetPassword.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/pages/Signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/service/ClientService.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/service/ClientService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/models/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/models/users.js" afterDir="false" />
+    <list default="true" id="7481169c-8a28-45c7-959f-661cab3894c6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/188d323f-22b8-4feb-9e66-7e44a8a89066.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/188d323f-22b8-4feb-9e66-7e44a8a89066/storage_v2/_src_/database/booking.WQjbAw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/188d323f-22b8-4feb-9e66-7e44a8a89066/storage_v2/_src_/database/booking.WQjbAw/schema/public.abK9xQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/AdminAllUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/AdminAllUsers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/RoomEditModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/RoomEditModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/admin/UserEditModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/UserEditModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/pages/Settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/pages/Settings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/api/user.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,41 +80,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/components/admin/AdminAllUsers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="56" selection-start-line="1" selection-start-column="56" selection-end-line="1" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/components/admin/Rooms.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+            <state relative-caret-position="204">
+              <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
               <folding>
-                <element signature="e#0#51#0" expanded="true" />
+                <element signature="e#0#49#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" selection-start-line="3" selection-end-line="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -121,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/admin/UserEditModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+            <state relative-caret-position="15">
+              <caret line="33" column="6" lean-forward="true" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
               <folding>
                 <element signature="e#0#61#0" expanded="true" />
               </folding>
@@ -131,22 +105,29 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/pages/User.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2499">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/admin/RoomEditModal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+            <state relative-caret-position="70">
+              <caret line="33" column="42" lean-forward="true" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+              <folding>
+                <element signature="e#65#114#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -154,57 +135,21 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/server/routes/resetpassword.js" />
-        <option value="$PROJECT_DIR$/client/src/validation/ForgotPasswordValidationRules.js" />
-        <option value="$PROJECT_DIR$/client/src/components/UseForgotForm.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/updatepassword.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/resetpassword.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/updatepassworloggedin.js" />
-        <option value="$PROJECT_DIR$/client/package.json" />
-        <option value="$PROJECT_DIR$/client/src/pages/Login.js" />
-        <option value="$PROJECT_DIR$/client/src/context/auth.js" />
-        <option value="$PROJECT_DIR$/client/src/pages/User.js" />
-        <option value="$PROJECT_DIR$/server/models/bookings.js" />
-        <option value="$PROJECT_DIR$/client/src/components/SettingsForm.js" />
-        <option value="$PROJECT_DIR$/client/src/pages/Settings.js" />
-        <option value="$PROJECT_DIR$/server/.env" />
-        <option value="$PROJECT_DIR$/server/routes/api/updatepasswordloggedin.js" />
-        <option value="$PROJECT_DIR$/server/validation/updatepassword.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/updateforgottenpassword.js" />
-        <option value="$PROJECT_DIR$/server/validation/settings.js" />
-        <option value="$PROJECT_DIR$/client/src/validation/BookingFormValidation.js" />
-        <option value="$PROJECT_DIR$/client/src/validation/UserSettingsFormValidation.js" />
-        <option value="$PROJECT_DIR$/client/src/validation/FormErrors.js" />
-        <option value="$PROJECT_DIR$/server/models/rooms.js" />
-        <option value="$PROJECT_DIR$/server/validation/usersettings.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/booking.js" />
-        <option value="$PROJECT_DIR$/server/server.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/room.js" />
-        <option value="$PROJECT_DIR$/client/src/pages/Admin.js" />
-        <option value="$PROJECT_DIR$/client/src/components/admin/Users.js" />
-        <option value="$PROJECT_DIR$/client/src/App.js" />
-        <option value="$PROJECT_DIR$/server/validation/register.js" />
-        <option value="$PROJECT_DIR$/client/src/components/admin/AdminBookingsSearchForm.js" />
-        <option value="$PROJECT_DIR$/client/src/pages/ForgotPassword.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/invitenewuser.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/forgotpassword.js" />
-        <option value="$PROJECT_DIR$/client/src/components/admin/AdminInviteUser.js" />
-        <option value="$PROJECT_DIR$/client/src/components/admin/Bookings.js" />
-        <option value="$PROJECT_DIR$/server/models/users.js" />
-        <option value="$PROJECT_DIR$/client/src/pages/Register.js" />
-        <option value="$PROJECT_DIR$/client/src/pages/ResetPassword.js" />
-        <option value="$PROJECT_DIR$/client/src/components/settings/PasswordSettings.js" />
-        <option value="$PROJECT_DIR$/client/src/pages/Signup.js" />
-        <option value="$PROJECT_DIR$/client/src/components/admin/Rooms.js" />
-        <option value="$PROJECT_DIR$/client/src/service/ClientService.js" />
-        <option value="$PROJECT_DIR$/client/src/components/settings/SettingsForm.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/user.js" />
-        <option value="$PROJECT_DIR$/client/src/components/Notification.js" />
-        <option value="$PROJECT_DIR$/client/src/components/admin/AdminAllUsers.js" />
         <option value="$PROJECT_DIR$/client/src/components/admin/RoomEditModal.js" />
+        <option value="$PROJECT_DIR$/client/src/pages/Settings.js" />
         <option value="$PROJECT_DIR$/client/src/components/admin/UserEditModal.js" />
-        <option value="$PROJECT_DIR$/client/.gitignore" />
-        <option value="$PROJECT_DIR$/server/.gitignore" />
+        <option value="$PROJECT_DIR$/client/src/components/admin/AdminAllUsers.js" />
+        <option value="$PROJECT_DIR$/server/routes/api/user.js" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/loppuprojekti-tilavaraus-applikaatio.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
       </list>
     </option>
   </component>
@@ -219,34 +164,87 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="settings" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="462c0819:PsiDirectoryNode" />
+              <item name="client" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="loppuprojekti-tilavaraus-applikaatio" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="validation" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="postgresql" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="database.console.LAST_STATE" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Viikko 5.5 Etäopiskeluviikko/todoapplikaatio-react-front" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Kirsi\IdeaProjects\Loppuprojekti\loppuprojekti-tilavaraus-applikaatio\server\routes\api" />
-      <recent name="C:\Users\Kirsi\IdeaProjects\Loppuprojekti\loppuprojekti-tilavaraus-applikaatio\server\routes\api\password" />
-      <recent name="C:\Users\Kirsi\IdeaProjects\Loppuprojekti\loppuprojekti-tilavaraus-applikaatio\client\src\components\settings" />
-      <recent name="C:\Users\Kirsi\IdeaProjects\Loppuprojekti\loppuprojekti-tilavaraus-applikaatio\client\src\validation" />
-      <recent name="C:\Users\Kirsi\IdeaProjects\Loppuprojekti\loppuprojekti-tilavaraus-applikaatio\server\routes" />
-    </key>
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -265,44 +263,24 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a8f49d5b-9121-44b2-a48e-a0cf4fa8f124" name="Default Changelist" comment="" />
-      <created>1566218143258</created>
+      <changelist id="7481169c-8a28-45c7-959f-661cab3894c6" name="Default Changelist" comment="" />
+      <created>1568182398628</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1566218143258</updated>
-      <workItem from="1566218145694" duration="4611000" />
-      <workItem from="1566281799713" duration="4690000" />
-      <workItem from="1566288366549" duration="8512000" />
-      <workItem from="1566299529898" duration="9521000" />
-      <workItem from="1566367086387" duration="24596000" />
-      <workItem from="1566457228990" duration="14194000" />
-      <workItem from="1566540260364" duration="18649000" />
-      <workItem from="1566756920872" duration="10108000" />
-      <workItem from="1566798910165" duration="27201000" />
-      <workItem from="1566885885095" duration="19008000" />
-      <workItem from="1566933357316" duration="2321000" />
-      <workItem from="1566971627746" duration="38895000" />
-      <workItem from="1567150082159" duration="598000" />
-      <workItem from="1567419244457" duration="4419000" />
-      <workItem from="1567487248644" duration="20909000" />
-      <workItem from="1567574155207" duration="15643000" />
-      <workItem from="1567660021170" duration="25062000" />
-      <workItem from="1567744994092" duration="22380000" />
-      <workItem from="1568005370881" duration="22540000" />
-      <workItem from="1568093242815" duration="19810000" />
-      <workItem from="1568120298674" duration="9000" />
-      <workItem from="1568179201029" duration="1898000" />
+      <updated>1568182398628</updated>
+      <workItem from="1568182401090" duration="2403000" />
+      <workItem from="1568185376091" duration="12533000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315574000" />
+    <option name="totallyTimeSpent" value="14936000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2738255" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25302014" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -310,18 +288,18 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3286119" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24787535" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Database Console" order="12" weight="0.3286119" />
+      <window_info anchor="bottom" id="Database Console" order="7" weight="0.3286119" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -330,304 +308,217 @@
       <window_info anchor="right" id="Maven" order="5" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" visible="true" weight="0.13154362" />
+      <window_info anchor="right" id="Database" order="8" weight="0.3295302" />
     </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25838926" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
-      <window_info id="Capture Tool" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3286119" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.24645892" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Database Console" order="12" weight="0.3286119" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info active="true" anchor="right" id="Database" order="8" visible="true" weight="0.13154362" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/validation/register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+    <entry file="file://$PROJECT_DIR$/server/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9f9a3a19-8793-4afb-a469-0ef1512490db/console.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
+          <filtering>
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/api/updatepasswordloggedin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
+          <filtering>
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/api/invitenewuser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-374">
-          <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-end-line="5" selection-end-column="41" />
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
+          <filtering>
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/api/forgotpassword.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="40" column="37" lean-forward="true" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/ForgotPassword.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-175">
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://188d323f-22b8-4feb-9e66-7e44a8a89066/database/booking/schema/public/table/users" />
-    <entry file="file://$PROJECT_DIR$/client/src/components/admin/AdminInviteUser.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="54" column="33" selection-start-line="54" selection-start-column="33" selection-end-line="54" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/admin/AdminBookingsSearchForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="111" column="39" selection-start-line="111" selection-start-column="39" selection-end-line="111" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/rooms.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/ResetPassword.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="124" column="21" lean-forward="true" selection-start-line="124" selection-start-column="21" selection-end-line="124" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/settings/PasswordSettings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="112" column="26" selection-start-line="112" selection-start-column="26" selection-end-line="112" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/Signup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
-          <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="36" column="65" lean-forward="true" selection-start-line="36" selection-start-column="65" selection-end-line="36" selection-end-column="65" />
-          <folding>
-            <element signature="e#63#104#0" expanded="true" />
-            <element signature="e#256#296#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/pages/Register.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2766">
-          <caret line="64" column="46" selection-start-line="64" selection-start-column="46" selection-end-line="64" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/admin/Bookings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/admin/AdminBookingsTable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="79" column="11" lean-forward="true" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/admin/BookingEditModal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/models/users.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="62" column="6" lean-forward="true" selection-start-line="62" selection-start-column="6" selection-end-line="62" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/settings/SettingsForm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="92" column="34" lean-forward="true" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/api/room.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-663" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/api/user.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="53" column="32" lean-forward="true" selection-start-line="53" selection-start-column="32" selection-end-line="53" selection-end-column="32" />
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
+          <filtering>
+            <filter text="" />
+          </filtering>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/Notification.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        <state>
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/service/ClientService.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/Table.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/pages/Settings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="299" selection-start-line="299" selection-end-line="299" />
+        <state relative-caret-position="187">
+          <caret line="11" column="9" lean-forward="true" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
+          <folding>
+            <element signature="e#110#136#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://188d323f-22b8-4feb-9e66-7e44a8a89066/database/booking/schema/public/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="846f37b5-d5f5-490d-893e-e1a50ebd8ad2">
-          <filtering>
-            <filter text="" />
-          </filtering>
+    <entry file="file://$PROJECT_DIR$/client/src/components/admin/Rooms.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="962">
+          <caret line="60" column="47" lean-forward="true" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://188d323f-22b8-4feb-9e66-7e44a8a89066/database/booking/schema/public/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="846f37b5-d5f5-490d-893e-e1a50ebd8ad2">
-          <filtering>
-            <filter text="" />
-          </filtering>
+    <entry file="file://$PROJECT_DIR$/server/routes/api/booking.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-395">
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://188d323f-22b8-4feb-9e66-7e44a8a89066/database/booking/schema/public/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="846f37b5-d5f5-490d-893e-e1a50ebd8ad2">
-          <filtering>
-            <filter text="" />
-          </filtering>
+    <entry file="file://$PROJECT_DIR$/client/src/components/admin/Users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://188d323f-22b8-4feb-9e66-7e44a8a89066/database/booking/schema/public/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="846f37b5-d5f5-490d-893e-e1a50ebd8ad2">
-          <filtering>
-            <filter text="" />
-          </filtering>
+    <entry file="file://$PROJECT_DIR$/client/src/components/admin/AdminBookingsSearchForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-152" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/admin/AdminBookingsTable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-867" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/admin/Bookings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="935">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
         </state>
       </provider>
     </entry>
-    <entry file="das://188d323f-22b8-4feb-9e66-7e44a8a89066/database/booking/schema/public/table/users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="846f37b5-d5f5-490d-893e-e1a50ebd8ad2">
-          <filtering>
-            <filter text="" />
-          </filtering>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/client/src/components/UserBookings.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/components/UseLoginForm.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/admin/RoomEditModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+        <state relative-caret-position="70">
+          <caret line="33" column="42" lean-forward="true" selection-start-line="33" selection-start-column="42" selection-end-line="33" selection-end-column="42" />
+          <folding>
+            <element signature="e#65#114#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://188d323f-22b8-4feb-9e66-7e44a8a89066/database/booking/schema/public/table/users">
+    <entry file="file://$PROJECT_DIR$/client/src/pages/User.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2499">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="846f37b5-d5f5-490d-893e-e1a50ebd8ad2">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
           <filtering>
             <filter text="" />
           </filtering>
         </state>
       </provider>
     </entry>
-    <entry file="das://188d323f-22b8-4feb-9e66-7e44a8a89066/database/booking/schema/public/table/users">
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="846f37b5-d5f5-490d-893e-e1a50ebd8ad2">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
           <filtering>
             <filter text="" />
           </filtering>
         </state>
       </provider>
     </entry>
-    <entry file="das://188d323f-22b8-4feb-9e66-7e44a8a89066/database/booking/schema/public/table/users">
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state projectRestartId="846f37b5-d5f5-490d-893e-e1a50ebd8ad2">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
+          <filtering>
+            <filter text="" />
+          </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://9f9a3a19-8793-4afb-a469-0ef1512490db/database/booking/schema/public/table/users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state projectRestartId="b110f1ca-c89c-422c-b36c-1160c5d80fd6">
           <filtering>
             <filter text="" />
           </filtering>
@@ -636,44 +527,58 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/components/admin/UserEditModal.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+        <state relative-caret-position="15">
+          <caret line="33" column="6" lean-forward="true" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
           <folding>
             <element signature="e#0#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/admin/AdminAllUsers.js">
+    <entry file="file://$PROJECT_DIR$/server/validation/usersettings.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/api/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="56" selection-start-line="1" selection-start-column="56" selection-end-line="1" selection-end-column="56" />
+        <state relative-caret-position="-136">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/components/admin/Rooms.js">
+    <entry file="file://$PROJECT_DIR$/client/src/components/settings/SettingsForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+        <state relative-caret-position="-1632">
           <folding>
-            <element signature="e#0#51#0" expanded="true" />
+            <element signature="e#0#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/.gitignore">
+    <entry file="file://$PROJECT_DIR$/client/src/components/admin/AdminAllUsers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="204">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="4" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>11</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

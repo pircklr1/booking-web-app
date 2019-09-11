@@ -13,8 +13,7 @@ function UserEditModal(props) {
 
     useEffect(() => {
         setUser(props.user)
-        console.log(isAdmin)
-    }, [isAdmin])
+    }, []);
 
     const handleFirstNameChange = (e, {value}) => setFirstName(value);
     const handleLastNameChange = (e, {value}) => setLastName(value);
@@ -30,11 +29,9 @@ function UserEditModal(props) {
             isAdmin: isAdmin
         };
         adminUpdateUser(user.id, data)
-            .then(props.update())
-        setMessage('Käyttäjän muokkaus onnistui!')
-        console.log(props.update())
-
-    }
+            .then(props.update);
+        setMessage('Käyttäjän muokkaus onnistui!');
+    };
 
     return(
         <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>}>
