@@ -1,4 +1,4 @@
-// This page shows the current user's settings. Here, the user can also modify his or her email and password.
+// This page shows the current user's settings. Here, the user can also modify his or her name, email and password.
 import React from 'react';
 import SettingsForm from '../components/settings/SettingsForm';
 import PasswordSettings from '../components/settings/PasswordSettings';

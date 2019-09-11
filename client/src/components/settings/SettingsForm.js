@@ -18,7 +18,8 @@ class SettingsForm extends Component {
             error: false,
             firstNameError: false,
             lastNameError: false,
-            emailError: false
+            emailError: false,
+            isAdmin: false
         };
     }
 
@@ -61,7 +62,7 @@ class SettingsForm extends Component {
     updateUser = async (e) => {
         e.preventDefault();
         const userId = localStorage.getItem('userId');
-        const {firstName, lastName, email, confirmEmail} = this.state;
+        const {firstName, lastName, email, confirmEmail, isAdmin} = this.state;
         if (firstName.length < 2){
             this.setState({
                 firstNameError: true,
@@ -91,7 +92,8 @@ class SettingsForm extends Component {
                     {
                         firstName,
                         lastName,
-                        email
+                        email,
+                        isAdmin
                     }, {
                         headers: {
                             'Content-Type': 'application/json',
@@ -129,8 +131,9 @@ class SettingsForm extends Component {
         if (error) {
             return (
                 <div>
+                    &nbsp;
                     <Message negative>
-                        <Message.Header> Jokin meni vikaan. Yritä myöhemmin uudelleen. </Message.Header>
+                        <Message.Header> Jotain meni vikaan! Kirjaudu sisään tai yritä myöhemmin uudelleen. </Message.Header>
                     </Message>
                 </div>
             );
