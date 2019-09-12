@@ -25,21 +25,21 @@ function BookingForm(props) {
     const [startDate, setStartDate] = useState(new Date());
     const [startTime, setStartTime] = useState(new Date());
     const [endTime, setEndTime] = useState(new Date());
-    const [roomdata, setRoomdata] = useState([]);
-    const [userdata, setUserdata] = useState([]);
+    const [roomData, setRoomData] = useState([]);
+    const [userData, setUserData] = useState([]);
     const [message, setMessage] = useState(null);
-    const [allrooms, setAllrooms] = useState(false);
+    const [allRooms, setAllRooms] = useState(false);
     const {currentUser} = useContext(AuthContext);
 
     useEffect(() => {
-        getRooms()
+        getRooms();
         getUsers()
-    }, [])
+    }, []);
 
     //get room names to dropdown
     const getRooms = () => {
         getRoomData(list => {
-            setRoomdata(list.filter(room => room.available).map(room => {
+            setRoomData(list.filter(room => room.available).map(room => {
                 return {key: room.id, text: room.name, value: room.id}
             }));
         });
@@ -48,7 +48,7 @@ function BookingForm(props) {
     //get user names to dropdown
     const getUsers = () => {
         getAllUsers(list => {
-            setUserdata(list.map(user => {
+            setUserData(list.map(user => {
                 return {key: user.id, text: user.firstName + " " + user.lastName, value: user.id}
             }));
         });
@@ -60,27 +60,27 @@ function BookingForm(props) {
     const handleDateChange = date => setStartDate(date);
     const handleStartTimeChange = time => setStartTime(time);
     const handleEndTimeChange = time => setEndTime(time);
-    const handleAllroomsChange = () => setAllrooms(!allrooms);
+    const handleAllRoomsChange = () => setAllRooms(!allRooms);
 
     //handle validation and submitting form
     const handleSubmit = e => {
         e.preventDefault();
 
         // check if admin has chosen to book all rooms at once
-        if(allrooms) {
+        if(allRooms) {
             let allRoomsData = {
                 user_id: user,
                 booking_date: moment(startDate).format('YYYY-MM-DD'),
                 start_time: moment(startTime).format('HH:mm:01'),
                 end_time: moment(endTime).format('HH:mm')
-            }
+            };
             createBookingForAllRooms(allRoomsData).then(function (success) {
                 if (success) {
-                    setRoom("")
-                    setStartDate(new Date())
-                    setStartTime(new Date())
-                    setEndTime(new Date())
-                    setMessage('Varaus onnistui')
+                    setRoom("");
+                    setStartDate(new Date());
+                    setStartTime(new Date());
+                    setEndTime(new Date());
+                    setMessage('Varaus onnistui');
                     setTimeout(() => {
                         props.history.push('/login')
                     }, 1500)
@@ -106,16 +106,16 @@ function BookingForm(props) {
                     start_time: moment(startTime).format('HH:mm:01'),
                     end_time: moment(endTime).format('HH:mm')
                 }
-            };
+            }
             try {
                 if (validate(data)) {
                     createBooking(data).then(function (success) {
                         if (success) {
-                            setRoom("")
-                            setStartDate(new Date())
-                            setStartTime(new Date())
-                            setEndTime(new Date())
-                            setMessage('Varaus onnistui')
+                            setRoom("");
+                            setStartDate(new Date());
+                            setStartTime(new Date());
+                            setEndTime(new Date());
+                            setMessage('Varaus onnistui');
                             setTimeout(() => {
                                 props.history.push('/login')
                             }, 1500)
@@ -147,23 +147,23 @@ function BookingForm(props) {
 
     return (
         <div>
-            <Modal trigger={<Button primary>Varaa huone</Button>}>
+            <Modal trigger={<Button primary>Varaa huone</Button>} closeIcon>
                 <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Uusi
                     varaus</Modal.Header>
                 <Modal.Content>
                     <Form onSubmit={handleSubmit}>
                         <Form.Group unstackable widths={2}>
-                            <Form.Field control={Select} label="Valitse huone" options={roomdata} placeholder="Huone"
+                            <Form.Field control={Select} label="Valitse huone" options={roomData} placeholder="Huone"
                                         onChange={handleRoomChange} value={room}/>
                         </Form.Group>
                         {currentUser.isadmin &&
                         <Form.Group unstackable widths={2}>
-                        <Form.Radio checked={allrooms} onChange={handleAllroomsChange} label='Varaa kaikki huoneet' toggle/>
+                        <Form.Radio checked={allRooms} onChange={handleAllRoomsChange} label='Varaa kaikki huoneet' toggle/>
                         </Form.Group>
                         }
                         {currentUser.isadmin &&
                         <Form.Group unstackable widths={2}>
-                            <Form.Field control={Select} label="Valitse käyttäjä" options={userdata}
+                            <Form.Field control={Select} label="Valitse käyttäjä" options={userData}
                                         placeholder="Käyttäjä"
                                         onChange={handleUserChange} value={user}/>
                         </Form.Group>
