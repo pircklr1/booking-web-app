@@ -1,4 +1,3 @@
-// import React, {useState, useEffect, useContext} from 'react';
 import React, {useState, useEffect} from 'react';
 import {Header} from "semantic-ui-react";
 import AdminBookingsSearchForm from "./AdminBookingsSearchForm";

@@ -1,4 +1,3 @@
-// import React, {useState, useEffect, useContext} from 'react';
 import React, {useState} from 'react';
 import {adminCreateRoom} from "../../service/ClientService";
 import {Button, Form, Icon, Modal} from "semantic-ui-react";
@@ -26,9 +25,8 @@ function RoomAddModal(props) {
         try {
             if(validateRoomEditModal(data)) {
                 adminCreateRoom(data)
-                    .then(props.update())
+                    .then(props.update)
                 setMessage('Huoneen lisäys onnistui!')
-                console.log(props.update())
             }
         } catch (e) {
             if (e.message === 'Uutta nimeä ei ole syötetty') {
