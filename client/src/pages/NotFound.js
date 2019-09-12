@@ -5,7 +5,8 @@ export default function NotFound() {
     <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='blue' textAlign='center'>
-          <Icon name='registered' /> Valitettavasti jokin meni vikaan.
+          {/*  <Icon name='registered' />  */}
+          Valitettavasti jokin meni vikaan.
         </Header>
         <h3>Tarkista verkko-osoitteesi tai yritä myöhemmin uudelleen.</h3>
       </Grid.Column>

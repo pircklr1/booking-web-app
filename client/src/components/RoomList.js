@@ -6,7 +6,11 @@ import './Table.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
-import { getAllBookings, getAllRooms } from '../service/ClientService';
+import {
+  getAllBookings,
+  getAllRooms,
+  getAllUsers
+} from '../service/ClientService';
 
 class RoomList extends Component {
   constructor(props) {
@@ -14,12 +18,14 @@ class RoomList extends Component {
     this.state = {
       startDate: new Date(),
       rooms: [],
-      bookings: []
+      bookings: [],
+      userList: []
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
     this.updateBookings = this.updateBookings.bind(this);
     this.updateRooms = this.updateRooms.bind(this);
+    this.updateUserList = this.updateUserList.bind(this);
   }
 
   handleDateChange(date) {
@@ -28,9 +34,20 @@ class RoomList extends Component {
     });
   }
 
+  componentWillMount() {
+    this.updateUserList();
+  }
+
   componentDidMount() {
     this.updateBookings();
     this.updateRooms();
+  }
+
+  // gets all users from database and and sets them to state as a list.
+  updateUserList() {
+    getAllUsers(list => {
+      this.setState({ userList: list });
+    });
   }
 
   // gets all rooms from database and and sets them to state as a list.
@@ -59,6 +76,7 @@ class RoomList extends Component {
           date={this.state.startDate}
           room={room}
           key={room.id}
+          userList={this.state.userList}
         />
       );
     });

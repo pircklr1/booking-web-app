@@ -32,6 +32,11 @@ function NavBar() {
 
   const handleHomeItemClick = (e, { name }) => setActiveItem('');
 
+  const handleMobileItemClick = (e, { name }) => {
+    setActiveItem(name);
+    setVisible(!visible);
+  };
+
   //Handles changes of sidebar visibility in mobile phone-mode.
   const handleToggle = () => {
     setVisible(!visible);
@@ -70,19 +75,19 @@ function NavBar() {
             <Icon name='calendar alternate outline' />
             Omat varaukset
           </Menu.Item>
-          {currentUser.isadmin &&
-          <Menu.Item
+          {currentUser.isadmin && (
+            <Menu.Item
               as={Link}
               to='/admin'
               name='admin'
               iconposition='left'
               active={activeItem === 'admin'}
               onClick={handleItemClick}
-          >
-            <Icon name='key'/>
-            Admin
-          </Menu.Item>
-          }
+            >
+              <Icon name='key' />
+              Admin
+            </Menu.Item>
+          )}
           <Menu.Menu position='right'>
             <Dropdown
               trigger={
@@ -148,19 +153,21 @@ function NavBar() {
           </Menu.Menu>
           <Sidebar
             style={{ background: '#1678C2' }}
-            animation={'scale down'}
+            animation={'overlay'}
             direction='right'
-            vertical='true'
+            vertical
             inverted='true'
             onHide={handleToggle}
-            // width={"thin"}
+            width='thin'
             visible={visible}
           >
             <Menu.Item
               style={{ color: 'white' }}
               as={Link}
               to='/home'
-              onClick={handleToggle}
+              onClick={handleMobileItemClick}
+              name='home'
+              active={activeItem === 'home'}
             >
               <Icon name='home' />
               Etusivu
@@ -169,7 +176,9 @@ function NavBar() {
               style={{ color: 'white' }}
               as={Link}
               to='/bookings'
-              onClick={handleToggle}
+              onClick={handleMobileItemClick}
+              name='bookings'
+              active={activeItem === 'bookings'}
             >
               <Icon name='user' />
               Omat varaukset
@@ -178,26 +187,32 @@ function NavBar() {
               style={{ color: 'white' }}
               as={Link}
               to='/settings'
-              onClick={handleToggle}
+              name='Asetukset'
+              active={activeItem === 'Asetukset'}
+              onClick={handleMobileItemClick}
             >
               <Icon name='settings' />
               Asetukset
             </Menu.Item>
-            {currentUser.isadmin &&
-            <Menu.Item
-                style={{color: 'white'}}
+            {currentUser.isadmin && (
+              <Menu.Item
+                style={{ color: 'white' }}
                 as={Link}
                 to='/admin'
-                onClick={handleToggle}
-            >
-              <Icon name='adn'/>
-              Admin
-            </Menu.Item>
-            }
+                onClick={handleMobileItemClick}
+                name='admin'
+                active={activeItem === 'admin'}
+              >
+                <Icon name='adn' />
+                Admin
+              </Menu.Item>
+            )}
             <Menu.Item
               style={{ color: 'white' }}
               as={Link}
               to='/login'
+              name='logout'
+              active={activeItem === 'logout'}
               onClick={logout}
             >
               <Icon name='log out' />
@@ -258,7 +273,7 @@ function NavBar() {
         <Menu
           pointing
           secondary
-          size='large'
+          size='small'
           color='blue'
           style={{ backgroundColor: 'white' }}
         >
@@ -283,19 +298,21 @@ function NavBar() {
           </Menu.Menu>
           <Sidebar
             style={{ background: '#1678C2' }}
-            animation={'scale down'}
+            animation={'overlay'}
             direction='right'
             vertical
-            inverted
+            inverted='true'
             onHide={handleToggle}
-            // width={"thin"}
+            width='thin'
             visible={visible}
           >
             <Menu.Item
               style={{ color: 'white' }}
               as={Link}
               to='/login'
-              onClick={handleToggle}
+              name='login'
+              active={activeItem === 'login'}
+              onClick={handleMobileItemClick}
             >
               <Icon name='key' />
               Kirjaudu sisään
@@ -304,7 +321,7 @@ function NavBar() {
             {/*  style={{ color: 'white' }}*/}
             {/*  as={Link}*/}
             {/*  to='/signup'*/}
-            {/*  onClick={handleToggle}*/}
+            {/*  onClick={handleMobileItemClick}*/}
             {/*>*/}
             {/*  <Icon name='signup' />*/}
             {/*  Rekisteröidy*/}
