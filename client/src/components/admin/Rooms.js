@@ -7,14 +7,11 @@ import RoomAddModal from "./RoomAddModal";
 
 function Rooms() {
     const [roomData, setRoomData] = useState([]);
-    // const [isLoading, setIsLoading] = useState(false);
     const [rerender, setRerender] = useState(1);
 
     useEffect(() => {
-        // setIsLoading(true);
         getAllRooms(setRoomData);
         setRerender(false);
-        // setIsLoading(false);
     }, [rerender]);
 
     function update() {

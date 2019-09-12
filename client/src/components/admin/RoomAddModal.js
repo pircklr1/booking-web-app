@@ -1,4 +1,3 @@
-// import React, {useState, useEffect, useContext} from 'react';
 import React, {useState} from 'react';
 import {adminCreateRoom} from "../../service/ClientService";
 import {Button, Form, Icon, Modal} from "semantic-ui-react";
@@ -26,9 +25,8 @@ function RoomAddModal(props) {
         try {
             if(validateRoomEditModal(data)) {
                 adminCreateRoom(data)
-                    .then(props.update())
+                    .then(props.update)
                 setMessage('Huoneen lisäys onnistui!')
-                console.log(props.update())
             }
         } catch (e) {
             if (e.message === 'Uutta nimeä ei ole syötetty') {
@@ -40,8 +38,8 @@ function RoomAddModal(props) {
     }
 
     return(
-        <Modal trigger={<Button positive basic icon><Icon className='add circle'/></Button>}closeIcon>
-            <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Muokkaa huonetta</Modal.Header>
+        <Modal trigger={<Button positive basic icon><Icon className='add circle'/></Button>} closeIcon>
+            <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Lisää uusi huone</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>
                     <Form.Input fluid label='Huoneen nimi' placeholder='Esimerkki(10)' onChange={handleNameChange} value={name}/>

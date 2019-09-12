@@ -87,7 +87,8 @@ function NavBar() {
             <Dropdown
               trigger={
                 <span>
-                  <Icon name='user' />
+                  <Icon name='user'
+                        style={{ color: '#1678C2', size: 'big' }}/>
                   {username}
                 </span>
               }
@@ -103,8 +104,16 @@ function NavBar() {
                   iconposition='left'
                   active={activeItem === 'Asetukset'}
                   onClick={handleItemClick}
-                ></Menu.Item>
-
+                />
+                <Menu.Item
+                    as={Link}
+                    to='/contact'
+                    name='Yhteystiedot'
+                    icon='phone'
+                    iconposition='left'
+                    active={activeItem === 'contact'}
+                    onClick={handleItemClick}
+                />
                 <Menu.Item
                   as={Link}
                   to='/login'
@@ -113,7 +122,7 @@ function NavBar() {
                   iconposition='left'
                   active={activeItem === 'Kirjaudu ulos'}
                   onClick={logout}
-                ></Menu.Item>
+                />
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Menu>
@@ -153,7 +162,6 @@ function NavBar() {
             vertical='true'
             inverted='true'
             onHide={handleToggle}
-            // width={"thin"}
             visible={visible}
           >
             <Menu.Item
@@ -182,6 +190,15 @@ function NavBar() {
             >
               <Icon name='settings' />
               Asetukset
+            </Menu.Item>
+            <Menu.Item
+                style={{ color: 'white' }}
+                as={Link}
+                to='/contact'
+                onClick={handleToggle}
+            >
+              <Icon name='phone' />
+              Yhteystiedot
             </Menu.Item>
             {currentUser.isadmin &&
             <Menu.Item
@@ -230,7 +247,19 @@ function NavBar() {
             />
           </Menu.Item>
           <Menu.Item
-            position='right'
+              position='right'
+              as={Link}
+              to='/contact'
+              name='contact'
+              iconposition='left'
+              active={activeItem === 'contact'}
+              onClick={handleItemClick}
+          >
+            <Icon name='phone'/>
+            Yhteystiedot
+          </Menu.Item>
+          <Menu.Item
+            // position='right'
             as={Link}
             to='/login'
             name='login'
@@ -241,17 +270,6 @@ function NavBar() {
             <Icon name='key' />
             Kirjaudu
           </Menu.Item>
-          {/*<Menu.Item*/}
-          {/*  as={Link}*/}
-          {/*  to='/signup'*/}
-          {/*  name='signup'*/}
-          {/*  iconposition='left'*/}
-          {/*  active={activeItem === 'signup'}*/}
-          {/*  onClick={handleItemClick}*/}
-          {/*>*/}
-          {/*  <Icon name='signup' />*/}
-          {/*  Rekisteröidy*/}
-          {/*</Menu.Item>*/}
         </Menu>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
@@ -288,7 +306,6 @@ function NavBar() {
             vertical
             inverted
             onHide={handleToggle}
-            // width={"thin"}
             visible={visible}
           >
             <Menu.Item
@@ -300,15 +317,15 @@ function NavBar() {
               <Icon name='key' />
               Kirjaudu sisään
             </Menu.Item>
-            {/*<Menu.Item*/}
-            {/*  style={{ color: 'white' }}*/}
-            {/*  as={Link}*/}
-            {/*  to='/signup'*/}
-            {/*  onClick={handleToggle}*/}
-            {/*>*/}
-            {/*  <Icon name='signup' />*/}
-            {/*  Rekisteröidy*/}
-            {/*</Menu.Item>*/}
+            <Menu.Item
+                style={{color: 'white'}}
+                as={Link}
+                to='/contact'
+                onClick={handleToggle}
+            >
+              <Icon name='phone'/>
+              Yhteystiedot
+            </Menu.Item>
           </Sidebar>
         </Menu>
       </Responsive>

@@ -65,7 +65,6 @@ function Login(props) {
           localStorage.setItem('jwtToken', token);
           localStorage.setItem('userId', id);
           localStorage.setItem('username', username);
-          // console.log(localStorage.getItem('userId'));
           context.login(response.data);
           props.history.push('/home');
         }
@@ -127,7 +126,7 @@ function Login(props) {
           <a href='/forgot'>Unohtuiko salasana?</a>
           <br />
           {/*Ei vielä tunnuksia? <a href='/signup'>Rekisteröidy</a>*/}
-          Ei vielä tunnuksia? Ota yhteyttä ylläpitäjään.
+          Ei vielä tunnuksia? <a href='/contact'> Ota yhteyttä ylläpitäjään.</a>
         </Message>
       </Grid.Column>
     </Grid>
