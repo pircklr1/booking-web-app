@@ -1,4 +1,4 @@
-import {Button, Form, Message} from "semantic-ui-react";
+import {Button, Form, Header, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
 
@@ -94,7 +94,7 @@ class SettingsForm extends Component {
                         }
                     }
                 );
-                console.log(response.data);
+                // console.log(response.data);
                 if (response.data.message === 'email ok') {
                     try {
                         const response = await axios.put(
@@ -110,7 +110,7 @@ class SettingsForm extends Component {
                                 }
                             }
                         );
-                        console.log(response.data);
+                        // console.log(response.data);
                         if (response.data.message === 'user updated') {
                             this.setState({
                                 updated: true,
@@ -164,7 +164,7 @@ class SettingsForm extends Component {
                 paddingRight: '20px'
             }}>
                 <div className='form-container'>
-                    <h4>Käyttäjätiedot</h4>
+                    <h3>Käyttäjätiedot</h3>
                     <Form className="update-form" onSubmit={this.updateUser}>
                         <Form.Input
                             id="firstName"

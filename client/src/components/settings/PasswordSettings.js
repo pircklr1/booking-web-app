@@ -122,7 +122,7 @@ class PasswordSettings extends Component {
                 paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
                 paddingRight: '20px'}}>
                 <div className='form-container'>
-                    <h4>Vaihda salasana</h4>
+                    <h3>Vaihda salasana</h3>
                     <Form className="password-form" onSubmit={this.updatePassword}>
                         <Form.Input
                             id="password"
