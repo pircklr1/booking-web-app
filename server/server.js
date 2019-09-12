@@ -44,7 +44,7 @@ apiUpdatePasswordLoggedIn(app, models);
 apiInviteNewUser(app, models);
 
 // Erasing everything from the database
-const eraseDatabaseOnSync = true;
+// const eraseDatabaseOnSync = true;
 
 // Starting the server
 sequelize.sync().then(async () => {
