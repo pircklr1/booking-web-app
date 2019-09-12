@@ -18,8 +18,7 @@ class SettingsForm extends Component {
             error: false,
             firstNameError: false,
             lastNameError: false,
-            emailError: false,
-            // isAdmin: false
+            emailError: false
         };
     }
 
@@ -63,19 +62,19 @@ class SettingsForm extends Component {
         e.preventDefault();
         const userId = localStorage.getItem('userId');
         const {firstName, lastName, email, confirmEmail} = this.state;
-        if (firstName.length < 2){
+        if (firstName.length < 2) {
             this.setState({
                 firstNameError: true,
                 messageFromServer: 'check input'
             });
         }
-        if (lastName.length < 2){
+        if (lastName.length < 2) {
             this.setState({
                 lastNameError: true,
                 messageFromServer: 'check input'
             });
         }
-        if (!/\S+@\S+\.\S+/.test(email)){
+        if (!/\S+@\S+\.\S+/.test(email)) {
             this.setState({
                 emailError: true,
                 messageFromServer: 'check input'
@@ -87,36 +86,56 @@ class SettingsForm extends Component {
             });
         } else {
             try {
-                const response = await axios.put(
-                    baseUrl + '/user/' + userId,
-                    {
-                        firstName,
-                        lastName,
-                        email
-                    }, {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            token: localStorage.getItem('jwtToken')
+                const response = await axios.get(
+                    baseUrl + '/user', {
+                        params: {
+                            id: userId,
+                            email: email
                         }
                     }
                 );
                 console.log(response.data);
-                if (response.data.message === 'user updated') {
-                    this.setState({
-                        updated: true,
-                        error: false,
-                    });
-                } else {
-                    this.setState({
-                        updated: false,
-                        error: true,
-                        firstName: '',
-                        lastName: '',
-                        email: ''
-                    });
+                if (response.data.message === 'email ok') {
+                    try {
+                        const response = await axios.put(
+                            baseUrl + '/user/' + userId,
+                            {
+                                firstName,
+                                lastName,
+                                email
+                            }, {
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    token: localStorage.getItem('jwtToken')
+                                }
+                            }
+                        );
+                        console.log(response.data);
+                        if (response.data.message === 'user updated') {
+                            this.setState({
+                                updated: true,
+                                error: false,
+                            });
+                        } else {
+                            this.setState({
+                                updated: false,
+                                error: true,
+                                firstName: '',
+                                lastName: '',
+                                email: ''
+                            });
+                        }
+                    } catch (error) {
+                        console.log(error.response.data);
+                    }
                 }
             } catch (error) {
                 console.log(error.response.data);
+                this.setState({
+                    updated: false,
+                    emailError: true,
+                    messageFromServer: 'email already in db'
+                })
             }
         }
     };
@@ -132,7 +151,8 @@ class SettingsForm extends Component {
                 <div>
                     &nbsp;
                     <Message negative>
-                        <Message.Header> Jotain meni vikaan! Kirjaudu sisään tai yritä myöhemmin uudelleen. </Message.Header>
+                        <Message.Header> Jotain meni vikaan! Kirjaudu sisään tai yritä myöhemmin
+                            uudelleen. </Message.Header>
                     </Message>
                 </div>
             );
@@ -188,6 +208,7 @@ class SettingsForm extends Component {
                             placeholder="Uusi sähköpostiosoite uudestaan"
                             icon='envelope'
                             iconPosition='left'
+                            error={emailError}
                         />
                         <Button type='submit' primary>
                             Tallenna muutokset
@@ -204,18 +225,26 @@ class SettingsForm extends Component {
                 )}
                 {messageFromServer === 'emails are not a match' && (
                     <Message negative>
-                        <Message.Header>Sähköpostiosoitteen vahvistaminen epäonnistui! Tarkista, että syötteet ovat samat. </Message.Header>
+                        <Message.Header>Sähköpostiosoitteen vahvistaminen epäonnistui! Tarkista, että syötteet
+                            ovat samat. </Message.Header>
                     </Message>
                 )}
                 {messageFromServer === 'check input' && (
                     <Message negative>
                         <Message.Header>Tarkista syötteet! </Message.Header>
-                        <p>Kaikki kentät ovat pakollisia. Etu- ja sukunimen tulee olla vähintään 2 merkkiä pitkät,
-                            ja sähköpostiosoitteen tulee olla muodossa esimerkki@esimerkki.esim </p>
+                        <p>Kaikki kentät ovat pakollisia. Etu- ja sukunimen tulee olla vähintään 2 merkkiä
+                            pitkät, ja sähköpostiosoitteen tulee olla muodossa esimerkki@esimerkki.esim </p>
+                    </Message>
+                )}
+                {messageFromServer === 'email already in db' && (
+                    <Message negative>
+                        <Message.Header>Tarkista sähköpostiosoite!</Message.Header>
+                        <p>Tämä sähköpostiosoite on jo käytössä jollain toisella tilillä.</p>
                     </Message>
                 )}
             </div>
         );
     }
 }
+
 export default SettingsForm;
