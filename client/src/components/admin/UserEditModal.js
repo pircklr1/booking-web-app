@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import {adminUpdateUser} from "../../service/ClientService";
 import {Button, Form, Icon, Modal} from "semantic-ui-react";
 import Notification from "../Notification";

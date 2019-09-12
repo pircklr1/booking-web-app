@@ -3,6 +3,8 @@ const SECRET_KEY = process.env.SECRET;
 const bcrypt = require('bcrypt');
 const withAuth = require('../../middleware/middleware');
 const BCRYPT_SALT_ROUNDS = 10;
+import Sequelize, {not} from 'sequelize';
+const Op = Sequelize.Op;
 
 // Load Input Validation
 const validateRegisterInput = require('../../validation/register');
@@ -38,6 +40,27 @@ module.exports = (app, db) => {
                 res.status(404).send(err.message);
             })
     );
+
+    // @route   GET api/user/:id
+    // @desc    Get user by id
+    // @access  Public
+    app.get('/api/user',(req, res) =>
+        db.User.findOne({
+            where: {
+                id: {
+                    [Op.not]: req.query.id
+                },
+                email: req.query.email
+            }})
+            .then(user => {
+                if (user != null){
+                    res.status(400).send({message:'email already in db'})
+                } else {
+                    res.status(200).send({message:'email ok'})
+                }
+            })
+    );
+
 
     // @route   PUT api/user
     // @desc    Modify existing user
