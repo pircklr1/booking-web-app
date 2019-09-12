@@ -1,19 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {adminUpdateUser} from "../../service/ClientService";
 import {Button, Form, Icon, Modal} from "semantic-ui-react";
 import Notification from "../Notification";
 
 function UserEditModal(props) {
-    const [user, setUser] = useState("");
+    const [user] = useState(props.user);
     const [firstName, setFirstName] = useState(props.user.firstName);
     const [lastName, setLastName] = useState(props.user.lastName);
     const [email, setEmail] = useState(props.user.email);
     const [isAdmin, setIsAdmin] = useState(props.user.isAdmin);
     const [message, setMessage] = useState(null);
 
-    useEffect(() => {
-        setUser(props.user)
-    }, []);
 
     const handleFirstNameChange = (e, {value}) => setFirstName(value);
     const handleLastNameChange = (e, {value}) => setLastName(value);
@@ -34,7 +31,7 @@ function UserEditModal(props) {
     };
 
     return(
-        <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>}>
+        <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>}closeIcon>
             <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Muokkaa käyttäjää</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>

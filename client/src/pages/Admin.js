@@ -30,7 +30,7 @@ function Admin() {
           </Container>
         </Responsive>
         <Responsive {...Responsive.onlyMobile} style={{backgroundColor: 'white',
-          paddingTop: '20px', paddingBottom: '20px', marginLeft: '0px', marginRight: '0px'}}>
+          paddingTop: '20px', paddingBottom: '20px', marginLeft: '0px!important', marginRight: '0px!important'}}>
           <Header as='h2' block>
             <Icon name='settings' />
             <Header.Content>
