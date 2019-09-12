@@ -23,7 +23,7 @@ class RoomTable extends Component {
     render() {
         return (
             <div>
-                <Form style={{ marginTop: 20 }}>
+                <Form style={{ marginTop: 20 , marginBottom: 20}}>
                     <Form.Group>
                         <Form.Input>
                             <DatePicker
@@ -35,7 +35,7 @@ class RoomTable extends Component {
                         </Form.Input>
                     </Form.Group>
                 </Form>
-                <Container style={{ overflow: 'auto' }}>
+                <Container style={{ overflow: 'auto', marginLeft:'0px'}}>
                 <RoomList date={this.state.startDate}/>
                 </Container>
             </div>
