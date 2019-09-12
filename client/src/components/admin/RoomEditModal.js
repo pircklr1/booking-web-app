@@ -1,21 +1,16 @@
-// import React, {useState, useEffect, useContext} from 'react';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {adminUpdateRoom} from "../../service/ClientService";
 import {Button, Form, Icon, Modal} from "semantic-ui-react";
 import Notification from "../Notification";
-// import validateRoomEditModal from '../../validation/RoomEditModalValidation';
 
 function RoomEditModal(props) {
-    const [room, setRoom] = useState("");
+    const [room] = useState(props.room);
     const [name, setName] = useState(props.room.name);
     const [capacity, setCapacity] = useState(props.room.capacity);
     const [available, setAvailable] = useState(props.room.available);
     const [equipment, setEquipment] = useState(props.room.equipment);
     const [message, setMessage] = useState(null);
 
-    useEffect(() => {
-        setRoom(props.room)
-    }, []);
 
     const handleNameChange = (e, {value}) => setName(value);
     const handleCapacityChange = (e, {value}) => setCapacity(value);
@@ -31,10 +26,8 @@ function RoomEditModal(props) {
             equipment: equipment
         };
                 adminUpdateRoom(room.id, data)
-                    .then(props.update());
+                    .then(props.update);
                 setMessage('Huoneen muokkaus onnistui!');
-                console.log(props.update())
-
     };
 
     return(
