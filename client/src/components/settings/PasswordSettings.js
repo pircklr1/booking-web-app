@@ -110,6 +110,7 @@ class PasswordSettings extends Component {
         if (error) {
             return (
                 <div>
+                    &nbsp;
                     <Message negative>
                         <Message.Header>Jotain meni vikaan! Kirjaudu sisään tai yritä myöhemmin uudelleen.</Message.Header>
                     </Message>

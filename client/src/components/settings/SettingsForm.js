@@ -18,7 +18,8 @@ class SettingsForm extends Component {
             error: false,
             firstNameError: false,
             lastNameError: false,
-            emailError: false
+            emailError: false,
+            // isAdmin: false
         };
     }
 
@@ -129,8 +130,9 @@ class SettingsForm extends Component {
         if (error) {
             return (
                 <div>
+                    &nbsp;
                     <Message negative>
-                        <Message.Header> Jokin meni vikaan. Yritä myöhemmin uudelleen. </Message.Header>
+                        <Message.Header> Jotain meni vikaan! Kirjaudu sisään tai yritä myöhemmin uudelleen. </Message.Header>
                     </Message>
                 </div>
             );

@@ -15,7 +15,7 @@ function RoomEditModal(props) {
 
     useEffect(() => {
         setRoom(props.room)
-    }, [])
+    }, []);
 
     const handleNameChange = (e, {value}) => setName(value);
     const handleCapacityChange = (e, {value}) => setCapacity(value);
@@ -29,13 +29,13 @@ function RoomEditModal(props) {
             capacity: capacity,
             available: available,
             equipment: equipment
-        }
+        };
                 adminUpdateRoom(room.id, data)
-                    .then(props.update())
-                setMessage('Huoneen muokkaus onnistui!')
+                    .then(props.update());
+                setMessage('Huoneen muokkaus onnistui!');
                 console.log(props.update())
 
-    }
+    };
 
     return(
         <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>}>
