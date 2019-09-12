@@ -1,5 +1,5 @@
 // This page shows the current user's current and past bookings. Here, the user can also modify (cancel) the current bookings.
-// cancel rools: 1 week for the big room "Stage", 24h for other rooms
+// cancel rools: 1 week for the big room "Stage", 24h for other rooms. Rools defined below, in renderUserBookingTable
 
 import React, {useState, useEffect, useContext} from 'react';
 import {getUserBookings, getRoomData, adminDeleteBooking} from '../service/ClientService';
@@ -8,8 +8,6 @@ import moment from 'moment';
 import {AuthContext} from '../context/auth';
 
 function User() {
-    //this needs to be changed to "Stage" id!!
-    let bigRoom = '69df3828-edeb-4727-bde7-645847626292';
 
     const {currentUser} = useContext(AuthContext);
     const [data, setData] = useState([]);
@@ -35,6 +33,13 @@ function User() {
         const room = rooms.find(room => room.id === roomId);
         if (room === undefined) return " ";
         return room.name
+    };
+
+    //room capacity
+    const roomCapacity = (roomId) => {
+        const room = rooms.find(room => room.id === roomId);
+        if (room === undefined) return " ";
+        return room.capacity
     };
 
     //cancel booking
@@ -125,12 +130,12 @@ function User() {
             ) {
                 cancel = true;
             }
-            //big room must be cancelled 1 week before bookingDate
+            //big room (capacity over 20) must be cancelled 1 week before bookingDate
             else if (
                 moment(booking.bookingDate)
                     .subtract(7, 'days')
                     .isSameOrBefore(moment(now).format('YYYY-MM-DD')) &&
-                booking.roomId === bigRoom
+                roomCapacity(booking.roomId) > 20
             ) {
                 cancel = true;
             }
@@ -232,7 +237,8 @@ function User() {
 
     return (
         <div>
-            <Container style={{padding: '5em 0em', overflow: 'auto'}}>
+            {/*<Container style={{padding: '5em 0em', overflow: 'auto'}}>*/}
+            <Container style={{paddingTop: '20px', paddingBottom:'20px', overflow: 'auto'}}>
                 <Grid textAlign='center' verticalAlign='middle'>
                     <Grid.Column style={{maxWidth: 450}}>
                         <Header textAlign='left'>Hei, {username}!</Header>
@@ -253,7 +259,9 @@ function User() {
                         <Header as='h3' attached='top' block>
                             Menneet varaukset
                         </Header>
+                        {/*<Container style={{overflow: 'auto'}}>*/}
                         <Tab panes={panes} style={{marginTop: 14}}/>
+                        {/*</Container>*/}
                     </Grid.Column>
                 </Grid>
             </Container>

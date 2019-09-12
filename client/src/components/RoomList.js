@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Table, Form } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import RoomRow from './RoomRow';
 import moment from 'moment';
 import './Table.css';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import fi from 'date-fns/locale/fi';
+
 import {
   getAllBookings,
   getAllRooms,
@@ -16,31 +14,30 @@ class RoomList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      startDate: new Date(),
+      startDate: this.props.date,
       rooms: [],
       bookings: [],
       userList: []
     };
 
-    this.handleDateChange = this.handleDateChange.bind(this);
     this.updateBookings = this.updateBookings.bind(this);
     this.updateRooms = this.updateRooms.bind(this);
     this.updateUserList = this.updateUserList.bind(this);
   }
 
-  handleDateChange(date) {
-    this.setState({
-      startDate: date
-    });
-  }
-
-  componentWillMount() {
-    this.updateUserList();
-  }
-
   componentDidMount() {
     this.updateBookings();
     this.updateRooms();
+    this.updateUserList();
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.startDate !== nextProps.date) {
+      return {
+        startDate: nextProps.date
+      };
+    }
+    return null;
   }
 
   // gets all users from database and and sets them to state as a list.
@@ -83,19 +80,6 @@ class RoomList extends Component {
 
     return (
       <div>
-        {/*<Form style={{ position: 'fixed', left: '200px', bottom: '650px'}} onSubmit={this.handleSubmit}>*/}
-        <Form style={{ marginTop: 20 }} onSubmit={this.handleSubmit}>
-          <Form.Group>
-            <Form.Input>
-              <DatePicker
-                dateFormat='dd/MM/yyyy'
-                selected={this.state.startDate}
-                onChange={this.handleDateChange}
-                locale={fi}
-              />
-            </Form.Input>
-          </Form.Group>
-        </Form>
         <Table unstackable color={'blue'} celled definition>
           <Table.Header>
             <Table.Row>

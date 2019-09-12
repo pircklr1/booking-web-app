@@ -29,6 +29,7 @@ class RoomCell extends Component {
       //Handle the change from userId to user's name
       let userId = this.props.cellData.booking.userId;
       let username = 'Ei löytynyt';
+
       for (var i = 0; i < this.props.userList.length; i++) {
         if (userId == this.props.userList[i].id) {
           username =

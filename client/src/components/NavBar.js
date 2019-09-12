@@ -92,7 +92,7 @@ function NavBar() {
             <Dropdown
               trigger={
                 <span>
-                  <Icon name='user' />
+                  <Icon name='user' style={{ color: '#1678C2', size: 'big' }} />
                   {username}
                 </span>
               }
@@ -108,8 +108,16 @@ function NavBar() {
                   iconposition='left'
                   active={activeItem === 'Asetukset'}
                   onClick={handleItemClick}
-                ></Menu.Item>
-
+                />
+                <Menu.Item
+                  as={Link}
+                  to='/contact'
+                  name='contact'
+                  icon='phone'
+                  iconposition='left'
+                  active={activeItem === 'contact'}
+                  onClick={handleItemClick}
+                />
                 <Menu.Item
                   as={Link}
                   to='/login'
@@ -118,7 +126,7 @@ function NavBar() {
                   iconposition='left'
                   active={activeItem === 'Kirjaudu ulos'}
                   onClick={logout}
-                ></Menu.Item>
+                />
               </Dropdown.Menu>
             </Dropdown>
           </Menu.Menu>
@@ -194,6 +202,17 @@ function NavBar() {
               <Icon name='settings' />
               Asetukset
             </Menu.Item>
+            <Menu.Item
+              style={{ color: 'white' }}
+              as={Link}
+              to='/contact'
+              name='contact'
+              active={activeItem === 'contact'}
+              onClick={handleMobileItemClick}
+            >
+              <Icon name='phone' />
+              Yhteystiedot
+            </Menu.Item>
             {currentUser.isadmin && (
               <Menu.Item
                 style={{ color: 'white' }}
@@ -247,6 +266,18 @@ function NavBar() {
           <Menu.Item
             position='right'
             as={Link}
+            to='/contact'
+            name='contact'
+            iconposition='left'
+            active={activeItem === 'contact'}
+            onClick={handleItemClick}
+          >
+            <Icon name='phone' />
+            Yhteystiedot
+          </Menu.Item>
+          <Menu.Item
+            // position='right'
+            as={Link}
             to='/login'
             name='login'
             iconposition='left'
@@ -256,17 +287,6 @@ function NavBar() {
             <Icon name='key' />
             Kirjaudu
           </Menu.Item>
-          {/*<Menu.Item*/}
-          {/*  as={Link}*/}
-          {/*  to='/signup'*/}
-          {/*  name='signup'*/}
-          {/*  iconposition='left'*/}
-          {/*  active={activeItem === 'signup'}*/}
-          {/*  onClick={handleItemClick}*/}
-          {/*>*/}
-          {/*  <Icon name='signup' />*/}
-          {/*  Rekisteröidy*/}
-          {/*</Menu.Item>*/}
         </Menu>
       </Responsive>
       <Responsive {...Responsive.onlyMobile}>
@@ -317,15 +337,17 @@ function NavBar() {
               <Icon name='key' />
               Kirjaudu sisään
             </Menu.Item>
-            {/*<Menu.Item*/}
-            {/*  style={{ color: 'white' }}*/}
-            {/*  as={Link}*/}
-            {/*  to='/signup'*/}
-            {/*  onClick={handleMobileItemClick}*/}
-            {/*>*/}
-            {/*  <Icon name='signup' />*/}
-            {/*  Rekisteröidy*/}
-            {/*</Menu.Item>*/}
+            <Menu.Item
+              style={{ color: 'white' }}
+              as={Link}
+              to='/contact'
+              name='contact'
+              active={activeItem === 'contact'}
+              onClick={handleMobileItemClick}
+            >
+              <Icon name='phone' />
+              Yhteystiedot
+            </Menu.Item>
           </Sidebar>
         </Menu>
       </Responsive>

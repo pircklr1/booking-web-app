@@ -8,8 +8,6 @@ import UserEditModal from "./UserEditModal";
 function AdminAllUsers(){
     const [userData, setUserData] = useState([]);
     const [rerender, setRerender] = useState(1);
-    const [showCheckMark] = useState(true);
-    const [showX] = useState(true);
 
     useEffect(() => {
       getAllUsers(setUserData);
@@ -28,9 +26,7 @@ function AdminAllUsers(){
                         <Table.Cell>{user.lastName} {user.firstName}</Table.Cell>
                         <Table.Cell>{user.email}</Table.Cell>
                         <Table.Cell collapsing textAlign='center'>
-                            {showCheckMark &&
                             <Icon name='checkmark' color='green'/>
-                            }
                         </Table.Cell>
                         <Table.Cell collapsing textAlign='center'>
                             <UserEditModal user={user} update={update}/>
@@ -46,9 +42,7 @@ function AdminAllUsers(){
                         <Table.Cell>{user.lastName} {user.firstName}</Table.Cell>
                         <Table.Cell>{user.email}</Table.Cell>
                         <Table.Cell collapsing textAlign='center'>
-                            {showX &&
                             <Icon name='times' color='red'/>
-                            }
                         </Table.Cell>
                         <Table.Cell collapsing textAlign='center'>
                             <UserEditModal user={user} update={update}/>
