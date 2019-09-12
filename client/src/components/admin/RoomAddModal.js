@@ -38,7 +38,7 @@ function RoomAddModal(props) {
     }
 
     return(
-        <Modal trigger={<Button positive basic icon><Icon className='add circle'/></Button>}>
+        <Modal trigger={<Button positive basic icon><Icon className='add circle'/></Button>} closeIcon>
             <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Lisää uusi huone</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>

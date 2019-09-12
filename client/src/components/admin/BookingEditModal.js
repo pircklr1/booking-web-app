@@ -68,7 +68,7 @@ function BookingEditModal(props) {
 
     //booking editing modal & form
     return(
-        <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>}>
+        <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>}closeIcon>
             <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Muokkaa varausta</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>
