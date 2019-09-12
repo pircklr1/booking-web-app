@@ -2,15 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7481169c-8a28-45c7-959f-661cab3894c6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/5cb16abc-f647-46c9-9396-2f732090a56a.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/5cb16abc-f647-46c9-9396-2f732090a56a/storage_v2/_src_/database/booking.WQjbAw.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources/5cb16abc-f647-46c9-9396-2f732090a56a/storage_v2/_src_/database/booking.WQjbAw/schema/public.abK9xQ.meta" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/loppuprojekti-tilavaraus-applikaatio.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/admin/AdminAllUsers.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/AdminAllUsers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/admin/UserEditModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/admin/UserEditModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/settings/SettingsForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/settings/SettingsForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/api/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/api/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +104,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/components/settings/SettingsForm.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="338">
@@ -106,6 +112,15 @@
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/server.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="46" selection-start-line="46" selection-start-column="3" selection-end-line="46" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -136,10 +151,11 @@
         <option value="$PROJECT_DIR$/client/src/pages/Register.js" />
         <option value="$PROJECT_DIR$/server/routes/api/user.js" />
         <option value="$PROJECT_DIR$/client/src/components/settings/SettingsForm.js" />
+        <option value="$PROJECT_DIR$/server/server.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="35" />
     <option name="y" value="10" />
     <option name="width" value="1750" />
@@ -257,15 +273,15 @@
       <workItem from="1568182401090" duration="2403000" />
       <workItem from="1568185376091" duration="14039000" />
       <workItem from="1568205631474" duration="1068000" />
-      <workItem from="1568265348522" duration="11489000" />
+      <workItem from="1568265348522" duration="12166000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28999000" />
+    <option name="totallyTimeSpent" value="29676000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25973153" />
@@ -488,6 +504,13 @@
           <folding>
             <element signature="e#0#56#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="46" selection-start-line="46" selection-start-column="3" selection-end-line="46" selection-end-column="36" />
         </state>
       </provider>
     </entry>
