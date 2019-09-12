@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import RoomList from '../components/RoomList';
 import BookingForm from '../components/BookingForm';
 import { Container, Responsive } from 'semantic-ui-react';
 import 'react-datepicker/dist/react-datepicker.css';
+import RoomTable from "../components/RoomTable";
 
 class Calendar extends Component {
   render() {
@@ -18,8 +18,8 @@ class Calendar extends Component {
             paddingRight: '20px'
           }}
         >
-          <Container style={{ overflow: 'auto' }}>
-            <RoomList />
+              <Container>
+            <RoomTable/>
           </Container>
           <Container style={{ marginTop: 20 }}>
             <BookingForm />
@@ -36,7 +36,7 @@ class Calendar extends Component {
           }}
         >
           <Container style={{ overflow: 'auto' }}>
-            <RoomList />
+            <RoomTable/>
           </Container>
           <Container style={{ marginTop: 20 }}>
             <BookingForm />
