@@ -13,23 +13,27 @@ class RoomCell extends Component {
     } else {
       if (this.props.cellData.users) {
         return (
-          <Modal
+          <Popup
             position='top center'
-            size='mini'
+            on='click'
+            pinned
+            hideOnScroll
             trigger={<Icon circular name='user' />}
           >
-            <Modal.Header as='h4'>Varauksen tiedot</Modal.Header>
-            <Modal.Content>
-              <p>
-                <b>Huoneen nimi:</b> {this.props.roomName}
-                <br />
-                <b>Ajankohta:</b> {this.props.cellData.booking.startTime}-
-                {this.props.cellData.booking.endTime}
-                <br />
-                <b>Varaajan nimi:</b> {this.props.cellData.booking.userId}
-              </p>
-            </Modal.Content>
-          </Modal>
+            <Grid centered>
+              <Grid.Column textAlign='center'>
+                <Header as='h4'>Varauksen tiedot</Header>
+                <p>
+                  Huoneen nimi: {this.props.roomName}
+                  <br />
+                  Ajankohta: {this.props.cellData.booking.startTime}-
+                  {this.props.cellData.booking.endTime}
+                  <br />
+                  Varaajan nimi: {this.props.cellData.booking.userId}
+                </p>
+              </Grid.Column>
+            </Grid>
+          </Popup>
         );
       } else {
         // return <Icon size='large' color='red' name='ban'/> =red ban-icon for grey background
