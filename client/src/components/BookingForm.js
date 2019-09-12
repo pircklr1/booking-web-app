@@ -40,7 +40,7 @@ function BookingForm(props) {
     const getRooms = () => {
         getRoomData(list => {
             setRoomdata(list.filter(room => room.available).map(room => {
-                return {key: room.id, text: room.name, value: room.id, available: room.available}
+                return {key: room.id, text: room.name, value: room.id}
             }));
         });
     };
