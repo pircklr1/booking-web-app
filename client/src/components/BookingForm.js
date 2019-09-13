@@ -49,7 +49,7 @@ function BookingForm(props) {
     const getUsers = () => {
         getAllUsers(list => {
             setUserData(list.map(user => {
-                return {key: user.id, text: user.firstName + " " + user.lastName, value: user.id}
+                return {key: user.id, text: user.lastName + " " + user.firstName, value: user.id}
             }));
         });
     };

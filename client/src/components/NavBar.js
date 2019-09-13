@@ -222,7 +222,7 @@ function NavBar() {
                 name='admin'
                 active={activeItem === 'admin'}
               >
-                <Icon name='adn' />
+                <Icon name='key' />
                 Admin
               </Menu.Item>
             )}
