@@ -1,3 +1,5 @@
+/* This is the page that allows the user to change their password while logged in. The page will not be visible unless the user is logged
+* in, i.e. there is a userId that can be retrieved from the Local Storage */
 import {Button, Form, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
@@ -52,7 +54,9 @@ class PasswordSettings extends Component {
             [name]: event.target.value,
         });
     };
-
+    /* Function to update the user's password: first we validate the inputs so that the new password is at least 8 characters and
+    confirmPassword field matches with the new password. If both validation checks are cleared the program calls for backend
+     api post method*/
     updatePassword = async (e) => {
         e.preventDefault();
         const {email, password, confirmPassword} = this.state;
@@ -122,7 +126,7 @@ class PasswordSettings extends Component {
                 paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
                 paddingRight: '20px'}}>
                 <div className='form-container'>
-                    <h4>Vaihda salasana</h4>
+                    <h3>Vaihda salasana</h3>
                     <Form className="password-form" onSubmit={this.updatePassword}>
                         <Form.Input
                             id="password"

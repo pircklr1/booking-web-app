@@ -1,3 +1,6 @@
+/* This component allows admin to invite new users to use this application via email. In practice, when admin invites a user by
+* their email, the application creates a new user that only has id and email, and sends an email to the invited user that includes a
+* registration link */
 import {Button, Form, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
@@ -21,7 +24,9 @@ class ForgotPassword extends Component {
             [name]: event.target.value,
         });
     };
-
+    /* Checks if the input is a valid email (and not empty), if not, shows an error message. If email is valid,
+    * calls for api post function in backend that creates a new user and sends a registration link to the new user. If
+    * there is already a user in the database with the given email, shows an error message */
     sendInvitationEmail = async (e) => {
         e.preventDefault();
         const {email} = this.state;
