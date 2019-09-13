@@ -259,7 +259,6 @@ function NavBar() {
             Yhteystiedot
           </Menu.Item>
           <Menu.Item
-            // position='right'
             as={Link}
             to='/login'
             name='login'
