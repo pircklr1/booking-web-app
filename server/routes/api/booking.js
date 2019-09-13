@@ -94,6 +94,7 @@ module.exports = (app, db) => {
             }
         })
             .then(() => {
+                console.log(overlapping);
                 if (overlapping.length !== 0) {
                     res.status(403).send('overlapping booking')
                 } else {
@@ -107,14 +108,12 @@ module.exports = (app, db) => {
                                 startTime: req.body.start_time,
                                 endTime: req.body.end_time,
                                 isValid: req.body.is_valid
-                            }).then(result =>
-                                res.json(result)).catch(err => {
-                                console.error("Error with POST", err.message);
-                                res.status(400).send(err.message);
                             })
                         }
+                    }).then(result =>
+                        res.json(result)).catch(err => {
+                        res.status(400).send(err.message);
                     })
-
                 }
             })
     });

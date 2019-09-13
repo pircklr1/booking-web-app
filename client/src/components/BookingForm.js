@@ -41,7 +41,6 @@ function BookingForm(props) {
         getRoomData(list => {
             setRoomData(list.filter(room => room.available).map(room => {
                 return {key: room.id, text: room.name, value: room.id}
-                //, available: room.available
             }));
         });
     };
