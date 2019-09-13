@@ -35,9 +35,9 @@ class RoomTable extends Component {
                         </Form.Input>
                     </Form.Group>
                 </Form>
-                <Container style={{ overflow: 'auto', marginLeft:'0px'}}>
+                <div style={{overflow:'auto'}}>
                 <RoomList date={this.state.startDate}/>
-                </Container>
+            </div>
             </div>
         );
     }
