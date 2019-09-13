@@ -3,7 +3,12 @@ import { Table } from 'semantic-ui-react';
 import RoomRow from './RoomRow';
 import moment from 'moment';
 import './Table.css';
-import { getAllBookings, getAllRooms } from '../service/ClientService';
+
+import {
+  getAllBookings,
+  getAllRooms,
+  getAllUsers
+} from '../service/ClientService';
 
 class RoomList extends Component {
   constructor(props) {
@@ -11,16 +16,19 @@ class RoomList extends Component {
     this.state = {
       startDate: this.props.date,
       rooms: [],
-      bookings: []
+      bookings: [],
+      userList: []
     };
 
     this.updateBookings = this.updateBookings.bind(this);
     this.updateRooms = this.updateRooms.bind(this);
+    this.updateUserList = this.updateUserList.bind(this);
   }
 
   componentDidMount() {
     this.updateBookings();
     this.updateRooms();
+    this.updateUserList();
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -30,6 +38,13 @@ class RoomList extends Component {
       };
     }
     return null;
+  }
+
+  // gets all users from database and and sets them to state as a list.
+  updateUserList() {
+    getAllUsers(list => {
+      this.setState({ userList: list });
+    });
   }
 
   // gets all rooms from database and and sets them to state as a list.
@@ -58,6 +73,7 @@ class RoomList extends Component {
           date={this.state.startDate}
           room={room}
           key={room.id}
+          userList={this.state.userList}
         />
       );
     });

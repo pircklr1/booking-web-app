@@ -1,3 +1,4 @@
+
 import axios from 'axios';
 
 const baseUrl = 'http://localhost:9999/api';
@@ -23,16 +24,15 @@ export function getAllBookings(setData) {
 
 export const getAllBookingsPromise = async () => {
     try {
-        const result = await axios
-            .get(baseUrl + '/bookings', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    token: localStorage.getItem('jwtToken')
-                }
-            });
-        return result.data
+        const result = await axios.get(baseUrl + '/bookings', {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        });
+        return result.data;
     } catch (e) {
-        console.log(e)
+        console.log(e);
     }
 };
 
@@ -55,18 +55,17 @@ export function getUserBookings(id, setData) {
         });
 }
 
-export const getUserBookingsPromise = async (id) => {
+export const getUserBookingsPromise = async id => {
     try {
-        const result = await axios
-            .get(baseUrl + '/userbookings/' + id, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    token: localStorage.getItem('jwtToken')
-                }
-            });
-        return result.data
+        const result = await axios.get(baseUrl + '/userbookings/' + id, {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        });
+        return result.data;
     } catch (e) {
-        console.log(e)
+        console.log(e);
     }
 };
 
@@ -159,7 +158,7 @@ export function getRoomData(callback) {
                 token: localStorage.getItem('jwtToken')
             }
         })
-        .then(function (rooms) {
+        .then(function(rooms) {
             callback(rooms.data);
         })
         .catch(error => {
@@ -208,7 +207,6 @@ export function adminUpdateBooking(id, data) {
         .catch(error => {
             return false;
         });
-
 }
 
 export function adminDeleteRoom(id) {
@@ -272,7 +270,6 @@ export function adminUpdateRoom(id, data) {
         .catch(error => {
             return false;
         });
-
 }
 
 export function adminCreateRoom(data) {
@@ -316,19 +313,18 @@ export function adminUpdateUser(id, data) {
             return false;
         });
 }
-    export function getAllUsersAdmin(setUserData) {
-        axios
-            .get(baseUrl + '/users/admin', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    token: localStorage.getItem('jwtToken')
-                }
-            })
-            .then(response => {
-                return setUserData(response.data);
-            })
-            .catch(error => {
-                return error.message;
-            });
-
+export function getAllUsersAdmin(setUserData) {
+    axios
+        .get(baseUrl + '/users/admin', {
+            headers: {
+                'Content-Type': 'application/json',
+                token: localStorage.getItem('jwtToken')
+            }
+        })
+        .then(response => {
+            return setUserData(response.data);
+        })
+        .catch(error => {
+            return error.message;
+        });
 }

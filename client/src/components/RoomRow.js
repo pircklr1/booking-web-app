@@ -4,237 +4,242 @@ import RoomCell from './RoomCell';
 import moment from 'moment';
 
 class RoomRow extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      bookingData: this.props.bookings,
+      combinedDatas: [
+        {
+          available: true,
+          time: moment('6:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('6:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('7:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('7:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('8:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('8:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('9:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('9:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('10:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('10:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('11:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('11:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('12:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('12:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('13:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('13:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('14:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('14:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('15:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('15:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('16:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('16:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('17:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('17:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('18:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('18:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('19:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('19:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('20:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('20:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('21:00:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        },
+        {
+          available: true,
+          time: moment('21:30:01', 'HH:mm:ss'),
+          room: this.props.room.id,
+          users: false,
+          booking: ''
+        }
+      ]
+    };
+  }
+
   userId = localStorage.getItem('userId');
 
-  state = {
-    bookingData: this.props.bookings,
-    combinedDatas: [
-      {
-        available: true,
-        time: moment('6:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('6:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('7:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('7:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('8:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('8:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('9:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('9:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('10:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('10:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('11:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('11:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('12:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('12:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('13:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('13:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('14:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('14:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('15:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('15:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('16:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('16:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('17:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('17:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('18:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('18:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('19:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('19:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('20:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('20:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('21:00:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      },
-      {
-        available: true,
-        time: moment('21:30:01', 'HH:mm:ss'),
-        room: this.props.room.id,
-        users: false,
-        booking: ''
-      }
-    ]
-  };
   UNSAFE_componentWillReceiveProps() {
     this.resetCombinedDatas();
   }
@@ -282,6 +287,7 @@ class RoomRow extends Component {
       }
     }
   }
+
   render() {
     if (this.props.bookings.length > 0) {
       this.compareData();
@@ -292,6 +298,7 @@ class RoomRow extends Component {
         cellData={combinedData}
         key={index}
         roomName={this.props.room.name}
+        userList={this.props.userList}
       />
     ));
 

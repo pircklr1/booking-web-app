@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Icon, Popup } from 'semantic-ui-react';
-import { Grid, Header, Modal } from 'semantic-ui-react';
-import moment from 'moment';
+import { Table, Icon, Popup, Grid, Header } from 'semantic-ui-react';
 
 // let backgroundColor = '#1678C2';
 // let backgroundColor2 = '#DB2828';
@@ -11,51 +9,97 @@ class RoomCell extends Component {
     if (this.props.cellData.available) {
       return '';
     } else {
+      //Check if user is admin and is allowed to see popups
+      let isAdmin = false;
+      for (var i = 0; i < this.props.userList.length; i++) {
+        if (
+          localStorage.getItem('userId') == this.props.userList[i].id &&
+          this.props.userList[i].isAdmin
+        ) {
+          isAdmin = true;
+        }
+      }
+
+      //Handle booking time for booking popup
+      let startTime = this.props.cellData.booking.startTime;
+      let endTime = this.props.cellData.booking.endTime;
+      let startTimeFixed = startTime.substring(0, startTime.length - 3);
+      let endTimeFixed = endTime.substring(0, endTime.length - 3);
+
+      //Handle the change from userId to user's name
+      let userId = this.props.cellData.booking.userId;
+      let username = 'Ei löytynyt';
+
+      for (var i = 0; i < this.props.userList.length; i++) {
+        if (userId == this.props.userList[i].id) {
+          username =
+            this.props.userList[i].firstName +
+            ' ' +
+            this.props.userList[i].lastName;
+        }
+      }
       if (this.props.cellData.users) {
-        return (
-          <Modal
-            position='top center'
-            size='mini'
-            trigger={<Icon circular name='user' />}
-          >
-            <Modal.Header as='h4'>Varauksen tiedot</Modal.Header>
-            <Modal.Content>
-              <p>
-                <b>Huoneen nimi:</b> {this.props.roomName}
-                <br />
-                <b>Ajankohta:</b> {this.props.cellData.booking.startTime}-
-                {this.props.cellData.booking.endTime}
-                <br />
-                <b>Varaajan nimi:</b> {this.props.cellData.booking.userId}
-              </p>
-            </Modal.Content>
-          </Modal>
-        );
+        if (isAdmin) {
+          return (
+            <Popup
+              position='top center'
+              hideOnScroll
+              basic
+              trigger={<Icon circular name='user' />}
+            >
+              <Grid centered>
+                <Grid.Column textAlign='center'>
+                  <Header as='h4'>Varauksen tiedot</Header>
+
+                  <p>
+                    Huoneen nimi:<b> {this.props.roomName}</b>
+                    <br />
+                    Ajankohta:{' '}
+                    <b>
+                      {' '}
+                      {startTimeFixed}-{endTimeFixed}{' '}
+                    </b>
+                    <br />
+                    Varaajan nimi:<b> {username}</b>
+                  </p>
+                </Grid.Column>
+              </Grid>
+            </Popup>
+          );
+        } else {
+          return <Icon circular name='user' />;
+        }
       } else {
         // return <Icon size='large' color='red' name='ban'/> =red ban-icon for grey background
-        return (
-          <Popup
-            position='top center'
-            on='click'
-            pinned
-            hideOnScroll
-            trigger={<Icon size='large' name='ban' />}
-          >
-            <Grid centered>
-              <Grid.Column textAlign='center'>
-                <Header as='h4'>Varauksen tiedot</Header>
-                <p>
-                  Huoneen nimi: {this.props.roomName}
-                  <br />
-                  Ajankohta: {this.props.cellData.booking.startTime}-
-                  {this.props.cellData.booking.endTime}
-                  <br />
-                  Varaajan nimi: {this.props.cellData.booking.userId}
-                </p>
-              </Grid.Column>
-            </Grid>
-          </Popup>
-        );
+        if (isAdmin) {
+          return (
+            <Popup
+              position='top center'
+              hideOnScroll
+              basic
+              trigger={<Icon size='large' name='ban' />}
+            >
+              <Grid centered>
+                <Grid.Column textAlign='center'>
+                  <Header as='h4'>Varauksen tiedot</Header>
+                  <p>
+                    Huoneen nimi:<b> {this.props.roomName}</b>
+                    <br />
+                    Ajankohta:{' '}
+                    <b>
+                      {' '}
+                      {startTimeFixed}-{endTimeFixed}{' '}
+                    </b>
+                    <br />
+                    Varaajan nimi:<b> {username}</b>
+                  </p>
+                </Grid.Column>
+              </Grid>
+            </Popup>
+          );
+        } else {
+          return <Icon size='large' name='ban' />;
+        }
       }
     }
   }
