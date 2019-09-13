@@ -11,7 +11,7 @@ function Settings() {
             paddingTop: '20px', paddingBottom: '20px', paddingLeft: '20px',
             paddingRight: '20px'}}>
             <Header as='h2' block>
-                <Icon name='cog' />
+                <Icon name='settings' />
                 <Header.Content>
                     Asetukset
                 </Header.Content>
