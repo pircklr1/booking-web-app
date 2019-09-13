@@ -18,12 +18,10 @@ class Calendar extends Component {
                         paddingRight: '20px'
                     }}
                 >
-                    <Container>
-                        <RoomTable/>
-                    </Container>
-                    <Container style={{marginTop: 20}}>
+                    <RoomTable/>
+                    <div style={{marginTop: 20}}>
                         <BookingForm/>
-                    </Container>
+                    </div>
                 </Responsive>
                 <Responsive
                     {...Responsive.onlyMobile}
@@ -33,12 +31,10 @@ class Calendar extends Component {
                         paddingBottom: '20px'
                     }}
                 >
-                    <Container>
-                        <RoomTable/>
-                    </Container>
-                    <Container style={{marginTop: 20}}>
+                    <RoomTable/>
+                    <div style={{marginTop: 20}}>
                         <BookingForm/>
-                    </Container>
+                    </div>
                 </Responsive>
             </div>
         );
