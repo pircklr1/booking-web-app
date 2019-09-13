@@ -138,6 +138,8 @@ function BookingForm(props) {
                     setMessage('Tarkista alkamis- ja päättymisaika')
                 } else if (e.message === 'start and end time must be even or half hour') {
                     setMessage('Alkamis- ja päättymisajan tulee olla tasalta tai puolelta')
+                }else if (e.message === 'start and end time cant be same'){
+                    setMessage('Alkamis- ja päättymisaika eivät voi olla samat')
                 } else {
                     setMessage('Tuntematon virhe')
                 }
