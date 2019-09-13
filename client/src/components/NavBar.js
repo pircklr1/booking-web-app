@@ -163,7 +163,7 @@ function NavBar() {
             style={{ background: '#1678C2' }}
             animation={'overlay'}
             direction='right'
-            vertical
+            vertical='true'
             inverted='true'
             onHide={handleToggle}
             width='thin'
@@ -319,7 +319,7 @@ function NavBar() {
             style={{ background: '#1678C2' }}
             animation={'overlay'}
             direction='right'
-            vertical
+            vertical='true'
             inverted='true'
             onHide={handleToggle}
             width='thin'
