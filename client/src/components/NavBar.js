@@ -207,7 +207,7 @@ function NavBar() {
                 to='/admin'
                 onClick={handleToggle}
             >
-              <Icon name='adn'/>
+              <Icon name='key'/>
               Admin
             </Menu.Item>
             }

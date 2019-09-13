@@ -315,6 +315,20 @@ export function adminUpdateUser(id, data) {
         .catch(error => {
             return false;
         });
-
+}
+    export function getAllUsersAdmin(setUserData) {
+        axios
+            .get(baseUrl + '/users/admin', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    token: localStorage.getItem('jwtToken')
+                }
+            })
+            .then(response => {
+                return setUserData(response.data);
+            })
+            .catch(error => {
+                return error.message;
+            });
 
 }

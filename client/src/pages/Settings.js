@@ -2,7 +2,7 @@
 import React from 'react';
 import SettingsForm from '../components/settings/SettingsForm';
 import PasswordSettings from '../components/settings/PasswordSettings';
-import {Container, Header, Icon, Tab, Responsive} from 'semantic-ui-react';
+import {Container, Header, Icon, Responsive} from 'semantic-ui-react';
 
 function Settings() {
   return (

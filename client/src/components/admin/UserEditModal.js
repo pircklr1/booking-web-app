@@ -1,3 +1,5 @@
+/* Pop-up modal, that is responsible for updating user information in the admin panel. User's first name
+* last name and email are text type inputs, admin status is a toggle button (admin-not admin)*/
 import React, {useState} from 'react';
 import {adminUpdateUser} from "../../service/ClientService";
 import {Button, Form, Icon, Modal} from "semantic-ui-react";

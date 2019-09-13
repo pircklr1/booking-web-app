@@ -12,11 +12,13 @@ const validateLoginInput = require('../../validation/login');
 const validateUserSettingsInput = require('../../validation/usersettings');
 
 module.exports = (app, db) => {
-    // @route   GET api/users
-    // @desc    Get all users
+    // @route   GET api/users/admin
+    // @desc    Get all users for admin panel
     // @access  Public
-    app.get('/api/users', withAuth, (req, res) =>
+    app.get('/api/users/admin', withAuth, (req, res) =>
         db.User.findAll({
+            attributes: {
+                exclude: ['password']},
             order: [['lastName', 'ASC']]
         })
             .then(result => res.json(result))
@@ -25,6 +27,22 @@ module.exports = (app, db) => {
                 res.status(400).send(err.message);
             })
     );
+
+    // @route   GET api/users
+    // @desc    Get all users
+    // @access  Public
+    app.get('/api/users', withAuth, (req, res) =>
+        db.User.findAll({
+            attributes: ['id','firstName', 'lastName', 'isAdmin'],
+            order: [['lastName', 'ASC']]
+        })
+            .then(result => res.json(result))
+            .catch(err => {
+                console.error('Error with GET All', err.message);
+                res.status(400).send(err.message);
+            })
+    );
+
 
     // simple helper function for token validation
     app.get('/api/checktoken', withAuth, (req, res) => res.sendStatus(200));

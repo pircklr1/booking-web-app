@@ -1,6 +1,6 @@
 //this component is allows admin-users to inspect users' information, modify users and delete them
 import React, {useState, useEffect} from 'react';
-import {getAllUsers} from '../../service/ClientService';
+import {getAllUsersAdmin} from '../../service/ClientService';
 import {Table, Icon} from 'semantic-ui-react';
 import DeleteButton from "./DeleteButton";
 import UserEditModal from "./UserEditModal";
@@ -11,7 +11,7 @@ function AdminAllUsers(){
     const [rerender, setRerender] = useState(1);
 
     useEffect(() => {
-      getAllUsers(setUserData);
+      getAllUsersAdmin(setUserData);
       setRerender(false);
     }, [rerender]);
 
@@ -21,8 +21,8 @@ function AdminAllUsers(){
     }
 
     /* Renders the rows for the user table. If user is admin, shows a green check mark in "admin" column, otherwise shows a red x.
-    UserEditModal opens a modal that allows admin to modify user's name, email and admin status, DeleteButton calls
-    for delete user function in ClientService.js. Both buttons update the info on the page immediately by calling the update function */
+    * UserEditModal opens a modal that allows admin to modify user's name, email and admin status, DeleteButton calls
+    * for delete user function in ClientService.js. Both buttons update the info on the page immediately by calling the update function */
     const renderUserTable = () => {
         return userData.map(user => {
             if (user.isAdmin === true) {
