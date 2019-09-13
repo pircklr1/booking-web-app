@@ -112,10 +112,10 @@ function NavBar() {
                 <Menu.Item
                   as={Link}
                   to='/contact'
-                  name='contact'
+                  name='Yhteystiedot'
                   icon='phone'
                   iconposition='left'
-                  active={activeItem === 'contact'}
+                  active={activeItem === 'Yhteystiedot'}
                   onClick={handleItemClick}
                 />
                 <Menu.Item
@@ -206,8 +206,8 @@ function NavBar() {
               style={{ color: 'white' }}
               as={Link}
               to='/contact'
-              name='contact'
-              active={activeItem === 'contact'}
+              name='Yhteystiedot'
+              active={activeItem === 'Yhteystiedot'}
               onClick={handleMobileItemClick}
             >
               <Icon name='phone' />
@@ -267,9 +267,9 @@ function NavBar() {
             position='right'
             as={Link}
             to='/contact'
-            name='contact'
+            name='Yhteystiedot'
             iconposition='left'
-            active={activeItem === 'contact'}
+            active={activeItem === 'Yhteystiedot'}
             onClick={handleItemClick}
           >
             <Icon name='phone' />
@@ -340,8 +340,8 @@ function NavBar() {
               style={{ color: 'white' }}
               as={Link}
               to='/contact'
-              name='contact'
-              active={activeItem === 'contact'}
+              name='Yhteystiedot'
+              active={activeItem === 'Yhteystiedot'}
               onClick={handleMobileItemClick}
             >
               <Icon name='phone' />
