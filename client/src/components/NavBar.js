@@ -84,7 +84,7 @@ function NavBar() {
               active={activeItem === 'admin'}
               onClick={handleItemClick}
             >
-              <Icon name='key' />
+              <Icon name='shield' />
               Admin
             </Menu.Item>
           )}
@@ -104,7 +104,7 @@ function NavBar() {
                   as={Link}
                   to='/settings'
                   name='Asetukset'
-                  icon='setting'
+                  icon='settings'
                   iconposition='left'
                   active={activeItem === 'Asetukset'}
                   onClick={handleItemClick}
@@ -122,7 +122,7 @@ function NavBar() {
                   as={Link}
                   to='/login'
                   name='Kirjaudu ulos'
-                  icon='lock'
+                  icon='log out'
                   iconposition='left'
                   active={activeItem === 'Kirjaudu ulos'}
                   onClick={logout}
@@ -163,7 +163,7 @@ function NavBar() {
             style={{ background: '#1678C2' }}
             animation={'overlay'}
             direction='right'
-            vertical
+            vertical='true'
             inverted='true'
             onHide={handleToggle}
             width='thin'
@@ -188,7 +188,7 @@ function NavBar() {
               name='bookings'
               active={activeItem === 'bookings'}
             >
-              <Icon name='user' />
+              <Icon name='calendar alternate outline' />
               Omat varaukset
             </Menu.Item>
             <Menu.Item
@@ -222,7 +222,7 @@ function NavBar() {
                 name='admin'
                 active={activeItem === 'admin'}
               >
-                <Icon name='adn' />
+                <Icon name='shield' />
                 Admin
               </Menu.Item>
             )}
@@ -319,7 +319,7 @@ function NavBar() {
             style={{ background: '#1678C2' }}
             animation={'overlay'}
             direction='right'
-            vertical
+            vertical='true'
             inverted='true'
             onHide={handleToggle}
             width='thin'

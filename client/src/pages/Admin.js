@@ -20,7 +20,7 @@ function Admin() {
           paddingTop: '20px', paddingBottom: '20px', paddingLeft: '20px',
           paddingRight: '20px'}}>
           <Header as='h2' block>
-            <Icon name='settings' />
+            <Icon name='shield' />
             <Header.Content>
               Admin-paneeli
             </Header.Content>
@@ -32,7 +32,7 @@ function Admin() {
         <Responsive {...Responsive.onlyMobile} style={{backgroundColor: 'white',
           paddingTop: '20px', paddingBottom: '20px', marginLeft: '0px!important', marginRight: '0px!important'}}>
           <Header as='h2' block>
-            <Icon name='settings' />
+            <Icon name='shield' />
             <Header.Content>
               Admin-paneeli
             </Header.Content>

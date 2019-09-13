@@ -1,3 +1,4 @@
+//Compiling component for user related admin panel components i.e. for inviting new users and user table
 import React from 'react';
 import {Header} from "semantic-ui-react";
 import AdminAllUsers from "./AdminAllUsers";

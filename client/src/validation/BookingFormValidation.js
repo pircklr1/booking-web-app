@@ -1,7 +1,7 @@
 //validates data which is sent with BookingForm
 
 const validateBookingForm = (data) => {
-    // console.log('data in form validation', data)
+    console.log('data in form validation', data)
 
     //user must be set when creating booking as a admin user
     if(data.user_id === '') {
@@ -27,6 +27,10 @@ const validateBookingForm = (data) => {
     }
     if ((data.start_time.substring(0,2) === data.end_time.substring(0,2)) &&  (data.start_time.substring(3,5) > data.end_time.substring(3,5))) {
         throw new Error('start time cannot be after endtime')
+    }
+    if((data.start_time.substring(0,2) === data.end_time.substring(0,2)) &&
+        (data.start_time.substring(3,5) === data.end_time.substring(3,5))){
+        throw new Error('start and end time cant be same')
     }
 
     //booking start- and end time must be even or half hour
