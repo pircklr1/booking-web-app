@@ -37,7 +37,7 @@ class Register extends Component {
                     registerUserToken: token,
                 },
             });
-            console.log(response.data);
+            // console.log(response.data);
             if (response.data.message === 'registration link ok') {
                 this.setState({
                     email: response.data.email,
@@ -104,7 +104,7 @@ class Register extends Component {
                         registerUserToken: token,
                     },
                 );
-                console.log(response.data);
+                // console.log(response.data);
                 if (response.data.message === 'user updated') {
                     this.setState({
                         updated: true,

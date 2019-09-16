@@ -1,5 +1,5 @@
 // This page shows the current user's current and past bookings. Here, the user can also modify (cancel) the current bookings.
-// cancel rools: 1 week for the big room "Stage", 24h for other rooms. Rools defined below, in renderUserBookingTable
+// cancel rules: 1 week for the big room "Stage", 24h for other rooms. Rules defined below, in renderUserBookingTable
 
 import React, {useState, useEffect, useContext} from 'react';
 import {getUserBookings, getRoomData, adminDeleteBooking} from '../service/ClientService';
