@@ -12,7 +12,7 @@ function AdminBookingsTable({tableData, update}) {
     // const {currentUser} = useContext(AuthContext);
     const [userData, setUserData] = useState([]);
     const [roomData, setRoomData] = useState([]);
-    const [hourSum, setHourSum] = useState(0);
+    let totalHours = 0;
 
     useEffect(() => {
         getAllUsers(setUserData);
@@ -42,29 +42,15 @@ function AdminBookingsTable({tableData, update}) {
     };
 
     //count booked hours and push to array
-    let hours = [];
     const count = (endTime, startTime) => {
         const end = moment(endTime, 'HH:mm');
         const start = moment(startTime, 'HH:mm');
-        hours.push(end.diff(start, "hours", true));
         return end.diff(start, "hours", true);
     };
 
-    //count sum of hours
-    const countHours = () => {
-        if (hours.length > 0) {
-            setHourSum(hours.reduce(countHelper))
-        } else {
-            setHourSum("ei laskettavaa")
-        }
-    };
-
-    function countHelper(total, num) {
-        return total + num;
-    }
-
     const renderBookingTable = () => {
         return tableData.map(booking => {
+            totalHours += count(booking.endTime, booking.startTime)
             return (
                 <Table.Row key={booking.id}>
                     <Table.Cell collapsing textAlign='center'>
@@ -107,8 +93,8 @@ function AdminBookingsTable({tableData, update}) {
             <Table.Footer>
                 <Table.Row>
                     <Table.HeaderCell>Yhteensä</Table.HeaderCell>
-                    <Table.HeaderCell><Button onClick={countHours}>Laske</Button></Table.HeaderCell>
-                    <Table.HeaderCell>{hourSum}</Table.HeaderCell>
+                    <Table.HeaderCell>tunteja</Table.HeaderCell>
+                    <Table.HeaderCell>{totalHours}</Table.HeaderCell>
                     <Table.HeaderCell/>
                     <Table.HeaderCell/>
                     <Table.HeaderCell/>
