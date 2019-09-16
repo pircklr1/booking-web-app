@@ -3,9 +3,9 @@ import React, {useState, useEffect} from 'react';
 import {Button, Table} from 'semantic-ui-react';
 import moment from 'moment';
 import DeleteButton from './DeleteButton';
-import {getAllRooms, getAllUsers} from "../../service/ClientService";
+import {getAllRooms, getAllUsers} from '../../service/ClientService';
 // import {AuthContext} from "../../context/auth";
-import BookingEditModal from "./BookingEditModal";
+import BookingEditModal from './BookingEditModal';
 
 function AdminBookingsTable({tableData, update}) {
 
@@ -19,29 +19,41 @@ function AdminBookingsTable({tableData, update}) {
         getAllRooms(setRoomData);
     }, []);
 
+
     //get room name by room Id (from booking bookingData)
-    const roomName = (roomId) => {
+    const roomName = roomId => {
         return roomData.map(room => {
             if (room.id === roomId) {
                 return room.name;
             } else {
-                return "";
+                return '';
             }
-        })
+        });
+    };
+
+    //get room data for modal
+    const roomForModal = roomId => {
+        let name = '';
+        for (var i = 0; i < roomData.length; i++) {
+            if (roomData[i].id === roomId) {
+                name = roomData[i];
+            }
+        }
+        return name;
     };
 
     //get user name by user Id (from booking bookingData)
-    const userName = (userId) => {
+    const userName = userId => {
         return userData.map(user => {
             if (user.id === userId) {
-                return user.firstName + " " + user.lastName;
+                return user.firstName + ' ' + user.lastName;
             } else {
-                return "";
+                return '';
             }
-        })
+        });
     };
 
-    //count booked hours and push to array
+    //count booked hours
     const count = (endTime, startTime) => {
         const end = moment(endTime, 'HH:mm');
         const start = moment(startTime, 'HH:mm');
@@ -64,7 +76,11 @@ function AdminBookingsTable({tableData, update}) {
                     <Table.Cell>{roomName(booking.roomId)}</Table.Cell>
                     <Table.Cell>{userName(booking.userId)}</Table.Cell>
                     <Table.Cell collapsing textAlign='center'>
-                        <BookingEditModal booking={booking} update={update}/>
+                        <BookingEditModal
+                            booking={booking}
+                            update={update}
+                            room={roomForModal(booking.roomId)}
+                        />
                     </Table.Cell>
                     <Table.Cell collapsing textAlign='center'>
                         <DeleteButton id={booking.id} type={'booking'} update={update}/>
