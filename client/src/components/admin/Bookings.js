@@ -40,6 +40,17 @@ function Bookings() {
     });
   };
 
+  //get user names to dropdown
+  const getUsers = () => {
+    return userData.map(user => {
+      return {
+        key: user.id,
+        text: user.lastName + ' ' + user.firstName,
+        value: user.id
+      };
+    });
+  };
+
   const handleUserChange = (e, { value }) => setUser(value);
   const handleStartDateChange = date => setStartDate(date);
   const handleEndDateChange = date => setEndDate(date);
@@ -69,11 +80,14 @@ function Bookings() {
       );
 
       setBookingData(bookingsByDates);
+      // setMessage('Tiedot noudettu!')
     } catch (e) {
       setMessage('Odottamaton virhe');
     }
+    setTimeout(() => {
+      setMessage(null);
+    }, 2000);
   };
-
   return (
     <div>
       <Header as='h3' attached='top' block>

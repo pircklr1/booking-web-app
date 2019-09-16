@@ -50,6 +50,11 @@ class ForgotPassword extends Component {
                         messageFromServer: 'invitation email sent',
                         email: ''
                     });
+                    setTimeout(() => {
+                        this.setState({
+                            messageFromServer: ''
+                        })
+                    }, 1500);
                 }
             } catch (error) {
                 console.error(error.response.data);
