@@ -1,8 +1,8 @@
-// This page shows the current user's settings. Here, the user can also modify his or her name, email and password.
+// Compiling page for user settings. Components from the /components/settings-directory are shown on this page
 import React from 'react';
 import SettingsForm from '../components/settings/SettingsForm';
 import PasswordSettings from '../components/settings/PasswordSettings';
-import {Container, Header, Icon, Responsive} from 'semantic-ui-react';
+import {Container, Header, Icon, Responsive, Message} from 'semantic-ui-react';
 
 function Settings() {
   return (
@@ -19,6 +19,10 @@ function Settings() {
             <Container style={{overflow:'auto'}}>
                 <SettingsForm/>
                 <PasswordSettings/>
+                <Message info>
+                    <Message.Header>Haluatko poistaa käyttäjätilisi?</Message.Header>
+                    <a href='/contact'>Ota yhteyttä ylläpitäjään.</a>
+                </Message>
             </Container>
         </Responsive>
         <Responsive {...Responsive.onlyMobile} style={{backgroundColor: 'white',
@@ -32,6 +36,10 @@ function Settings() {
             <Container style={{overflow:'auto'}}>
                 <SettingsForm/>
                 <PasswordSettings/>
+                <Message info>
+                    <Message.Header>Haluatko poistaa käyttäjätilisi?</Message.Header>
+                    <a href='/contact'>Ota yhteyttä ylläpitäjään.</a>
+                </Message>
             </Container>
         </Responsive>
     </div>

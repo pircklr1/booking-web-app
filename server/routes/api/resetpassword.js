@@ -1,8 +1,10 @@
+/* api call to check if the reset password link is valid */
 import Sequelize from 'sequelize';
 const Op = Sequelize.Op;
 
 module.exports = (app, db) => {
     app.get('/api/reset', (req, res) => {
+        //searches for a user in database with the random token and expiration time that is greater than current time
         db.User.findOne({
             where: {
                 resetPasswordToken: req.query.resetPasswordToken,
@@ -11,6 +13,7 @@ module.exports = (app, db) => {
                 },
             },
         }).then((user) => {
+            //if no user with given parameters is found, return error, else return ok
             if (user === null) {
                 console.error('password reset link is invalid or has expired');
                 res.status(403).send('password reset link is invalid or has expired');

@@ -1,3 +1,4 @@
+/* api call to update forgotten password */
 import bcrypt from 'bcrypt';
 import Sequelize from 'sequelize';
 const validateUpdatePasswordInput = require('../../validation/updatepassword');
@@ -24,11 +25,13 @@ module.exports = (app, db) => {
                 res.status(403).send('password reset link is invalid or has expired');
             } else if (user != null) {
                 console.log('user exists in db');
+                //before updating the user's information in the database, their password is crypted
                 bcrypt
                     .hash(req.body.password, BCRYPT_SALT_ROUNDS)
                     .then(hashedPassword => {
                         user.update({
                             password: hashedPassword,
+                            //resetting these columns in the database
                             resetPasswordToken: null,
                             resetPasswordExpires: null,
                         });

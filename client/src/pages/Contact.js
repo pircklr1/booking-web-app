@@ -9,7 +9,7 @@ export default function Contact() {
                 </Header>
                 <h3>Vesa Meriläinen</h3>
                 <h3>Kullberg Consulting Oy</h3>
-                <h3>Iso Roobertinkatu 43A</h3>
+                <h3>Iso Roobertinkatu 43 A</h3>
                 <h3>00120 Helsinki</h3>
                 <h3><Icon name='phone'/><a href="tel:+358400944181">0400944181</a></h3>
                 <h3><Icon name='mail'/><a href="mailto:vesa@kullberg.fi">vesa@kullberg.fi</a></h3>

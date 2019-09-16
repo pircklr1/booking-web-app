@@ -1,3 +1,6 @@
+/* This is the component that allows the user to change their name or email in the settings page. The component is only
+* visible if the user is logged in and there is a userId that can be retrieved from the local storage. First the user's data
+* is retrieved from the database, and the retrieved data is set as default values in the settings form  */
 import {Button, Form, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
@@ -57,7 +60,8 @@ class SettingsForm extends Component {
             [name]: event.target.value,
         });
     };
-
+    /*Function to update the user's personal information. The form is validated so that names can't be less than 2
+    * characters and email must be a valid email. Also, user must confirm their email by writing it in the form twice (identically) */
     updateUser = async (e) => {
         e.preventDefault();
         const userId = localStorage.getItem('userId');

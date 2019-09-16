@@ -60,7 +60,7 @@ module.exports = (app, db) => {
     );
 
     // @route   GET api/user/:id
-    // @desc    Get user by id
+    // @desc    Check if there is a user in the database with given email and NOT with given id
     // @access  Public
     app.get('/api/user',(req, res) =>
         db.User.findOne({
@@ -193,7 +193,7 @@ module.exports = (app, db) => {
     });
 
     // @route   PUT api/users/register
-    // @desc    Register user
+    // @desc    Register user i.e. update the user's information
     // @access  Public
     app.put('/api/users/register', (req, res) => {
         const { errors, isValid } = validateRegisterInput(req.body);
@@ -220,6 +220,7 @@ module.exports = (app, db) => {
                                 password: hashedPassword,
                                 firstName: req.body.firstName,
                                 lastName: req.body.lastName,
+                                //reset the registration token column in database
                                 registerUserToken: null
                             })
                             .then(() => {
