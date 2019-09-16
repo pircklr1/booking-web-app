@@ -54,10 +54,14 @@ function Bookings() {
                 .isBetween(data.start_date, data.end_date, null, '[]'));
 
             setBookingData(bookingsByDates)
+            setMessage('Tiedot noudettu!')
 
         } catch (e) {
             setMessage('Odottamaton virhe')
         }
+        setTimeout(() => {
+            setMessage(null)
+        }, 2000);
     };
 
     return (
