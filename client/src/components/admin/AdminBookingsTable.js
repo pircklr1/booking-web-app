@@ -6,7 +6,7 @@ import DeleteButton from './DeleteButton';
 import { getAllRooms, getAllUsers } from '../../service/ClientService';
 // import {AuthContext} from "../../context/auth";
 import BookingEditModal from './BookingEditModal';
-
+import DeleteButtonConfirm from './DeleteButtonConfirm';
 function AdminBookingsTable({ tableData, update }) {
   // const {currentUser} = useContext(AuthContext);
   const [userData, setUserData] = useState([]);
@@ -95,7 +95,11 @@ function AdminBookingsTable({ tableData, update }) {
             />
           </Table.Cell>
           <Table.Cell collapsing textAlign='center'>
-            <DeleteButton id={booking.id} type={'booking'} update={update} />
+            <DeleteButtonConfirm
+              id={booking.id}
+              type={'booking'}
+              update={update}
+            />
           </Table.Cell>
         </Table.Row>
       );
