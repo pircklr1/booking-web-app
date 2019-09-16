@@ -1,3 +1,5 @@
+/*On this page the user can enter their email address in a form and receive an email link that allows them to change
+* their password if they have forgotten it */
 import {Button, Form, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
@@ -21,7 +23,7 @@ class ForgotPassword extends Component {
             [name]: event.target.value,
         });
     };
-
+    //Form validation: email must be a valid email address
     sendEmail = async (e) => {
         e.preventDefault();
         const {email} = this.state;
@@ -31,6 +33,7 @@ class ForgotPassword extends Component {
                 messageFromServer: 'check input'
             });
         } else {
+            //if email is valid, call for backend post function that sends the email
             try {
                 const response = await axios.post(
                     baseUrl + '/forgot',
@@ -47,6 +50,7 @@ class ForgotPassword extends Component {
                 }
             } catch (error) {
                 console.error(error.response.data);
+                //if email is not in database i.e. there is no user with the given email, shows error message
                 if (error.response.data === 'email not in db') {
                     this.setState({
                         showError: true,
@@ -67,7 +71,7 @@ class ForgotPassword extends Component {
                 paddingTop: '5px', paddingBottom: '20px', paddingLeft: '20px',
                 paddingRight: '20px'
             }}>
-                <h1>Palauta salasana</h1>
+                <h2>Palauta salasana</h2>
                 <Form onSubmit={this.sendEmail}>
                     <Form.Input
                         id="email"

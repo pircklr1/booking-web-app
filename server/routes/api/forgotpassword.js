@@ -1,3 +1,4 @@
+/* api call for forgotten password */
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 require('dotenv').config();
@@ -24,10 +25,11 @@ module.exports = (app,db) => {
                 console.error('email not in database');
                 res.status(403).send('email not in db');
             } else {
+                //creates a random token and sets it to expire 1 h after the email is sent
                 const token = crypto.randomBytes(20).toString('hex');
                 user.update({
                     resetPasswordToken: token,
-                    resetPasswordExpires: Date.now() + 360000,
+                    resetPasswordExpires: Date.now() + 3600000, //current time + 1 h
                 });
 
                 const transporter = nodemailer.createTransport({
@@ -37,7 +39,7 @@ module.exports = (app,db) => {
                         pass: password
                     },
                 });
-
+                //constructs the email
                 const mailOptions = {
                     from: 'roba43tilavaraus@gmail.com',
                     to: user.email,

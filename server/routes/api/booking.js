@@ -86,7 +86,7 @@ module.exports = (app, db) => {
   });
 
   // @route   POST api/booking/allrooms
-  // @desc    Post new booking for all rooms simultaneously
+  // @desc    Create new booking for all rooms simultaneously
   // @access  Public
   /* this checks if there is already booking at that time where user is trying to create new booking. */
   app.post('/api/booking/allrooms', withAuth, (req, res) => {

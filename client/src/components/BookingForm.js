@@ -59,7 +59,7 @@ function BookingForm(props) {
         list.map(user => {
           return {
             key: user.id,
-            text: user.firstName + ' ' + user.lastName,
+            text: user.lastName + ' ' + user.firstName,
             value: user.id
           };
         })
