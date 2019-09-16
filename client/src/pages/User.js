@@ -31,7 +31,7 @@ function User() {
     //get room name by room Id (from booking data)
     const roomName = (roomId) => {
         const room = rooms.find(room => room.id === roomId);
-        if (room === undefined) return " ";
+        if (room === undefined) return "Huonetta ei löydy";
         return room.name
     };
 
@@ -107,11 +107,8 @@ function User() {
 
     //future bookings (all)
     const renderUserBookingTable = () => {
-        // const bookingsAfterNow = data.filter(booking => moment(booking.bookingDate).isSameOrAfter(moment().format('YYYY-MM-DD')))
-        // console.log(bookingsAfterNow.map(booking => <p>{booking.bookingDate}</p>))
-
-        return data.map(booking => {
-            let now = moment();
+        let now = moment();
+        return data.filter(booking => moment(booking.bookingDate).isSameOrAfter(moment(now).format('YYYY-MM-DD'))).map(booking => {
             let cancel = false;
 
             //rooms must be cancelled 24h before booking startTime
@@ -140,81 +137,43 @@ function User() {
                 cancel = true;
             }
 
-            if (moment(booking.bookingDate).isSameOrAfter(moment(now).format('YYYY-MM-DD'))) {
-                return (
-                    <Table.Row key={booking.id}>
-                        <Table.Cell collapsing textAlign='center'>
-                            {moment(booking.bookingDate).format('DD.MM.YYYY')}
-                        </Table.Cell>
-                        <Table.Cell collapsing textAlign='center'>
-                            {booking.startTime.substring(0, 5)}-
-                            {booking.endTime.substring(0, 5)}
-                        </Table.Cell>
-                        <Table.Cell collapsing textAlign='center'>
-                            {roomName(booking.roomId)}
-                        </Table.Cell>
-                        <Table.Cell collapsing textAlign='center'>
-                            <Button disabled={cancel} negative basic icon onClick={(event) => {
-                                show();
-                                setRoomIdString(booking.id)
-                            }}>
-                                <i className='trash icon'/>
-                            </Button>
-                            <Confirm
-                                open={open}
-                                onCancel={handleCancel}
-                                cancelButton='Takaisin'
-                                confirmButton="Peru varaus"
-                                onConfirm={() => deleteBooking(roomId)}
-                                content='Haluatko varmasti perua varauksen?'
-                            />
-                        </Table.Cell>
-                    </Table.Row>
-                );
-            }
+            return (
+                <Table.Row key={booking.id}>
+                    <Table.Cell collapsing textAlign='center'>
+                        {moment(booking.bookingDate).format('DD.MM.YYYY')}
+                    </Table.Cell>
+                    <Table.Cell collapsing textAlign='center'>
+                        {booking.startTime.substring(0, 5)}-
+                        {booking.endTime.substring(0, 5)}
+                    </Table.Cell>
+                    <Table.Cell collapsing textAlign='center'>
+                        {roomName(booking.roomId)}
+                    </Table.Cell>
+                    <Table.Cell collapsing textAlign='center'>
+                        <Button disabled={cancel} negative basic icon onClick={(event) => {
+                            show();
+                            setRoomIdString(booking.id)
+                        }}>
+                            <i className='trash icon'/>
+                        </Button>
+                        <Confirm
+                            open={open}
+                            onCancel={handleCancel}
+                            cancelButton='Takaisin'
+                            confirmButton="Peru varaus"
+                            onConfirm={() => deleteBooking(roomId)}
+                            content='Haluatko varmasti perua varauksen?'
+                        />
+                    </Table.Cell>
+                </Table.Row>
+            );
         });
     };
 
     //past bookings all
     const renderUserPastBookingTable = () => {
-        return data.map(booking => {
-            let now = moment();
-            if (moment(booking.bookingDate).isBefore(moment(now).format('YYYY-MM-DD'))) {
-                return (
-                    <Table.Row key={booking.id}>
-                        <Table.Cell collapsing textAlign='center'>
-                            {moment(booking.bookingDate).format('DD.MM.YYYY')}
-                        </Table.Cell>
-                        <Table.Cell collapsing textAlign='center'>
-                            {booking.startTime.substring(0, 5)}-
-                            {booking.endTime.substring(0, 5)}
-                        </Table.Cell>
-                        <Table.Cell collapsing textAlign='center'>
-                            {roomName(booking.roomId)}
-                        </Table.Cell>
-                        <Table.Cell collapsing textAlign='center'>
-                            <Icon name='times'/>
-                        </Table.Cell>
-                    </Table.Row>
-                );
-            }
-        });
-    };
-
-    //past 10 bookings
-    const renderUserPastTenBookingTable = () => {
-        let newData = [];
-        data.map(booking => {
-            let now = moment();
-            if (
-                moment(booking.bookingDate).isBefore(moment(now).format('YYYY-MM-DD'))
-            ) {
-                newData.push(booking);
-            }
-        });
-        // -> first ten from the beginning
-        let lastTen = newData.slice(0, 10);
-        return lastTen.map(booking => {
+        let now = moment();
+        return data.filter(booking => moment(booking.bookingDate).isBefore(moment(now).format('YYYY-MM-DD'))).reverse().map(booking => {
             return (
                 <Table.Row key={booking.id}>
                     <Table.Cell collapsing textAlign='center'>
@@ -235,10 +194,38 @@ function User() {
         });
     };
 
+    //past 10 bookings
+    const renderUserPastTenBookingTable = () => {
+        let now = moment();
+        return data
+            .filter(booking => moment(booking.bookingDate)
+                .isBefore(moment(now).format('YYYY-MM-DD')))
+            .reverse()
+            .slice(0, 10)
+            .map(booking => {
+                return (
+                    <Table.Row key={booking.id}>
+                        <Table.Cell collapsing textAlign='center'>
+                            {moment(booking.bookingDate).format('DD.MM.YYYY')}
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            {booking.startTime.substring(0, 5)}-
+                            {booking.endTime.substring(0, 5)}
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            {roomName(booking.roomId)}
+                        </Table.Cell>
+                        <Table.Cell collapsing textAlign='center'>
+                            <Icon name='times'/>
+                        </Table.Cell>
+                    </Table.Row>
+                );
+            });
+    };
+
     return (
         <div>
-            {/*<Container style={{padding: '5em 0em', overflow: 'auto'}}>*/}
-            <Container style={{paddingTop: '20px', paddingBottom:'20px', overflow: 'auto'}}>
+            <Container style={{paddingTop: '20px', paddingBottom: '20px', overflow: 'auto'}}>
                 <Grid textAlign='center' verticalAlign='middle'>
                     <Grid.Column style={{maxWidth: 450}}>
                         <Header textAlign='left'>Hei, {username}!</Header>
@@ -259,9 +246,7 @@ function User() {
                         <Header as='h3' attached='top' block>
                             Menneet varaukset
                         </Header>
-                        {/*<Container style={{overflow: 'auto'}}>*/}
                         <Tab panes={panes} style={{marginTop: 14}}/>
-                        {/*</Container>*/}
                     </Grid.Column>
                 </Grid>
             </Container>
