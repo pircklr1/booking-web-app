@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import BookingForm from '../components/BookingForm';
-import {Container, Responsive} from 'semantic-ui-react';
+import {Responsive} from 'semantic-ui-react';
 import 'react-datepicker/dist/react-datepicker.css';
 import RoomTable from "../components/RoomTable";
 

@@ -13,7 +13,7 @@ class RoomCell extends Component {
       let isAdmin = false;
       for (var i = 0; i < this.props.userList.length; i++) {
         if (
-          localStorage.getItem('userId') == this.props.userList[i].id &&
+          localStorage.getItem('userId') === this.props.userList[i].id &&
           this.props.userList[i].isAdmin
         ) {
           isAdmin = true;
@@ -30,8 +30,8 @@ class RoomCell extends Component {
       let userId = this.props.cellData.booking.userId;
       let username = 'Ei löytynyt';
 
-      for (var i = 0; i < this.props.userList.length; i++) {
-        if (userId == this.props.userList[i].id) {
+      for (i = 0; i < this.props.userList.length; i++) {
+        if (userId === this.props.userList[i].id) {
           username =
             this.props.userList[i].firstName +
             ' ' +

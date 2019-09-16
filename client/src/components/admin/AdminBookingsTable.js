@@ -1,6 +1,6 @@
 // import React, {useState, useEffect, useContext} from 'react';
 import React, {useState, useEffect} from 'react';
-import {Button, Table} from 'semantic-ui-react';
+import {Table} from 'semantic-ui-react';
 import moment from 'moment';
 import DeleteButton from './DeleteButton';
 import {getAllRooms, getAllUsers} from '../../service/ClientService';
