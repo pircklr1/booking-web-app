@@ -1,4 +1,4 @@
-/* This is the page that allows the user to change their password while logged in. The page will not be visible unless the user is logged
+/* This component allows the user to change their password while logged in. The page will not be visible unless the user is logged
 * in, i.e. there is a userId that can be retrieved from the Local Storage */
 import {Button, Form, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
@@ -21,12 +21,14 @@ class PasswordSettings extends Component {
         };
     }
     async componentDidMount() {
+        //checking if user is logged in
         const userId = localStorage.getItem('userId');
         if (userId === null) {
             this.setState({
                 error: true,
             });
         }
+        //retrieve user's info from the database
         try {
             const response = await axios.get(baseUrl + '/user/' + userId, {
                 headers: {
@@ -56,7 +58,7 @@ class PasswordSettings extends Component {
     };
     /* Function to update the user's password: first we validate the inputs so that the new password is at least 8 characters and
     confirmPassword field matches with the new password. If both validation checks are cleared the program calls for backend
-     api post method*/
+     api put (update) method. If not, the user sees an error message.*/
     updatePassword = async (e) => {
         e.preventDefault();
         const {email, password, confirmPassword} = this.state;
@@ -84,7 +86,8 @@ class PasswordSettings extends Component {
                             token: localStorage.getItem('jwtToken')
                         }
                     });
-                console.log(response.data);
+                //if the response from backend is positive, state of 'updated' is set as true
+                // console.log(response.data);
                 if (response.data.message === 'password updated') {
                     this.setState({
                         updated: true,
