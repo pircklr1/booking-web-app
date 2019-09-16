@@ -11,7 +11,7 @@ class RoomCell extends Component {
     } else {
       //Check if user is admin and is allowed to see popups
       let isAdmin = false;
-      for (let i = 0; i < this.props.userList.length; i++) {
+      for (var i = 0; i < this.props.userList.length; i++) {
         if (
           localStorage.getItem('userId') === this.props.userList[i].id &&
           this.props.userList[i].isAdmin
@@ -30,7 +30,7 @@ class RoomCell extends Component {
       let userId = this.props.cellData.booking.userId;
       let username = 'Ei löytynyt';
 
-      for (let i = 0; i < this.props.userList.length; i++) {
+      for (i = 0; i < this.props.userList.length; i++) {
         if (userId === this.props.userList[i].id) {
           username =
             this.props.userList[i].firstName +

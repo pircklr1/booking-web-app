@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Popup, Icon, Grid, Header } from 'semantic-ui-react';
 import RoomCell from './RoomCell';
 import moment from 'moment';
 
@@ -304,11 +304,29 @@ class RoomRow extends Component {
 
     return (
       <Table.Row negative={!this.props.room.available}>
-        <Table.Cell
-          style={{ position: 'sticky', left: 0, background: 'white' }}
+        <Popup
+          position='right center'
+          hideOnScroll
+          basic
+          trigger={
+            <Table.Cell
+              style={{ position: 'sticky', left: 0, background: 'white' }}
+            >
+              {this.props.room.name}{' '}
+            </Table.Cell>
+          }
         >
-          {this.props.room.name}
-        </Table.Cell>
+          <Grid centered>
+            <Grid.Column textAlign='center'>
+              <Header as='h4'>{this.props.room.name}</Header>
+
+              <p>
+                Varustus:<b> {this.props.room.equipment}</b>
+              </p>
+            </Grid.Column>
+          </Grid>
+        </Popup>
+
         {allCells}
       </Table.Row>
     );
