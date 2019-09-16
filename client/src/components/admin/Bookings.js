@@ -21,6 +21,7 @@ function Bookings() {
         setRerender(false);
     }, [rerender]);
 
+
     function update() {
         setRerender(rerender + 1);
     }
@@ -54,7 +55,7 @@ function Bookings() {
                 .isBetween(data.start_date, data.end_date, null, '[]'));
 
             setBookingData(bookingsByDates)
-            setMessage('Tiedot noudettu!')
+            // setMessage('Tiedot noudettu!')
 
         } catch (e) {
             setMessage('Odottamaton virhe')

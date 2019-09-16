@@ -1,7 +1,7 @@
 //validates data which is sent with BookingForm
 
 const validateBookingForm = (data) => {
-    console.log('data in form validation', data)
+    // console.log('data in form validation', data)
 
     //user must be set when creating booking as a admin user
     if(data.user_id === '') {
