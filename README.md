@@ -23,7 +23,7 @@ Academy Accelerated Learning
 ## Technologies
 ..
 ## Contributors
-*[Sini](https://github.com/siniv)
-*[Rico](https://github.com/pircklr1)
-*[Lennu](https://github.com/lmetsaranta)
+* [Sini](https://github.com/siniv)
+* [Rico](https://github.com/pircklr1)
+* [Lennu](https://github.com/lmetsaranta)
 
