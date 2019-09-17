@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Confirm } from 'semantic-ui-react';
+import { Button, Confirm } from 'semantic-ui-react';
 import {
   adminDeleteBooking,
   adminDeleteRoom,
@@ -18,7 +18,7 @@ export default function DeleteButtonConfirm({ id, type, update }) {
     } else if (type === 'user') {
       setHeader('Haluatko varmasti poistaa käyttäjän?');
     }
-  });
+  },[type]);
 
   function deleteProcedure() {
     if (type === 'booking') {

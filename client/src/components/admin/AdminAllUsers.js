@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAllUsersAdmin } from '../../service/ClientService';
 import { Table, Icon } from 'semantic-ui-react';
-import DeleteButton from './DeleteButton';
 import UserEditModal from './UserEditModal';
 import DeleteButtonConfirm from './DeleteButtonConfirm';
 

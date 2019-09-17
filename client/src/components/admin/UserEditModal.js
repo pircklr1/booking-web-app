@@ -33,7 +33,7 @@ function UserEditModal(props) {
     };
 
     return(
-        <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>}closeIcon>
+        <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>} closeIcon>
             <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Muokkaa käyttäjää</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>
