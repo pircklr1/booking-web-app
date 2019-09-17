@@ -8,5 +8,5 @@ const validateRoomEditModal = (data) => {
         throw new Error("Huoneen uutta kapasiteettia ei ole syötetty")
     }
     return true;
-}
+};
 export default validateRoomEditModal;

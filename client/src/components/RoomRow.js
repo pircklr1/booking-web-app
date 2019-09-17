@@ -319,7 +319,9 @@ class RoomRow extends Component {
           <Grid centered>
             <Grid.Column textAlign='center'>
               <Header as='h4'>{this.props.room.name}</Header>
-
+              <p>
+                Kapasiteetti:<b> {this.props.room.capacity}</b>
+              </p>
               <p>
                 Varustus:<b> {this.props.room.equipment}</b>
               </p>
