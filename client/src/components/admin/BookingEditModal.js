@@ -1,4 +1,3 @@
-// import React, {useState, useEffect, useContext} from 'react';
 import React, { useState, useEffect } from 'react';
 import { adminUpdateBooking, getRoomData } from '../../service/ClientService';
 import { Button, Form, Icon, Modal, Select } from 'semantic-ui-react';
@@ -9,7 +8,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
 import setHours from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
-// import {AuthContext} from "../../context/auth";
 
 function BookingEditModal(props) {
   const [booking, setBooking] = useState();
@@ -31,12 +29,10 @@ function BookingEditModal(props) {
   );
   const [roomData, setRoomData] = useState([]);
   const [message, setMessage] = useState(null);
-  // const {currentUser} = useContext(AuthContext);
 
   useEffect(() => {
     setBooking(props.booking);
     getRooms();
-    // }, [])
   }, [props.booking]);
 
   //get room names to dropdown
