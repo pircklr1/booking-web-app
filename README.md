@@ -21,7 +21,20 @@ Academy Accelerated Learning
 ## About the project
 ..
 ## Technologies
-..
+### Backend
+* __Node.js__
+* Express
+* Postgres
+* Sequelize
+* JSON Web Token
+* BCrypt
+* Nodemailer
+### Frontend
+* __React.js__
+* Axios
+* Semantic UI
+* Moment.js
+* JWT Decode
 ## Team
 * [Sini](https://github.com/siniv)
 * [Rico](https://github.com/pircklr1)
