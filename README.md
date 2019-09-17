@@ -1,5 +1,5 @@
-# Roba43 Room Booking System
-Academy Accelerated Learning
+# Roba43 Room Booking Application
+This is a room booking application that was originally created as a final group project for Academy's Accelerated Learning-programming course. The application was created for an actual client and for actual use despite it being a school project.
 ## Getting Started
 ..
 ### Prerequisites
@@ -11,12 +11,12 @@ Academy Accelerated Learning
 2. Add the following lines to the file:
       NODE_ENV=development
       PORT=9999
-      DATABASE=booking
+      DATABASE= *put here the name of your database*
       DATABASE_USER=postgres
-      DATABASE_PASSWORD=postgres
-      SECRET=*put here your secret*
-      GMAILPW=*put here your email password*
-      GMAIL_ADDRESS=*put here your email address*
+      DATABASE_PASSWORD= *your password*
+      SECRET= *put here your secret*
+      GMAILPW= *put here your email password*
+      GMAIL_ADDRESS= *put here your email address*
 3. Run npm install in client folder and server folder
 4. Run npm start in client folder and server folder
 ```
