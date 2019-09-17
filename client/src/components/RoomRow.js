@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Popup, Icon, Grid, Header } from 'semantic-ui-react';
+import { Table, Popup, Grid, Header } from 'semantic-ui-react';
 import RoomCell from './RoomCell';
 import moment from 'moment';
 

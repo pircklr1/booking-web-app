@@ -41,7 +41,7 @@ function AdminBookingsTable({ tableData, update }) {
   const userName = userId => {
     return userData.map(user => {
       if (user.id === userId) {
-        return user.firstName + ' ' + user.lastName;
+        return user.lastName + ' ' + user.firstName;
       } else {
         return '';
       }
