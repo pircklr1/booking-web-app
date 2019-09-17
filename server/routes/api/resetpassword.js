@@ -1,4 +1,4 @@
-/* api call to check if the reset password link is valid */
+/* api to check if the reset password link is valid */
 import Sequelize from 'sequelize';
 const Op = Sequelize.Op;
 

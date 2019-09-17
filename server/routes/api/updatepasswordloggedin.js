@@ -1,4 +1,4 @@
-/* api call to update the user's password */
+/* api to update the user's password */
 import bcrypt from 'bcrypt';
 const BCRYPT_SALT_ROUNDS = 10;
 const withAuth = require('../../middleware/middleware');

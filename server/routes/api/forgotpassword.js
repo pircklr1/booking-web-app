@@ -1,4 +1,4 @@
-/* api call for forgotten password */
+/* api for forgotten password */
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 require('dotenv').config();

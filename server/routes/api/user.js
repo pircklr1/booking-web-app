@@ -212,6 +212,7 @@ module.exports = (app, db) => {
                 res.status(403).send('registration link is invalid');
             } else if (user) {
                 console.log('user found in db');
+                //before updating the user's information in database, crypt the user's password
                 bcrypt
                     .hash(req.body.password, BCRYPT_SALT_ROUNDS)
                     .then(hashedPassword => {

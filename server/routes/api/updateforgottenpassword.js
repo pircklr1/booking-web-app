@@ -1,4 +1,4 @@
-/* api call to update forgotten password */
+/* api to update forgotten password */
 import bcrypt from 'bcrypt';
 import Sequelize from 'sequelize';
 const validateUpdatePasswordInput = require('../../validation/updatepassword');
