@@ -57,9 +57,11 @@ function BookingForm(props) {
     getAllUsers(list => {
       setUserData(
         list.map(user => {
+          let text = "";
+          !user.lastName && !user.firstName ? text = "" : text = user.lastName + " " + user.firstName;
           return {
             key: user.id,
-            text: user.lastName + ' ' + user.firstName,
+            text: text,
             value: user.id
           };
         })
@@ -208,14 +210,22 @@ function BookingForm(props) {
             )}
             <Form.Group>
               <Form.Input label='Päivämäärä'>
+                {currentUser.isadmin && (
                 <DatePicker
-                  dateFormat='dd/MM/yyyy'
-                  selected={startDate}
-                  onChange={handleDateChange}
-                  minDate={subDays(new Date(), 0)}
-                  maxDate={addDays(new Date(), 31)}
-                  locale={fi}
-                />
+                    dateFormat='dd/MM/yyyy'
+                    selected={startDate}
+                    onChange={handleDateChange}
+                    locale={fi}
+                />)}
+                {!currentUser.isadmin && (
+                <DatePicker
+                    dateFormat='dd/MM/yyyy'
+                    selected={startDate}
+                    onChange={handleDateChange}
+                    minDate={subDays(new Date(), 0)}
+                    maxDate={addDays(new Date(), 31)}
+                    locale={fi}
+                />)}
               </Form.Input>
             </Form.Group>
             <Form.Group>
