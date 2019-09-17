@@ -1,4 +1,4 @@
-/* api call to invite a new user */
+/* api to invite a new user */
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 require('dotenv').config();
