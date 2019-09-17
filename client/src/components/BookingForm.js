@@ -27,7 +27,7 @@ function BookingForm(props) {
   const [user, setUser] = useState('');
   const [startDate, setStartDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date().setHours(6, 0));
-  const [endTime, setEndTime] = useState(new Date().setHours(6, 0));
+  const [endTime, setEndTime] = useState(new Date().setHours(22, 0));
   const [roomData, setRoomData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [message, setMessage] = useState(null);
@@ -151,12 +151,8 @@ function BookingForm(props) {
           setMessage('Tarkista alkamis- ja päättymisaika');
         } else if (e.message === 'start time cannot be after endtime') {
           setMessage('Tarkista alkamis- ja päättymisaika');
-        } else if (
-          e.message === 'start and end time must be even or half hour'
-        ) {
-          setMessage(
-            'Alkamis- ja päättymisajan tulee olla tasalta tai puolelta'
-          );
+        } else if (e.message === 'start and end time must be even or half hour') {
+          setMessage('Alkamis- ja päättymisajan tulee olla tasalta tai puolelta');
         } else if (e.message === 'start and end time cant be same') {
           setMessage('Alkamis- ja päättymisaika eivät voi olla samat');
         } else {
