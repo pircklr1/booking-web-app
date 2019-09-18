@@ -1,5 +1,5 @@
 # Roba43 Room Booking Application
-![logo]:(https://github.com/kirsi-k/loppuprojekti-tilavaraus-applikaatio/blob/master/client/public/logo3.png)
+![logo](https://github.com/kirsi-k/loppuprojekti-tilavaraus-applikaatio/blob/master/client/public/logo3.png)
 This is a room booking application that was originally created as a final group project for Academy's Accelerated Learning-programming course. The application was created for an actual client and for actual use despite it being a school project.
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development purposes.
