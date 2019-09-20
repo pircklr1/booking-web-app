@@ -120,8 +120,11 @@ For our client the system ensures that he doesn't have to use his precious worki
 * JWT Decode
 ### Deployment
 * Amazon RDS (Relational Database Service)
-*
-*
+* Docker
+* Amazon ECR (Elastic Container Registry)
+* Amazon Elastic Beanstalk
+* Amazon S3 (Simple Storage Service)
+The app is running here: 
 ## Team
 * [Sini](https://github.com/siniv)
 * [Rico](https://github.com/pircklr1)
