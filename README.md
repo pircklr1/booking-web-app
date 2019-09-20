@@ -79,11 +79,26 @@ Then, follow these steps:
 4. Run npm start in client folder and server folder
 ```
 ## About the project
-The last two weeks of our twelve week programming course were dedicated to a final group project. We were given the task to form the groups and pick the subject of each group ourselves. The only prerequisites were that our project should feature at least two technologies taught during the course and that the scope of the project should be extensive enough that a group of 3-5 people would have enough to do during the two weeks. We had a short pitch session where one could propose their project idea to others. At that session our teacher presented a possible project that his colleague had requested. The problem/project subject was as follows:
+The last two weeks of our twelve week programming course were dedicated to a final group project. We were given the task to form the groups and pick the subject of each group ourselves. The only prerequisites were that our project should feature at least two of the technologies taught during the course and that the scope of the project should be extensive enough that a group of 3-5 people would have enough to do during the two weeks. We had a short pitch session where one could propose their project idea to others. At that session our teacher presented a possible project that his colleague had requested. The problem/project subject was as follows:
 ### Problem
 The client in question (our teacher's colleague) has a space with seven rooms of different sizes that people can rent out for working purposes. The client base for the rooms isn't vast, but it is big enough that there is a real need for a system that would allow the clients to book the rooms independently without contacting our client everytime. At the time the project was presented to us, there was really no system at all and our client had not started to market the rooms to his clients, because he did not want to use a basic time consuming and cumbersome call/email + spreadsheet system. Our client also wasn't keen on buying an existing service from some commercial operator since the cost of the system would be too much considering the scope of his business.
 ### Specific requirements
-When we started to plan how to execute 
+When we started to plan how to execute the room booking system for our client, he had some specific requirements he wanted us to implement in the system:
+* Only registered users can book rooms
+* Bookings can be made seven days a week between 6 am and 10 pm
+* Each booking slot is 30 minutes, i.e. if the client would need a room between 1 pm and 1.45 pm they'd have to book it for a full hour
+* It is important that booking a room is easy and user-friendly; most people book the rooms by using their phones, so mobile view should be as readable and as easy to use as desktop view
+* Bookings are anonymous for basic users
+* Basic users can cancel their bookings up until 24 hours before the booking's start time, unless the user has booked the auditorium which needs to be canceled a week before
+* Admin user should be able to:
+..* invite new users to register (random internet people cannot register as users)
+..* make bookings for basic users so that it'll show to them the same way a booking they've made themselves would
+..* delete and edit users (except their password)
+..* edit users' bookings and cancel (delete) them at anytime
+..* 
+
+### Solution
+..
 ## Technologies
 ### Backend
 * __Node.js__
