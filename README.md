@@ -91,11 +91,11 @@ When we started to plan how to execute the room booking system for our client, h
 * Bookings are anonymous for basic users
 * Basic users can cancel their bookings up until 24 hours before the booking's start time, unless the user has booked the auditorium which needs to be canceled a week before
 * Admin user should be able to:
-..* invite new users to register (random internet people cannot register as users)
-..* make bookings for basic users so that it'll show to them the same way a booking they've made themselves would
-..* delete and edit users (except their password)
-..* edit users' bookings and cancel (delete) them at anytime
-..* 
+..- invite new users to register (random internet people cannot register as users)
+..- make bookings for basic users so that it'll show to them the same way a booking they've made themselves would
+..- delete and edit users (except their password)
+..- edit users' bookings and cancel (delete) them at anytime
+..- 
 
 ### Solution
 ..
