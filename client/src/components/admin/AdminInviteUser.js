@@ -18,6 +18,9 @@ class ForgotPassword extends Component {
             emailError: false
         };
     }
+    formatInput = name => (event) => {
+        this.setState({ [name]: event.target.value.trim() })
+    };
 
     handleChange = name => (event) => {
         this.setState({
@@ -84,6 +87,7 @@ class ForgotPassword extends Component {
                         onChange={this.handleChange('email')}
                         placeholder="Sähköpostiosoite"
                         error={emailError}
+                        onBlur={this.formatInput('email')}
                     />
                     <Button type='submit' primary>
                         Kutsu käyttäjäksi

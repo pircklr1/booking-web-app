@@ -50,7 +50,8 @@ module.exports = (app, db) => {
                     text: 'Sait tämän viestin, koska sinut on kutsuttu rekisteröitymään Roba43:n tilavarauspalveluun.\n\n' +
                         'Rekisteröityäksesi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
                         baseUrl + '/signup/' + token + '\n\n' +
-                        'Mikäli et halua rekisteröityä ja tehdä varauksia, jätä tämä viesti huomioimatta.\n'
+                        'Mikäli et halua rekisteröityä ja tehdä varauksia, jätä tämä viesti huomioimatta.\n\n' +
+                        'Huom! Tämä on automaattisesti luotu viesti, ethän vastaa tähän viestiin.'
                 };
                 console.log('sending mail');
 
