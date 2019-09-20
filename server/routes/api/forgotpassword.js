@@ -48,7 +48,8 @@ module.exports = (app,db) => {
                         'Salasanasi uudelleenasettamiseksi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
                         baseUrl + '/reset/' + token + '\n\n' +
                         'Salasanan vaihtolinkki on voimassa yhden tunnin sen lähettämishetkestä.\n' +
-                        'Mikäli et pyytänyt salasanasi palauttamista, jätä tämä viesti huomioimatta, niin salasanasi säilyy ennallaan.\n'
+                        'Mikäli et pyytänyt salasanasi palauttamista, jätä tämä viesti huomioimatta, niin salasanasi säilyy ennallaan.\n\n' +
+                        'Huom! Tämä on automaattisesti luotu viesti, ethän vastaa tähän viestiin.'
                 };
                 console.log('sending mail');
 
