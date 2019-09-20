@@ -79,7 +79,11 @@ Then, follow these steps:
 4. Run npm start in client folder and server folder
 ```
 ## About the project
-..
+The last two weeks of our twelve week programming course were dedicated to a final group project. We were given the task to form the groups and pick the subject of each group ourselves. The only prerequisites were that our project should feature at least two technologies taught during the course and that the scope of the project should be extensive enough that a group of 3-5 people would have enough to do during the two weeks. We had a short pitch session where one could propose their project idea to others. At that session our teacher presented a possible project that his colleague had requested. The problem/project subject was as follows:
+### Problem
+The client in question (our teacher's colleague) has a space with seven rooms of different sizes that people can rent out for working purposes. The client base for the rooms isn't vast, but it is big enough that there is a real need for a system that would allow the clients to book the rooms independently without contacting our client everytime. At the time the project was presented to us, there was really no system at all and our client had not started to market the rooms to his clients, because he did not want to use a basic time consuming and cumbersome call/email + spreadsheet system. Our client also wasn't keen on buying an existing service from some commercial operator since the cost of the system would be too much considering the scope of his business.
+### Specific requirements
+When we started to plan how to execute 
 ## Technologies
 ### Backend
 * __Node.js__
