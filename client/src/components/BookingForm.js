@@ -212,6 +212,7 @@ function BookingForm(props) {
                     selected={startDate}
                     onChange={handleDateChange}
                     locale={fi}
+                    onFocus={(e) => e.target.readOnly = true}
                 />)}
                 {!currentUser.isadmin && (
                 <DatePicker
@@ -221,6 +222,7 @@ function BookingForm(props) {
                     minDate={subDays(new Date(), 0)}
                     maxDate={addDays(new Date(), 31)}
                     locale={fi}
+                    onFocus={(e) => e.target.readOnly = true}
                 />)}
               </Form.Input>
             </Form.Group>
@@ -238,6 +240,7 @@ function BookingForm(props) {
                   locale={fi}
                   dateFormat='p'
                   timeCaption='Klo'
+                  onFocus={(e) => e.target.readOnly = true}
                 />
               </Form.Input>
             </Form.Group>
@@ -255,6 +258,7 @@ function BookingForm(props) {
                   locale={fi}
                   dateFormat='p'
                   timeCaption='Klo'
+                  onFocus={(e) => e.target.readOnly = true}
                 />
               </Form.Input>
             </Form.Group>

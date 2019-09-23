@@ -136,6 +136,7 @@ function BookingEditModal(props) {
                 selected={startDate}
                 onChange={handleDateChange}
                 locale={fi}
+                onFocus={(e) => e.target.readOnly = true}
               />
             </Form.Input>
           </Form.Group>
@@ -153,6 +154,7 @@ function BookingEditModal(props) {
                 locale={fi}
                 dateFormat='p'
                 timeCaption='Klo'
+                onFocus={(e) => e.target.readOnly = true}
               />
             </Form.Input>
           </Form.Group>
@@ -170,6 +172,7 @@ function BookingEditModal(props) {
                 locale={fi}
                 dateFormat='p'
                 timeCaption='Klo'
+                onFocus={(e) => e.target.readOnly = true}
               />
             </Form.Input>
           </Form.Group>
