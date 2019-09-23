@@ -44,7 +44,14 @@ function Login(props) {
     setIsSubmitting(true);
   };
 
-  const onChange = event => {
+  const onEmailChange = event => {
+    event.persist();
+    setValues(values => ({
+      ...values,
+      [event.target.name]: event.target.value.trim().toLowerCase()
+    }));
+  };
+  const onPasswordChange = event => {
     event.persist();
     setValues(values => ({
       ...values,
@@ -94,7 +101,7 @@ function Login(props) {
               type='text'
               value={values.email}
               error={errors.email ? true : false}
-              onChange={onChange}
+              onChange={onEmailChange}
             />
             <Form.Input
               fluid
@@ -106,7 +113,7 @@ function Login(props) {
               name='password'
               value={values.password}
               error={errors.password ? true : false}
-              onChange={onChange}
+              onChange={onPasswordChange}
             />
             <Button color='blue' fluid size='large'>
               Kirjaudu
