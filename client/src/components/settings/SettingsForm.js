@@ -54,6 +54,12 @@ class SettingsForm extends Component {
             });
         }
     }
+    //trim whitespaces from input and set to lowercase
+    formatInput = name => (event) => {
+        this.setState({ [name]: event.target.value.trim() });
+        this.setState({[name]: event.target.value.toLowerCase()})
+    };
+
 
     handleChange = name => (event) => {
         this.setState({
@@ -202,6 +208,7 @@ class SettingsForm extends Component {
                             error={emailError}
                             icon='envelope'
                             iconPosition='left'
+                            onBlur={this.formatInput('email')}
                         />
                         <Form.Input
                             id="confirmEmail"
@@ -213,6 +220,7 @@ class SettingsForm extends Component {
                             icon='envelope'
                             iconPosition='left'
                             error={emailError}
+                            onBlur={this.formatInput('confirmEmail')}
                         />
                         <Button type='submit' primary>
                             Tallenna muutokset

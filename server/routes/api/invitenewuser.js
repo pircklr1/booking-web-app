@@ -51,7 +51,7 @@ module.exports = (app, db) => {
                         'Rekisteröityäksesi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
                         baseUrl + '/signup/' + token + '\n\n' +
                         'Mikäli et halua rekisteröityä ja tehdä varauksia, jätä tämä viesti huomioimatta.\n\n' +
-                        'Huom! Tämä on automaattisesti luotu viesti, ethän vastaa tähän viestiin.'
+                        'Tämä on automaattisesti luotu viesti, ethän vastaa tähän viestiin. Mikäli sinulla on kysyttävää rekisteröitymiseen liittyen, lähetä viesti osoitteeseen vesa@kullberg.fi'
                 };
                 console.log('sending mail');
 

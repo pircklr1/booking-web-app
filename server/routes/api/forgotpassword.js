@@ -49,7 +49,7 @@ module.exports = (app,db) => {
                         baseUrl + '/reset/' + token + '\n\n' +
                         'Salasanan vaihtolinkki on voimassa yhden tunnin sen lähettämishetkestä.\n' +
                         'Mikäli et pyytänyt salasanasi palauttamista, jätä tämä viesti huomioimatta, niin salasanasi säilyy ennallaan.\n\n' +
-                        'Huom! Tämä on automaattisesti luotu viesti, ethän vastaa tähän viestiin.'
+                        'Tämä on automaattisesti luotu viesti, ethän vastaa tähän viestiin. Mikäli sinulla on kysyttävää salasanan palauttamiseen liittyen lähetä viesti osoitteeseen vesa@kullberg.fi'
                 };
                 console.log('sending mail');
 
