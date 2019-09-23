@@ -18,6 +18,11 @@ class ForgotPassword extends Component {
             emailError: false
         };
     }
+    //trim whitespaces from input and set to lowercase
+    formatInput = name => (event) => {
+        this.setState({ [name]: event.target.value.trim() });
+        this.setState({ [name]: event.target.value.toLowerCase() })
+    };
 
     handleChange = name => (event) => {
         this.setState({
@@ -84,6 +89,7 @@ class ForgotPassword extends Component {
                         onChange={this.handleChange('email')}
                         placeholder="Sähköpostiosoite"
                         error={emailError}
+                        onBlur={this.formatInput('email')}
                     />
                     <Button type='submit' primary>
                         Kutsu käyttäjäksi

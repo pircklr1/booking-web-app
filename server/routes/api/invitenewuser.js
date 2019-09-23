@@ -50,7 +50,8 @@ module.exports = (app, db) => {
                     text: 'Sait tämän viestin, koska sinut on kutsuttu rekisteröitymään Roba43:n tilavarauspalveluun.\n\n' +
                         'Rekisteröityäksesi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
                         baseUrl + '/signup/' + token + '\n\n' +
-                        'Mikäli et halua rekisteröityä ja tehdä varauksia, jätä tämä viesti huomioimatta.\n'
+                        'Mikäli et halua rekisteröityä ja tehdä varauksia, jätä tämä viesti huomioimatta.\n\n' +
+                        'Tämä on automaattisesti luotu viesti, ethän vastaa tähän viestiin. Mikäli sinulla on kysyttävää rekisteröitymiseen liittyen, lähetä viesti osoitteeseen vesa@kullberg.fi'
                 };
                 console.log('sending mail');
 
