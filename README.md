@@ -73,8 +73,8 @@ Then, follow these steps:
       DATABASE_USER=postgres
       DATABASE_PASSWORD= *your password*
       SECRET= *put here your secret*
-      GMAILPW= *put here your email password*
-      GMAIL_ADDRESS= *put here your email address*
+      GMAILPW= *put here your gmail password*
+      GMAIL_ADDRESS= *put here your gmail address*
 3. Run npm install in client folder and server folder
 4. Run npm start in client folder and server folder
 ```
