@@ -31,6 +31,7 @@ class RoomTable extends Component {
                                 selected={this.state.startDate}
                                 onChange={this.handleDateChange}
                                 locale={fi}
+                                onFocus={(e) => e.target.readOnly = true}
                             />
                         </Form.Input>
                     </Form.Group>

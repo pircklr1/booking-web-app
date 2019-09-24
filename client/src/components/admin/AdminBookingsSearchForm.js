@@ -29,6 +29,7 @@ function AdminBookingsSearchForm({handleSubmit, handleUserChange, handleStartDat
                         selected={startDate}
                         onChange={handleStartDateChange}
                         locale={fi}
+                        onFocus={(e) => e.target.readOnly = true}
                     />
                 </Form.Input>
             </Form.Group>
@@ -39,6 +40,7 @@ function AdminBookingsSearchForm({handleSubmit, handleUserChange, handleStartDat
                         selected={endDate}
                         onChange={handleEndDateChange}
                         locale={fi}
+                        onFocus={(e) => e.target.readOnly = true}
                     />
                 </Form.Input>
             </Form.Group>
