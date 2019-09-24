@@ -1,3 +1,6 @@
+/* This is the page where user can reset their password that they've forgotten. This page is only available via valid email link.
+* The link url must have a valid token that can be found in the database. The link also cannot be expired; once the user has
+* ordered a password reset link to their email, they have one hour to use it */
 import {Button, Form, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
@@ -27,6 +30,7 @@ class ResetPassword extends Component {
                 params: {token},
             },
         } = this.props;
+        //checking if the link is valid i.e. the token exists in the database
         try {
             const response = await axios.get(baseUrl + '/reset', {
                 params: {
@@ -55,7 +59,8 @@ class ResetPassword extends Component {
             [name]: event.target.value,
         });
     };
-
+    /* Function to update the user's password. Form validations: password must be at least 8 characters and password + confirmPassword
+    * must match. */
     updatePassword = async (e) => {
         e.preventDefault();
         const {email, password, confirmPassword} = this.state;
@@ -79,6 +84,7 @@ class ResetPassword extends Component {
                     confirmPassword: ''
                 });
         } else {
+            //if validations pass, call for backend put (update) function to update the user's password
             try {
                 const response = await axios.put(
                     baseUrl + '/updateForgottenPassword',
@@ -96,6 +102,7 @@ class ResetPassword extends Component {
                         password: '',
                         confirmPassword: ''
                     });
+                    //if update is successful, set redirect to happen 2 seconds later
                     setTimeout(() => {
                         this.setState({
                             redirect: true
@@ -131,6 +138,7 @@ class ResetPassword extends Component {
                 </div>
             );
         }
+        //after updating the user's password redirect the user to login page
         if (redirect) {
             return (
                 <Redirect to={'/login'} />

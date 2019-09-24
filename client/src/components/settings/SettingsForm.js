@@ -1,3 +1,6 @@
+/* This is the component that allows the user to change their name or email in the settings page. The component is only
+* visible if the user is logged in and there is a userId that can be retrieved from the local storage. First the user's data
+* is retrieved from the database, and the retrieved data is set as default values in the settings form  */
 import {Button, Form, Message} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
@@ -51,13 +54,20 @@ class SettingsForm extends Component {
             });
         }
     }
+    //trim whitespaces from email input and set to lowercase
+    handleEmailChange = name => (event) => {
+        this.setState({
+            [name]: event.target.value.trim().toLowerCase(),
+        });
+    };
 
     handleChange = name => (event) => {
         this.setState({
             [name]: event.target.value,
         });
     };
-
+    /*Function to update the user's personal information. The form is validated so that names can't be less than 2
+    * characters and email must be a valid email. Also, user must confirm their email by writing it in the form twice (identically) */
     updateUser = async (e) => {
         e.preventDefault();
         const userId = localStorage.getItem('userId');
@@ -191,7 +201,7 @@ class SettingsForm extends Component {
                         <Form.Input
                             id="email"
                             label="Vaihda sähköpostiosoite:"
-                            onChange={this.handleChange('email')}
+                            onChange={this.handleEmailChange('email')}
                             value={email}
                             type="email"
                             placeholder="Uusi sähköpostiosoite"
@@ -202,7 +212,7 @@ class SettingsForm extends Component {
                         <Form.Input
                             id="confirmEmail"
                             label="Uusi sähköposti uudestaan:"
-                            onChange={this.handleChange('confirmEmail')}
+                            onChange={this.handleEmailChange('confirmEmail')}
                             value={confirmEmail}
                             type="email"
                             placeholder="Uusi sähköpostiosoite uudestaan"

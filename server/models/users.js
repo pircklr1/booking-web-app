@@ -43,13 +43,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       underscored: true,
-      // before user is created his/her password is crypted
-      //         hooks: {
-      //             beforeCreate: (user) => {
-      //             const salt = bcrypt.genSaltSync();
-      //             user.password = bcrypt.hashSync(user.password, salt);
-      //     }
-      // },
       instanceMethods: {
         validPassword: function(password) {
           return bcrypt.compare(password, this.password);

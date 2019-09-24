@@ -1,3 +1,6 @@
+/* This is the page where invited users may register as users. User accounts are created with id and email when admin
+* invites a user via email, so this is the page where users fill in their other data such as names and password.
+* The page is only visible with a valid token in the url */
 import {Button, Form, Grid, Header, Message, Segment} from "semantic-ui-react";
 import React, {Component} from 'react';
 import axios from 'axios';
@@ -31,6 +34,7 @@ class Register extends Component {
                 params: {token},
             },
         } = this.props;
+        //checking if the url token is valid i.e. if there is a user in the database with the given token
         try {
             const response = await axios.get(baseUrl + '/users/checkRegistrationToken', {
                 params: {
@@ -38,6 +42,7 @@ class Register extends Component {
                 },
             });
             // console.log(response.data);
+            // if the user is found in database, show the registration page and set the user email as default value in the form
             if (response.data.message === 'registration link ok') {
                 this.setState({
                     email: response.data.email,
@@ -59,7 +64,9 @@ class Register extends Component {
             [name]: event.target.value,
         });
     };
-
+    /* Function to register a new user. Form validations: names must be at least 2 characters and password must be
+       at least 8 characters. Password and confirmPassword must match. Call for backend put (update) function to enter user data
+      in the database */
     registerUser = async (e) => {
         e.preventDefault();
         const {firstName, lastName, email, password, confirmPassword} = this.state;
@@ -110,6 +117,7 @@ class Register extends Component {
                         updated: true,
                         error: false,
                     });
+                    //if user is updated set redirecting to happen 2 seconds later
                     setTimeout(() => {
                         this.setState({
                             redirect: true
@@ -144,6 +152,7 @@ class Register extends Component {
                 </div>
             );
         }
+        //redirect the user to login page after the registration has succeeded
         if (redirect) {
             return (
                 <Redirect to={'/login'} />

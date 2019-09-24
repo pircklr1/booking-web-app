@@ -60,7 +60,7 @@ module.exports = (app, db) => {
   );
 
   // @route   GET api/user/:id
-  // @desc    Get user by id
+  // @desc    Check if there is a user in the database with given email and NOT with given id
   // @access  Private
   app.get('/api/user', (req, res) =>
     db.User.findOne({
@@ -192,7 +192,7 @@ module.exports = (app, db) => {
   });
 
   // @route   PUT api/users/register
-  // @desc    Register user
+  // @desc    Register user i.e. update the user's information
   // @access  Private
   app.put('/api/users/register', (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
@@ -211,6 +211,7 @@ module.exports = (app, db) => {
         res.status(403).send('registration link is invalid');
       } else if (user) {
         console.log('user found in db');
+        //before updating the user's information in database, crypt the user's password
         bcrypt
           .hash(req.body.password, BCRYPT_SALT_ROUNDS)
           .then(hashedPassword => {
@@ -219,6 +220,7 @@ module.exports = (app, db) => {
                 password: hashedPassword,
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
+                //reset the registration token column in database
                 registerUserToken: null
               })
               .then(() => {

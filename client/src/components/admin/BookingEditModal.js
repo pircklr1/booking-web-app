@@ -1,4 +1,3 @@
-// import React, {useState, useEffect, useContext} from 'react';
 import React, { useState, useEffect } from 'react';
 import { adminUpdateBooking, getRoomData } from '../../service/ClientService';
 import { Button, Form, Icon, Modal, Select } from 'semantic-ui-react';
@@ -9,7 +8,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import fi from 'date-fns/locale/fi';
 import setHours from 'date-fns/setHours';
 import setMinutes from 'date-fns/setMinutes';
-// import {AuthContext} from "../../context/auth";
+import validate from '../../validation/BookingFormValidation';
 
 function BookingEditModal(props) {
   const [booking, setBooking] = useState();
@@ -31,12 +30,10 @@ function BookingEditModal(props) {
   );
   const [roomData, setRoomData] = useState([]);
   const [message, setMessage] = useState(null);
-  // const {currentUser} = useContext(AuthContext);
 
   useEffect(() => {
     setBooking(props.booking);
     getRooms();
-    // }, [])
   }, [props.booking]);
 
   //get room names to dropdown
@@ -70,14 +67,36 @@ function BookingEditModal(props) {
       start_time: moment(startTime).format('HH:mm:01'),
       end_time: moment(endTime).format('HH:mm')
     };
-    adminUpdateBooking(booking.id, data).then(function(success) {
-      if (success) {
-        props.update();
-        setMessage('Varauksen muokkaus onnistui!');
-      } else {
-        setMessage('Varauksen muokkaus ei onnistunut');
+    try{
+      if(validate(data)){
+        adminUpdateBooking(booking.id, data).then(function(success) {
+          if (success) {
+            props.update();
+            setMessage('Varauksen muokkaus onnistui!');
+          } else {
+            setMessage('Varauksen muokkaus ei onnistunut');
+          }
+        });
       }
-    });
+    }catch (e) {
+      if (e.message === 'start time is before 6 am') {
+        setMessage('Huoneita voi varata klo 6-22');
+      } else if (e.message === 'end time is after 22 am') {
+        setMessage('Huoneita voi varata klo 6-22');
+      } else if (e.message === 'room was not set') {
+        setMessage('Huonetta ei ole valittu');
+      } else if (e.message === 'start time cannot be after endtime') {
+        setMessage('Tarkista alkamis- ja päättymisaika');
+      } else if (e.message === 'start time cannot be after endtime') {
+        setMessage('Tarkista alkamis- ja päättymisaika');
+      } else if (e.message === 'start and end time must be even or half hour') {
+        setMessage('Alkamis- ja päättymisajan tulee olla tasalta tai puolelta');
+      } else if (e.message === 'start and end time cant be same') {
+        setMessage('Alkamis- ja päättymisaika eivät voi olla samat');
+      } else {
+        setMessage('Tuntematon virhe');
+      }
+    }
     setTimeout(() => {
       setMessage(null);
     }, 3000);
@@ -117,6 +136,7 @@ function BookingEditModal(props) {
                 selected={startDate}
                 onChange={handleDateChange}
                 locale={fi}
+                onFocus={(e) => e.target.readOnly = true}
               />
             </Form.Input>
           </Form.Group>
@@ -134,6 +154,7 @@ function BookingEditModal(props) {
                 locale={fi}
                 dateFormat='p'
                 timeCaption='Klo'
+                onFocus={(e) => e.target.readOnly = true}
               />
             </Form.Input>
           </Form.Group>
@@ -151,6 +172,7 @@ function BookingEditModal(props) {
                 locale={fi}
                 dateFormat='p'
                 timeCaption='Klo'
+                onFocus={(e) => e.target.readOnly = true}
               />
             </Form.Input>
           </Form.Group>

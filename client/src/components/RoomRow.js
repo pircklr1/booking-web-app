@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Popup, Icon, Grid, Header } from 'semantic-ui-react';
+import { Table, Popup, Grid, Header } from 'semantic-ui-react';
 import RoomCell from './RoomCell';
 import moment from 'moment';
 
@@ -319,7 +319,9 @@ class RoomRow extends Component {
           <Grid centered>
             <Grid.Column textAlign='center'>
               <Header as='h4'>{this.props.room.name}</Header>
-
+              <p>
+                Kapasiteetti:<b> {this.props.room.capacity}</b>
+              </p>
               <p>
                 Varustus:<b> {this.props.room.equipment}</b>
               </p>

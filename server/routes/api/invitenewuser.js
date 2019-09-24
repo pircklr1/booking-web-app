@@ -1,3 +1,4 @@
+/* api to invite a new user */
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 require('dotenv').config();
@@ -24,7 +25,9 @@ module.exports = (app, db) => {
                 console.error('email already in database');
                 res.status(403).send('email already in db');
             } else {
+                //creates a random token for the registration link url
                 const token = crypto.randomBytes(20).toString('hex');
+                //creates a new user in the database with the given email and the random token
                 db.User.create({
                     email: req.body.email,
                     registerUserToken: token
@@ -39,7 +42,7 @@ module.exports = (app, db) => {
                         pass: password
                     },
                 });
-
+                //constructs the registration email
                 const mailOptions = {
                     from: 'roba43tilavaraus@gmail.com',
                     to: req.body.email,
@@ -47,7 +50,8 @@ module.exports = (app, db) => {
                     text: 'Sait tämän viestin, koska sinut on kutsuttu rekisteröitymään Roba43:n tilavarauspalveluun.\n\n' +
                         'Rekisteröityäksesi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
                         baseUrl + '/signup/' + token + '\n\n' +
-                        'Mikäli et halua rekisteröityä ja tehdä varauksia, jätä tämä viesti huomioimatta.\n'
+                        'Mikäli et halua rekisteröityä ja tehdä varauksia, jätä tämä viesti huomioimatta.\n\n' +
+                        'Tämä on automaattisesti luotu viesti, ethän vastaa tähän viestiin. Mikäli sinulla on kysyttävää rekisteröitymiseen liittyen, lähetä viesti osoitteeseen vesa@kullberg.fi'
                 };
                 console.log('sending mail');
 

@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import {adminUpdateUser} from "../../service/ClientService";
 import {Button, Form, Icon, Modal} from "semantic-ui-react";
 import Notification from "../Notification";
+import validate from '../../validation/UserEditModalValidation';
 
 function UserEditModal(props) {
     const [user] = useState(props.user);
@@ -27,13 +28,35 @@ function UserEditModal(props) {
             email: email,
             isAdmin: isAdmin
         };
-        adminUpdateUser(user.id, data)
-            .then(props.update);
-        setMessage('Käyttäjän muokkaus onnistui!');
+        try {
+            if (validate(data)) {
+                adminUpdateUser(user.id, data)
+                    .then(props.update);
+                setMessage('Käyttäjän muokkaus onnistui!');
+            } else {
+                setMessage('Käyttäjän muokkaus ei onnistunut');
+            }
+        } catch (e) {
+            if (e.message === 'first name was not set') {
+                setMessage('Etunimi on pakollinen!');
+            } else if (e.message === 'first name must be at least 2 characters') {
+                setMessage('Liian lyhyt etunimi!');
+            } else if (e.message === 'last name was not set') {
+                setMessage('Sukunimi on pakollinen!');
+            } else if (e.message === 'last name must be at least 2 characters') {
+                setMessage('Liian lyhyt sukunimi!');
+            } else if (e.message === 'email was not set') {
+                setMessage('Sähköpostiosoite on pakollinen!');
+            } else if (e.message === 'email is not valid') {
+                setMessage('Sähköpostiosoite on virheellinen!');
+            } else {
+                setMessage('Tuntematon virhe');
+            }
+        }
     };
 
     return(
-        <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>}closeIcon>
+        <Modal trigger={<Button primary basic icon><Icon className='edit'/></Button>} closeIcon>
             <Modal.Header style={{'borderBottomColor': '#0e6eb8', 'borderWidth': '4px'}}>Muokkaa käyttäjää</Modal.Header>
             <Modal.Content>
                 <Form onSubmit={handleSubmit}>

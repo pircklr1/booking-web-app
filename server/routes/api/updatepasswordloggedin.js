@@ -1,3 +1,4 @@
+/* api to update the user's password */
 import bcrypt from 'bcrypt';
 const BCRYPT_SALT_ROUNDS = 10;
 const withAuth = require('../../middleware/middleware');
@@ -20,6 +21,7 @@ module.exports = (app, db) => {
                     res.status(404).send('user not found in database');
                 } else if (user != null) {
                     console.log('user found in db');
+                    //before updating the user's information in the database, their password is crypted
                     bcrypt
                         .hash(req.body.password, BCRYPT_SALT_ROUNDS)
                         .then((hashedPassword) => {

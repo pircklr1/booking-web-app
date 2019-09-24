@@ -1,15 +1,11 @@
-// import React, {useState, useEffect, useContext} from 'react';
 import React, { useState, useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
 import moment from 'moment';
-import DeleteButton from './DeleteButton';
 import { getAllRooms, getAllUsers } from '../../service/ClientService';
-// import {AuthContext} from "../../context/auth";
 import BookingEditModal from './BookingEditModal';
 import DeleteButtonConfirm from './DeleteButtonConfirm';
 
 function AdminBookingsTable({ tableData, update }) {
-  // const {currentUser} = useContext(AuthContext);
   const [userData, setUserData] = useState([]);
   const [roomData, setRoomData] = useState([]);
   let totalHours = 0;
@@ -45,7 +41,7 @@ function AdminBookingsTable({ tableData, update }) {
   const userName = userId => {
     return userData.map(user => {
       if (user.id === userId) {
-        return user.firstName + ' ' + user.lastName;
+        return user.lastName + ' ' + user.firstName;
       } else {
         return '';
       }

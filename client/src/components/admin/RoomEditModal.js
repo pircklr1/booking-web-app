@@ -19,8 +19,9 @@ function RoomEditModal(props) {
 
     const handleSubmit = e => {
         e.preventDefault();
+        let nameWithoutSpaces = name.trim();
         const data = {
-            name: name,
+            name: nameWithoutSpaces,
             capacity: capacity,
             available: available,
             equipment: equipment

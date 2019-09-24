@@ -1,3 +1,4 @@
+/* api for forgotten password */
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 require('dotenv').config();
@@ -24,10 +25,11 @@ module.exports = (app,db) => {
                 console.error('email not in database');
                 res.status(403).send('email not in db');
             } else {
+                //creates a random token and sets it to expire 1 h after the email is sent
                 const token = crypto.randomBytes(20).toString('hex');
                 user.update({
                     resetPasswordToken: token,
-                    resetPasswordExpires: Date.now() + 360000,
+                    resetPasswordExpires: Date.now() + 3600000, //current time + 1 h
                 });
 
                 const transporter = nodemailer.createTransport({
@@ -37,7 +39,7 @@ module.exports = (app,db) => {
                         pass: password
                     },
                 });
-
+                //constructs the email
                 const mailOptions = {
                     from: 'roba43tilavaraus@gmail.com',
                     to: user.email,
@@ -46,7 +48,8 @@ module.exports = (app,db) => {
                         'Salasanasi uudelleenasettamiseksi klikkaa tätä linkkiä tai kopioi se selaimeesi:\n\n' +
                         baseUrl + '/reset/' + token + '\n\n' +
                         'Salasanan vaihtolinkki on voimassa yhden tunnin sen lähettämishetkestä.\n' +
-                        'Mikäli et pyytänyt salasanasi palauttamista, jätä tämä viesti huomioimatta, niin salasanasi säilyy ennallaan.\n'
+                        'Mikäli et pyytänyt salasanasi palauttamista, jätä tämä viesti huomioimatta, niin salasanasi säilyy ennallaan.\n\n' +
+                        'Tämä on automaattisesti luotu viesti, ethän vastaa tähän viestiin. Mikäli sinulla on kysyttävää salasanan palauttamiseen liittyen, lähetä viesti osoitteeseen vesa@kullberg.fi'
                 };
                 console.log('sending mail');
 
