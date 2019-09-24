@@ -21,12 +21,11 @@ class ForgotPassword extends Component {
     //trim whitespaces from input and set to lowercase
     formatInput = name => (event) => {
         this.setState({ [name]: event.target.value.trim() });
-        this.setState({ [name]: event.target.value.toLowerCase() })
     };
 
     handleChange = name => (event) => {
         this.setState({
-            [name]: event.target.value,
+            [name]: event.target.value.toLowerCase(),
         });
     };
     /* Checks if the input is a valid email (and not empty), if not, shows an error message. If email is valid,

@@ -54,12 +54,12 @@ class SettingsForm extends Component {
             });
         }
     }
-    //trim whitespaces from input and set to lowercase
-    formatInput = name => (event) => {
-        this.setState({ [name]: event.target.value.trim() });
-        this.setState({[name]: event.target.value.toLowerCase()})
+    //trim whitespaces from email input and set to lowercase
+    handleEmailChange = name => (event) => {
+        this.setState({
+            [name]: event.target.value.trim().toLowerCase(),
+        });
     };
-
 
     handleChange = name => (event) => {
         this.setState({
@@ -201,26 +201,24 @@ class SettingsForm extends Component {
                         <Form.Input
                             id="email"
                             label="Vaihda sähköpostiosoite:"
-                            onChange={this.handleChange('email')}
+                            onChange={this.handleEmailChange('email')}
                             value={email}
                             type="email"
                             placeholder="Uusi sähköpostiosoite"
                             error={emailError}
                             icon='envelope'
                             iconPosition='left'
-                            onBlur={this.formatInput('email')}
                         />
                         <Form.Input
                             id="confirmEmail"
                             label="Uusi sähköposti uudestaan:"
-                            onChange={this.handleChange('confirmEmail')}
+                            onChange={this.handleEmailChange('confirmEmail')}
                             value={confirmEmail}
                             type="email"
                             placeholder="Uusi sähköpostiosoite uudestaan"
                             icon='envelope'
                             iconPosition='left'
                             error={emailError}
-                            onBlur={this.formatInput('confirmEmail')}
                         />
                         <Button type='submit' primary>
                             Tallenna muutokset
