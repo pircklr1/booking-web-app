@@ -11,8 +11,8 @@ const initialState = {
 
 if (localStorage.getItem('jwtToken')) {
   const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
-
-  if (decodedToken.exp * 1000 < Date.now()) {
+  //30000000s equals to around 347 days, ie. expiration once a year.
+  if (decodedToken.exp * 30000000 < Date.now()) {
     localStorage.removeItem('jwtToken');
     if (localStorage.getItem('userId')) {
       localStorage.removeItem('userId');
@@ -54,6 +54,7 @@ function AuthProvider(props) {
   function login(userData) {
     localStorage.setItem('jwtToken', userData.token);
     // console.log(userData);
+    //The dispatch function sends an action to the reducer which changes the current state:
     dispatch({
       type: 'LOGIN',
       payload: userData
@@ -64,6 +65,7 @@ function AuthProvider(props) {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
+    //The dispatch function sends an action to the reducer which changes the current state:
     dispatch({
       type: 'LOGOUT'
     });
