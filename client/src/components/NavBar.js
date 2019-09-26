@@ -165,7 +165,8 @@ function NavBar() {
             direction='right'
             vertical='true'
             inverted='true'
-            onHide={handleToggle}
+            // onHide={handleToggle}
+            onHide={() => setVisible(false)}
             width='thin'
             visible={visible}
           >
@@ -321,7 +322,8 @@ function NavBar() {
             direction='right'
             vertical='true'
             inverted='true'
-            onHide={handleToggle}
+            // onHide={handleToggle}
+            onHide={() => setVisible(false)}
             width='thin'
             visible={visible}
           >
