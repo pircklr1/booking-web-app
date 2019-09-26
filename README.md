@@ -4,7 +4,7 @@
 This is a room booking application that was originally created as a final group project for Academy's Accelerated Learning-programming course. The application was created for an actual client and for actual use despite it being a school project.
 Link to our program: varaus.roba43.fi
 
-Varausjärjestelmän suomenkieliset käyttöohjeet: https://docs.google.com/document/d/1KWZxT8zxusoL-OssTb-dW0JtXtDp5wy_kovcTB5e1JE/edit
+Varausjärjestelmän suomenkieliset käyttöohjeet: https://docs.google.com/document/d/1KWZxT8zxusoL-OssTb-dW0JtXtDp5wy_kovcTB5e1JE/edit?usp=sharing
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development purposes.
 ### Prerequisites
