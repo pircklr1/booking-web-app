@@ -86,8 +86,8 @@ module.exports = (app, db) => {
   });
 
   // @route   POST api/booking/allrooms
-  // @desc    Create new booking for all rooms simultaneously
-  // @access  Public
+  // @desc    Post new booking for all rooms simultaneously
+  // @access  Private
   /* this checks if there is already booking at that time where user is trying to create new booking. */
   app.post('/api/booking/allrooms', withAuth, (req, res) => {
     var overlapping = [];
@@ -156,7 +156,7 @@ module.exports = (app, db) => {
 
   // @route   GET api/booking/:id
   // @desc    Get booking by id
-  // @access  Public
+  // @access  Private
   app.get('/api/booking/:id', withAuth, (req, res) =>
     db.Booking.findByPk(req.params.id)
       .then(result => res.json(result))
@@ -168,7 +168,7 @@ module.exports = (app, db) => {
 
   // @route   GET api/userbookings/:userId
   // @desc    Get all bookings for user
-  // @access  Public
+  // @access  Private
   app.get('/api/userbookings/:id', withAuth, (req, res) =>
     db.Booking.findAll({
       where: {
@@ -185,7 +185,7 @@ module.exports = (app, db) => {
 
   // @route   PUT api/booking/:id
   // @desc    Modify existing booking
-  // @access  Public
+  // @access  Private
   // this checks if there is already booking at that time where user is trying to update booking.
   app.put('/api/booking/:id', withAuth, (req, res) => {
     var overlapping = [];
@@ -263,7 +263,7 @@ module.exports = (app, db) => {
 
   // @route   DELETE api/booking/:id
   // @desc    Delete existing booking
-  // @access  Public
+  // @access  Private
   app.delete('/api/booking/:id', withAuth, (req, res) =>
     db.Booking.destroy({
       where: {

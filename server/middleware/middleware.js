@@ -13,7 +13,7 @@
 const jwt = require('jsonwebtoken');
 const secret = process.env.SECRET;
 
-// helper function for checking if token is valid in request cookies
+// Helper function for verifying token
 const withAuth = function(req, res, next) {
   const token =
     req.body.token ||
