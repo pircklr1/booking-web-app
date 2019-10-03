@@ -2,7 +2,7 @@
 ![logo](https://github.com/kirsi-k/loppuprojekti-tilavaraus-applikaatio/blob/master/client/public/logo3.png)
 
 This is a room booking application that was originally created as a final group project for Academy's Accelerated Learning-programming course. The application was created for an actual client and for actual use despite it being a school project.
-Link to our program: varaus.roba43.fi
+Link to our program: https://varaus.roba43.fi
 
 Varausjärjestelmän suomenkieliset käyttöohjeet: https://docs.google.com/document/d/1KWZxT8zxusoL-OssTb-dW0JtXtDp5wy_kovcTB5e1JE/edit?usp=sharing
 ## Getting Started
@@ -127,8 +127,10 @@ For our client the system ensures that he doesn't have to use his precious worki
 * Amazon ECR (Elastic Container Registry)
 * Amazon Elastic Beanstalk
 * Amazon S3 (Simple Storage Service)
+* Amazon CloudFront
+* Amazon Certificate Manager
 
-The app is running here: varaus.roba43.fi
+The app is running here: https://varaus.roba43.fi
 ## Team
 * [Sini](https://github.com/siniv)
 * [Rico](https://github.com/pircklr1)
